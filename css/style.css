@@ -6,6 +6,9 @@ body {
     line-height: 25px;
     color: #34495e;
 }
+.bg-dark {
+    background-color: #1C2432 !important;
+}
 
 h1,
 h2,
@@ -282,6 +285,7 @@ h2 {
 .footer {
     font-size: 1.4rem;
     color: #FF8C00;
+    
 }
 
 .bg-orange {
