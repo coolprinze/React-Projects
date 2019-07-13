@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+body {
+    background-color: #FFFFFF;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    line-height: 25px;
+    color: #34495e;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #34495e;
+}
+
+p {
+    font-size: 13px;
+    line-height: 22px;
+    color: #AAAAAA;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+ul,
+ol {
+    list-style: outside none none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    transform-style: preserve-3d;
+}
+
+a {
+    transition: color 300ms ease 0s, background-color 300ms ease 0s;
+    text-decoration: none !important;
+    color: #AAAAAA;
+}
+
+a:hover {
+    transition: color 300ms ease 0s, background-color 300ms ease 0s;
+    color: #FF8C00;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+}
+
+a:focus {
+    outline: medium none;
+    outline-offset: 0;
+}
+
+.navbar-nav {
+    font-size: 14px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-size: 20px;
+}
+
+.search-bar {
+    background: #FF8C00;
+    width: 100%;
+    min-height: 80px;
+}
+
+.search-form {
+    border-right: 1px solid #f0f0f0;
+    height: 80px;
+}
+
+.s-form {
+    width: 304px;
+    height: 46px;
+    background: #FFFFFF;
+    border-radius: 3px;
+}
+
+.text-small {
+    font-size: 10px;
+}
+
+.btn-listing {
+    left: 0;
+    right: 0;
+    width: 220px;
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 30px solid #FFFFFF;
+    margin: auto;
+}
+
+.border-right {
+    width: 1px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+h2 {
+    color: white;
+}
+
+#newsletter {
+    background: #34495e;
+    height: 50px;
+}
+
+
+/* The check */
+
+.check {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    padding-right: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/* Hide the browser's default checkbox */
+
+.check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+/* Create a custom checkbox */
+
+.checkmark {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border-color: #f8204f;
+    border-style: solid;
+    border-width: 2px;
+}
+
+
+/* When the checkbox is checked, add a blue background */
+
+.check input:checked~.checkmark {
+    background-color: #fff;
+}
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+/* Show the checkmark when checked */
+
+.check input:checked~.checkmark:after {
+    display: block;
+}
+
+
+/* Style the checkmark/indicator */
+
+.check .checkmark:after {
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid;
+    border-color: #f8204f;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+/* Profile container */
+
+.profile {
+    margin: 10px 0;
+}
+
+
+/* Profile sidebar */
+
+.profile-sidebar {
+    padding: 3px 0 10px 0;
+    background: #fff;
+}
+
+.profile-usertitle {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile-userbuttons .btn {
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 15px;
+    margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+    margin-right: 0px;
+}
+
+.profile-usermenu {
+    margin-top: 10px;
+}
+
+.profile-usermenu ul li {
+    border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+    border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+    color: #93a3b5;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.profile-usermenu ul li:hover {
+    background-color: #fafcfd;
+}
+
+.profile-usermenu ul li.active {
+    border-bottom: none;
+}
+
+.profile-usermenu ul li.active {
+    background-color: #FAFAFA;
+    border-left: 3px solid #f8204f;
+    margin-left: -2px;
+}
+
+
+/* Profile Content */
+
+.profile-content {
+    padding: 20px;
+    background: #fff;
+    min-height: 460px;
+}
+
+.footer {
+    font-size: 1.4rem;
+    color: #FF8C00;
+}
+
+.bg-orange {
+    background: #FE8C00;
+}
+
+.border-bottom {
+    border-bottom: 3px solid #f0f4f7;
+}
+
+.home-phone {
+    background: rgba(254, 140, 0, 0.2);
+    color: #FE8C00;
+    height: 35px;
+    width: 144px;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 18px;
+}
+
+.bg-grey {
+    background: #F9F9FB;
+}
+
+.border-bb {
+    border-bottom: 1px solid;
+}
+
+.grey-border {
+    border: 1px solid rgba(144, 144, 144, 0.4);
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #fff;
+    background: #343a40!important
+}
+
+
+/* Properties advice link */
+
+.pa-link {
+    color: #FFFFFF;
+    opacity: 0.5;
+}
+
+.pa-link:hover {
+    color: #fff;
+    opacity: 1;
+}

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Castle - Real estate</title>
+</head>
+
+<body>
+    <header class="container-fluid px-0">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+            <div class="container-fluid px-lg-5">
+                <a class="navbar-brand logo" href="index.html">
+                    <img src="img/logo.png" class="d-inline-block align-top" alt="">
+                </a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                                       <span class="navbar-toggler-icon"></span>
+                                       </button>
+                <div class="navbar-collapse justify-content-end collapse show" id="navbarResponsive">
+                    <ul class="navbar-nav justify-content-between">
+                        <li class="nav-item d-flex align-items-center justify-content-center">
+                            <a class="py-1 home-phone" href="#">09883833232</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="post_request.html">Post Request<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="agent/propertyadvice.html">Property Advice</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="propertylisting.html">Property Listing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="propertyview.html">Property View</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="userprofile.html">User Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">Login/Register</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center justify-content-center pb-2" id="sp-btn">
+                            <a class="nav-link btn btn-lg px-5 py-3 btn-outline-dark" href="#">Submit Property</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid search-bar d-flex align-items-center flex-xl-row">
+            <section class="container">
+                <ul class="row d-flex flex-row justify-content-between align-items-center px-lg-4">
+                    <li class="col-lg-3 d-flex flex-column justify-content-center align-items-center px-0 py-1 text-center">
+                        <input type="search" name="" class="form-control px-2 py-4" id="" placeholder="Lekki, Lagos">
+                    </li>
+                    <li class="col-lg-2 d-flex flex-column justify-content-center align-items-center px-0 text-center">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="types_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Location
+                                            </button>
+                            <div class="dropdown-menu" aria-labelledby="types_drp">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </li>
+                    <div class="border-right pl-0" style="height: 79px;"></div>
+                    <li class="col-lg-1 d-flex flex-column justify-content-center align-items-center px-0 text-center">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="bedroom_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Min Price
+                                            </button>
+                            <div class="dropdown-menu" aria-labelledby="bedroom_drp">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="col-lg-1 d-flex flex-column justify-content-center align-items-center px-0 text-center text-white">
+                        <div class="text-white px-0 pb-3">to</div>
+                    </li>
+
+                    <li class="col-lg-1 d-flex flex-column justify-content-center align-items-center px-0 text-center">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="bedroom_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Max Price
+                                                </button>
+                            <div class="dropdown-menu" aria-labelledby="bedroom_drp">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </li>
+                    <div class="border-right pl-0" style="height: 79px;"></div>
+                    <li class="col-lg-2 d-flex flex-column justify-content-center align-items-center px-0 text-center">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="price_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Property type
+                                            </button>
+                            <div class="dropdown-menu" aria-labelledby="price_drp">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </li>
+                    <div class="border-right pl-0" style="height: 79px;"></div>
+                    <li class="col-lg-1 d-flex flex-column justify-content-center align-items-center px-0 text-center">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="bathroom_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                bathrooms
+                                            </button>
+                            <div class="dropdown-menu" aria-labelledby="bathroom_drp">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </section>
+        </div>
+
+        <div class="container-fluid d-flex align-items-center" style="background-color:#FFFFFF; min-height: 80px; border-bottom: 1px solid #FFFFFF">
+
+            <div class="container py-3">
+                <div class="row">
+                    <div class="col-sm-4">
+                        Property for sale in Lekki, Nigeria
+                    </div>
+                    <div class="col-sm-2">
+                        <i class="fa fa-bell pr-2"></i>Create Alert
+                    </div>
+
+                    <div class="col-sm-3">
+                        Can't find what you are looking for?
+                    </div>
+                    <div class="col-sm-3 pr-0">
+                        <button class="btn btn-lg btn-outline-dark pull-right">Post a Request</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid d-flex align-items-center" style="background: #FAFAFA;">
+        <div class="container py-3">
+            <div class="row">
+                <div class="col-sm-8">
+                    <ul class="d-flex justify-content-start">
+                        <li>
+                            <h4><strong>2 Bedroom Flat</strong></h4>
+                        </li>
+                        <li class="pl-4">
+                            <h4><i class="fa fa-map-marker footer pr-1"></i> Ikoyi</h4>
+                        </li>
+                    </ul>
+
+                    <ul class="d-flex justify-content-start pt-2">
+                        <li>
+                            <h5><i class="fa fa-bed footer pr-1"></i> 2 Bedrooms </h5>
+                        </li>
+                        <li class="pl-3">
+                            <h5><i class="fa fa-bath footer pr-1"></i> 2 Bathrooms </h5>
+                        </li>
+                        <li class="pl-3">
+                            <h5><i class="fa fa-toilet footer pr-1"></i> 3 Toilets </h5>
+                        </li>
+                        <li class="pl-3">
+                            <h5><i class="fa fa-car footer pr-1"></i> 1 Parking </h5>
+                        </li>
+                    </ul>
+
+
+
+                </div>
+
+                <div class="col-sm-4">
+                    <ul class="d-flex justify-content-end">
+                        <li>
+                            <h4 class="footer" style="font-size:2rem;"><strong>N 1,000,000</strong></h4>
+                        </li>
+                    </ul>
+                    <ul class="d-flex justify-content-end">
+                        <li class="pl-3">
+                            <h5><i class="fa fa-share footer pr-1"></i> Share </h5>
+                        </li>
+
+                        <li class="pl-3">
+                            <h5><i class="fa fa-heart footer pr-1"></i> Save </h5>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="container-fluid mt-5 px-0 propertiesview">
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="img/properties/1.png" alt="">
+            </div>
+            <div class="col-sm-4">
+                <img src="img/properties/1.png" alt="">
+            </div>
+            <div class="col-sm-4 pr-0">
+                <img src="img/properties/1.png" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid mt-5 propertiesview" style="background: #FAFAFA">
+        <div class="container py-3">
+            <div class="row">
+                <div class="col-sm-8 col-lg-sm-8 badge-white">
+                    <div class="row">
+                        <div class="col-sm-12 bg-white py-4 px-4">
+                            <div class="row">
+                                <div class="col-sm-4 offset-sm-8 px-4">
+                                    <p class="mb-0 text-right" style="font-size: 1rem">Addes 2 days ago</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-3 px-0">
+                                    <p class="mb-0 text-center py-2" style="font-size: 1rem; border-bottom: 2px solid #FF8C00;">Description</p>
+                                </div>
+                                <div class="col-sm-3 px-0">
+                                    <p class="mb-0 text-center py-2" style="font-size: 1rem; border-bottom: 2px solid #F0F0F0">Map</p>
+                                </div>
+                            </div>
+
+                            <div class="row py-3">
+                                <div class="col-sm-12">
+                                    <p class="" style="font-size: 1.1rem;">
+                                        A new renovated flat in the heart of Lagos, one way drive to Lekki and to the mainland
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row py-3">
+                                <div class="col-sm-3">
+                                    <p class="" style="font-size: 1.1rem; color:#002E64; font-weight: bold">
+                                        Refrence No </p>
+                                    <p class="" style="font-size: 1.1rem;">
+                                        232323
+                                    </p>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <p class="" style="font-size: 1.1rem; color:#002E64; font-weight: bold">
+                                        Added on </p>
+                                    <p class="" style="font-size: 1.1rem;">
+                                        12 / 06 / 19
+                                    </p>
+                                </div>
+
+                                <div class="col-sm-5">
+                                    <p class="" style="font-size: 1.1rem; color:#002E64; font-weight: bold">
+                                        Last Updated</p>
+                                    <p class="" style="font-size: 1.1rem;">
+                                        12 / 06 / 19
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row py-3">
+                                <div class="col-sm-3">
+                                    <p class="" style="font-size: 1.1rem; color:#002E64; font-weight: bold">
+                                        Market Status </p>
+                                    <p class="" style="font-size: 1.1rem;">
+                                        Available
+                                    </p>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <p class="" style="font-size: 1.1rem; color:#002E64; font-weight: bold">
+                                        Type
+                                    </p>
+                                    <p class="" style="font-size: 1.1rem;">
+                                        Flat
+                                    </p>
+                                </div>
+
+                                <div class="col-sm-5">
+                                    <p class="" style="font-size: 1.1rem; color:#002E64; font-weight: bold">
+                                        Utilities
+                                    </p>
+                                    <p class="" style="font-size: 1.1rem;">
+                                        Available
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row py-3">
+                                <div class="col-sm-3">
+                                    <p class="" style="font-size: 1.1rem; color:#002E64; font-weight: bold">
+                                        Bedrooms
+                                    </p>
+                                    <p class="" style="font-size: 1.1rem;">
+                                        2
+                                    </p>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <p class="" style="font-size: 1.1rem; color:#002E64; font-weight: bold">
+                                        Bathrooms
+                                    </p>
+                                    <p class="" style="font-size: 1.1rem;">
+                                        2
+                                    </p>
+                                </div>
+
+                                <div class="col-sm-5">
+                                    <p class="" style="font-size: 1.1rem; color:#002E64; font-weight: bold">
+                                        Toilet
+                                    </p>
+                                    <p class="" style="font-size: 1.1rem;">
+                                        3
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row py-3">
+                                <div class="col-sm-8 offset-sm-2">
+                                    <button class="btn btn-lg" style="background: #FF8C00; width: 100%; color:#FFFFFF">Contact Via Mail</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-lg-4 pl-4 " style="border-radius:5px ">
+                    <div class="row">
+                        <div class="col-sm-12 bg-white py-4 px-4">
+                            <div class="row">
+                                <div class="col-sm-6 offset-sm-6 px-4">
+                                    <p class="mb-0 text-right" style="font-size: 1rem; text-decoration: underline">View Listing</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p class="d-flex align-items-center justify-ceonten-center my-3">
+                                        <span style="width: 40px;height: 40px;color: #FE8C00;background: rgba(254, 140, 0, 0.1);border-radius: 100%;display: block;" class="d-flex align-items-center justify-content-center mr-3">
+                                            <i class="fa fa-2x fa-user"></i>
+                                        </span>
+                                        <span style="font-size: 1.2rem">Adebayo </span>
+                                    </p>
+
+                                    <p class="d-flex align-items-center justify-ceonten-center my-3">
+                                        <span style="width: 40px;height: 40px;color: #FE8C00;background: rgba(254, 140, 0, 0.1);border-radius: 100%;display: block;" class="d-flex align-items-center justify-content-center mr-3">
+                                                <i class="fa fa-2x fa-phone"></i>
+                                            </span>
+                                        <span style="font-size: 1.2rem">09033425925 </span>
+                                    </p>
+
+                                    <p class="d-flex align-items-center justify-ceonten-center my-3">
+                                        <span style="width: 40px;height: 40px;color: #FE8C00;background: rgba(254, 140, 0, 0.1);border-radius: 100%;display: block;" class="d-flex align-items-center justify-content-center mr-3">
+                                                    <i class="fa fa-2x fa-whatsapp"></i>
+                                                </span>
+                                        <span style="font-size: 1.2rem">09033425925 </span>
+                                    </p>
+
+                                    <p class="d-flex align-items-center justify-ceonten-center my-3">
+                                        <span style="width: 40px;height: 40px;color: #FE8C00;background: rgba(254, 140, 0, 0.1);border-radius: 100%;display: block;" class="d-flex align-items-center justify-content-center mr-3">
+                                                        <i class="fa fa-2x fa-envelope-o"></i>
+                                                    </span>
+                                        <span style="font-size: 1rem">adebiadebayo@gmail.com</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 py-3 px-0">
+                            <div class="card" height="18rem">
+                                <div class="card-title py-3" style="border-bottom: 1px solid">
+                                    <i class="fa fa-share pl-2"></i> Share this property listing
+                                </div>
+                                <div class="card-body">
+                                    <div>
+                                        <img src="img/icon/whatsapp.png" alt="">
+                                        <img src="img/icon/twitter.png" alt="">
+                                        <img src="img/icon/facebook.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-12 py-3 px-0">
+                            <div class="card" height="18rem">
+                                <div class="card-title py-3" style="border-bottom: 1px solid">
+                                    <i class="fa fa-share pl-2"></i> Share this property listing
+                                </div>
+                                <div class="card-body">
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a href="#" style="text-decoration: underline !important;
+                                                    color: blue;
+                                                    font-size: 0.65rem;">Average price for 1 bedroom flats for rent in Yaba </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" style="text-decoration: underline !important;
+                                                        color: blue;
+                                                        font-size: 0.65rem;">Average price for 1 bedroom flats for rent in Yaba </a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="container d-flex justify-content-between align-items-center bg-white py-4 ">
+        <h5>Showing 1 to 5 of 40 enteries</h5>
+        <nav aria-label="Page navigation example ">
+            <ul class="pagination ">
+                <li class="page-item ">
+                    <a class="page-link " href="# " aria-label="Previous ">
+                        <span aria-hidden="true ">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item "><a class="page-link " href="# ">1</a></li>
+                <li class="page-item "><a class="page-link " href="# ">2</a></li>
+                <li class="page-item "><a class="page-link " href="# ">3</a></li>
+                <li class="page-item ">
+                    <a class="page-link " href="# " aria-label="Next ">
+                        <span aria-hidden="true ">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+    <!-- Footer -->
+    <section class="section-padding footer bg-dark mt-5 ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-lg-3 ">
+                    <h4 class="mb-5 "><img src="img/logo.png " alt=" "></h4>
+                    <div class="text-white ">
+                        <a href="# " class="footer "><i class="fa fa-facebook px-2 "></i></a>
+                        <a href="# " class="footer "><i class="fa fa-twitter px-2 "></i></a>
+                        <a href="# " class="footer "><i class="fa fa-instagram px-2 "></i></a>
+                        <a href="# " class="footer "><i class="fa fa-google px-2 "></i></a>
+                    </div>
+
+                </div>
+                <div class="col-lg-5 col-md-5 ">
+                    <h3 class="mb-4 text-white ">Get in touch</h3>
+                    <ul>
+                        <li class="text-white py-2 " style="font-size:1rem; ">
+                            <span class="fa fa-map-marker pr-3 footer "></span> 285A Corperation Drive, Doliphin Estate, Ikoyi
+                        </li>
+                        <li class="text-white py-2 " style="font-size:1rem; ">
+                            <span class="fa fa-phone pr-3 footer "></span> 080-3473-9837
+                        </li>
+                        <li class="text-white py-2 " style="font-size:0.9rem; ">
+                            <span class="fa fa-envelope pr-3 footer "></span> advert@castlesweekly.com, enquires@castles.com.ng
+                        </li>
+                        <ul>
+                </div>
+                <div class="col-lg-4 col-md-4 pl-4 ">
+                    <h3 class="mb-4 text-white ">Property Cities</h3>
+                    <div class="row ">
+                        <div class="col-sm-6 ">
+                            <ul>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Lekki
+                                </li>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Bannana Island
+                                </li>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Ikeja
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 ">
+                            <ul>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Ikoyi
+                                </li>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Lekki Phase 1
+                                </li>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Victorial Island
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-3 mt-5 " style="border-top: 1px solid #ffffff; ">
+                <h5 class="text-white ">&copy; 2019 Castles by RealHouse Communications Limited</h5>
+            </div>
+        </div>
+    </section>
+    <!-- End Footer -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.3.1.slim.min.js "></script>
+    <script src="js/popper.min.js "></script>
+    <script src="js/bootstrap.min.js "></script>
+
+</body>
+
+</html>

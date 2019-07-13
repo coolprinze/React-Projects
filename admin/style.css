@@ -1,0 +1,490 @@
+body{
+  background: #E5E5E5;
+  color: #505050;
+}
+header{
+  background: url(images/headerBg.png);
+  background-repeat: no-repeat;
+  min-height: 40vh;
+}
+.Analticsinfo h1{
+  font-weight: 500;
+font-size: 24px;
+line-height: 36px;
+color: #555555;
+}
+.Analticsinfo p{
+  font-weight: 500;
+font-size: 24px;
+line-height: 36px;
+color: #909090;
+}
+.headerNav a{
+  color: black;
+}
+.active a{
+  color: #FE8C00
+}
+.AboutUs{
+  /* font-family: Poppins; */
+  font-style: normal;
+  font-weight: normal;
+}
+.bg-orange{
+  background: #FE8C00;
+}
+.TOUadvert{
+  border-radius: 6px;
+  background: #FFFFFF;
+}
+.DMimages button{
+  border:none;
+  background: white;
+}
+.DMimages button :hover{
+  filter: blur(6px);
+}
+.headerContent{
+  min-height: 30vh;
+  background: radial-gradient(443.77px at 77.15% 78.76%, rgba(0, 0, 0, 0.448) 0%, rgba(0, 0, 0, 0.7) 100%);
+  color: #FFFFFF;
+  top: auto;
+  bottom: auto;
+  display: grid;
+  align-items: center;
+  /* font-family: Poppins; */
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 46px;
+}
+.abt1 h6{
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 48px;
+  color: #555555;
+}
+.abt1 p{
+  font-size: 20px;
+line-height: 36px;
+color: #909090;
+}
+.abtImage{
+  width: 300px;
+}
+.abtUs h4{
+  font-size: 40px;
+  line-height: 60px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #555555;
+}
+.abtUs p{
+  font-size: 20px;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  color: #909090;
+}
+.abtContact h1{
+  font-weight: 600;
+font-size: 30px;
+line-height: 45px;
+color: #555555;
+}
+.abtContact h6{
+  font-weight: 500;
+font-size: 18px;
+line-height: 27px;
+color: #909090;
+}
+.abtContact p{
+  font-size: 16px;
+line-height: 24px;
+color: #909090;
+}
+.abtForm{
+  background: #FFFFFF;
+box-shadow: 0px 2px 4px rgba(180, 180, 180, 0.5);
+border-radius: 12px;
+}
+.abtForm p{
+  font-family: Avenir Next LT Pro;
+font-size: 18px;
+line-height: 28px;
+color: #354052;
+}
+.abtForm input{
+  border: 1px solid #DFE3E9;
+box-sizing: border-box;
+border-radius: 4px;
+margin: 0 0;
+}
+.abtForm label{
+  font-family: Sailec;
+  font-size: 14px;
+  line-height: 19px;
+  color: #0C1428;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
+.abtSub p{
+  font-size: 32px;
+line-height: 48px;
+color: #909090;
+}
+.abtSub h1{
+  font-weight: 500;
+font-size: 50px;
+line-height: 75px;
+color: #1C2432;
+}
+.abtSub form{
+  display: inline-flex;
+}
+.abtSub input{
+  background: #1C2432;
+  border-radius: 6px;
+  border: 1px solid #1C2432;
+  font-size: 30px;
+  line-height: 45px;
+  color: #909090;
+}
+.abtSub button{
+  background: #FE8C00;
+  border-radius: 6px;
+  border: 1px solid orange;
+  position: absolute;
+  left: 70%;
+  align-self: center;
+  color: white;
+}
+.TOUinfo h1{
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 48px;
+  color: #555555;
+}
+.TOUinfo p{
+  font-size: 20px;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  color: #909090;
+}
+.magIMG img{
+  width: inherit;
+  height: 343px;
+}
+#img2 :hover{
+  filter: blur(8px);
+}
+.TOUsearch p{
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 28px;
+  color: #555555;
+}
+.TOUsearch input{
+  font-size: 12px;
+line-height: 18px;
+
+color: #A6A6A6;
+}
+.TOUbtn{
+  font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+color: #000000;
+background: #FE8C00;
+border: 1px solid #FE8C00;
+border-radius: 6px;
+width: 100%
+}
+a {
+  color: #FE8C00;
+}
+.bg-white{
+  background: #FFFFFF;
+}
+.btn-outline-dark:hover{
+  background-color: white;
+  color: #FE8C00;
+}
+.Available{
+  color: green;
+}
+.unavailable{
+  color: red;
+}
+.bg-dark p{
+  color: white;
+}
+.registerButton{
+  position: absolute;
+  left: 83.96%;
+  right: 2.99%;
+  top: 1.29%;
+  bottom: 95.48%;
+}
+input{
+  width: 100%;
+  margin: 0.5em 0.5em;
+}
+a:hover{
+  text-decoration: none;
+}
+.email p{
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: #A0A0A0;
+  margin-top: 1em;
+}
+button{
+  border: 1px solid #555555;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #555555;
+}
+.content{
+  height: 70vh;
+}
+.body{
+  top:40vh;
+  border-radius: 6px;
+}
+.col{
+  background-color: white;
+  margin-inline-start: 1em;
+  margin-block-start: 1em;
+  text-align: center;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  border-radius: 4px;
+  margin-block-end: 1em;
+}
+.active0{
+  border: 1px solid #FE8C00;
+  color: #FE8C00;
+}
+.text{
+  color: #C8C8C8;
+}
+.textblack{
+  color: black;
+}
+.card1{
+  border: 1px solid grey;
+  border-radius: 4px;
+  background-color: lightblue;
+  padding: 1em 1em 1em 1em;
+}
+.footer{
+  left: 0%;
+  right: 0%;
+  padding-top: 1em;
+  color: white;
+  bottom: 0%;
+  background: #1C2432;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 45px;
+}
+.myp{
+  margin-bottom: 0;
+}
+table#t01 tr:nth-child(even) {
+    background-color: #eee;
+    padding: 0.5em;
+}
+table#t01 tr:nth-child(odd) {
+    background-color: #fff;
+    padding: 0.5em;
+}
+table#t01 th {
+  color: black;
+  padding: 0.5em;
+}
+table#t01{
+  width: 100%;
+}
+table#t01 td{
+  padding: 0.5em;
+}
+#t01 button{
+  background: #1C2432;
+  color: white;
+}
+#t01 a{
+  color: white;
+}
+.inlineDetails{
+  display:inline-flex;
+}
+.inlineDetails p{
+  margin-right: 1em;
+}
+.colSN{
+    background-color: white;
+    margin-inline-start: 1em;
+    margin-block-start: 1em;
+    text-align: center;
+    border-radius: 4px;
+    margin-block-end: 1em;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.colSN input{
+  width: 100%;
+  margin: 0;
+  border-radius: 4px;
+  border: 1px solid #DFE3E9;
+}
+.colSN textarea{
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #DFE3E9;
+}
+
+.footer p{
+  font-size: small;
+  line-height: 20px;
+}
+.foot img{
+  padding-inline-start: 0.5em
+}
+.line{
+  color: white;
+}
+.profileNav ul {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  color: #909090;
+  list-style-type: none;
+  display: inline-flex;
+  padding-inline-start: 0;
+}
+.profileNav li a{
+  padding: 1em 2em 0.5em 2em;
+  border-bottom: 1px solid grey;
+  color: #909090;
+}
+.profileNav ul .active{
+    border-bottom: 1px solid #FE8C00;
+    color: #FE8C00;
+}
+.profileInfo{
+  padding-top: 1em;
+}
+.profileInfo p{
+  font-style: normal;
+  font-weight: normal;
+  color: #909090;
+  font-size: 16px;
+  line-height: 24px;
+}
+.profileInfo label{
+  font-size: 12px;
+  line-height: 18px;
+  color: #909090;
+}
+.list-group{
+  flex-direction: row;
+}
+.profileInfo label{
+  font-style: normal;
+  font-weight: normal;
+  color: #909090;
+  font-size: 12px;
+  line-height: 18px;
+}
+/* Dropdown Button */
+.dropbtn {
+  background-color: #d98f18;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.drop-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  color: black;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.drop-content a {
+  color: black;
+  padding: 4px 8px;
+  text-decoration: none;
+  display: block;
+}
+#dropDownCont a{
+  color: black;
+}
+/* Change color of dropdown links on hover */
+.drop-content a:hover {background-color: #ddd;}
+/* Show the dropdown menu on hover */
+.drop:hover .drop-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.drop:hover .dropbutton {background-color: #d98f18;}
+
+.btn-outline-dark a{
+  color: #555555;
+}
+.Search{
+  width: auto;
+  margin: 0.5em 0.5em;
+  background-color: inherit;
+  border: none;
+  color: white;
+}
+.btn-light{
+  color: #FE8C00;
+  margin-left: 0.5em;
+}
+.btn-light a{
+  font-family: Poppins;
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+}
+.btn-dark a{
+  color: white;
+}
+.SNbtn {
+  background-color: #FE8C00;
+  color: white;
+  border: 1px solid #FE8C00;
+}
+@media (max-width:768px) {
+  .lists p{
+    font-size: x-small;
+  }
+}

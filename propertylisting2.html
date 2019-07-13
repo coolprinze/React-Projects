@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Castle - Real estate</title>
+</head>
+
+<body>
+    <header class="container-fluid px-0">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+            <div class="container-fluid px-lg-5">
+                <a class="navbar-brand logo" href="index.html">
+                    <img src="img/logo.png" class="d-inline-block align-top" alt="">
+                </a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                               <span class="navbar-toggler-icon"></span>
+                               </button>
+                <div class="navbar-collapse justify-content-end collapse show" id="navbarResponsive">
+                    <ul class="navbar-nav justify-content-between">
+                        <li class="nav-item d-flex align-items-center justify-content-center">
+                            <a class="py-1 home-phone" href="#">09883833232</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="post_request.html">Post Request<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="agent/propertyadvice.html">Property Advice</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="propertylisting.html">Property Listing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="propertyview.html">Property View</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="userprofile.html">User Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">Login/Register</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center justify-content-center pb-2" id="sp-btn">
+                            <a class="nav-link btn btn-lg px-5 py-3 btn-outline-dark" href="#">Submit Property</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid search-bar d-flex align-items-center flex-xl-row">
+            <section class="container">
+                <ul class="row d-flex flex-row justify-content-between align-items-center px-lg-4">
+                    <li class="col-lg-3 d-flex flex-column justify-content-center align-items-center px-0 py-1 text-center">
+                        <input type="search" name="" class="form-control px-2 py-4" id="" placeholder="Lekki, Lagos">
+                    </li>
+                    <li class="col-lg-2 d-flex flex-column justify-content-center align-items-center px-0 text-center">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="types_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Location
+                                    </button>
+                            <div class="dropdown-menu" aria-labelledby="types_drp">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </li>
+                    <div class="border-right pl-0" style="height: 79px;"></div>
+                    <li class="col-lg-1 d-flex flex-column justify-content-center align-items-center px-0 text-center">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="bedroom_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Min Price
+                                    </button>
+                            <div class="dropdown-menu" aria-labelledby="bedroom_drp">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="col-lg-1 d-flex flex-column justify-content-center align-items-center px-0 text-center text-white">
+                        <div class="text-white px-0 pb-3">to</div>
+                    </li>
+
+                    <li class="col-lg-1 d-flex flex-column justify-content-center align-items-center px-0 text-center">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="bedroom_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Max Price
+                                        </button>
+                            <div class="dropdown-menu" aria-labelledby="bedroom_drp">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </li>
+                    <div class="border-right pl-0" style="height: 79px;"></div>
+                    <li class="col-lg-2 d-flex flex-column justify-content-center align-items-center px-0 text-center">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="price_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Property type
+                                    </button>
+                            <div class="dropdown-menu" aria-labelledby="price_drp">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </li>
+                    <div class="border-right pl-0" style="height: 79px;"></div>
+                    <li class="col-lg-1 d-flex flex-column justify-content-center align-items-center px-0 text-center">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="bathroom_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        bathrooms
+                                    </button>
+                            <div class="dropdown-menu" aria-labelledby="bathroom_drp">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </section>
+        </div>
+
+        <div class="container-fluid d-flex align-items-center" style="background-color:#FFFFFF; min-height: 80px; border-bottom: 1px solid #FFFFFF">
+
+            <div class="container py-3" style="border-bottom: 1px solid #000000">
+                <div class="row">
+                    <div class="col-sm-4">
+                        Property for sale in Lekki, Nigeria
+                    </div>
+                    <div class="col-sm-2">
+                        <i class="fa fa-bell pr-2"></i>Create Alert
+                    </div>
+
+                    <div class="col-sm-3">
+                        Can't find what you are looking for?
+                    </div>
+                    <div class="col-sm-3 pr-0">
+                        <button class="btn btn-lg btn-outline-dark pull-right">Post a Request</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid d-flex align-items-center" style="background-color:#FFFFFF; height: 80px;">
+            <div class="container  d-flex align-items-center justify-content-between">
+                <h6>Result 1 - 20 of 22,692</h6>
+                <div class="dropdown">
+                    <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Most Recent
+                            </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="arrow mb-0"></div>
+
+    <section class="container-fluid properties py-5" style="background: #FAFAFA">
+        <div class="container py-3">
+            <div class="row">
+                <div class="col-sm-8 col-lg-sm-8">
+                    <div class="row">
+                        <div class="alert alert-warning col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <i class="fa fa-4x fa-exclamation-triangle"></i>
+                                </div>
+
+                                <div class="col-sm-8 px-4">
+                                    <p class="mb-0" style="font-size: 1rem">We could't find a name starting with 'Lekki'</p>
+                                    <p class="mb-0" style="font-size: 1rem">Please double check place name and try again</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row py-5">
+                        <h4>Were looking for one of the following locations?</h4>
+                    </div>
+
+                    <div class="row">
+                        <ul>
+                            <li class="py-1">
+                                <a href="#" style="text-decoration: underline !important; color: blue; font-size: 1.2rem;"> Largs, Ayrshire</a>
+                            </li>
+
+                            <li class="py-1">
+                                <a href="#" style="text-decoration: underline !important; color: blue; font-size: 1.2rem;"> Lahham Wood, Godstone, Survey</a>
+                            </li>
+
+                            <li class="py-1">
+                                <a href="#" style="text-decoration: underline !important; color: blue; font-size: 1.2rem;"> Largs, Ayrshire</a>
+                            </li>
+
+                            <li class="py-1">
+                                <a href="#" style="text-decoration: underline !important; color: blue; font-size: 1.2rem;"> Lahham Wood, Godstone, Survey</a>
+                            </li>
+
+                            <li class="py-1">
+                                <a href="#" style="text-decoration: underline !important; color: blue; font-size: 1.2rem;"> Largs, Ayrshire</a>
+                            </li>
+
+                            <li class="py-1">
+                                <a href="#" style="text-decoration: underline !important; color: blue; font-size: 1.2rem;"> Lahham Wood, Godstone, Survey</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+
+                </div>
+                <div class="col-sm-4 col-lg-4 pl-4" style="border-radius:5px">
+                    <div class="row">
+                        <div class="col-sm-12 py-3">
+                            <div class="card" style="background: #FAFAFA">
+                                <div class="card-header">
+                                    Advance filter option
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label for="category">Category</label>
+                                                <input type="number" class="form-control" id="category" placeholder="Category">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="state">State</label>
+                                                <input type="number" class="form-control" id="state" placeholder="For Rent">
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label for="locality">Locality</label>
+                                                <input type="number" class="form-control" id="locality" placeholder="All Locality">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="types">Types</label>
+                                                <input type="number" class="form-control" id="types" placeholder="All Types">
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label for="bedrooms">Bedrooms</label>
+                                                <input type="number" class="form-control" id="bedrooms" placeholder="Any">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="minPrice">Min Price</label>
+                                                <input type="number" class="form-control" id="minPrice" placeholder="No Min">
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label for="maxPrice">Max Price</label>
+                                                <input type="number" class="form-control" id="maxPrice" placeholder="No Max">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="furnished">Furnished</label>
+                                                <input type="number" class="form-control" id="funished" placeholder="Any">
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label for="addedToSite">Keywords</label>
+                                                <input type="number" class="form-control" id="addedToSite" placeholder="Anytime">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="minPrice">Min Price</label>
+                                                <input type="number" class="form-control" id="minPrice" placeholder="No Min">
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label for="maxPrice">Max Price</label>
+                                                <input type="number" class="form-control" id="maxPrice" placeholder="No Max">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <button class="btn btn-lg col-sm-12" style="background: #FF8C00">Search</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 py-3">
+                            <div class="card" height="18rem">
+                                <img src="img/properties/2.png" height="227px" class="card-img-top" alt="..." style="height: 227px;">
+                                <div class="card-footer btn btn-outline-dark" style="background: #FF8C00">
+                                    View properties for sale at Ikoyi
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 py-3">
+                            <div class="card" height="18rem">
+                                <div class="card-title py-3" style="border-bottom: 1px solid">
+                                    <i class="fa fa-share pl-2"></i> Share this property listing
+                                </div>
+                                <div class="card-body">
+                                    <div>
+                                        <img src="img/icon/whatsapp.png" alt="">
+                                        <img src="img/icon/twitter.png" alt="">
+                                        <img src="img/icon/facebook.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-12 py-3">
+                            <div class="card" height="18rem">
+                                <div class="card-title py-3" style="border-bottom: 1px solid">
+                                    <i class="fa fa-share pl-2"></i> Share this property listing
+                                </div>
+                                <div class="card-body">
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a href="#" style="text-decoration: underline !important;
+                                                color: blue;
+                                                font-size: 0.65rem;">Average price for 1 bedroom flats for rent in Yaba </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" style="text-decoration: underline !important;
+                                                    color: blue;
+                                                    font-size: 0.65rem;">Average price for 1 bedroom flats for rent in Yaba </a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 py-3">
+                            <div class="card py-3 px-3" height="18rem">
+                                <h5 class="py-3">
+                                    Advertisement placement
+                                </h5>
+                                <img src="img/advert.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 py-3">
+                            <div class="card py-3 px-3" height="18rem">
+                                <h5 class="py-3">
+                                    Advertisement placement
+                                </h5>
+                                <img src="img/advert.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container d-flex justify-content-between align-items-center bg-white py-4">
+        <h5>Showing 1 to 5 of 40 enteries</h5>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+    <!-- Footer -->
+    <section class="section-padding footer bg-dark mt-5">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-lg-3">
+                    <h4 class="mb-5 "><img src="img/logo.png" alt=""></h4>
+                    <div class="text-white">
+                        <a href="#" class="footer"><i class="fa fa-facebook px-2 "></i></a>
+                        <a href="#" class="footer"><i class="fa fa-twitter px-2"></i></a>
+                        <a href="#" class="footer"><i class="fa fa-instagram px-2 "></i></a>
+                        <a href="#" class="footer"><i class="fa fa-google px-2"></i></a>
+                    </div>
+
+                </div>
+                <div class="col-lg-5 col-md-5 ">
+                    <h3 class="mb-4 text-white">Get in touch</h3>
+                    <ul>
+                        <li class="text-white py-2" style="font-size:1rem;">
+                            <span class="fa fa-map-marker pr-3 footer"></span> 285A Corperation Drive, Doliphin Estate, Ikoyi
+                        </li>
+                        <li class="text-white py-2 " style="font-size:1rem; ">
+                            <span class="fa fa-phone pr-3 footer"></span> 080-3473-9837
+                        </li>
+                        <li class="text-white py-2" style="font-size:0.9rem;">
+                            <span class="fa fa-envelope pr-3 footer"></span> advert@castlesweekly.com, enquires@castles.com.ng
+                        </li>
+                        <ul>
+                </div>
+                <div class="col-lg-4 col-md-4 pl-4 ">
+                    <h3 class="mb-4 text-white ">Property Cities</h3>
+                    <div class="row ">
+                        <div class="col-sm-6 ">
+                            <ul>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Lekki
+                                </li>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Bannana Island
+                                </li>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Ikeja
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 ">
+                            <ul>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Ikoyi
+                                </li>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Lekki Phase 1
+                                </li>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Victorial Island
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-3 mt-5 " style="border-top: 1px solid #ffffff; ">
+                <h5 class="text-white ">&copy; 2019 Castles by RealHouse Communications Limited</h5>
+            </div>
+        </div>
+    </section>
+    <!-- End Footer -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.3.1.slim.min.js "></script>
+    <script src="js/popper.min.js "></script>
+    <script src="js/bootstrap.min.js "></script>
+
+</body>
+
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <title>Castle - Real estate</title>
+</head>
+
+<body>
+    <header class="container-fluid px-0">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+            <div class="container-fluid px-lg-5">
+                <a class="navbar-brand logo" href="index.html">
+                    <img src="../img/logo.png" class="d-inline-block align-top" alt="">
+                </a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   <span class="navbar-toggler-icon"></span>
+                   </button>
+                <div class="navbar-collapse justify-content-end collapse show" id="navbarResponsive">
+                    <ul class="navbar-nav d-flex justify-content-end align-items-center">
+                        <li class="nav-item active">
+                            <a class="pr-3 nav-link" href="#">Property Search<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="pr-3 nav-link" href="#">Propery Search</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="pr-3 nav-link" href="#"><i class="fa fa-2x fa-bell-o"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="pr-3 nav-link" href="#"><i class="fa fa-2x fa-user-circle-o"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid search-bar d-flex align-items-center">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12 py-3 px-0 d-flex justify-content-start">
+                            <button class="px-3">Back</button>
+                            <h4 class="text-white ml-3">My Profile</h4>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </header>
+    <section class="container-fluid bg-grey">
+        <div class="container py-5">
+            <div class="row bg-dark px-3 py-3 text-white nav-pills">
+                <div class="col-sm-3">
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#editDetails" role="tab" aria-controls="v-pills-home" aria-selected="true">Edit Details</a>
+                </div>
+                <div class="col-sm-3 text-muted">
+                    <a class="nav-link" id="v-pills-edit-tab" data-toggle="pill" href="#companyLogo" role="tab" aria-controls="v-pills-home" aria-selected="true">Company Logo</a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#password" role="tab" aria-controls="v-pills-home" aria-selected="true">Password</a>
+                </div>
+            </div>
+            <div class="row bg-white px-3 py-3 tab-content" id="v-pills-tabContent">
+                <div class="col-sm-12 tab-pane fade show active" id="editDetails" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <div class="form-group pt-4">
+                        <div class="row">
+                            <div class="col">
+                                <label for="firstName">Name</label>
+                                <input type="text" class="form-control form-control-lg bg-white" value="James">
+                            </div>
+                            <div class="col">
+                                <label for="lastName">Company Name</label>
+                                <input type="text" class="form-control form-control-lg bg-white" value="Agbalumo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group py-2">
+                        <label for="address">House Address</label>
+                        <input type="text" class="form-control form-control-lg bg-white" id="address" value="28, King Okorodudu Street Surulere Lagos">
+                    </div>
+                    <div class="form-group pt-4">
+                        <div class="row">
+                            <div class="col">
+                                <label for="mobileno">Country</label>
+                                <input type="text" class="form-control form-control-lg bg-white" value="08023345678">
+                            </div>
+                            <div class="col">
+                                <label for="email">Email Address</label>
+                                <input type="text" class="form-control form-control-lg bg-white" value="jamesagbalumo@gmail.com">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group pt-4">
+                        <div class="row">
+                            <div class="col">
+                                <label for="mobileno">Mobile No</label>
+                                <input type="text" class="form-control form-control-lg bg-white" value="08023345678">
+                            </div>
+                            <div class="col">
+                                <label for="email">Whatsapp No</label>
+                                <input type="text" class="form-control form-control-lg bg-white" value="08023345678">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <label for="address">About Us</label>
+                        <textarea name="about" class="form-control form-control-lg bg-white" id="" cols="30" rows="10"></textarea>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <button class="btn bg-orange px-5 pull-right text-white">Save changes</button>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 tab-pane fade show" id="companyLogo" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <div class="form-group pt-4">
+                        <div class="row">
+                            <div class="col-sm-4 offset-sm-2">
+                                <div class="card bg-grey d-flex align-items-center py-5">
+                                    <img src="../img/logo.png" alt="">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="email">Change company logo</label>
+                                <input type="file" class="form-control form-control-lg bg-white">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group py-5">
+                        <button class="btn bg-orange px-5 pull-right text-white">Save changes</button>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 tab-pane fade show" id="password" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <div class="form-group py-2">
+                        <label for="address">Old Password</label>
+                        <input type="password" class="form-control form-control-lg bg-white" id="address" value="">
+                    </div>
+                    <div class="form-group pt-4">
+                        <div class="row">
+                            <div class="col">
+                                <label for="mobileno">New Password</label>
+                                <input type="password" class="form-control form-control-lg bg-white" value="">
+                            </div>
+                            <div class="col">
+                                <label for="email">Confirm New Password</label>
+                                <input type="password" class="form-control form-control-lg bg-white" value="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group py-5">
+                        <button class="btn bg-orange px-5 pull-right text-white">Save changes</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <section class="section-padding footer bg-dark mt-5 ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-lg-3 ">
+                    <h4 class="mb-5 "><img src="../img/logo.png " alt=" "></h4>
+                    <div class="text-white ">
+                        <a href="# " class="footer "><i class="fa fa-facebook px-2 "></i></a>
+                        <a href="# " class="footer "><i class="fa fa-twitter px-2 "></i></a>
+                        <a href="# " class="footer "><i class="fa fa-instagram px-2 "></i></a>
+                        <a href="# " class="footer "><i class="fa fa-google px-2 "></i></a>
+                    </div>
+
+                </div>
+                <div class="col-lg-5 col-md-5 ">
+                    <h3 class="mb-4 text-white ">Get in touch</h3>
+                    <ul>
+                        <li class="text-white py-2 " style="font-size:1rem; ">
+                            <span class="fa fa-map-marker pr-3 " class="footer "></span> 285A Corperation Drive, Doliphin Estate, Ikoyi
+                        </li>
+                        <li class="text-white py-2 " style="font-size:1rem; ">
+                            <span class="fa fa-phone pr-3 " class="footer "></span> 080-3473-9837
+                        </li>
+                        <li class="text-white py-2 " style="font-size:0.9rem; ">
+                            <span class="fa fa-envelope pr-3 " class="footer "></span> advert@castlesweekly.com, enquires@castles.com.ng
+                        </li>
+                        <ul>
+                </div>
+                <div class="col-lg-4 col-md-4 pl-4 ">
+                    <h3 class="mb-4 text-white ">Property Cities</h3>
+                    <div class="row ">
+                        <div class="col-sm-6 ">
+                            <ul>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Lekki
+                                </li>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Bannana Island
+                                </li>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Ikeja
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 ">
+                            <ul>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Ikoyi
+                                </li>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Lekki Phase 1
+                                </li>
+                                <li class="text-white py-2 " style="font-size:1rem; ">
+                                    Victorial Island
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-3 mt-5 " style="border-top: 1px solid #ffffff; ">
+                <h5 class="text-white ">&copy; 2019 Castles by RealHouse Communications Limited</h5>
+            </div>
+        </div>
+    </section>
+    <!-- End Footer -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../js/jquery-3.3.1.slim.min.js "></script>
+    <script src="../js/popper.min.js "></script>
+    <script src="../js/bootstrap.min.js "></script>
+
+</body>
+
+</html>
