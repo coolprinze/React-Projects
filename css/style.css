@@ -317,7 +317,17 @@ h2 {
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
-    background: #343a40!important
+    background: #343a40
+}
+
+.search-type .nav-item .nav-link {
+    height: 76px;
+}
+
+.search-type .nav-item .nav-link.active {
+    background: #FE8C00 !important;
+    height: 76px;
+    border-radius: 0px;
 }
 
 
