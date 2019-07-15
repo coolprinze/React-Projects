@@ -462,21 +462,25 @@ nav.navbar .navbar-nav #sp-btn a:hover {
 }
 
 .search-type {
-    left: 30%;
-    position: absolute;
-    right: 30%;
+    position: relative;
+    width: 450px;
     height: 70px;
-    bottom: 10%;
     background: rgba(0, 0, 0, 0.7);
     mix-blend-mode: normal;
     border-radius: 3px 3px 0px 0px;
+    margin-top: -153px;
+    margin-bottom: 0 !important;
+}
+
+.search-type .nav-item .nav-link.active {
+    background: #FE8C00 !important
 }
 
 .search-home {
     left: 0;
-    position: absolute;
+    position: relative;
     right: 0;
-    bottom: -33%;
+    /* bottom: -65%; */
     min-height: 196px;
     width: 1100px;
     background: #1C2432;

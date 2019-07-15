@@ -25,19 +25,29 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                    <span class="navbar-toggler-icon"></span>
                    </button>
-                <div class="navbar-collapse justify-content-end collapse show" id="navbarResponsive">
+                <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbarNav">
                     <ul class="navbar-nav d-flex justify-content-end align-items-center">
                         <li class="nav-item active">
-                            <a class="pr-3 nav-link" href="#">Property Search<span class="sr-only">(current)</span></a>
+                            <a class="pr-3 nav-link" href="../propertylisting.html">Property Search<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="pr-3 nav-link" href="#">Propery Search</a>
+                            <a class="pr-3 nav-link" href="../propertyadvice.html">Propery Advice</a>
                         </li>
                         <li class="nav-item">
-                            <a class="pr-3 nav-link" href="#"><i class="fa fa-2x fa-bell-o"></i></a>
+                            <a class="pr-3 nav-link" href="../alert.html"><img src="../img/icon/alert.png" alt=""></i>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="pr-3 nav-link" href="#"><i class="fa fa-2x fa-user-circle-o"></i></a>
+                            <div class="dropdown">
+                                <button class="dropdown-toggle custom-drp" type="button" id="bedroom_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="../img/icon/user-bg.png" alt="">
+                                                </button>
+                                <div class="dropdown-menu" aria-labelledby="bedroom_drp">
+                                    <a class="dropdown-item" href="#">Profile</a>
+                                    <a class="dropdown-item" href="#">Logout</a>
+
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -50,7 +60,7 @@
                     <div class="row">
                         <div class="col-sm-12 py-3 px-0 d-flex justify-content-start">
                             <button class="px-3">Back</button>
-                            <h4 class="text-white ml-3">My Profile</h4>
+                            <h4 class="text-white ml-3">Add a Property</h4>
                         </div>
                     </div>
                 </div>
@@ -148,10 +158,6 @@
                         <label>Upload Your File </label>
                         <input type="file" class="form-control" multiple="">
                     </div>
-                </div>
-
-                <div class="form-group py-5">
-                    <button class="btn bg-orange px-5 pull-right text-white">Save changes</button>
                 </div>
             </div>
         </div>

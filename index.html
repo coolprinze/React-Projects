@@ -38,23 +38,17 @@
                         <li class="nav-item d-flex align-items-center justify-content-center">
                             <a class="py-1 home-phone" href="#">09883833232</a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="post_request.html">Post Request<span class="sr-only">(current)</span></a>
-                        </li>
                         <li class="nav-item">
-
+                            <a class="nav-link" href="propertylisting.html">Property Search</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="agent/propertyadvice.html">Property Advice</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="propertylisting.html">Property Listing</a>
+                            <a class="nav-link" href="propertylisting.html">Advertise in our Magazine</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="propertyview.html">Property View</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="userprofile.html">User Profile</a>
+                            <a class="nav-link" href="about_us.html">About Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="login.html">Login/Register</a>
@@ -83,97 +77,101 @@
 
             </div>
         </div>
-        <div class="search-type d-flex justify-content-between align-items-center">
 
-            <li class="nav-item px-4 d-flex align-items-center text-white">Sale <span class="sr-only">(current)</span>
-            </li>
-            <li class="nav-item px-4 d-flex align-items-center text-white bg-orange" style="height: 70px;">
-                Rent
-            </li>
-            <li class="nav-item px-4 d-flex align-items-center text-white">
-                Short Lent
-            </li>
-            <li class="nav-item px-4 d-flex align-items-center text-white">
-                Joint Venture
-            </li>
 
+        <ul class=" container nav nav-pills mb-3 search-type d-flex align-items-center justify-content-center" id="pills-tab" role="tablist" style="height: 76px;">
+            <li class="nav-item d-flex align-content-center">
+                <a class="nav-link py-4 active" id="pills-home-tab" data-toggle="pill" href="#pills-sale" role="tab" aria-controls="pills-home" aria-selected="true">Sale</a>
+            </li>
+            <li class="nav-item d-flex align-content-center">
+                <a class="nav-link py-4" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Rent</a>
+            </li>
+            <li class="nav-item d-flex align-content-center">
+                <a class="nav-link py-4" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Short Lent</a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+                <a class="nav-link py-4" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Joint Venture</a>
+            </li>
+        </ul>
+        <div class=" container tab-content" id="pills-tabContent">
+            <div class="container search-home tab-pane fade show active" id="pills-sale" role="tabpanel" aria-labelledby="pills-sale-tab">
+                <form action="" class="d-flex justify-content-center align-items-center">
+                    <div class="col-md-9 form-group form-group px-lg-5 py-4 mb-0">
+                        <input type="search" name="" class="form-control py-4" id="" placeholder="Search the area you want the house" />
+                    </div>
+                </form>
+                <section class="container">
+                    <ul class="row d-flex flex-row justify-content-between align-items-center px-lg-4">
+                        <li class="col-lg-2 d-flex flex-column justify-content-center align-items-start px-0 text-left">
+                            <div class="dropdown">
+                                <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="types_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Types
+                                        </button>
+                                <div class="dropdown-menu" aria-labelledby="types_drp">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                            <p class="value-placeholder">Estate</p>
+                        </li>
+                        <li class="col-lg-2 d-flex flex-column justify-content-center align-items-start px-0 text-left">
+                            <div class="dropdown">
+                                <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="bedroom_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Bedrooms
+                                        </button>
+                                <div class="dropdown-menu" aria-labelledby="bedroom_drp">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                            <p class="value-placeholder">5</p>
+                        </li>
+                        <li class="col-lg-2 d-flex flex-column justify-content-center align-items-start px-0 text-left">
+                            <div class="dropdown">
+                                <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="price_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Prices
+                                        </button>
+                                <div class="dropdown-menu" aria-labelledby="price_drp">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                            <p class="value-placeholder">N100k - N300k</p>
+                        </li>
+                        <li class="col-lg-2 d-flex flex-column justify-content-center align-items-start px-0 text-left">
+                            <div class="dropdown">
+                                <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="bathroom_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            bathrooms
+                                        </button>
+                                <div class="dropdown-menu" aria-labelledby="bathroom_drp">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                            <p class="value-placeholder">6</p>
+                        </li>
+                        <li class="col-lg-2 d-flex justify-content-end align-items-center">
+                            <button class="btn btn-lg text-white search-btn d-flex justify-content-center align-items-center">
+                                        <i class="fa fa-search"></i></button>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
         </div>
-        <div class="container search-home">
-            <form action="" class="d-flex justify-content-center align-items-center">
-                <div class="col-md-9 form-group form-group px-lg-5 py-4 mb-0">
-                    <input type="search" name="" class="form-control py-4" id="" placeholder="Search the area you want the house" />
-                </div>
-            </form>
-            <section class="container">
-                <ul class="row d-flex flex-row justify-content-between align-items-center px-lg-4">
-                    <li class="col-lg-2 d-flex flex-column justify-content-center align-items-start px-0 text-left">
-                        <div class="dropdown">
-                            <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="types_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Types
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="types_drp">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                        <p class="value-placeholder">Estate</p>
-                    </li>
-                    <li class="col-lg-2 d-flex flex-column justify-content-center align-items-start px-0 text-left">
-                        <div class="dropdown">
-                            <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="bedroom_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Bedrooms
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="bedroom_drp">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                        <p class="value-placeholder">5</p>
-                    </li>
-                    <li class="col-lg-2 d-flex flex-column justify-content-center align-items-start px-0 text-left">
-                        <div class="dropdown">
-                            <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="price_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Prices
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="price_drp">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                        <p class="value-placeholder">N100k - N300k</p>
-                    </li>
-                    <li class="col-lg-2 d-flex flex-column justify-content-center align-items-start px-0 text-left">
-                        <div class="dropdown">
-                            <button class="dropdown-toggle custom-drp text-uppercase text-white px-0 pb-3" type="button" id="bathroom_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                bathrooms
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="bathroom_drp">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                        <p class="value-placeholder">6</p>
-                    </li>
-                    <li class="col-lg-2 d-flex justify-content-end align-items-center">
-                        <button class="btn btn-lg text-white search-btn d-flex justify-content-center align-items-center">
-                            <i class="fa fa-search"></i></button>
-                    </li>
-                </ul>
-            </section>
-        </div>
-
     </section>
     <!-- End Main Slider With Form -->
 
     <!-- Properties List -->
-    <section class="container section-padding mt-5">
-        <div class="row px-4 pt-5 pb-3">
+    <section class="container section-padding">
+        <div class="row px-4 pb-3">
             <div class="col-sm-6">
-                <h3 class="py-3">Feactured properties</h3>
+                <h3 class="py-2">Featured Adverts</h3>
             </div>
             <!-- <div class="col-sm-2 offset-sm-2">
                 <p>View All</p>
@@ -239,17 +237,15 @@
                     <div class="carousel-item active" style="background-image: url('img/magazine.png')">
                         <div class="overlay"></div>
                     </div>
-                    <div class="carousel-item" style="background-image: url('img/slider/2.png')">
-                        <div class="overlay"></div>
-                    </div>
+
                 </div>
             </div>
             <div class="slider-form">
                 <div class="container">
-                    <h1 class="text-center text-white mb-5" style="font-size: 2rem"><strong>Do you want to get featured properties in our weekly edition of Castles Magazine?</strong></h1>
+                    <h1 class="text-center text-white mb-5" style="font-size: 2rem"><strong>Do your want to get Featured properties in our weekly edition of Castles Magzine?</strong></h1>
 
                     <h3 class="text-center">
-                        <a href="#" style="color: blue; text-decoration: underline !important; font-weight: 800;">Download Castles Magazine</a>
+                        <a href="#" style="color: #4D93FC; text-decoration: underline !important; font-weight: 800;">Download Castles Magazine</a>
                     </h3>
 
                 </div>
@@ -267,44 +263,52 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3 py-2">
-                            <div class="card" style="min-height: 320px; background: url('img/explore/1.png'); background-size:cover">
-                                <div class="overlay"></div>
-                                <div class="text-center" style="position: absolute; right: 0; left: 0; bottom:130px; color: #ffffff;">
-                                    <h5 class="text-white">Schools</h5>
-                                    <h6 class="text-white"><span style="color: #FE8C00">24</span> Properties</h6>
+                            <a href="propertylisting.html">
+                                <div class="card" style="min-height: 320px; background: url('img/explore/1.png'); background-size:cover">
+                                    <div class="overlay"></div>
+                                    <div class="text-center" style="position: absolute; right: 0; left: 0; bottom:130px; color: #ffffff;">
+                                        <h5 class="text-white">Schools</h5>
+                                        <h6 class="text-white"><span style="color: #FE8C00">24</span> Properties</h6>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
 
                         <div class="col-lg-3 py-2">
-                            <div class="card" style="min-height: 320px; background: url('img/explore/2.png'); background-size:cover">
-                                <div class="overlay"></div>
-                                <div class="text-center" style="position: absolute; right: 0; left: 0; bottom:130px; color: #ffffff;">
-                                    <h5 class="text-white">Lands</h5>
-                                    <h6 class="text-white"><span style="color: #FE8C00">24</span> Properties</h6>
+                            <a href="propertylisting.html">
+                                <div class="card" style="min-height: 320px; background: url('img/explore/2.png'); background-size:cover">
+                                    <div class="overlay"></div>
+                                    <div class="text-center" style="position: absolute; right: 0; left: 0; bottom:130px; color: #ffffff;">
+                                        <h5 class="text-white">Lands</h5>
+                                        <h6 class="text-white"><span style="color: #FE8C00">24</span> Properties</h6>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <div class="col-lg-3 py-2">
-                            <div class="card" style="min-height: 320px; background: url('img/explore/3.png'); background-size:cover">
-                                <div class="overlay"></div>
-                                <div class="text-center" style="position: absolute; right: 0; left: 0; bottom:130px; color: #ffffff;">
-                                    <h5 class="text-white">Apartment</h5>
-                                    <h6 class="text-white"><span style="color: #FE8C00">24</span> Properties</h6>
+                            <a href="propertylisting.html">
+                                <div class="card" style="min-height: 320px; background: url('img/explore/3.png'); background-size:cover">
+                                    <div class="overlay"></div>
+                                    <div class="text-center" style="position: absolute; right: 0; left: 0; bottom:130px; color: #ffffff;">
+                                        <h5 class="text-white">Apartment</h5>
+                                        <h6 class="text-white"><span style="color: #FE8C00">24</span> Properties</h6>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <div class="col-lg-3 py-2">
-                            <div class="card" style="min-height: 320px; background: url('img/explore/4.png'); background-size:cover">
-                                <div class="overlay"></div>
-                                <div class="text-center" style="position: absolute; right: 0; left: 0; bottom:130px; color: #ffffff;">
-                                    <h5 class="text-white">Houses</h5>
-                                    <h6 class="text-white"><span style="color: #FE8C00">24</span> Properties</h6>
+                            <a href="propertylisting.html">
+                                <div class="card" style="min-height: 320px; background: url('img/explore/4.png'); background-size:cover">
+                                    <div class="overlay"></div>
+                                    <div class="text-center" style="position: absolute; right: 0; left: 0; bottom:130px; color: #ffffff;">
+                                        <h5 class="text-white">Houses</h5>
+                                        <h6 class="text-white"><span style="color: #FE8C00">24</span> Properties</h6>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
 
@@ -321,63 +325,116 @@
     <!-- Property News -->
     <section class="py-4 bg-grey">
         <div class="container ">
-            <h3 class="mb-4">Property News</h3>
-            <h5 class="text-muted pb-5">Latest update of Nigerian real estate market </h5>
-            <div class="row ">
-                <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3 class="mb-4">Property News</h3>
+                    <h5 class="text-muted pb-5">Latest update of Nigerian real estate market </h5>
+                </div>
+
+                <div class="col-sm-2 offset-sm-4">
                     <div class="row">
-                        <div class="col-lg-4 py-2">
-                            <div class="card bg-white" height="18rem">
-                                <img src="img/properties/2.png" height="227px" class="card-img-top" alt="..." style="height: 224px;">
-                                <div class="card-footer bg-white">
-                                    <h5 class="card-subtitle mb-2 text-muted">Occeanna, an Iconnic project in Lagos</h5>
-                                    <p class="pt-2 pull-right">By Reachmond Estate</p>
-                                </div>
-                            </div>
+                        <div class="col-sm-3 offset-sm-6 px-0">
+                            <img src="img/icon/left-arrow-sm.png" id="left-btn" class="px-1 pointer" alt=" ">
                         </div>
-
-                        <div class="col-lg-4 py-2">
-                            <div class="card bg-white" height="18rem">
-                                <img src="img/properties/2.png" height="227px" class="card-img-top" alt="..." style="height: 224px;">
-                                <div class="card-footer bg-white">
-                                    <h5 class="card-subtitle mb-2 text-muted">Occeanna, an Iconnic project in Lagos</h5>
-                                    <p class="pt-2 pull-right">By Reachmond Estate</p>
-                                </div>
-                            </div>
+                        <div class="col-sm-3 px-0">
+                            <img src="img/icon/right-arrow.png" id="right-btn" class="px-1 pointer" alt=" ">
                         </div>
-
-                        <div class="col-lg-4 py-2">
-                            <div class="card bg-white" height="18rem">
-                                <img src="img/properties/2.png" height="227px" class="card-img-top" alt="..." style="height: 224px;">
-                                <div class="card-footer bg-white">
-                                    <h5 class="card-subtitle mb-2 text-muted">Occeanna, an Iconnic project in Lagos</h5>
-                                    <p class="pt-2 pull-right">By Reachmond Estate</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
                     </div>
                 </div>
             </div>
+        </div>
+
+
+        <style>
+            #carousel {
+                left: 10%;
+                width: 93%;
+                margin-left: 7%;
+                overflow-x: hidden;
+                white-space: nowrap;
+            }
+            
+            #carousel .slide {
+                display: inline-block;
+                width: 320px;
+                padding: 0 10px;
+            }
+        </style>
+
+        <div id="carousel">
+            <div class="slide">
+                <div class="card bg-white" height="18rem">
+                    <img src="img/properties/2.png" height="227px" class="card-img-top" alt="..." style="height: 224px;">
+                    <div class="card-footer bg-white">
+                        <h5 class="card-subtitle mb-2 text-wrap">Occeanna, an Iconnic project in Lagos</h5>
+                        <p class="pt-2 pull-right">By Reachmond Estate</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="card bg-white" height="18rem">
+                    <img src="img/properties/2.png" height="227px" class="card-img-top" alt="..." style="height: 224px;">
+                    <div class="card-footer bg-white">
+                        <h5 class="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
+                        <p class="pt-2 pull-right">By Reachmond Estate</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="card bg-white" height="18rem">
+                    <img src="img/properties/2.png" height="227px" class="card-img-top" alt="..." style="height: 224px;">
+                    <div class="card-footer bg-white">
+                        <h5 class="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
+                        <p class="pt-2 pull-right">By Reachmond Estate</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="card bg-white" height="18rem">
+                    <img src="img/properties/2.png" height="227px" class="card-img-top" alt="..." style="height: 224px;">
+                    <div class="card-footer bg-white">
+                        <h5 class="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
+                        <p class="pt-2 pull-right">By Reachmond Estate</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="card bg-white" height="18rem">
+                    <img src="img/properties/2.png" height="227px" class="card-img-top" alt="..." style="height: 224px;">
+                    <div class="card-footer bg-white">
+                        <h5 class="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
+                        <p class="pt-2 pull-right">By Reachmond Estate</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="card bg-white" height="18rem">
+                    <img src="img/properties/2.png" height="227px" class="card-img-top" alt="..." style="height: 224px;">
+                    <div class="card-footer bg-white">
+                        <h5 class="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
+                        <p class="pt-2 pull-right">By Reachmond Estate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         </div>
     </section>
     <!-- Property News -->
 
 
-    <!-- Advertisement -->
+    <!-- Newsletter -->
     <section class="section-padding footer mt-5">
         <div class="container ">
-            <h3 class="mb-4 text-center">To get latest update subscribe to our </h3>
+            <h3 class="mb-4 text-center text-uppercase">To get latest update subscribe to our </h3>
             <h5 class="text-center text-muted pb-5 text-uppercase">newsletter</h5>
             <div class="row ">
                 <div class="col-lg-6 col-md-6 offset-sm-3 ">
                     <div class="row">
                         <div class="col-sm-9 px-0">
-                            <input type="text" name="newsletter" class="form-control py-3" id="newsletter" style="background: rgb(32, 32, 54); height: 80px; color: #ffffff; font-size: 1.5rem">
+                            <input type="text" name="newsletter" class="form-control py-3" id="newsletter" style="background: rgb(32, 32, 54); height: 80px; color: #ffffff; font-size: 1.5rem" placeholder="EMAIL ADDRESS">
                         </div>
                         <div class="col-sm-3 px-0 py-2 align-middle">
                             <button class="btn btn-lg bg-orange btn-subscribe">Subscribe</button>
@@ -387,7 +444,7 @@
             </div>
         </div>
     </section>
-    <!-- Advertisement -->
+    <!-- Newsletter -->
 
     <!-- Footer -->
     <section class="section-padding footer bg-dark mt-5">
@@ -457,7 +514,7 @@
     <!-- End Footer -->
 
     <!-- Bootstrap core JavaScript -->
-    <script src="js/jquery-3.3.1.slim.min.js "></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="js/popper.min.js "></script>
     <!-- Contact form JavaScript -->
     <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
@@ -466,6 +523,27 @@
     <script src="js/select2.min.js "></script>
     <!-- Custom -->
     <script src="js/custom.js "></script>
+    file. -->
+    <script src="../js/bootstrap.min.js "></script>
+    <!-- select2 Js -->
+    <script src="../js/select2.min.js "></script>
+    <!-- Custom -->
+    <script src="../js/custom.js "></script>
+    <script>
+        $('#right-btn').click(function() {
+            event.preventDefault();
+            $('#carousel').animate({
+                scrollLeft: "+=310px"
+            }, "slow");
+        });
+
+        $('#left-btn').click(function() {
+            event.preventDefault();
+            $('#carousel').animate({
+                scrollLeft: "-=100px"
+            }, "slow");
+        });
+    </script>
 </body>
 
 </html>

@@ -30,23 +30,17 @@
                         <li class="nav-item d-flex align-items-center justify-content-center">
                             <a class="py-1 home-phone" href="#">09883833232</a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="post_request.html">Post Request<span class="sr-only">(current)</span></a>
-                        </li>
                         <li class="nav-item">
-
+                            <a class="nav-link" href="propertylisting.html">Property Search</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="agent/propertyadvice.html">Property Advice</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="propertylisting.html">Property Listing</a>
+                            <a class="nav-link" href="propertylisting.html">Advertise in our Magazine</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="propertyview.html">Property View</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="userprofile.html">User Profile</a>
+                            <a class="nav-link" href="about_us.html">About Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="login.html">Login/Register</a>
@@ -146,7 +140,9 @@
                         Property for sale in Lekki, Nigeria
                     </div>
                     <div class="col-sm-2">
-                        <i class="fa fa-bell pr-2"></i>Create Alert
+                        <a href="" data-toggle="modal" data-target="#createAlert">
+                            <img src="img/icon/bell-sm.png" class="pr-2" alt=""> Create Alert
+                        </a>
                     </div>
 
                     <div class="col-sm-3">
@@ -514,6 +510,7 @@
 
                                         <div class="form-row">
                                             <div class="form-group col-md-12">
+                                                <a href=""></a>
                                                 <button class="btn btn-lg col-sm-12" style="background: #FF8C00">Search</button>
                                             </div>
                                         </div>
@@ -552,44 +549,6 @@
                             </div>
                         </div>
 
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-sm-12 py-3">
-                            <div class="card" height="18rem">
-                                <div class="card-title py-3" style="border-bottom: 1px solid">
-                                    <i class="fa fa-share pl-2"></i> Share this property listing
-                                </div>
-                                <div class="card-body">
-                                    <div>
-                                        <ul>
-                                            <li>
-                                                <a href="#" style="text-decoration: underline !important;
-                                                color: blue;
-                                                font-size: 0.65rem;">Average price for 1 bedroom flats for rent in Yaba </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" style="text-decoration: underline !important; color: blue; font-size: 0.65rem;">Average price for 1 bedroom flats for rent in Yaba </a>
-                                            </li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-12 py-3">
-                            <div class="card py-3 px-3" height="18rem">
-                                <h5 class="py-3">
-                                    Advertisement placement
-                                </h5>
-                                <img src="img/advert.png" alt="">
-                            </div>
-                        </div>
                     </div>
 
                     <div class="row">
@@ -695,6 +654,39 @@
         </div>
     </section>
     <!-- End Footer -->
+
+
+    <!-- Create Alert Modal -->
+    <div class="modal fade" id="createAlert" tabindex="-1" role="dialog" aria-labelledby="createAlert" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="py-5 px-5">
+                        <h5 class="text-center">Create Alert</h5>
+                        <h6 class="text-center">For Properties matching your current search</h6>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" aria-describedby="nameHelp">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                                <label for="duration">Duration</label>
+                                <select class="form-control"></select>
+                            </div>
+                            <button type="Create" class="btn bg-orange" style="width:100%">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -266,7 +266,7 @@ h2 {
 
 .profile-usermenu ul li.active {
     background-color: #FAFAFA;
-    border-left: 3px solid #f8204f;
+    border-left: 5px solid #FF8C00;
     margin-left: -2px;
 }
 
@@ -317,7 +317,17 @@ h2 {
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
-    background: #343a40!important
+    background: #343a40
+}
+
+.search-type .nav-item .nav-link {
+    height: 76px;
+}
+
+.search-type .nav-item .nav-link.active {
+    background: #FE8C00 !important;
+    height: 76px;
+    border-radius: 0px;
 }
 
 
@@ -326,9 +336,18 @@ h2 {
 .pa-link {
     color: #FFFFFF;
     opacity: 0.5;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
 }
 
 .pa-link:hover {
     color: #fff;
     opacity: 1;
+}
+
+.pointer {
+    cursor: pointer;
 }

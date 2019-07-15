@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-sm-6 offset-sm-3 bg-white py-5 px-5 my-5" style="border-radius:10px;">
                     <h3 class="py-3" style="font-size:2rem; font-weight: 400;">Login</h3>
-                    <h4 class="text-muted py-2">Login to continue</h4>
+                    <!-- <h4 class="text-muted py-2">Login to continue</h4> -->
                     <form>
                         <div class="form-group py-2">
                             <label for="exampleInputEmail1">Email</label>
@@ -70,11 +70,18 @@
                         <div class="form-group py-2">
                             <label for="exampleInputPassword1">Password</label>
                             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            <small id="emailHelp" class="form-text text-muted text-right">Forget Password?</small>
+                            <small id="emailHelp" class="form-text text-muted text-right">
+                                <a href="forgetpassword.html">
+                                        Forget Password?
+                                </a>
+                            </small>
                         </div>
                         <div class="row my-3">
                             <div class="col-sm-12 ">
-                                <button class="btn btn-block " style="background: #FF8C00">Login</button>
+                                <a href="agent/dashboard.html" class="btn btn-block" style="background: #FF8C00">
+                                    Login
+                                </a>
+
                             </div>
                         </div>
                         <div class="row my-4">
@@ -96,6 +103,11 @@
                             <div class="col-sm-6">
                                 <button class="btn btn-block btn-facebook text-white">Facebook</button>
                             </div>
+                        </div>
+
+                        <div class="row my-4">
+                            <h5 class="col-sm-12 text-center">Don’t have an account?</h5>
+                            <h6 class="col-sm-12 text-center"><a href="register.html" style="color:#4D93FC">Register</a></h6>
                         </div>
 
                     </form>

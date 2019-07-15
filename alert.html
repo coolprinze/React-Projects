@@ -39,8 +39,8 @@
                     <li class="nav-item">
                         <div class="dropdown">
                             <button class="dropdown-toggle custom-drp" type="button" id="bedroom_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="img/icon/user-bg.png" alt="">
-                                            </button>
+                                <img src="img/icon/user-bg.png" alt="">
+                                        </button>
                             <div class="dropdown-menu" aria-labelledby="bedroom_drp">
                                 <a class="dropdown-item" href="#">Profile</a>
                                 <a class="dropdown-item" href="#">Logout</a>
@@ -67,9 +67,9 @@
             </div>
         </div>
     </header>
-    <section class="container-fluid py-5 properties bg-grey">
-        <div class="container">
-            <div class="col-sm-11 offset-sm-1">
+    <section class="container-fluid bg-grey">
+        <div class="container py-5">
+            <div class="col-sm-12">
                 <div class="row profile">
                     <div class="col-md-3">
                         <div class="profile-sidebar">
@@ -80,10 +80,10 @@
                                     <li class="py-3">
                                         <a href="#" class="py-3 px-5"> Saved Properties</a>
                                     </li>
-                                    <li class="py-3 active">
+                                    <li class="py-3">
                                         <a href="#" class="py-3 px-5">Search History </a>
                                     </li>
-                                    <li class="py-2">
+                                    <li class="py-2 active">
                                         <a href="#" target="_blank" class="py-3 px-5"> Alert </a>
                                     </li>
                                     <li class="py-2">
@@ -99,55 +99,41 @@
                     </div>
                     <div class="col-md-9">
                         <div class="row mx-0 my-0 bg-white" style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.07);
-                            border-radius: 10px;">
+                        border-radius: 10px;">
                             <div class="col-sm-12 px-0 d-flex flex-column" style="min-height:569px ">
                                 <table class="table p-2" style="width:100%">
                                     <thead class="bg-grey" style="border: none">
                                         <tr>
                                             <th scope="col" style="border: none">Search</th>
                                             <th scope="col" style="border: none">Action</th>
+                                            <th scope="col" style="border: none">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td><a href="propertyview.html">Properties in Lagos</a></td>
-                                            <td>
-                                                <a href="" data-toggle="modal" data-target="#createAlert">
-                                                    <img src="img/icon/bell-sm.png" class="pr-2" alt=""> Create Alert
-                                                </a>
-                                            </td>
+                                            <td> <img src="img/icon/bell-sm.png" alt="" class="mr-2"> Instantly</td>
+                                            <td><img src="img/icon/delete.png" alt=""></td>
                                         </tr>
                                         <tr>
                                             <td><a href="propertyview.html">2 bedroom in Yaba</a></td>
-                                            <td>
-                                                <a href="" data-toggle="modal" data-target="#createAlert">
-                                                    <img src="img/icon/bell-sm.png" class="pr-2" alt=""> Create Alert
-                                                </a>
-                                            </td>
+                                            <td> <img src="img/icon/bell-sm.png" alt="" class="mr-2"> 3 days</td>
+                                            <td><img src="img/icon/delete.png" alt=""></td>
                                         </tr>
                                         <tr>
                                             <td><a href="propertyview.html">Self con in Ajah</a></td>
-                                            <td>
-                                                <a href="" data-toggle="modal" data-target="#createAlert">
-                                                    <img src="img/icon/bell-sm.png" class="pr-2" alt=""> Create Alert
-                                                </a>
-                                            </td>
+                                            <td> <img src="img/icon/bell-sm.png" alt="" class="mr-2"> 7 days</td>
+                                            <td><img src="img/icon/delete.png" alt=""></td>
                                         </tr>
                                         <tr>
                                             <td><a href="propertyview.html">Land for sale in Lagos</a></td>
-                                            <td>
-                                                <a href="" data-toggle="modal" data-target="#createAlert">
-                                                    <img src="img/icon/bell-sm.png" class="pr-2" alt=""> Create Alert
-                                                </a>
-                                            </td>
+                                            <td> <img src="img/icon/bell-sm.png" alt="" class="mr-2"> Instantly</td>
+                                            <td><img src="img/icon/delete.png" alt=""></td>
                                         </tr>
                                         <tr>
                                             <td><a href="propertyview.html">Properties in Abuja</a></td>
-                                            <td>
-                                                <a href="" data-toggle="modal" data-target="#createAlert">
-                                                    <img src="img/icon/bell-sm.png" class="pr-2" alt=""> Create Alert
-                                                </a>
-                                            </td>
+                                            <td> <img src="img/icon/bell-sm.png" alt="" class="mr-2"> Instantly</td>
+                                            <td><img src="img/icon/delete.png" alt=""></td>
                                         </tr>
 
 
@@ -155,9 +141,6 @@
                                 </table>
                             </div>
                         </div>
-
-
-
 
                         <section class="container d-flex justify-content-end align-items-center bg-white py-4">
                             <nav aria-label="Page navigation example">
@@ -178,16 +161,12 @@
                                 </ul>
                             </nav>
                         </section>
-
-
-
-
                     </div>
                 </div>
             </div>
 
         </div>
-        </div>
+
     </section>
 
     <!-- Footer -->
@@ -208,10 +187,10 @@
                     <h3 class="mb-4 text-white">Get in touch</h3>
                     <ul>
                         <li class="text-white py-2" style="font-size:1rem;">
-                            <span class="fa fa-map-marker pr-3 footer"></span> 285A Corperation Drive, Doliphin Estate, Ikoyi
+                            <span class="fa fa-map-marker pr-3" class="footer"></span> 285A Corperation Drive, Doliphin Estate, Ikoyi
                         </li>
                         <li class="text-white py-2" style="font-size:1rem;">
-                            <span class="fa fa-phone pr-3 footer"></span> 080-3473-9837
+                            <span class="fa fa-phone pr-3" class="footer"></span> 080-3473-9837
                         </li>
                         <li class="text-white py-2" style="font-size:0.9rem;">
                             <span class="fa fa-envelope pr-3" class="footer"></span> advert@castlesweekly.com, enquires@castles.com.ng
@@ -256,38 +235,6 @@
         </div>
     </section>
     <!-- End Footer -->
-
-    <!-- Create Alert Modal -->
-    <div class="modal fade" id="createAlert" tabindex="-1" role="dialog" aria-labelledby="createAlert" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                         <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="py-5 px-5">
-                        <h5 class="text-center">Create Alert</h5>
-                        <h6 class="text-center">For Properties matching your current search</h6>
-                        <form>
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" aria-describedby="nameHelp">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            </div>
-                            <div class="form-group">
-                                <label for="duration">Duration</label>
-                                <select class="form-control"></select>
-                            </div>
-                            <button type="Create" class="btn bg-orange" style="width:100%">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
