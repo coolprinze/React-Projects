@@ -1050,5 +1050,11 @@ nav.navbar .navbar-nav #sp-btn a:hover {
     }
 }
 
+.headerContent {
+    background-image: url("../img/slider/1.png") ;
+    height: 392px;
+    width: 1440px;
+    color: #ffffff;
+}
 
 /* End Mobile Media */

@@ -27,10 +27,8 @@
                                </button>
                 <div class="navbar-collapse justify-content-end collapse show" id="navbarResponsive">
                     <ul class="navbar-nav justify-content-between">
-                        <li class="nav-item d-flex align-items-center justify-content-center">
-                            <a class="py-1 home-phone" href="#">09883833232</a>
-                        </li>
-                        <li class="nav-item active">
+                        
+                        <!-- <li class="nav-item active">
                             <a class="nav-link" href="post_request.html">Post Request<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
@@ -38,16 +36,29 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="agent/propertyadvice.html">Property Advice</a>
+                        </li> -->
+                     <li class="nav-item">
+                            <a class="nav-link" href="propertylisting.html">For Rent</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="propertylisting.html">Property Listing</a>
+                            <a class="nav-link" href="propertylisting.html">For Sale</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="propertylisting.html">Joint Venture</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="propertylisting.html">Agent</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="post_request.html">Post Request</a>
+                        </li>
+                           <!-- 
                         <li class="nav-item">
                             <a class="nav-link" href="propertyview.html">Property View</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="userprofile.html">User Profile</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="login.html">Login/Register</a>
                         </li>
@@ -146,7 +157,7 @@
                         <h6>Property for sale in Lekki, Nigeria</h6>
                     </div>
                     <div class="col-sm-2">
-                        <h6><a href="#"><i class="fa fa-bell pr-2"></i>Create Alert</a></h6>
+                        <h6><a href="#" data-toggle="modal" data-target="#createAlert"><i class="fa fa-bell pr-2"></i>Create Alert</a></h6>
                     </div>
 
                     <div class="col-sm-4">
@@ -167,9 +178,9 @@
                               Most Recent
                             </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="propertylisting.html">Lowest to Highest</a>
+                        <a class="dropdown-item" href="propertylisting.html">Highest to Lowest</a>
+                        <a class="dropdown-item" href="propertylisting.html">Popular</a>
                     </div>
                 </div>
             </div>
@@ -217,10 +228,10 @@
                                 <div class="row">
                                     <div class="col-sm-3 hidden"><img src="img/properties/1.png" class="img rounded-circle" alt=""></div>
                                     <div class="col-sm-9">
-                                        <span>D properties Consult</span>
-                                        <div class="d-flex justify-content-between">
-                                            <span>08178883933</span>
-                                            <span>View listing</span>
+                                            <span><a href="agentlisting.html">D properties Consult</a></span>
+                                            <div class="d-flex justify-content-between">
+                                                <span>08178883933</span>
+                                                <span><a href="agentlisting.html">View listing</a></span>
                                         </div>
                                     </div>
                                 </div>
@@ -437,25 +448,44 @@
                         <div class="col-sm-12 py-3">
                             <div class="card" style="background: #FAFAFA">
                                 <div class="card-header">
-                                    Advance filter option
+                                    Advance Filter Option
                                 </div>
                                 <div class="card-body">
-                                    <form>
+                                    <form action="propertylisting.html">
                                         <div class="form-row">
                                             <div class="form-group col-md-12">
                                                 <label for="category">Category</label>
-                                                <input type="number" class="form-control" id="category" placeholder="Category">
+                                                <select name="category" id="category" class="form-control">
+                                                        
+                                                        <option value="1">Rent</option>
+                                                        <option value="2">Sale</option>
+                                                        <option value="3" >Shortlet</option>
+                                                        <option value="4" >JV</option>
+                                                        
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="state">State</label>
-                                                <input type="number" class="form-control" id="state" placeholder="For Rent">
+                                                <select name="state" class="form-control" >
+                                                        
+                                                        <option value="1">Lagos</option>
+                                                        
+                                                        
+                                                </select>
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label for="locality">Locality</label>
-                                                <input type="number" class="form-control" id="locality" placeholder="All Locality">
+                                                <select name="area" class="form-control">
+                                                        
+                                                        <option value="1">Lekki</option>
+                                                        <option value="2">Banana Island</option>
+                                                        <option value="3" >VI</option>
+                                                        <option value="4" >Ikoyi</option>
+                                                        
+                                                </select>
                                             </div>
 
                                         </div>
@@ -463,30 +493,81 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="types">Types</label>
-                                                <input type="number" class="form-control" id="types" placeholder="All Types">
+                                                <select name="tid" class="form-control">
+                                                        
+                                                        <option value="0"  >All Types</option>
+                                                        <option value="1" >Flat</option>
+                                                        <option value="2" >House</option>
+                                                        <option value="5" >Land</option>
+                                                        <option value="3" >Commercial Property</option>
+                                                        <option value="6" >Event Centre / Venue</option>
+                                                </select>
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label for="bedrooms">Bedrooms</label>
-                                                <input type="number" class="form-control" id="bedrooms" placeholder="Any">
-                                            </div>
+                                                <select name="bedrooms" id="bedrooms" class="form-control">
+                                                        
+                                                        <option value="0">Any</option>
+                                                        <option value="1" >1</option>
+                                                        <option value="2" >2</option>
+                                                        <option value="3" >3</option>
+                                                        <option value="4" >4</option>
+                                                        <option value="5" >5</option>
+                                                        <option value="6" >6+</option>
+                                                </select>
+                                             </div>
 
                                         </div>
 
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="minPrice">Min Price</label>
-                                                <input type="number" class="form-control" id="minPrice" placeholder="No Min">
+                                                <select name="minprice" id="minprice" class="form-control">
+                                                        
+                                                        <option value="0"  >No Min</option>
+                                                        <option value="100000" >₦ 100,000</option>
+                                                        <option value="250000" >₦ 250,000</option>
+                                                        <option value="500000" >₦ 500,000</option>
+                                                        <option value="750000" >₦ 750,000</option>
+                                                        <option value="1000000" >₦ 1,000,000</option>
+                                                        <option value="2000000" >₦ 2,000,000</option>
+                                                        <option value="5000000" >₦ 5,000,000</option>
+                                                        <option value="10000000" >₦ 10,000,000</option>
+                                                        <option value="20000000" >₦ 20,000,000</option>
+                                                        <option value="40000000" >₦ 40,000,000</option>
+                                                        <option value="60000000" >₦ 60,000,000</option>
+                                                        <option value="80000000" >₦ 80,000,000</option>
+                                                        <option value="100000000" >₦ 100,000,000</option>
+                                                        <option value="150000000" >₦ 150,000,000</option>
+                                                </select>
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label for="maxPrice">Max Price</label>
-                                                <input type="number" class="form-control" id="maxPrice" placeholder="No Max">
+                                                <select name="maxprice" id="maxprice" class="form-control" >
+                                                        
+                                                        <option value="0"  >No Max</option>
+                                                        <option value="100000" >₦ 100,000</option>
+                                                        <option value="250000" >₦ 250,000</option>
+                                                        <option value="500000" >₦ 500,000</option>
+                                                        <option value="750000" >₦ 750,000</option>
+                                                        <option value="1000000" >₦ 1,000,000</option>
+                                                        <option value="2000000" >₦ 2,000,000</option>
+                                                        <option value="5000000" >₦ 5,000,000</option>
+                                                        <option value="10000000" >₦ 10,000,000</option>
+                                                        <option value="20000000" >₦ 20,000,000</option>
+                                                        <option value="40000000" >₦ 40,000,000</option>
+                                                        <option value="60000000" >₦ 60,000,000</option>
+                                                        <option value="80000000" >₦ 80,000,000</option>
+                                                        <option value="100000000" >₦ 100,000,000</option>
+                                                        <option value="150000000" >₦ 150,000,000</option>
+                                                </select>
                                             </div>
 
                                         </div>
 
-                                        <div class="form-row">
+                                        <!-- <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="furnished">Furnished</label>
                                                 <input type="number" class="form-control" id="funished" placeholder="Any">
@@ -510,7 +591,7 @@
                                                 <input type="number" class="form-control" id="maxPrice" placeholder="No Max">
                                             </div>
 
-                                        </div>
+                                        </div> -->
 
                                         <div class="form-row">
                                             <div class="form-group col-md-12">
@@ -529,57 +610,15 @@
                             <div class="card" height="18rem">
                                 <img src="img/properties/2.png" height="227px" class="card-img-top" alt="..." style="height: 227px;">
                                 <div class="card-footer btn btn-outline-dark" style="background: #FF8C00">
-                                    View properties for sale at Ikoyi
+                                    <a href="propertylisting.html"> View properties for sale at Ikoyi</a>
                                 </div>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-12 py-3">
-                            <div class="card" height="18rem">
-                                <div class="card-title py-3" style="border-bottom: 1px solid">
-                                    <i class="fa fa-share pl-2"></i> Share this property listing
-                                </div>
-                                <div class="card-body">
-                                    <div>
-                                        <img src="img/icon/whatsapp.png" alt="">
-                                        <img src="img/icon/twitter.png" alt="">
-                                        <img src="img/icon/facebook.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-sm-12 py-3">
-                            <div class="card" height="18rem">
-                                <div class="card-title py-3" style="border-bottom: 1px solid">
-                                    <i class="fa fa-share pl-2"></i> Share this property listing
-                                </div>
-                                <div class="card-body">
-                                    <div>
-                                        <ul>
-                                            <li>
-                                                <a href="#" style="text-decoration: underline !important;
-                                                color: blue;
-                                                font-size: 0.65rem;">Average price for 1 bedroom flats for rent in Yaba </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" style="text-decoration: underline !important; color: blue; font-size: 0.65rem;">Average price for 1 bedroom flats for rent in Yaba </a>
-                                            </li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                    
+                   
 
                     <div class="row">
                         <div class="col-sm-12 py-3">
@@ -592,16 +631,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-12 py-3">
-                            <div class="card py-3 px-3" height="18rem">
-                                <h5 class="py-3">
-                                    Advertisement placement
-                                </h5>
-                                <img src="img/advert.png" alt="">
-                            </div>
-                        </div>
-                    </div>
+                    
 
 
                 </div>
@@ -695,6 +725,38 @@
         </div>
     </section>
     <!-- End Footer -->
+
+    <!-- Create Alert Modal -->
+    <div class="modal fade" id="createAlert" tabindex="-1" role="dialog" aria-labelledby="createAlert" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="py-5 px-5">
+                            <h5 class="text-center">Create Alert</h5>
+                            <h6 class="text-center">For Properties matching your current search</h6>
+                            <form>
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" aria-describedby="nameHelp">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                </div>
+                                <div class="form-group">
+                                    <label for="duration">Duration</label>
+                                    <select class="form-control"></select>
+                                </div>
+                                <button type="Create" class="btn bg-orange" style="width:100%">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

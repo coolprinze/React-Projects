@@ -124,7 +124,23 @@ h2 {
     height: 50px;
 }
 
+.newsletter {
 
+height: 75px;
+left: 40.62%;
+right: 40.83%;
+top: calc(50% - 75px/2 + 1552px);
+
+font-family: Poppins;
+font-style: normal;
+font-weight: 500;
+font-size: 50px;
+line-height: 75px;
+/* identical to box height */
+
+color: #1C2432;
+
+}
 /* The check */
 
 .check {
@@ -336,3 +352,4 @@ h2 {
     color: #fff;
     opacity: 1;
 }
+
