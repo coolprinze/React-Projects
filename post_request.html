@@ -63,7 +63,17 @@
     <section class="container-fluid properties bg-grey">
         <div class="container py-5">
             <div class="row">
+                    
+
                 <div class="col-sm-6 offset-sm-3 bg-white py-5 px-5" style="border-radius:10px;">
+                        <div class="alert alert-success alert-dismissible fade show">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Saved</strong> Successfully
+                              </div>
+                              <div class="alert alert-danger alert-dismissible fade show">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <strong>Error!</strong> try again!!!
+                                  </div>
                     <h3 class="py-3" style="font-size:2rem; font-weight: 400;">Post A Request</h3>
                     <h6 class="text-muted py-2">Complete the form below and we would contact you</h6>
                     <form>
@@ -97,11 +107,23 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="lastName">Type</label>
-                                    <input type="text" class="form-control" placeholder="First name">
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                            <option>Select Type</option>
+                                            <option>Duplex</option>
+                                            <option>Mansion</option>
+                                            <option>flat</option>
+                                            <option>office</option>
+                                          </select>
                                 </div>
                                 <div class="col">
                                     <label for="lastName">No of bedrooms</label>
-                                    <input type="text" class="form-control" placeholder="Last name">
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                            <option>pick a number</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                          </select>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +148,7 @@
                                 <div class="col">
                                     <label for="lastName">Locality</label>
                                     <select class="form-control" id="exampleFormControlSelect1">
-                                            <option>Abia</option>
+                                            <option>Select Locality</option>
                                             <option>Abia</option>
                                             <option>Adamawa</option>
                                             <option>Akwa-Ibom</option>
