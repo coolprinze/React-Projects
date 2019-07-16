@@ -33,10 +33,18 @@
                         <a class="pr-3 nav-link" href="#">Propery Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="pr-3 nav-link" href="#"><i class="fa fa-2x fa-bell-o"></i></a>
+                        <a class="pr-3 nav-link" href="#"><i class="fa fa-2x fa-bell-o" ></i>
+
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="pr-3 nav-link" href="#"><i class="fa fa-2x fa-user-circle-o"></i></a>
+                    <li class="nav-item dropdown">
+                        <a class="pr-3 nav-link "  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><i class="fa fa-2x fa-user-circle-o"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                              </div>
                     </li>
                 </ul>
             </div>
@@ -59,6 +67,14 @@
     </header>
     <section class="container-fluid bg-grey">
         <div class="container py-5">
+                <div class="alert alert-success alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Saved</strong> Successfully
+                      </div>
+                      <div class="alert alert-danger alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Error</strong>Try again
+                          </div>
             <div class="col-sm-12">
                 <div class="row profile">
                     <div class="col-md-3">
@@ -68,19 +84,19 @@
                                 <h3 class="px-3 pb-3" style="border-bottom: 1px solid #f0f4f7;">My Account</h3>
                                 <ul>
                                     <li class="py-3">
-                                        <a href="#" class="py-3 px-5"> Saved Properties</a>
+                                        <a href="savedproperties.html" class="py-3 px-5"> Saved Properties</a>
                                     </li>
                                     <li class="py-3">
-                                        <a href="#" class="py-3 px-5">Search History </a>
+                                        <a href="searchhistory.html" class="py-3 px-5">Search History </a>
                                     </li>
                                     <li class="py-2">
                                         <a href="#" target="_blank" class="py-3 px-5"> Alert </a>
                                     </li>
                                     <li class="py-2 active">
-                                        <a href="#" class="py-3 px-5">Profile </a>
+                                        <a href="userprofile.html" class="py-3 px-5">Profile </a>
                                     </li>
                                     <li class="py-2">
-                                        <a href="#" class="py-3 px-5">Logout </a>
+                                        <a href="/logout" class="py-3 px-5">Logout </a>
                                     </li>
                                 </ul>
                             </div>
@@ -89,9 +105,9 @@
                     </div>
                     <div class="col-md-9">
                         <div class="row mx-0 my-0">
-                            <div class="col-sm-12 bg-dark">
-                                <h6 class="text-white">Name:</h6>
-                                <h3 class="text-white">James Agbalumo</h3>
+                            <div class="col-sm-12 bg-dark rounded">
+                                
+                                <h3 class="text-white p-3 ">James Agbalumo</h3>
                             </div>
                         </div>
                         <div class="row mx-0 my-0 bg-white">
