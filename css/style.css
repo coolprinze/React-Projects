@@ -6,6 +6,9 @@ body {
     line-height: 25px;
     color: #34495e;
 }
+.bg-dark {
+    background-color: #1C2432 !important;
+}
 
 h1,
 h2,
@@ -121,7 +124,23 @@ h2 {
     height: 50px;
 }
 
+.newsletter {
 
+height: 75px;
+left: 40.62%;
+right: 40.83%;
+top: calc(50% - 75px/2 + 1552px);
+
+font-family: Poppins;
+font-style: normal;
+font-weight: 500;
+font-size: 50px;
+line-height: 75px;
+/* identical to box height */
+
+color: #1C2432;
+
+}
 /* The check */
 
 .check {
@@ -282,6 +301,7 @@ h2 {
 .footer {
     font-size: 1.4rem;
     color: #FF8C00;
+    
 }
 
 .bg-orange {
@@ -343,6 +363,7 @@ h2 {
     opacity: 1;
 }
 
+<<<<<<< HEAD
 @media (min-width: 992px){
 .navbar-expand-lg .navbar-nav .dropdown-menu {
     position: absolute;
@@ -353,3 +374,5 @@ h2 {
 .form-control{
     height:inherit !important;
 }
+=======
+>>>>>>> origin/uireview

@@ -10,6 +10,8 @@ body {
     color: #34495e;
 }
 
+
+
 h1,
 h2,
 h3,
@@ -297,7 +299,10 @@ a.text-success:hover {
     color: #64ddba;
     font-weight: 400;
 }
-
+.btn-default,.btn-dark {
+    background-color: #1C2432;
+    color: #ffffff;
+}
 .demo-page .card.padding-card .card-body {
     padding: 0;
 }
@@ -1049,5 +1054,11 @@ nav.navbar .navbar-nav #sp-btn a:hover {
     }
 }
 
+.headerContent {
+    background-image: url("../img/slider/1.png") ;
+    height: 392px;
+    width: 1440px;
+    color: #ffffff;
+}
 
 /* End Mobile Media */
