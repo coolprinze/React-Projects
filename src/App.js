@@ -23,7 +23,8 @@ class App extends Component {
                     <Route exact path="/admin" component={Admin} />
                     <Route exact path="/agent" component={Agent} />
                     <Route exact path="/user" component={User} />                    
-                    <Route exact path="/" component={Public} />                    
+                    <Route exact path="/" component={Public} />
+                    <Route exact path="/propertylisting" component={Public} />
                     {/* <Route  component={NotFound} /> */}
                 </Fragment>
             </Router>
