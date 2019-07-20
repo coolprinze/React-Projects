@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 
 class App extends Component {
@@ -7,7 +8,6 @@ class App extends Component {
       }
 
     componentDidMount() {
-
         fetch('http://api.castles.com.ng/api/properties')
         .then(res => res.json())
         .then((properties) => {
@@ -15,10 +15,13 @@ class App extends Component {
         console.log(this.state.properties)
         })
         .catch(console.log)
+        
       
     }
 
     render() {
+
+        console.log(this.routes);
 
         return ( 
             <React.Fragment>
@@ -39,7 +42,7 @@ class App extends Component {
                         <div className="col-sm-4 px-0 py-0 bg-white">
                             <div className="col-sm-12 py-2 px-2">
                                 <h5>{property.title}</h5>
-                                <span className="text-small">{property.bedroom} Bedroom | {property.bathroom} Bathroom | {property.toilet} Toilet | {property.parking} Parking</span>
+                                <span className="text-small">{property.bedrooms} Bedroom | {property.bathrooms} Bathroom | {property.toilet} Toilet | {property.parking} Parking</span>
                                 <h6 className="px-0 py-0">Ajah</h6>
                                 <span>{property.description}</span>
                                 <button className="btn btn-dark btn-listing" style={{width: '100%'}}>N{property.price}</button>
@@ -56,7 +59,7 @@ class App extends Component {
                                         <span>D properties Consult</span>
                                         <div className="d-flex justify-content-between">
                                             <span>08178883933</span>
-                                            <span>View listing</span>
+                                            <Link to={`/propertylisting/${property.id}`}>View listing</Link>
                                         </div>
                                     </div>
                                 </div>

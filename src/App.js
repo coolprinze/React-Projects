@@ -25,6 +25,7 @@ class App extends Component {
                     <Route exact path="/user" component={User} />                    
                     <Route exact path="/" component={Public} />
                     <Route exact path="/propertylisting" component={Public} />
+                    <Route exact path="/propertylisting/:slug" component={Public} />
                     {/* <Route  component={NotFound} /> */}
                 </Fragment>
             </Router>

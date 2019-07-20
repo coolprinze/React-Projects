@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 class Header extends Component {
 
@@ -24,13 +25,11 @@ class Header extends Component {
                                       <a className="py-1 home-phone" href="#">09883833232</a>
                                   </li>
                                   <li className="nav-item active">
-                                      <a className="nav-link" href="#">Property Search <span className="sr-only">(current)</span></a>
+                                      <Link to="/propertylisting" className="nav-link">Property Search</Link>
                                   </li>
+                                  
                                   <li className="nav-item">
-
-                                  </li>
-                                  <li className="nav-item">
-                                      <a className="nav-link" href="propertyadvice.html">Property Advice</a>
+                                      <Link className="nav-link" to="/propertyadvice">Property Advice</Link>
                                   </li>
                                   <li className="nav-item">
                                       <a className="nav-link" href="#">Advertise in our Magazine</a>

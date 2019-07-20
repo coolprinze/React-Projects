@@ -8,7 +8,6 @@ class App extends Component {
     }
 
     render() {
-
         return ( 
           <div>
           <div className="container-fluid search-bar d-flex align-items-center flex-xl-row">
@@ -98,7 +97,7 @@ class App extends Component {
             </div>
             <div className="col-sm-2">
                 <a href="" data-toggle="modal" data-target="#createAlert">
-                    <img src="assets/img/icon/bell-sm.png" className="pr-2" alt=""/> Create Alert
+                    <img src=".../assets/img/icon/bell-sm.png" className="pr-2" alt=""/> Create Alert
                 </a> 
             </div>
 
