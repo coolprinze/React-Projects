@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Route} from "react-router-dom"
 
 class App extends Component {
 
@@ -105,7 +105,8 @@ class App extends Component {
                 Can't find what you are looking for?
             </div>
             <div className="col-sm-3 pr-0">
-                <button className="btn btn-lg btn-outline-dark pull-right">Post a Request</button>
+            <Route render={({ history}) => (
+                <button className="btn btn-lg btn-outline-dark pull-right" onClick={() => { history.push('/postrequest') }}>Post a Request</button>)} />
             </div>
         </div>
     </div>

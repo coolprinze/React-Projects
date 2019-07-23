@@ -3,6 +3,9 @@ import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 // import all pages components
 import Dashboard from './Dashboard'
+import PostRequest from '../User/PostRequest';
+import AgentListing from '../Agent/AgentListing';
+import Agents from '../Admin/Agents';
 
 
 
@@ -16,20 +19,11 @@ class Agent extends Component {
 
       return ( 
         <div>
-          <ul>
-            <li>
-              <Link to="/">Dashboard</Link>
-            </li>
-            <li>
-              <Link to="/user">Users</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-          </ul>
           <main>
             <Switch>
               <Route exact path="/agent" component={Dashboard} />
+              <Route exact path="/agent/agent-listing" component={AgentListing} />  
+              <Route exact path="/agents" component={Agents} />
             </Switch>
           </main>          
         </div>

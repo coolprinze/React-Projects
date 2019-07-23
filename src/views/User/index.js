@@ -3,6 +3,12 @@ import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 // import all pages components
 import Dashboard from './Dashboard'
+import Register from './Register';
+import Login from './Login';
+import Profile from './Profile';
+import PostRequest from './PostRequest'
+
+
 
 
 
@@ -16,7 +22,7 @@ class User extends Component {
 
       return ( 
         <div>
-          <ul>
+          {/* <ul>
             <li>
               <Link to="/">Dashboard</Link>
             </li>
@@ -26,10 +32,14 @@ class User extends Component {
             <li>
               <Link to="/contact">Contact</Link>
             </li>
-          </ul>
+          </ul> */}
           <main>
             <Switch>
               <Route exact path="/user" component={Dashboard} />
+              <Route exact path="/user/register" component={Register} />
+              <Route exact path="/user/login" component={Login} />
+              <Route exact path="/user/profile" component={Profile} />
+              <Route exact path="/user/post-request" component={PostRequest} /> 
             </Switch>
           </main>          
         </div>

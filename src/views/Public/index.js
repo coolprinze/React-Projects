@@ -7,6 +7,7 @@ import PropertyListing from './PropertyListing'
 import PropertyDetails from './PropertyDetails'
 import Header from './../../component/Header/Header'
 import Footer from './../../component/Footer'
+import PostRequest from '../User/PostRequest';
 
 
 
@@ -26,6 +27,7 @@ class Admin extends Component {
           <main>
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/postrequest" component={PostRequest}/>
               <Route exact path="/propertylisting" component={PropertyListing} />
               <Route exact path="/propertylisting/:id" component={PropertyDetails} />
             </Switch>
