@@ -1,14 +1,35 @@
 import React, { Component } from 'react';
+import API from "../../api";
+import config from '../../config'
 import Header from "../../component/Header/UserHeader"
+import Axios from 'axios';
 
 
 class Register extends Component {
-
+    constructor(props){
+        super(props)
+        this.state = {
+            user:{
+                name:"",
+                email:"",
+                username:"",
+                password:"",
+                password_confirmation:"",
+                role:0,
+                subscribe:true
+            }
+        }
+    }
     componentDidMount() {
 
     }
 
     render() {
+        // async const register = () => {
+        //     try{
+        //         const res = await Axios.post(config.BASE_URL+`/register`,JSON.stringify(this.state.user))
+        //     }
+        // }
         return ( 
             <React.Fragment>
             <Header />

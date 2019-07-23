@@ -28,14 +28,15 @@ class App extends Component {
                     <Route exact path="/user/login" component={User} /> 
                     <Route exact path="/user/profile" component={User} /> 
                     <Route exact path="/user/post-request" component={User} /> 
+                    <Route exact path="/agent/profile" component={Agent} />
                     <Route exact path="/agent/agent-listing" component={Agent} />
+                    <Route exact path="/propertyadvice" component={Agent} />
                     <Route exact path="/agents" component={Agents} /> 
                     <Route exact path="/" component={Public} />
                     <Route exact path="/postrequest" component={Public} />
                     <Route exact path="/propertylisting" component={Public} />
                     <Route exact path="/propertylisting/:slug" component={Public} />
                     <Route exact path="/notfound" component={NotFound} />
-
                     {/* <Route  component={NotFound} /> */}
                 </Fragment>
             </Router>
