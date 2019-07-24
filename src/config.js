@@ -1,3 +1,5 @@
-export const config = {
-    BASE_URL : 'api.castles.com.ng/api'
+const config = {
+    BASE_URL : 'http://api.castles.com.ng/api'
 }
+
+export default config

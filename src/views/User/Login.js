@@ -1,14 +1,66 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom'
+import config from '../../config'
 import Header from "../../component/Header/UserHeader"
 
 
 class Login extends Component {
-
-    componentDidMount() {
+    constructor(props){
+        super(props)
+        this.state = {
+            email:"",
+            password:"",
+            authStatus:false,
+            authRes:{}
+        }
+        this.handleChange = this.handleChange.bind(this)
+        this.auth = this.auth.bind(this)
+    }
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]:e.target.value
+        })
+    }
+    authRequest = async () => {
+        var data = {
+            email:this.state.email,
+            password:this.state.password
+        }
+        const res = await fetch(`${config.BASE_URL}/login`,{
+            headers:{
+                'Content-Type':'application/json',
+                'Accept':'application/json' 
+            },
+            method:'POST',
+            body:JSON.stringify(data)
+        })
+        const payload = await res.json();
+        if (res.status === 200){
+            this.setState({
+                authStatus:true,
+                authRes:payload
+            })
+            return
+        }else{
+            alert("Authentication failed")
+        }
+    }
+    getUser = async () => {
 
     }
-
+    async auth(e){
+        e.preventDefault()
+        await this.authRequest()
+        if (this.state.authStatus){
+            localStorage.setItem("token",this.state.authRes.access_token)
+            localStorage.setItem("tokenExpires",this.state.authRes.expires_at)
+            localStorage.setItem("signedIn",true)
+        }
+    }
     render() {
+        if (this.state.authStatus){
+            return (<Redirect to='/user/savedproperties' />)
+        }
         return ( 
             <React.Fragment>
                 <Header />
@@ -18,14 +70,14 @@ class Login extends Component {
                             <div className="col-sm-6 offset-sm-3 bg-white py-5 px-5 my-5" style={{borderRadius:"10px"}}>
                                 <h3 className="py-3" style={{fontSize:"2rem",fontWeight:"400"}}>Login</h3>
                                 <h4 className="text-muted py-2">Login to continue</h4>
-                                <form>
+                                <form onSubmit={this.auth}>
                                     <div className="form-group py-2">
-                                        <label for="exampleInputEmail1">Email</label>
-                                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+                                        <label for="email">Email</label>
+                                        <input type="email" onChange={this.handleChange} className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"/>
                                     </div>
                                     <div className="form-group py-2">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                                        <label for="password">Password</label>
+                                        <input type="password" onChange={this.handleChange} className="form-control" id="password" placeholder="Password"/>
                                         <small id="emailHelp" className="form-text text-muted text-right">
                                             <a href="forgetpassword.html">
                                                 Forget Password?
@@ -34,10 +86,9 @@ class Login extends Component {
                                     </div>
                                     <div className="row my-3">
                                         <div className="col-sm-12 ">
-                                            <a href="agent/dashboard.html" className="btn btn-block" style={{background:"#FF8C00"}}>
+                                            <button  className="btn btn-block" style={{background:"#FF8C00"}}>
                                                 Login
-                                            </a>
-
+                                            </button>
                                         </div>
                                     </div>
                                     <div className="row my-4">

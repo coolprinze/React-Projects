@@ -7,6 +7,8 @@ import Register from './Register';
 import Login from './Login';
 import Profile from './Profile';
 import PostRequest from './PostRequest'
+import SavedProperties from './SavedProperties'
+import Alerts from './Alerts';
 
 
 
@@ -38,6 +40,8 @@ class User extends Component {
               <Route exact path="/user" component={Dashboard} />
               <Route exact path="/user/register" component={Register} />
               <Route exact path="/user/login" component={Login} />
+              <Route exact path="/user/savedproperties" component={SavedProperties}/>
+              <Route exact path="/user/alerts" component={Alerts}/>
               <Route exact path="/user/profile" component={Profile} />
               <Route exact path="/user/post-request" component={PostRequest} /> 
             </Switch>
