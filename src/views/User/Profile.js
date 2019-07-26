@@ -1,13 +1,37 @@
 import React, { Component } from 'react';
+import config from '../../config'
+import UserDashboardSideBar from './UserDashboardSideBar'
 import Header from "../../component/Header/UserHeader"
 
 
 class Profile extends Component {
-
+    constructor(props){
+        super(props)
+        this.state = {
+            profile:{}
+        }
+    }
     componentDidMount() {
 
     }
-
+    getUser = async (token) => {
+        const res = await fetch(`${config.BASE_URL}/registration`,{
+            headers:{
+                'Content-Type':'application/json',
+                'Accept':'application/json',
+                'Authorization':`Bearer ` +token
+            },
+            method:'GET'
+        })
+        const payload = await res.json();
+        if (payload.status === 1){
+            this.setState({
+                profile: payload.data
+            })
+        }else{
+            
+        }
+    }
     render() {
         return ( 
             <React.Fragment>
@@ -16,30 +40,7 @@ class Profile extends Component {
                     <div className="container py-5">
                         <div className="col-sm-12">
                             <div className="row profile">
-                                <div className="col-md-3">
-                                    <div className="profile-sidebar">
-                                        <div className="profile-usermenu">
-                                            <h3 className="px-3 pb-3" style={{borderBottom:"1px solid #f0f4f7"}}>My Account</h3>
-                                            <ul>
-                                                <li className="py-3">
-                                                    <a href="#" className="py-3 px-5"> Saved Properties</a>
-                                                </li>
-                                                <li className="py-3">
-                                                    <a href="#" className="py-3 px-5">Search History </a>
-                                                </li>
-                                                <li className="py-2">
-                                                    <a href="#" target="_blank" className="py-3 px-5"> Alert </a>
-                                                </li>
-                                                <li className="py-2 active">
-                                                    <a href="#" className="py-3 px-5">Profile </a>
-                                                </li>
-                                                <li className="py-2">
-                                                    <a href="#" className="py-3 px-5">Logout </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                <UserDashboardSideBar active="savedProperties"/>    
                                 <div className="col-md-9">
                                     <div className="row mx-0 my-0">
                                         <div className="col-sm-12 bg-dark pt-4">

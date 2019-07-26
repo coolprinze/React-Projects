@@ -37,15 +37,16 @@ class Alerts extends Component {
             alert('Something went wrong')
         }
     }
-    //search?bedrooms=1&state_id=25&locality_id=4&status_id=1&type_id=2&min_price=2000000&max_price=5000000&bathrooms=1&toilets=1
     render() {
         var noAlerts = "No Alerts"
-        var alerts = this.state.alerts.map((item,index)=> {
-            return <tr key={item.id}>
+        var alerts = this.state.alerts.map((item)=> {
+            return (
+                <tr key={item.id}>
                     <td><a>Properties in Lagos</a></td>
                     <td> <img src={bellIcon} alt="" class="mr-2"/> Instantly</td>
                     <td><img src={deleteIcon} alt=""/></td>
                 </tr>
+            ) 
         })
         return ( 
             <React.Fragment>
@@ -69,11 +70,12 @@ class Alerts extends Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
+                                                    {/* <tr>
                                                         <td><a href="propertyview.html">Properties in Lagos</a></td>
                                                         <td> <img src={bellIcon} alt="" class="mr-2"/> Instantly</td>
                                                         <td><img src={deleteIcon} alt=""/></td>
-                                                    </tr>
+                                                    </tr> */}
+                                                    {alerts.length < 1 ? noAlerts : alerts}
                                                 </tbody>
                                             </table>
                                         </div>

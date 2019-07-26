@@ -25,7 +25,9 @@ class UserDashboardSideBar extends Component {
                                     <a href="#" className="py-3 px-5">Search History </a>
                                 </li> */}
                                 <li className="py-2" >
-                                    <a href="#" target="_blank" className="py-3 px-5"> Alert </a>
+                                <Link to='/user/alerts'>
+                                    <a className="py-3 px-5"> Alert </a>
+                                </Link>
                                 </li>
                                 <li className="py-2">
                                     <a href="#" className="py-3 px-5">Profile </a>

@@ -24,17 +24,6 @@ class User extends Component {
 
       return ( 
         <div>
-          {/* <ul>
-            <li>
-              <Link to="/">Dashboard</Link>
-            </li>
-            <li>
-              <Link to="/user">Users</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-          </ul> */}
           <main>
             <Switch>
               <Route exact path="/user" component={Dashboard} />

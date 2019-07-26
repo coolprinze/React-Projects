@@ -36,8 +36,8 @@ class SavedProperties extends Component {
     }
     render() {
         var noSavedProperties = "You have not saved any properties yet"
-        var savedProperties = this.state.savedProperties.map((item,index)=> {
-            return <div className="row px-3 py-3 bg-white" key={index}>
+        var savedProperties = this.state.savedProperties.map((item)=> {
+            return <div className="row px-3 py-3 bg-white" key={item.id}>
                 <div className="col-sm-8">
                     <div className="row">
                         <div className="col-sm-8 col-lg-8 px-0 py-0">
