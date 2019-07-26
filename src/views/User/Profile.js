@@ -51,8 +51,8 @@ class Profile extends Component {
         }
     }
     update(){
-        var token = localStorage.getItem('token')
-        this.updateProfile(`Bearer `+token)
+        var t = localStorage.getItem('token')
+        this.updateProfile(`Bearer `+t)
     }
     updateProfile = async (token) => {
         var data = {
