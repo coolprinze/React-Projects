@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom'
 import config from '../../config'
 import Select from 'react-select'
+import AsyncSelect from 'react-select/async'
 
 class Home extends Component {
     constructor(props){
         super(props)
         this.state = {
+            featured:[],
             propertyTypes : [],
             states:[],
             localities:[],
@@ -20,13 +22,19 @@ class Home extends Component {
             category:{},
             minPrice:{},
             maxPrice:{},
-            searchResult:["x"]
+            searchResult:["x"],
+            filterSearchTerm:""
         }
         this.getPropertyTypes = this.getPropertyTypes.bind(this)
         this.getStates = this.getStates.bind(this)
         this.getLocalityByState = this.getLocalityByState.bind(this)
         this.getCategories = this.getCategories.bind(this)
         this.processSearch = this.processSearch.bind(this)
+        this.getFeatures = this.getFeatures.bind(this)
+    }
+    componentWillMount(){
+        this.getFeatures()
+        this.searchByArea("lekki")
     }
     handlePropertyType = (propertyType) => {
         this.setState({
@@ -37,15 +45,6 @@ class Home extends Component {
         this.setState({
             bedroom
         })
-    }
-    handleState = (state) => {
-        this.setState({
-            state
-        })
-        // console.log(state.value)
-        // if (state.value != undefined){
-        //     this.getLocalityByState(state.value)
-        // }
     }
     handleLocality = (locality) => {
         this.setState({
@@ -76,7 +75,11 @@ class Home extends Component {
         this.setState({
             maxPrice
         })
-        console.log(this.state)
+    }
+    onSearchChange = (filterSearchTerm) => {
+        this.setState({filterSearchTerm})
+        this.searchByArea(filterSearchTerm)
+        return filterSearchTerm
     }
     componentDidMount() {
         this.getPropertyTypes()
@@ -157,7 +160,6 @@ class Home extends Component {
         }
         var url = new URL(`${config.BASE_URL}/search`)
         Object.keys(params).forEach(key=> url.searchParams.append(key,params[key]))
-        console.log(url.href)
         const res = await fetch(url.href,{
             method:'GET',
             headers:{
@@ -174,6 +176,47 @@ class Home extends Component {
             alert('Something went wrong')
         }
     }
+    getFeatures = async () => {
+        const res = await fetch(`${config.BASE_URL}/features`,{
+            method:'GET',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            }
+        })
+        const payload = await res.json();
+        if (payload.status === 1){
+            this.setState({
+                featured:payload.data,
+            })
+        }else{
+            alert('Something went wrong')
+        }
+    }
+    searchByArea = async (param) => {
+        const res = await fetch(`${config.BASE_URL}/properties/filter?search=${param}`,{
+            method:'GET',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            }
+        })
+        const payload = await res.json();
+        if (payload.status === 1){
+            this.setState({
+                localities:payload.data,
+            })
+            return
+        }else{
+            alert('Something went wrong')
+        }
+    }
+    loadOptions = async (value, callback) => {
+        await this.searchByArea(value)
+        setTimeout(() => {
+          callback(this.state.localities);
+        }, 1000);
+    };
     render() {
         if (this.state.searchResult.length < 1 ){
             return (
@@ -183,7 +226,26 @@ class Home extends Component {
                 }}/>
             )
         }
+        let defaultOptions = this.state.localities.map((item)=>{
+            return {
+                value:item.id,
+                label:item.label
+            }
+        })
         const {propertyType, bedroom, state,locality, bathroom, toilet, category, minPrice, maxPrice} = this.state
+        var f = this.state.featured.slice(0,8)
+        let features = f.map((item)=>{
+            return (
+                <div class="col-lg-3 py-3" key={item.id}>
+                    <div class="card" style={{minHeight: '509px', background: "url('assets/img/featured-properties/1.png')", backgroundSize: 'cover'}}>
+                        <div class="overlay"></div>
+                        <h5 class="text-center" style={{position: 'absolute', right: '0', left: '0', bottom: '72px', color: '#ffffff'}}>
+                            {item.name}
+                        </h5>
+                    </div>
+                </div>
+            )
+        })
         let pTypes = this.state.propertyTypes.map((item)=>{
             return {
                 value:item.id, label:item.name 
@@ -228,6 +290,95 @@ class Home extends Component {
             {value:100000000, label:"₦ 100,000,000"},
             {value:150000000, label:"₦ 150,000,000"},
         ]
+        let searchBar = () => {
+            return (
+            <div>
+                <section class="container" >
+                    <ul class="row d-flex flex-row justify-content-between align-items-center px-lg-4">
+                        <li class="col-lg-2">
+                            <div class="">
+                                <label for="propertyType" style={{color:"white"}}>Property Type</label>
+                                <Select
+                                    value={propertyType}
+                                    onChange={this.handlePropertyType}
+                                    options={pTypes}
+                                />
+                            </div>
+                        </li>
+                        <li class="col-lg-2">
+                            <div class="">
+                                <label for="mobileno" style={{color:"white"}}>Bedrooms</label>
+                                <Select
+                                    options={bedrooms}
+                                    value={bedroom}
+                                    onChange={this.handleBedroom}
+                                />
+                            </div>
+                        </li>
+                        <li class="col-lg-2">
+                            <div class="">
+                                <label for="mobileno" style={{color:"white"}}>Bathrooms</label>
+                                <Select
+                                    options={bedrooms}
+                                    value={bathroom}
+                                    onChange={this.handleBathroom}
+                                />
+                            </div>
+                        </li>
+                        <li class="col-lg-2">
+                            <div class="">
+                                <label for="mobileno" style={{color:"white"}}>Toilets</label>
+                                <Select
+                                    options={bedrooms}
+                                    value={toilet}
+                                    onChange={this.handleToilet}
+                                />
+                            </div>
+                        </li>
+                        <li class="col-lg-2">
+                            <div class="">
+                                <label for="category" style={{color:"white"}}>Category</label>
+                                <Select
+                                    options={categories}
+                                    value={category}
+                                    onChange={this.handleCategory}
+                                />
+                            </div>
+                        </li>
+                        <li class="col-lg-2" >
+                            <div class="">
+                                <label for="mobileno" style={{color:"white"}}>Min Price</label>
+                                    <Select
+                                        options={prices}
+                                        value={minPrice}
+                                        onChange={this.handleMinP}
+                                    />
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+                <section class="container"  style={{paddingBottom:"20px"}}>
+                    <ul class="row d-flex flex-row justify-content-between align-items-center px-lg-4">
+                        <li class="col-lg-2" >
+                            <div class="">
+                                <label for="mobileno" style={{color:"white"}}>Max Price</label>
+                                    <Select
+                                        options={prices}
+                                        value={maxPrice}
+                                        onChange={this.handleMaxP}
+                                    />
+                            </div>
+                        </li>
+                        <li class="col-lg-2">
+                            <button onClick={this.processSearch} class="btn btn-lg text-white search-btn d-flex justify-content-center align-items-center">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            )
+        }
         return ( 
                     <div>
                         <section class="slider">
@@ -258,96 +409,41 @@ class Home extends Component {
                                     <a class="nav-link py-4" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Joint Venture</a>
                                 </li>
                             </ul>
-
                             <div class=" container tab-content" id="pills-tabContent" >
                                 <div  class="container search-home tab-pane fade show active" id="pills-sale" role="tabpanel" aria-labelledby="pills-sale-tab">
+                                    <form action="" class="d-flex justify-content-center align-items-center">
+                                        <div class="col-md-9 form-group form-group px-lg-5 py-4 mb-0">
+                                            {/* <Select
+                                                options={prices}
+                                                value={maxPrice}
+                                                onChange={this.handleMaxP}
+                                            /> */}
+                                            <AsyncSelect
+                                                cacheOptions
+                                                loadOptions={this.loadOptions}
+                                                defaultOptions={defaultOptions}
+                                                onInputChange={this.updateLocalities}
+                                            />
+                                        </div>
+                                    </form>
+                                    {searchBar()}
+                                </div>
+                                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"style={{backgroundColor:"#1C2431"}}>
                                     <form action="" class="d-flex justify-content-center align-items-center">
                                         <div class="col-md-9 form-group form-group px-lg-5 py-4 mb-0">
                                             <input type="search" name="" class="form-control py-4" id="" placeholder="Search the area you want the house" />
                                         </div>
                                     </form>
-                                    <section class="container" >
-                                        <ul class="row d-flex flex-row justify-content-between align-items-center px-lg-4">
-                                            <li class="col-lg-2">
-                                                <div class="">
-                                                    <label for="propertyType" style={{color:"white"}}>Property Type</label>
-                                                    <Select
-                                                        value={propertyType}
-                                                        onChange={this.handlePropertyType}
-                                                        options={pTypes}
-                                                    />
-                                                </div>
-                                            </li>
-                                            <li class="col-lg-2">
-                                                <div class="">
-                                                    <label for="mobileno" style={{color:"white"}}>Bedrooms</label>
-                                                    <Select
-                                                        options={bedrooms}
-                                                        value={bedroom}
-                                                        onChange={this.handleBedroom}
-                                                    />
-                                                </div>
-                                            </li>
-                                            <li class="col-lg-2">
-                                                <div class="">
-                                                    <label for="mobileno" style={{color:"white"}}>Bathrooms</label>
-                                                    <Select
-                                                        options={bedrooms}
-                                                        value={bathroom}
-                                                        onChange={this.handleBathroom}
-                                                    />
-                                                </div>
-                                            </li>
-                                            <li class="col-lg-2">
-                                                <div class="">
-                                                    <label for="mobileno" style={{color:"white"}}>Toilets</label>
-                                                    <Select
-                                                        options={bedrooms}
-                                                        value={toilet}
-                                                        onChange={this.handleToilet}
-                                                    />
-                                                </div>
-                                            </li>
-                                            <li class="col-lg-2">
-                                                <div class="">
-                                                    <label for="category" style={{color:"white"}}>Category</label>
-                                                    <Select
-                                                        options={categories}
-                                                        value={category}
-                                                        onChange={this.handleCategory}
-                                                    />
-                                                </div>
-                                            </li>
-                                            <li class="col-lg-2" >
-                                                <div class="">
-                                                    <label for="mobileno" style={{color:"white"}}>Min Price</label>
-                                                        <Select
-                                                            options={prices}
-                                                            value={minPrice}
-                                                            onChange={this.handleMinP}
-                                                        />
-                                                </div>
-                                            </li>
-                                            <li class="col-lg-2" >
-                                                <div class="">
-                                                    <label for="mobileno" style={{color:"white"}}>Max Price</label>
-                                                        <Select
-                                                            options={prices}
-                                                            value={maxPrice}
-                                                            onChange={this.handleMaxP}
-                                                        />
-                                                </div>
-                                            </li>
-                                            <li class="col-lg-2">
-                                                <button onClick={this.processSearch} class="btn btn-lg text-white search-btn d-flex justify-content-center align-items-center">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </section>
+                                    {searchBar()}
                                 </div>
-                                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" style={{backgroundColor:"#1C2431"}}>
+                                    <form action="" class="d-flex justify-content-center align-items-center">
+                                        <div class="col-md-9 form-group form-group px-lg-5 py-4 mb-0">
+                                            <input type="search" name="" class="form-control py-4" id="" placeholder="Search the area you want the house" />
+                                        </div>
+                                    </form>
+                                    {searchBar()}
+                                </div>
                             </div>
                         </section>
 
@@ -363,41 +459,7 @@ class Home extends Component {
                             </div>
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-lg-3 py-3">
-                                        <div class="card" style={{minHeight: '509px', background: "url('assets/img/featured-properties/1.png')", backgroundSize: 'cover'}}>
-                                            <div class="overlay"></div>
-                                            <h5 class="text-center" style={{position: 'absolute', right: '0', left: '0', bottom: '72px', color: '#ffffff'}}>
-                                                    4 Bedroom Duplex
-                                                </h5>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-3 py-3">
-                                        <div class="card" style={{minHeight: '509px', background: "url('assets/img/featured-properties/2.png')", backgroundSize: 'cover'}}>
-                                            <div class="overlay"></div>
-                                            <h5 class="text-center" style={{position: 'absolute', right: '0', left: '0', bottom: '72px', color: '#ffffff'}}>
-                                                    2 Bedroom Duplex
-                                                </h5>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-3 py-3">
-                                        <div class="card" style={{minHeight: '509px', background: "url('assets/img/featured-properties/3.png')", backgroundSize: 'cover'}}>
-                                            <div class="overlay"></div>
-                                            <h5 class="text-center" style={{position: 'absolute', right: '0', left: '0', bottom: '72px', color: '#ffffff'}}>
-                                                    4 Bedroom Duplex
-                                                </h5>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-3 py-3">
-                                        <div class="card" style={{minHeight: '509px', background: "url('assets/img/featured-properties/2.png')", backgroundSize: 'cover'}}>
-                                            <div class="overlay"></div>
-                                            <h5 class="text-center" style={{position: 'absolute', right: '0', left: '0', bottom: '72px', color: '#ffffff'}}>
-                                                    2 Bedroom Duplex
-                                                </h5>
-                                        </div>
-                                    </div>
+                                    {features}
                                 </div>
                             </div>
                         </section>
