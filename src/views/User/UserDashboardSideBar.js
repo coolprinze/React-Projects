@@ -4,7 +4,10 @@ import {Link} from 'react-router-dom'
 class UserDashboardSideBar extends Component {
     constructor(props){
         super(props)
-
+        this.logout = this.logout.bind(this)
+    }
+    logout(){
+        localStorage.setItem("signedIn",false)
     }
     render() {
         return ( 
@@ -21,19 +24,18 @@ class UserDashboardSideBar extends Component {
                                         <a className="py-3 px-5"> Saved Properties</a>
                                     </Link>
                                 </li>
-                                {/* <li className="py-3">
-                                    <a href="#" className="py-3 px-5">Search History </a>
-                                </li> */}
                                 <li className="py-2" >
-                                <Link to='/user/alerts'>
-                                    <a className="py-3 px-5"> Alert </a>
-                                </Link>
+                                    <Link to='/user/alerts'>
+                                        <a className="py-3 px-5"> Alert </a>
+                                    </Link>
                                 </li>
                                 <li className="py-2">
-                                    <a href="#" className="py-3 px-5">Profile </a>
+                                    <Link to='/user/profile'>
+                                        <a className="py-3 px-5"> Profile </a>
+                                    </Link>
                                 </li>
                                 <li className="py-2">
-                                    <a href="#" className="py-3 px-5">Logout </a>
+                                    <a onClick={this.logout}className="py-3 px-5">Logout </a>
                                 </li>
                             </ul>
                         </div>

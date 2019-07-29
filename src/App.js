@@ -26,7 +26,7 @@ class App extends Component {
                     <Route exact path="/user" component={User}/> 
                     <Route exact path="/user/register" component={User}/>   
                     <Route exact path="/user/login" component={User}/> 
-                    {/* "/user/savedproperties" also serves as the dashboard on login */}
+                    {/* "/user/savedproperties" also serves as the dashboard after user login login */}
                     <Route exact path="/user/savedproperties" component={User} /> 
                     <Route exact path="/user/alerts" component={User}/>
                     <Route exact path="/user/profile" component={User} /> 
@@ -34,8 +34,10 @@ class App extends Component {
                     <Route exact path="/agent/profile" component={Agent} />
                     <Route exact path="/agent/agent-listing" component={Agent} />
                     <Route exact path="/propertyadvice" component={Agent} />
+                    <Route exact path="/agent/add-property" component={Agent} /> 
                     <Route exact path="/agents" component={Agents} /> 
                     <Route exact path="/" component={Public} />
+                    <Route exact path="/search" component={Public} />
                     <Route exact path="/postrequest" component={Public} />
                     <Route exact path="/propertylisting" component={Public} />
                     <Route exact path="/propertylisting/:slug" component={Public} />

@@ -112,10 +112,6 @@ class Profile extends Component {
                                                         <label for="email">Email Address</label>
                                                         <input type="text" className="form-control form-control-lg bg-white" id="email" onChange={this.handleChange} value={this.state.email}/>
                                                     </div>
-                                                    {/* <div className="col">
-                                                        <label for="mobileno">Mobile No.</label>
-                                                        <input type="text" className="form-control form-control-lg bg-white" value="08023345678"/>
-                                                    </div> */}
                                                 </div>
                                             </div>
                                             <div className="form-group py-2">
@@ -124,25 +120,8 @@ class Profile extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    {/* <div className="row mx-0 my-0">
-                                        <div className="col-sm-12 py-3">
-                                            <h6>Change Password</h6>
-                                        </div>
-                                    </div> */}
                                     <div className="row mx-0 my-0">
                                         <div className="col-sm-12 py-3 bg-white">
-                                            {/* <div className="form-group pt-4">
-                                                <div className="row">
-                                                    <div className="col">
-                                                        <label for="oldpassword">Old Password</label>
-                                                        <input type="password" className="form-control form-control-lg bg-white" id="oldpassword" onChange={this.handleChange} value={this.state.oldpassword}/>
-                                                    </div>
-                                                    <div className="col">
-                                                        <label for="newpassword">New Password</label>
-                                                        <input type="password" className="form-control form-control-lg bg-white"  id="newpassword" onChange={this.handleChange} value={this.state.newpasssword}/>
-                                                    </div>
-                                                </div>
-                                            </div> */}
                                             <div className="form-group pt-4">
                                                 <div className="row">
                                                     <div className="col d-flex justify-content-end">
