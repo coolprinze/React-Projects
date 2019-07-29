@@ -3,8 +3,6 @@ import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 // import all pages components
 import Dashboard from './Dashboard'
-import Register from './Register';
-import Login from './Login';
 import Profile from './Profile';
 import PostRequest from './PostRequest'
 import SavedProperties from './SavedProperties'
@@ -26,13 +24,10 @@ class User extends Component {
         <div>
           <main>
             <Switch>
-              <Route exact path="/user" component={Dashboard} />
-              <Route exact path="/user/register" component={Register} />
-              <Route exact path="/user/login" component={Login} />
-              <Route exact path="/user/savedproperties" component={SavedProperties}/>
-              <Route exact path="/user/alerts" component={Alerts}/>
-              <Route exact path="/user/profile" component={Profile} />
-              <Route exact path="/user/post-request" component={PostRequest} /> 
+              <Route exact path="/user" component={Dashboard}/>
+              <Route exact path="/alerts" component={Alerts}/>
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/post-request" component={PostRequest} /> 
             </Switch>
           </main>          
         </div>

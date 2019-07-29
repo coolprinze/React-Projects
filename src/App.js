@@ -24,13 +24,12 @@ class App extends Component {
                     <Route exact path="/admin" component={Admin}/>
                     <Route exact path="/agent" component={Agent}/>
                     <Route exact path="/user" component={User}/> 
-                    <Route exact path="/user/register" component={User}/>   
-                    <Route exact path="/user/login" component={User}/> 
+                    <Route exact path="/register" component={Public}/>   
+                    <Route exact path="/login" component={Public}/> 
                     {/* "/user/savedproperties" also serves as the dashboard after user login login */}
-                    <Route exact path="/user/savedproperties" component={User} /> 
-                    <Route exact path="/user/alerts" component={User}/>
-                    <Route exact path="/user/profile" component={User} /> 
-                    <Route exact path="/user/post-request" component={User} /> 
+                    <Route exact path="/alerts" component={User}/>
+                    <Route exact path="/profile" component={User} /> 
+                    <Route exact path="/post-request" component={User} /> 
                     <Route exact path="/agent/profile" component={Agent} />
                     <Route exact path="/agent/agent-listing" component={Agent} />
                     <Route exact path="/propertyadvice" component={Agent} />

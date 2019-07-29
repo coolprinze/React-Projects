@@ -23,7 +23,8 @@ class Home extends Component {
             minPrice:{},
             maxPrice:{},
             searchResult:["x"],
-            filterSearchTerm:""
+            filterSearchTerm:"",
+            status_id:1
         }
         this.getPropertyTypes = this.getPropertyTypes.bind(this)
         this.getStates = this.getStates.bind(this)
@@ -34,7 +35,7 @@ class Home extends Component {
     }
     componentWillMount(){
         this.getFeatures()
-        this.searchByArea("lekki")
+        this.searchByArea("")
     }
     handlePropertyType = (propertyType) => {
         this.setState({
@@ -150,14 +151,15 @@ class Home extends Component {
         let params = {
             bedrooms: this.state.bedroom.value,
             state_id:this.state.state.value,
-            locality_id:this.state.locality,
-            status_id:this.state.category.value,
+            locality_id:this.state.locality.value,
+            status_id:this.state.status_id,
             type_id:this.state.propertyType.value,
             min_price: this.state.minPrice.value,
             max_price:this.state.maxPrice.value,
             bathrooms:this.state.bathroom.value,
             toilets:this.state.toilet.value
         }
+        console.log(params)
         var url = new URL(`${config.BASE_URL}/search`)
         Object.keys(params).forEach(key=> url.searchParams.append(key,params[key]))
         const res = await fetch(url.href,{
@@ -290,7 +292,7 @@ class Home extends Component {
             {value:100000000, label:"₦ 100,000,000"},
             {value:150000000, label:"₦ 150,000,000"},
         ]
-        let searchBar = () => {
+        let searchBar = (category) => {
             return (
             <div>
                 <section class="container" >
@@ -335,7 +337,7 @@ class Home extends Component {
                                 />
                             </div>
                         </li>
-                        <li class="col-lg-2">
+                        {/* <li class="col-lg-2">
                             <div class="">
                                 <label for="category" style={{color:"white"}}>Category</label>
                                 <Select
@@ -344,7 +346,7 @@ class Home extends Component {
                                     onChange={this.handleCategory}
                                 />
                             </div>
-                        </li>
+                        </li> */}
                         <li class="col-lg-2" >
                             <div class="">
                                 <label for="mobileno" style={{color:"white"}}>Min Price</label>
@@ -355,10 +357,6 @@ class Home extends Component {
                                     />
                             </div>
                         </li>
-                    </ul>
-                </section>
-                <section class="container"  style={{paddingBottom:"20px"}}>
-                    <ul class="row d-flex flex-row justify-content-between align-items-center px-lg-4">
                         <li class="col-lg-2" >
                             <div class="">
                                 <label for="mobileno" style={{color:"white"}}>Max Price</label>
@@ -369,6 +367,10 @@ class Home extends Component {
                                     />
                             </div>
                         </li>
+                    </ul>
+                </section>
+                <section class="container"  style={{paddingBottom:"20px"}}>
+                    <ul class="row d-flex flex-row justify-content-between align-items-center px-lg-4">
                         <li class="col-lg-2">
                             <button onClick={this.processSearch} class="btn btn-lg text-white search-btn d-flex justify-content-center align-items-center">
                                 <i class="fa fa-search"></i>
@@ -397,27 +399,22 @@ class Home extends Component {
                             </div>
                             <ul class=" container nav nav-pills mb-3 search-type d-flex align-items-center justify-content-center" id="pills-tab" role="tablist" style={{height: '76px'}}>
                                 <li class="nav-item d-flex align-content-center">
-                                    <a class="nav-link py-4 active" id="pills-home-tab" data-toggle="pill" href="#pills-sale" role="tab" aria-controls="pills-home" aria-selected="true">Sale</a>
+                                    <a class="nav-link py-4 active" onClick={()=>this.setState({status_id:1})} id="pills-home-tab" data-toggle="pill" href="#pills-sale" role="tab" aria-controls="pills-home" aria-selected="true">Sale</a>
                                 </li>
                                 <li class="nav-item d-flex align-content-center">
-                                    <a class="nav-link py-4" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Rent</a>
+                                    <a class="nav-link py-4"  onClick={()=>this.setState({status_id:2})} id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Rent</a>
                                 </li>
                                 <li class="nav-item d-flex align-content-center">
-                                    <a class="nav-link py-4" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Short Lent</a>
+                                    <a class="nav-link py-4"  onClick={()=>this.setState({status_id:3})} id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Short Lent</a>
                                 </li>
                                 <li class="nav-item d-flex align-items-center">
-                                    <a class="nav-link py-4" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Joint Venture</a>
+                                    <a class="nav-link py-4"  onClick={()=>this.setState({status_id:4})} id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Joint Venture</a>
                                 </li>
                             </ul>
                             <div class=" container tab-content" id="pills-tabContent" >
                                 <div  class="container search-home tab-pane fade show active" id="pills-sale" role="tabpanel" aria-labelledby="pills-sale-tab">
                                     <form action="" class="d-flex justify-content-center align-items-center">
                                         <div class="col-md-9 form-group form-group px-lg-5 py-4 mb-0">
-                                            {/* <Select
-                                                options={prices}
-                                                value={maxPrice}
-                                                onChange={this.handleMaxP}
-                                            /> */}
                                             <AsyncSelect
                                                 cacheOptions
                                                 loadOptions={this.loadOptions}
@@ -431,7 +428,12 @@ class Home extends Component {
                                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"style={{backgroundColor:"#1C2431"}}>
                                     <form action="" class="d-flex justify-content-center align-items-center">
                                         <div class="col-md-9 form-group form-group px-lg-5 py-4 mb-0">
-                                            <input type="search" name="" class="form-control py-4" id="" placeholder="Search the area you want the house" />
+                                            <AsyncSelect
+                                                cacheOptions
+                                                loadOptions={this.loadOptions}
+                                                defaultOptions={defaultOptions}
+                                                onInputChange={this.updateLocalities}
+                                            />
                                         </div>
                                     </form>
                                     {searchBar()}
@@ -439,7 +441,12 @@ class Home extends Component {
                                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" style={{backgroundColor:"#1C2431"}}>
                                     <form action="" class="d-flex justify-content-center align-items-center">
                                         <div class="col-md-9 form-group form-group px-lg-5 py-4 mb-0">
-                                            <input type="search" name="" class="form-control py-4" id="" placeholder="Search the area you want the house" />
+                                            <AsyncSelect
+                                                cacheOptions
+                                                loadOptions={this.loadOptions}
+                                                defaultOptions={defaultOptions}
+                                                onInputChange={this.updateLocalities}
+                                            />
                                         </div>
                                     </form>
                                     {searchBar()}

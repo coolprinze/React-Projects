@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../../component/Header/Header'
+import config from '../../config'
 import bg from "./agent-listing-images/img/bg.png"
 import agency from "./agent-listing-images/img/agency.png"
 import img1 from "./agent-listing-images/properties/2.png"
@@ -7,15 +8,50 @@ import img1 from "./agent-listing-images/properties/2.png"
 
 
 class PropertyAdvice extends Component {
-
-    componentDidMount() {
-
+    constructor(props){
+        super(props)
+        this.state = {
+            articleCategories:[],
+            subEmail:""
+        }
     }
-    
+    componentDidMount() {
+        this.getArticleCategories()
+    }
+    getArticleCategories = async () => {
+        const res = await fetch(`${config.BASE_URL}/property_advise`,{
+          headers:{
+              'Accept':'application/json',
+              'Content-Type':'application/json'
+          },
+          method:'GET'
+      })
+        const payload = await res.json();
+        if (res.status === 200 && payload.status === 1){
+            this.setState({
+                articleCategories:payload.data
+            })
+        }else{
+            alert('Something went wrong')
+        }
+      }
     render() {
       const headerStyle = {
         backgroundImage:`url(${bg})`
       };
+      let articleCategories = this.state.articleCategories.map((item)=>{
+            return (
+                <div class="col-lg-6 py-2 ">
+                    <div class="card bg-white mx-3 " key={item.id}>
+                        <img src={agency}/>
+                        <div class="card-footer bg-white ">
+                            <h6 class="card-subtitle mb-2 text-muted ">{item.name}</h6>
+                            {/* <p class="pt-2 ">By Reachmond Estate</p> */}
+                        </div>
+                    </div>
+                </div>
+            )
+      })
       return ( 
             <React.Fragment>
               <Header />
@@ -48,86 +84,9 @@ class PropertyAdvice extends Component {
                   </div>
                   <div class="row ">
                       <div class="col-sm-8 ">
-                          <div class="row py-4 ">
-                              <div class="col-lg-6 py-2 ">
-                                  <div class="card bg-white mx-3 ">
-                                      <img src={agency}/>
-                                      <div class="card-footer bg-white ">
-                                          <h6 class="card-subtitle mb-2 text-muted ">Agency Practise</h6>
-                                          <p class="pt-2 ">By Reachmond Estate</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-lg-6 py-2 ">
-                                  <div class="card bg-white mx-3 ">
-                                      <img src={agency}/>
-                                      <div class="card-footer bg-white ">
-                                          <h6 class="card-subtitle mb-2 text-muted ">Agency Practise</h6>
-                                          <p class="pt-2 ">By Reachmond Estate</p>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row py-4 ">
-                              <div class="col-lg-6 py-2 ">
-                                  <div class="card bg-white mx-3 ">
-                                      <img src={agency}/>
-                                      <div class="card-footer bg-white ">
-                                          <h6 class="card-subtitle mb-2 text-muted ">Agency Practise</h6>
-                                          <p class="pt-2 ">By Reachmond Estate</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-lg-6 py-2 ">
-                                  <div class="card bg-white mx-3 ">
-                                      <img src={agency}/>
-                                      <div class="card-footer bg-white ">
-                                          <h6 class="card-subtitle mb-2 text-muted ">Agency Practise</h6>
-                                          <p class="pt-2 ">By Reachmond Estate</p>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row py-4 ">
-                              <div class="col-lg-6 py-2 ">
-                                  <div class="card bg-white mx-3 ">
-                                      <img src={agency}/>
-                                      <div class="card-footer bg-white ">
-                                          <h6 class="card-subtitle mb-2 text-muted ">Agency Practise</h6>
-                                          <p class="pt-2 ">By Reachmond Estate</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-lg-6 py-2 ">
-                                  <div class="card bg-white mx-3 ">
-                                      <img src={agency}/>
-                                      <div class="card-footer bg-white ">
-                                          <h6 class="card-subtitle mb-2 text-muted ">Agency Practise</h6>
-                                          <p class="pt-2 ">By Reachmond Estate</p>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row py-4 ">
-                              <div class="col-lg-6 py-2 ">
-                                  <div class="card bg-white mx-3 ">
-                                      <img src={agency}/>
-                                      <div class="card-footer bg-white ">
-                                          <h6 class="card-subtitle mb-2 text-muted ">Agency Practise</h6>
-                                          <p class="pt-2 ">By Reachmond Estate</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-lg-6 py-2 ">
-                                  <div class="card bg-white mx-3 ">
-                                      <img src={agency}/>
-                                      <div class="card-footer bg-white ">
-                                          <h6 class="card-subtitle mb-2 text-muted ">Agency Practise</h6>
-                                          <p class="pt-2 ">By Reachmond Estate</p>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
+                            <div class="row py-4 ">
+                                {articleCategories}
+                            </div>
                       </div>
                       <div class="col-sm-4 ">
                           <div class="row ">

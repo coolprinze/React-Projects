@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import config from '../../config'
 import  Header from "../../component/Header/UserHeader"
 import SubHeader from "../../component/Header/SubHeader"
-import UserDashboardSideBar from './UserDashboardSideBar'
 import deleteIcon from '../Agent/agent-listing-images/img/icon/delete.png'
 import bellIcon from '../Agent/agent-listing-images/img/icon/bell-sm.png'
 
@@ -13,13 +12,20 @@ class Alerts extends Component {
         this.state = {
             alerts: [
 
-            ]
+            ],
+            user:{}
         }
         this.getAlerts = this.getAlerts.bind(this)
+        this.setUserState = this.setUserState.bind(this)
     }
     async componentWillMount(){
         var token = localStorage.getItem('token')
         await this.getAlerts(`Bearer `+token)
+        this.setUserState()
+    }
+    setUserState(){
+        let user = JSON.parse(localStorage.getItem('user')) 
+        this.setState({user:user})
     }
     async getAlerts(token){
         const res = await fetch(`${config.BASE_URL}/alerts`,{
@@ -51,12 +57,40 @@ class Alerts extends Component {
         return ( 
             <React.Fragment>
                 <Header />
-                <SubHeader username="Daniel"/>
+                <SubHeader username={this.state.user.name}/>
                 <section className="container-fluid properties py-5 bg-grey">
                     <div className="container">
                         <div className="col-sm-11 offset-sm-1">
                             <div className="row profile">
-                                <UserDashboardSideBar active="alert"/>
+                            <div className="col-md-3">
+                                <div className="profile-sidebar">
+                                    <div className="profile-usermenu">
+                                        <h3 className="px-3 pb-3" style={{
+                                            borderBottom:"1px solid #f0f4f7"
+                                        }}>My Account</h3>
+                                        <ul>
+                                            <li className="py-3 active">
+                                                <Link to='/user'>
+                                                    <a className="py-3 px-5"> Saved Properties</a>
+                                                </Link>
+                                            </li>
+                                            <li className="py-2" >
+                                                <Link to='/alerts'>
+                                                    <a className="py-3 px-5"> Alert </a>
+                                                </Link>
+                                            </li>
+                                            <li className="py-2">
+                                                <Link to='/profile'>
+                                                    <a className="py-3 px-5"> Profile </a>
+                                                </Link>
+                                            </li>
+                                            <li className="py-2">
+                                                <a onClick={this.logout}className="py-3 px-5">Logout </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                </div>
                                 <div className="col-md-9">
                                     {/* {this.state.savedProperties.length < 1 ? noSavedProperties: savedProperties} */}
                                         <div class="row mx-0 my-0 bg-white" style={{boxShadow:"0px 4px 10px rgba(0, 0, 0, 0.07)",borderRadius:"10px"}}>

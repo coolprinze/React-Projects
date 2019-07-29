@@ -105,34 +105,3 @@ class SavedProperties extends Component {
 }
 
 export default SavedProperties;
-
-// sample data
-// {
-//     "id": 54500,
-//     "agent": {
-//     "id": 3500,
-//     "name": "Adam Matthew",
-//     "phone": null,
-//     "username": "example"
-//     },
-//     "title": "Lekki house centre update",
-//     "slug": "lekki-house-centre-update",
-//     "price": 4000000,
-//     "description": "Get All Files Within A Directory\nThe files method returns an array of all of the files in a given directory. If you would like to retrieve a list of a...",
-//     "status": "For Sale",
-//     "type": "Apartment",
-//     "featured": false,
-//     "label": "",
-//     "image": "http://127.0.0.1:8000/storage/properties/iSA5dVqJprmPh31U3R3OGM5GbDtNe5R2WGk15tt7.jpeg",
-//     "bedrooms": 2,
-//     "bathrooms": 2,
-//     "toilets": null,
-//     "furnished": false,
-//     "serviced": false,
-// "parking": 2,
-// "total_area": 16,
-// "country": "Nigeria",
-// "locality": "Agege",
-// "address": "inside inside",
-// "created_at": "1 hour ago"
-// }

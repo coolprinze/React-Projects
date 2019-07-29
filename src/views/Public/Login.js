@@ -11,7 +11,7 @@ class Login extends Component {
             email:"",
             password:"",
             authStatus:false,
-            authRes:{}
+            authRes:{},
         }
         this.handleChange = this.handleChange.bind(this)
         this.auth = this.auth.bind(this)
@@ -58,12 +58,14 @@ class Login extends Component {
         }
     }
     render() {
+        if (localStorage.getItem('signedIn')){
+            return (<Redirect to='/user' />)
+        }
         if (this.state.authStatus){
-            return (<Redirect to='/user/savedproperties' />)
+            return (<Redirect to='/user' />)
         }
         return ( 
             <React.Fragment>
-                <Header />
                 <section className="container-fluid properties bg-grey">
                     <div className="container">
                         <div className="row">
