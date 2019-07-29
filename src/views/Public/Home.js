@@ -290,26 +290,6 @@ class Home extends Component {
                                             </li>
                                             <li class="col-lg-2">
                                                 <div class="">
-                                                    <label for="mobileno" style={{color:"white"}}>State</label>
-                                                    <Select
-                                                        options={states}
-                                                        value={state}
-                                                        onChange={this.handleState}
-                                                    />
-                                                </div>
-                                            </li>
-                                            <li class="col-lg-2">
-                                                <div class="">
-                                                    <label for="mobileno" style={{color:"white"}}>Locality</label>
-                                                    <Select
-                                                        options={localities}
-                                                        value={locality}
-                                                        onChange={this.handleLocality}
-                                                    />
-                                                </div>
-                                            </li>
-                                            <li class="col-lg-2">
-                                                <div class="">
                                                     <label for="mobileno" style={{color:"white"}}>Bathrooms</label>
                                                     <Select
                                                         options={bedrooms}
