@@ -1,128 +1,102 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import config from '../../config'
 import Header from "../../component/Header/UserHeader"
 
 
 class Login extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
-            email:"",
-            password:"",
-            authStatus:false,
-            authRes:{},
+            email: "",
+            password: "",
+            authStatus: false,
+            authRes: {},
         }
         this.handleChange = this.handleChange.bind(this)
         this.auth = this.auth.bind(this)
     }
     handleChange = (e) => {
         this.setState({
-            [e.target.id]:e.target.value
+            [e.target.id]: e.target.value
         })
     }
     authRequest = async () => {
         var data = {
-            email:this.state.email,
-            password:this.state.password
+            email: this.state.email,
+            password: this.state.password
         }
-        const res = await fetch(`${config.BASE_URL}/login`,{
-            headers:{
-                'Content-Type':'application/json',
-                'Accept':'application/json' 
+        const res = await fetch(`${config.BASE_URL}/login`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
-            method:'POST',
-            body:JSON.stringify(data)
+            method: 'POST',
+            body: JSON.stringify(data)
         })
         const payload = await res.json();
-        if (res.status === 200){
+        if (res.status === 200) {
             this.setState({
-                authStatus:true,
-                authRes:payload
+                authStatus: true,
+                authRes: payload
             })
             return
-        }else{
+        } else {
             alert("Authentication failed")
         }
     }
     getUser = async () => {
 
     }
-    async auth(e){
+    async auth(e) {
         e.preventDefault()
         await this.authRequest()
-        if (this.state.authStatus){
-            localStorage.setItem("token",this.state.authRes.access_token)
-            localStorage.setItem("tokenExpires",this.state.authRes.expires_at)
-            localStorage.setItem("signedIn",true)
+        if (this.state.authStatus) {
+            localStorage.setItem("token", this.state.authRes.access_token)
+            localStorage.setItem("tokenExpires", this.state.authRes.expires_at)
+            localStorage.setItem("signedIn", true)
         }
     }
     render() {
-        if (localStorage.getItem('signedIn')){
+        if (localStorage.getItem('signedIn')) {
             return (<Redirect to='/user' />)
         }
-        if (this.state.authStatus){
+        if (this.state.authStatus) {
             return (<Redirect to='/user' />)
         }
-        return ( 
+        return (
             <React.Fragment>
-                <section className="container-fluid properties bg-grey">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-sm-6 offset-sm-3 bg-white py-5 px-5 my-5" style={{borderRadius:"10px"}}>
-                                <h3 className="py-3" style={{fontSize:"2rem",fontWeight:"400"}}>Login</h3>
-                                <h4 className="text-muted py-2">Login to continue</h4>
-                                <form onSubmit={this.auth}>
-                                    <div className="form-group py-2">
-                                        <label for="email">Email</label>
-                                        <input type="email" onChange={this.handleChange} className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"/>
-                                    </div>
-                                    <div className="form-group py-2">
-                                        <label for="password">Password</label>
-                                        <input type="password" onChange={this.handleChange} className="form-control" id="password" placeholder="Password"/>
-                                        <small id="emailHelp" className="form-text text-muted text-right">
-                                            <a href="forgetpassword.html">
-                                                Forget Password?
-                                            </a>
-                                        </small>
-                                    </div>
-                                    <div className="row my-3">
-                                        <div className="col-sm-12 ">
-                                            <button  className="btn btn-block" style={{background:"#FF8C00"}}>
-                                                Login
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className="row my-4">
-                                        <div className="col-sm-4">
-                                            <hr/>
-                                        </div>
-                                        <div className="col-sm-4 text-center">
-                                            Or Sign in with
-                                        </div>
-                                        <div className="col-sm-4">
-                                            <hr/>
-                                        </div>
-                                    </div>
-                                    <div className="row my-3">
-                                        <div className="col-sm-6">
-                                            <button className="btn btn-block btn-google text-white">Google</button>
-                                        </div>
+                <nav className="navbar bg-white">
+                    <a className="navbar-brand" href="#"> <img src="images/logo.jpg" alt="" /> </a>
+                    <div className="" >
+                        <form className="form-inline">
+                            <button className="btn btn-outline-dark" type="button">Register</button>
+                        </form>
+                    </div>
+                </nav>
+                <div className="container mt-5 mb-5" >
+                    <div className="row align-items-center ">
+                        <div className="col-lg-4 col-m-4 col-sm-6 mx-auto">
+                            <div className="bg-white jumbotron body">
+                                <h4>Admin</h4>
+                                <p>Login to continue</p>
+                                <form className="" action="index.html" method="post">
+                                    <label htmlFor="name">Username</label>
+                                    <br />
+                                    <input type="text" name="name" value="" />
+                                    <br />
+                                    <label htmlFor="password">Password</label>
+                                    <br />
+                                    <input type="password" name="password" value="" />
+                                    <br />
+                                    <button className="btn  SNbtn" type="submit" name="" style={{width:"100%", marginTop:"1em"}} value="Login">Login</button>
+                                    {/* <button className="btn  SNbtn" type="button" name="button" style={{width:"100%", marginTop:"1em"}}> <a href="dashboard.html" className="textblack"> Login </a></button> */}
 
-                                        <div className="col-sm-6">
-                                            <button className="btn btn-block btn-facebook text-white">Facebook</button>
-                                        </div>
-                                    </div>
-
-                                    <div className="row my-4">
-                                        <h5 className="col-sm-12 text-center">Don’t have an account?</h5>
-                                        <h6 className="col-sm-12 text-center"><a href="register.html" style={{color:"#4D93FC"}}>Register</a></h6>
-                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
             </React.Fragment>
         )
     }

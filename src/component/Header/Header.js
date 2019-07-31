@@ -39,7 +39,7 @@ class Header extends Component {
                                     <a className="nav-link" href="">About</a>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/user/login">Login/Register</Link>
+                                    <Link className="nav-link" to="/login">Login/Register</Link>
                                 </li>
                                 <li className="nav-item d-flex align-items-center justify-content-center pb-2" id="sp-btn">
                                     <a className="nav-link btn btn-lg px-5 py-3 btn-outline-dark" href="#">Submit Property</a>

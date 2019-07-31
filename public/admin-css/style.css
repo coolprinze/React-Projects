@@ -1,0 +1,92 @@
+
+.addpa{
+	padding-left: 3em;
+	padding-right: 3em;
+}
+.bg-orange{
+	background: orange;
+	color: whitesmoke;
+}
+.bg-black{
+	background: black;
+	color: lightgrey;
+	padding-top: 1em;
+	font-weight: normal;
+}
+.bg-white{
+	background: white;
+}
+.navbar-light .navbar-nav .active > .nav-link{color: orange}
+.pt{
+	padding-top: 1em;
+}
+#Search{
+	margin-bottom: 0.2rem
+}
+button a{
+	color: white;
+}
+.mylist{
+	flex-direction: row;
+}
+.mylist li{
+	padding-right: 2em;
+}
+.mycard{
+	padding: 0 0 0 0;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+  border-radius: 0 0 0 0;
+	border-width: 3px;
+}
+.mycard2{
+	padding: 0.1em 0.1em 0.1em 0.1em;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-radius: 0 0 0 0;
+
+}
+.mycard2 p{
+	margin-block-end: 0.5em;
+  margin-top: 1em;
+	color: grey;
+}
+.circle{
+	height: 42px;
+	width: 42px;
+	border: 2px solid black;
+	float: left;
+}
+.circle-2{
+	height: 70px;
+	width: 70px;
+	border: 2px solid white;
+}
+.price{
+	margin-top: 0.5em;
+}
+.price h4{
+	margin-top: 0.1em;
+}
+.details{
+	display: inline;
+}
+.mybtn{
+	float: right;
+	/* background-color: darkgrey; */
+}
+.location{
+	margin-top: 1em;
+}
+@media(max-width:768px) {
+.myrow p{
+	font-size: small;
+}
+}
+@media(max-width:560px){
+	.myrow p:last-child{
+		font-size: x-small;
+	}
+}
