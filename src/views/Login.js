@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
-import config from '../../config'
-import Header from "../../component/Header/UserHeader"
-
+import config from '../config'
+import Footer from '../component/Footer'
 
 class Login extends Component {
     constructor(props) {
@@ -83,13 +82,13 @@ class Login extends Component {
                                 <form className="" action="index.html" method="post">
                                     <label htmlFor="name">Username</label>
                                     <br />
-                                    <input type="text" name="name" value="" />
+                                    <input type="text" name="name"  />
                                     <br />
                                     <label htmlFor="password">Password</label>
                                     <br />
-                                    <input type="password" name="password" value="" />
+                                    <input type="password" name="password" value=""style={{}} />
                                     <br />
-                                    <button className="btn  SNbtn" type="submit" name="" style={{width:"100%", marginTop:"1em"}} value="Login">Login</button>
+                                    <input className="btn  SNbtn" type="submit" name="" style={{width:"100%", marginTop:"1em"}} value="Login" />
                                     {/* <button className="btn  SNbtn" type="button" name="button" style={{width:"100%", marginTop:"1em"}}> <a href="dashboard.html" className="textblack"> Login </a></button> */}
 
                                 </form>
@@ -97,6 +96,7 @@ class Login extends Component {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </React.Fragment>
         )
     }

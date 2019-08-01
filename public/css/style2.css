@@ -1,0 +1,85 @@
+
+.navbar-light .navbar-nav .active > .nav-link{color: orange}
+.pt{
+	padding-top: 1em;
+}
+#Search{
+	margin-bottom: 0.2rem
+}
+
+.mylist{
+	flex-direction: row;
+}
+.mylist li{
+	padding-right: 2em;
+}
+.mycard{
+	padding: 0 0 0 0;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+  border-radius: 0px;
+	border-width: 3px;
+
+}
+.tab-pane .mycard{
+	border-bottom: 1px solid grey;
+	margin-bottom: 1em;
+}
+.mycard2{
+	width: 90%;
+	bottom: 0;
+}
+.mycard2 p{
+	margin-block-end: 0.5em;
+  margin-top: 1em;
+	color: grey;
+}
+.circle{
+	height: 42px;
+	width: 42px;
+	border: 2px solid black;
+	float: left;
+}
+.circle-2{
+	height: 70px;
+	width: 70px;
+	border: 2px solid white;
+}
+.price{
+	margin-top: 0.5em;
+	padding: 1em;
+}
+.price h4{
+	margin-top: 0.1em;
+}
+.details{
+	display: inline;
+}
+.mybtn{
+	float: right;
+	/* background-color: darkgrey; */
+}
+.location{
+	margin-top: 1em;
+}
+.carousel-caption{
+	top: 2%;
+	left: 0%;
+	right: auto;
+	bottom: auto;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+}
+
+@media(max-width:768px) {
+.myrow p{
+	font-size: small;
+}
+}
+@media(max-width:560px){
+	.myrow p:last-child{
+		font-size: x-small;
+	}
+}
