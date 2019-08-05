@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { getGlobal } from 'reactn'
+import { Link } from 'react-router-dom';
 
 class Metrics extends Component {
   render() {
     let active = this.props.active;
-    console.log(active[0])
+    const propertiesCount = getGlobal().properties.length;
+    const usersCount = getGlobal().users.length;
+    const requestsCount = getGlobal().requests.length;
+    const reportsCount = getGlobal().reports.length;
     return (
       <div className="container">
         <div className="row">
-          <Link to={"/dashboard"} className={`${active[0]} col` }>
+          <Link to={"/"} className={`${active[0]} col` }>
             <div className="">
-              <h1>1300</h1>
+              <h1>{propertiesCount}</h1>
               <p>total lists</p>
             </div>
           </Link>
@@ -22,19 +26,19 @@ class Metrics extends Component {
           </Link>
           <Link to={"/requests"} className={`${active[2]} col` }>
             <div>
-              <h1>1300</h1>
+              <h1>{requestsCount}</h1>
               <p>Requests</p>
             </div>
           </Link>
           <Link to={"/users"} className={`${active[3]} col` }>
             <div>
-              <h1>68</h1>
+              <h1>{usersCount}</h1>
               <p>Users</p>
             </div>
           </Link>
           <Link to={"/reports"} className={`${active[4]} col` }>
             <div>
-              <h1>930</h1>
+              <h1>{reportsCount}</h1>
               <p>Reports</p>
             </div>
           </Link>

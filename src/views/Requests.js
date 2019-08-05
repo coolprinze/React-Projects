@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Header from '../component/Header'
 import Metrics from '../component/Metrics'
 import Footer from '../component/Footer'
+import { getGlobal } from 'reactn'
+import { MDBBtn, MDBDataTable } from 'mdbreact'
 
 class Requests extends Component {
   constructor(props) {
@@ -11,17 +13,59 @@ class Requests extends Component {
 
   }
   render() {
+    const columns = [
+      {
+        label: 'Name',
+        field: 'name',
+        // sort: 'asc'
+      },
+      {
+        label: 'Category',
+        field: 'category',
+        // sort: 'asc'
+      },
+      {
+        label: 'Type',
+        field: 'type',
+        // sort: 'asc'
+      },
+      {
+        label: 'State',
+        field: 'state',
+        // sort: 'asc'
+      },
+      {
+        label: 'Locality',
+        field: 'locality',
+        // sort: 'asc'
+      },
+      {
+        label: 'Account Type',
+        field: 'account_type',
+        // sort: 'asc'
+      }
+    ];
 
+    const rows = getGlobal().requests.map((request) => {
+      return {
+        'name': request.user.name,
+        'category': request.category,
+        'type': request.type,
+        'state': request.state,
+        'locality': request.locality,
+        'account_type': request.account_type,
+      }
+    })
     return (
       <React.Fragment>
         <Header />
-        <Metrics active={["text", "text", true, "text", "text"]}/>
+        <Metrics active={["text", "text", true, "text", "text"]} />
         <div className="container">
           <div className="row">
             <div className="col-12">
               <nav className="navbar bg-dark" style={{ borderRadius: "4px 4px 0px 0px" }}>
                 <p className="navbar-brand myp"> All Requests</p>
-                <div className="" >
+                {/* <div className="" >
                   <form className="form-inline">
                     <input type="search" name="" value="" placeholder="Find..." className="Search" />
                     <button className="btn btn-light" type="button" name="button">Date</button>
@@ -34,13 +78,13 @@ class Requests extends Component {
                       </div>
                     </div>
                   </form>
-                </div>
+                </div> */}
               </nav>
             </div>
           </div>
           <div className="row" style={{ marginBlockEnd: "1em" }}>
             <div className="col-12">
-              <table className="mx-auto" id="t01">
+              {/* <table className="mx-auto" id="t01">
                 <tr>
                   <th>name</th>
                   <th>Category</th>
@@ -107,11 +151,18 @@ class Requests extends Component {
                 </tr>
 
 
-              </table>
+              </table>*/}
+              <MDBDataTable
+                striped
+                bordered
+                hover
+                data={{ rows, columns }}
+                style={{ backgroundColor: "#f8f9fa" }}
+              />
             </div>
           </div>
         </div>
-        <div className="container">
+        {/* <div className="container">
           <div className="row">
             <div className="col-12">
               <nav aria-label="Page navigation example">
@@ -127,7 +178,7 @@ class Requests extends Component {
               </nav>
             </div>
           </div>
-        </div>
+        </div>*/}
         <Footer />
 
       </React.Fragment>
