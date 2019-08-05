@@ -159,7 +159,85 @@ setGlobal({
       "locality": "Akute",
       "created_at": "10 minutes ago"
     }
+  ],
+  agents: [
+    {
+      "id": 3504,
+      "name": "Ebuka Nwosu",
+      "username": "cybertech",
+      "email": "ebukanwosu45@gmail.co",
+      "image": "",
+      "isVerified": false,
+      "role": {
+        "id": 2,
+        "name": "Estate Agent"
+      },
+      "address": null,
+      "country": {
+        "id": 160,
+        "name": "Nigeria"
+      },
+      "state": {
+        "id": null,
+        "name": ""
+      },
+      "created_at": "2019-08-03 09:20:06",
+      "updated_at": "2019-08-03 09:20:06",
+      "verified_at": false,
+      "suspended_at": false
+    },
+    {
+      "id": 3503,
+      "name": "Nwosu Ebuka",
+      "username": "coolprinc",
+      "email": "ebukanwosu45@gmail.com",
+      "image": "",
+      "isVerified": false,
+      "role": {
+        "id": 2,
+        "name": "Estate Agent"
+      },
+      "address": "14b Oroleye Cr",
+      "country": {
+        "id": 160,
+        "name": "Nigeria"
+      },
+      "state": {
+        "id": 25,
+        "name": "Lagos"
+      },
+      "created_at": "2019-08-03 07:44:23",
+      "updated_at": "2019-08-04 13:09:13",
+      "verified_at": false,
+      "suspended_at": false
+    },
+    {
+      "id": 3502,
+      "name": "Ebuka Nwosu",
+      "username": "coolprince",
+      "email": "info@cybertechdigitals.com",
+      "image": "",
+      "isVerified": false,
+      "role": {
+        "id": 2,
+        "name": "Estate Agent"
+      },
+      "address": null,
+      "country": {
+        "id": 160,
+        "name": "Nigeria"
+      },
+      "state": {
+        "id": null,
+        "name": ""
+      },
+      "created_at": "2019-08-03 07:40:20",
+      "updated_at": "2019-08-03 07:40:20",
+      "verified_at": false,
+      "suspended_at": false
+    }
   ]
+
 })
 
 ReactDOM.render(<App />, document.getElementById('root'));

@@ -9,6 +9,7 @@ class Metrics extends Component {
     const usersCount = getGlobal().users.length;
     const requestsCount = getGlobal().requests.length;
     const reportsCount = getGlobal().reports.length;
+    const agentsCount = getGlobal().agents.length;
     return (
       <div className="container">
         <div className="row">
@@ -20,7 +21,7 @@ class Metrics extends Component {
           </Link>
           <Link to={"/agents"} className={`${active[1]} col` }>
             <div>
-              <h1>1300</h1>
+              <h1>{agentsCount}</h1>
               <p>Agent Lists</p>
             </div>
           </Link>

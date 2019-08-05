@@ -11,6 +11,8 @@ import Agents from './views/Agents'
 import Users from './views/Users'
 import Listings from './views/Listings'
 import Requests from './views/Requests'
+import Newsletter from './views/Newsletter'
+import Subscribers from './views/Subscribers'
 import Auth from './utils/auth';
 let auth = new Auth();
 
@@ -34,6 +36,8 @@ class App extends Component {
           <Route exact path="/users" component={Users} />
           <Route exact path="/requests" component={Requests} />
           <Route exact path="/listings" component={Listings} />
+          <Route exact path="/newsletter" component={Newsletter} />
+          <Route exact path="/subscribers" component={Subscribers} />
           <Route exact path="/notfound" component={NotFound} />
         </Fragment>
       </Router>
