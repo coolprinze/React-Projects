@@ -23,6 +23,7 @@ class Dashboard extends Component {
 
   }
   render() {
+    console.log(this.props)
     const columns = [
       {
         label: 'Type',
@@ -66,9 +67,6 @@ class Dashboard extends Component {
         'date': property.created_at,
       }
     })
-    const data = {
-      columns, rows
-    }
     return (
       <React.Fragment>
         <Header />

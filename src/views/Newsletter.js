@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../component/Header'
 import Metrics from '../component/Metrics'
 import Footer from '../component/Footer'
+import { Link } from 'react-router-dom'
 import { MDBBtn, MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact'
 
 class Newsletter extends Component {
@@ -22,7 +23,7 @@ class Newsletter extends Component {
               <div className="container" style={{ marginBlockStart: "1em" }}>
                 <div className="row">
                   {/* <h6 className="textblack"> <a className="textblack"> <img src="images/Path(3).png" alt="" /> Send Newsletter </a>  </h6> */}
-                  <button className="btn btn-dark ml-auto" type="button" name="button"> <a href="view_all_subscribers.html">View subscribers</a></button>
+                  <button className="btn btn-dark ml-auto" type="button" name="button"> <Link to={"/subscribers"}>View subscribers</Link></button>
                 </div>
               </div>
               <div className="container ">
