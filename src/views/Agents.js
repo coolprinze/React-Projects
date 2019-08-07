@@ -2,17 +2,29 @@ import React, { Component } from 'react';
 import Header from '../component/Header'
 import Metrics from '../component/Metrics'
 import Footer from '../component/Footer'
+import AddAgent from './AddAgent'
 import { Link } from 'react-router-dom';
-import {getGlobal} from 'reactn'
-import {MDBDataTable, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem} from 'mdbreact'
+import { getGlobal } from 'reactn'
+import { 
+  MDBDataTable, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from 'mdbreact'
+import API from '../utils/api'
+let api = new API();
 
 class Agents extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      modal14: false
     }
-
+    this.toggle = this.toggle.bind(this)
   }
+  toggle = nr => () => {
+    let modalNumber = 'modal' + nr
+    this.setState({
+      [modalNumber]: !this.state[modalNumber]
+    });
+  }
+
   render() {
     const columns = [
       {
@@ -49,23 +61,23 @@ class Agents extends Component {
         'name': agent.name,
         'phone': agent.id,
         'email': agent.email,
-        'btn': <button type="button" style={{backgroundColor: '#000'}} name="button"> <Link to={"/agents/dasdad"} >View Listings </Link></button>,
-        
-        'sendemail': <button type="button" name="button" style={{backgroundColor: '#000'}} className="rounded-circle">
+        'btn': <button type="button" style={{ backgroundColor: '#000' }} name="button"> <Link to={"/agents/dasdad"} >View Listings </Link></button>,
+
+        'sendemail': <button type="button" name="button" style={{ backgroundColor: '#000' }} className="rounded-circle">
           <img src="images/Group(1).png" alt="" />
         </button>,
         'icon': <MDBDropdown>
-        <MDBDropdownToggle  style={{backgroundColor: '#000'}}>
-        <img src="images/Group9.png" alt="" />
-        </MDBDropdownToggle>
-        <MDBDropdownMenu basic>
-          <MDBDropdownItem>Edit</MDBDropdownItem>
-          <MDBDropdownItem divider />
-          <MDBDropdownItem>Delete</MDBDropdownItem>
-          <MDBDropdownItem divider />
-          <MDBDropdownItem>Suspend</MDBDropdownItem>
-        </MDBDropdownMenu>
-      </MDBDropdown>
+          <MDBDropdownToggle style={{ backgroundColor: '#000' }}>
+            <img src="images/Group9.png" alt="" />
+          </MDBDropdownToggle>
+          <MDBDropdownMenu basic>
+            <MDBDropdownItem>Edit</MDBDropdownItem>
+            <MDBDropdownItem divider />
+            <MDBDropdownItem>Delete</MDBDropdownItem>
+            <MDBDropdownItem divider />
+            <MDBDropdownItem onClick={async() => {await this.setState({loading: true}); await api.suspendUser(agent.id); await this.setState({loading: false})}}>{!agent.suspended_at ? "Suspend" : "Restore"}</MDBDropdownItem>
+          </MDBDropdownMenu>
+        </MDBDropdown>
         // <div className="drop">
         //   <button style={{backgroundColor: '#000'}} className="dropbutton rounded-circle"> <img src="images/Group9.png" alt="" /></button>
         //   <div className="drop-content dropdown-menu" id="dropDownCont">
@@ -86,16 +98,12 @@ class Agents extends Component {
             <div className="col-12">
               <nav className="navbar bg-dark" style={{ borderRadius: "4px 4px 0px 0px" }}>
                 <p className="navbar-brand myp"> All Agents</p>
-                <button type="button" name="button" className="mr-auto">Add Agent</button>
+                {/* <button type="button" name="button" className="mr-auto">Add Agent</button> */}
                 <div className="" >
                   <span className="form-inline">
                     <div className="drop">
-                      <button className="dropbutton btn btn-light"> Sort</button>
-                      <div className="drop-content dropdown-menu-right" id="dropDownCont">
-                        <a href="#">Alphabetically</a>
-                        <a href="#">Agents</a>
-                        <a href="#">Individual</a>
-                      </div>
+                      <AddAgent isOpen={this.state.modal14} toggle={this.toggle}/>
+
                     </div>
                   </span>
                 </div>
@@ -104,8 +112,8 @@ class Agents extends Component {
                 striped
                 bordered
                 hover
-                data={{rows, columns}}
-                style={{backgroundColor: "#f8f9fa"}}
+                data={{ rows, columns }}
+                style={{ backgroundColor: "#f8f9fa" }}
               />
               {/* <table className="mx-auto" id="t01">
 
@@ -219,7 +227,7 @@ class Agents extends Component {
               <nav aria-label="Page navigation example">
                 <ul className="pagination justify-content-end">
                   <li className="page-item disabled">
-                    <a className="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    <a className="page-link" href="#" tabIndex="-1" aria-disabled="true">Previous</a>
                   </li>
                   <li className="page-item"><a className="page-link" href="#">1-10 of 60</a></li>
 

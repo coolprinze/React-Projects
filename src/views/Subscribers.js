@@ -15,20 +15,12 @@ class Subscribers extends Component {
   render() {
     const columns = [
       {
-        label: 'First Name',
-        field: 'fame'
-      },
-      {
-        label: 'Last Name',
-        field: 'lame'
+        label: '#',
+        field: 'id'
       },
       {
         label: 'Email',
         field: 'email'
-      },
-      {
-        label: 'Account Type',
-        field: 'type'
       },
       {
         label: '',
@@ -37,12 +29,10 @@ class Subscribers extends Component {
       
     ];
 
-    const rows = getGlobal().users.map((user) => {
+    const rows = getGlobal().subscribers.map((user) => {
       return {
-        'fname': user.name,
-        'lname': user.name,
-        'email': user.email,
-        'type': user.type
+        'id': user.id,
+        'email': user.email
       }
     })
     return (

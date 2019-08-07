@@ -7,10 +7,10 @@ class Header extends Component {
   render() {
     return (
       <nav className="navbar bg-white">
-        <a className="navbar-brand" href="#"> <img src={logo} alt="Castles" /> </a>
-        <div className="" >
+        <Link className="navbar-brand" to={"/"}> <img src={logo} alt="Castles" /> </Link>
+        <div>
           <span className="form-inline">
-            <button className="btn btn-outline-dark" type="button"> <a href="send_newsletter.html">Send Newsletter</a></button>
+            <button className="btn btn-outline-dark" type="button"> <Link to={"/newsletter"}>Send Newsletter</Link></button>
             <div className="dropdown">
               <a href="#" className=" nav-item nav-link dropdown-toggle mr-md-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src={path} alt="" /></a>
               <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">

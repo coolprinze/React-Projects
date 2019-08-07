@@ -239,7 +239,8 @@ setGlobal({
   //     "suspended_at": false
   //   }
   // ]
-agents: []
+agents: [],
+subscribers: []
 })
 
 // api.getAgents();
