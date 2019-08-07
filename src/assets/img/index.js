@@ -1,0 +1,9 @@
+export const abtUsContent = require('./abtUsContent.png');
+export const property = require('./properties/1.png');
+export const agent = require('./properties/2.png');
+export const img3 = require('./properties/3.png');
+export const leftArrow = require('./icon/left-arrow-sm.png');
+export const rightArrow = require('./icon/right-arrow.png');
+export const agency = require('./agency.png');
+export const bg = require('./bg.png');
+export const paBg = require('./pa-bg.png');
