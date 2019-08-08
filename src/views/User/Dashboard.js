@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import config from '../../config'
 import  Header from "../../component/Header/UserHeader"
 import SubHeader from '../../component/Header/SubHeader'
 import Footer from '../../component/Footer';
