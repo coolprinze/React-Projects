@@ -19,8 +19,9 @@ class API {
       body: JSON.stringify(body)
     })
     .then(res => res.json())
-    .then(res => {
-     return  auth._storeAuthCred(res);
+    .then(async res => {
+      await auth._storeAuthCred(res);
+    return window.location.replace('/');
     })
     .catch(error => {
       console.log(error);

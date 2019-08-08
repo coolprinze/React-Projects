@@ -1,10 +1,12 @@
-import React, { setGlobal } from 'reactn';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import  { setGlobal} from 'reactn' 
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import API from './utils/api';
 let api = new API();
+
 
 setGlobal({
   properties: [

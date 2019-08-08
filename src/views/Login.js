@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import config from '../config'
 import API from '../utils/api'
+import Auth from '../utils/auth'
 import Footer from '../component/Footer'
 let api = new API();
+let auth = new Auth()
 
 
 class Login extends Component {
@@ -21,11 +23,13 @@ class Login extends Component {
     });
   }
   handleSubmit = async() => {
+    await console.log(auth.isAuthenticated())
     await api.login({email: this.state.email, password: this.state.password});
-    this.setState({
+    await this.setState({
       email: "",
       password: ""
     });
+    console.log(auth.isAuthenticated())
   }
   // authRequest = async () => {
   //   var data = {

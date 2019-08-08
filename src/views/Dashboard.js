@@ -3,7 +3,7 @@ import Header from '../component/Header'
 import List from './List'
 import Footer from '../component/Footer'
 import Metrics from '../component/Metrics'
-import { getGlobal } from 'reactn'
+import { getGlobal, useGlobal } from 'reactn'
 import { MDBBtn, MDBDataTable, MDBTableBody, MDBTableHead } from 'mdbreact'
 
 
@@ -20,10 +20,8 @@ class Dashboard extends Component {
         [modalNumber]: !this.state[modalNumber]
       });
     }
-
   }
   render() {
-    console.log(this.props)
     const columns = [
       {
         label: 'Type',

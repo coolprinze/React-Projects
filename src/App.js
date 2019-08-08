@@ -35,8 +35,8 @@ class App extends Component {
       <Router>
         <Fragment>
         
-          <Route exact path="/" render={() => (auth.isAuthenticated ? <Dashboard /> : <Redirect to={{ pathname: "/login" }} />)} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/" render={() => (auth.isAuthenticated() ? <Dashboard /> : <Redirect to={{ pathname: "/login" }} />)} />
+          <Route exact path="/login" render={() => (!auth.isAuthenticated() ? <Login /> : <Redirect to={{ pathname: "/" }} />)} />
           <Route exact path="/agents" component={Agents} />
           <Route exact path="/reports" component={Reports} />
           <Route exact path="/reports/:id" component={Report} />
