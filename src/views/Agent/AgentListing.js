@@ -30,6 +30,7 @@ class AgentListing extends Component {
     
     
     render() {
+        console.log(this.props.properties)
         const { data } = this.props.properties
         const properties = data.length?
         data.map((item) =>{

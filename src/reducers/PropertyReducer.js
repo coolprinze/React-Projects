@@ -25,7 +25,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         listings: {
           ...state.listings,
-          ...action.payload.data,
+          data: action.payload.data,
           requestType: action.payload.type
         }
       }
