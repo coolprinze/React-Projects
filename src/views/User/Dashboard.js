@@ -9,8 +9,14 @@ import { getSavedProperties, getUser } from '../../actions';
 class Dashboard extends Component {
     constructor(props){
       super(props)
-      this.props.getSavedProperties();
-      this.props.getUser();
+      this.props.user === null?
+      (async () => {
+        await this.props.getSavedProperties()
+        await this.props.getUser();
+      })():
+      (async () =>{
+        await this.props.getSavedProperties()
+      })()
     }
 
     render() {

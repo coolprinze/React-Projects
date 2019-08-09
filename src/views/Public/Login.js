@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom'
-import config from '../../config'
+import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { authenticateUser } from '../../actions/AuthActions';
 
@@ -53,9 +52,9 @@ class Login extends Component {
                                     <label htmlFor="password">Password</label>
                                     <input type="password" onChange={this.handleChange} className="form-control" id="password" placeholder="Password"/>
                                     <small id="emailHelp" className="form-text text-muted text-right">
-                                        <a href="forgetpassword.html">
+                                        <Link href="forgetpassword.html">
                                             Forget Password?
-                                        </a>
+                                        </Link>
                                     </small>
                                 </div>
                                 <div className="row my-3">
@@ -88,7 +87,7 @@ class Login extends Component {
 
                                 <div className="row my-4">
                                     <h5 className="col-sm-12 text-center">Don’t have an account?</h5>
-                                    <h6 className="col-sm-12 text-center"><a href="register.html" style={{color:"#4D93FC"}}>Register</a></h6>
+                                    <h6 className="col-sm-12 text-center"><Link to="/register" style={{color:"#4D93FC"}}>Register</Link></h6>
                                 </div>
                             </form>
                         </div>

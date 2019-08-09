@@ -49,7 +49,7 @@ export const getAgentProperties = () => async dispatch => {
     .then(res => {
       dispatch({
         type: GET_PROPERTIES,
-        payload: res.data.data
+        payload: res.data
       })
     })
     .catch(err => {

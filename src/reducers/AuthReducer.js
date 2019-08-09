@@ -7,6 +7,8 @@ const INITIAL_STATE = {
   token: ''
 }
 
+console.log(INITIAL_STATE);
+
 export default (state = INITIAL_STATE, action) => {
   switch(action.type){
     case REG_SUCCESS:
@@ -16,12 +18,14 @@ export default (state = INITIAL_STATE, action) => {
       }
 
     case AUTH_SUCCESS:
-      localStorage.setItem("token", action.payload.access_token);
-      localStorage.setItem("tokenExpires", action.payload.expires_at);
+      localStorage.setItem("token", action.payload.access.access_token);
+      localStorage.setItem("tokenExpires", action.payload.access.expires_at);
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
       return {
         ...state, 
         isAuthenticated: true, 
-        token: action.payload.access_token
+        token: action.payload.access.access_token,
+        user: action.payload.user
       }
 
     case GET_USER:

@@ -69,7 +69,7 @@ class AddProperty extends Component {
     
             await this.props.saveProperty({ title, price, description, status_id, type_id, bedrooms, bathrooms, toilets, address, state_id, locality_id, furnished, serviced, parking, total_area, covered_area });
 
-            await this.resetForm.bind(this)
+            this.resetForm.bind(this);
         }
 
         

@@ -26,12 +26,22 @@ export const registerUser = (user) => async dispatch => {
 
 export const authenticateUser = (user) => async dispatch=> {
   await Axios.post(`${config.BASE_URL}/login`, user, config.header)
-    .then(res => {
-      dispatch(createMsg("Login succeccful!!!"))
-      dispatch({
-        type: AUTH_SUCCESS,
-        payload: res.data
-      })
+    .then(async res => {
+      await Axios.get(`${config.BASE_URL}/user`, {
+        headers: {
+          ...config.header.headers,   
+          'Authorization': `Bearer ${res.data.access_token}`
+        }
+      }).then(user => {
+
+        dispatch(createMsg("Login succeccful!!!"))
+        dispatch({
+          type: AUTH_SUCCESS,
+          payload: { access: res.data, user: user.data.data }
+        })
+      }).catch(err => {
+        dispatch(createMsg(`Get User Failed: ${err.response}`, false))
+      });  
     })
     .catch(err => {
       dispatch(createMsg(`Login Failed: ${err.response.data.message}`, false))
