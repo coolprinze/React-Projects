@@ -84,7 +84,14 @@ class API {
   }
 
   approveDisapproveProperty = (body, endpoint) => {
-    fetch(`${this.baseURL}/admin/properties/${endpoint}`, {
+    let url;
+    if (!!endpoint) {
+      url = 'disapprove'
+    }
+    else {
+      url = 'approve'
+    }
+    fetch(`${this.baseURL}/admin/properties/${url}`, {
       headers: {...this.header, Authorization: `Bearer ${this.token}`},
       method: 'POST',
       body

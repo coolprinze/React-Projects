@@ -76,7 +76,7 @@ class Dashboard extends Component {
           <MDBDropdownItem divider />
           <MDBDropdownItem>Delete</MDBDropdownItem>
           <MDBDropdownItem divider />
-          <MDBDropdownItem onClick={async() => {await this.setState({loading: true}); await api.approveDisapproveProperty(property.id); await this.setState({loading: false})}}>{!property.published ? "Approve" : "Disapprove"}</MDBDropdownItem>
+          <MDBDropdownItem onClick={async() => {await this.setState({loading: true}); await api.approveDisapproveProperty(property.id, property.published); await this.setState({loading: false})}}>{!property.published ? "Approve" : "Disapprove"}</MDBDropdownItem>
         </MDBDropdownMenu>
       </MDBDropdown>
       }
