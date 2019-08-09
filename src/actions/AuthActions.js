@@ -4,7 +4,7 @@ import { AUTH_SUCCESS, REG_SUCCESS, GET_USER, LOGOUT_USER } from "./types";
 import { createMsg, errorHandler } from "./UtitlityActions";
 
 export const registerUser = (user) => async dispatch => {
-  await Axios.post(`${config.BASE_URL}/register`, user)
+  await Axios.post(`${config.BASE_URL}/registration`, user, config.header)
     .then(res => {
       dispatch(createMsg(`Registration successfull!! ${res.data.message}`));
       dispatch({
@@ -13,15 +13,15 @@ export const registerUser = (user) => async dispatch => {
       });
     })
     .catch(err => {
-      // if (err.response.status === 500){
-      //   dispatch(createMsg(`Registration successfull!! Proceed to login`));
-      //   dispatch({
-      //     type: REG_SUCCESS
-      //   });
-      // } else {
-      //   errorHandler(err.response.data.errors, dispatch)
-      // }
-      console.log(JSON.stringify(err));
+      if (err.response.status === 500){
+        console.log(err.response)
+        dispatch(createMsg(`Registration successfull!! Proceed to login`));
+        dispatch({
+          type: REG_SUCCESS
+        });
+      } else {
+        errorHandler(err.response.data.errors, dispatch)
+      }
     });
 }
 
