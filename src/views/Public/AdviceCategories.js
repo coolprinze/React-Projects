@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { agency, agent, bg } from '../../assets/img';
 import { connect } from 'react-redux';
 import { getAdviceCategories } from '../../actions/AdviceActions';
+import Newsletter from '../../component/Newsletter';
 
 
 class AdviceCategories extends Component {
@@ -48,16 +49,16 @@ class AdviceCategories extends Component {
                   <div className="col-sm-8 ">
                       <div className="row py-4 ">
                         { categories.map(category =>
-                          <Link key={category.id} to={`/propertyadvice/${category.slug}`}>
-                            <div className="col-lg-6 py-2 ">
+                        <div className="col-lg-6 py-2 ">
+                            <Link key={category.id} to={`/propertyadvice/${category.slug}`}>
                                 <div className="card bg-white mx-3 ">
                                     <img alt="" src={agency} />
                                     <div className="card-footer bg-white ">
                                         <h6 className="card-subtitle mb-2 text-muted ">{ category.name }</h6>
                                     </div>
                                 </div>
-                            </div>
                           </Link> 
+                        </div>
                         ) }
                         
                       </div>
@@ -107,6 +108,8 @@ class AdviceCategories extends Component {
           </div>
   
       </section>
+
+      <Newsletter />
         
       </Fragment>
     )

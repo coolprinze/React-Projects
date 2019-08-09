@@ -41,10 +41,10 @@ class Header extends Component{
                                 <Link className="nav-link" to="/propertyadvice-categories">Property Advice</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="#">Advertise in our Magazine</Link>
+                                <Link className="nav-link" to="/advertise-with-us">Advertise in our Magazine</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="">About</Link>
+                                <Link className="nav-link" to="/about-us">About</Link>
                             </li>
                             <li className="nav-item">
                                 {action}

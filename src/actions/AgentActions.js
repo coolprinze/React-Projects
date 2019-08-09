@@ -1,7 +1,7 @@
 import axios from 'axios';
 import config from '../config';
 import { createMsg, errorHandler } from './UtitlityActions';
-import { RESET, GET_PROPERTIES, DELETE_PROPERTY } from './types';
+import { RESET, GET_PROPERTIES, DELETE_PROPERTY, GET_AGENTS } from './types';
 
 // Get an Agent's Properties
 export const saveProperty = property => async dispatch => {
@@ -39,7 +39,7 @@ export const deleteProperty = id => async dispatch => {
         dispatch(createMsg("Something went wrong, kindly check your internet connection", false))
         return
       }
-      dispatch(createMsg({ request_failed: err }, false))
+      dispatch(createMsg(err.response.message, false))
     })
 }
 
@@ -57,6 +57,24 @@ export const getAgentProperties = () => async dispatch => {
         dispatch(createMsg("You are not connected to the internet, check your network", false))
         return
       }
-      dispatch(createMsg({ request_failed: err }, false))
+      dispatch(createMsg(err.response.message, false))
+    })
+}
+
+// List agents
+export const getAgents = () => async dispatch => {
+  await axios.get(`${config.BASE_URL}/agents`, config.header)
+    .then(res => {
+      dispatch({
+        type: GET_AGENTS,
+        payload: res.data.data
+      })
+    })
+    .catch(err => {
+      if(err.response === undefined){
+        dispatch(createMsg("You are not connected to the internet, check your network", false))
+        return
+      }
+      dispatch(createMsg(err.response.message, false))
     })
 }

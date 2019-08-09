@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_STATES, CREATE_MESSAGE, GET_ERRORS, RESET, GET_LOCALITIES } from "../actions/types";
+import { GET_COUNTRIES, GET_STATES, CREATE_MESSAGE, GET_ERRORS, RESET, GET_LOCALITIES, EDIT_EMAIL } from "../actions/types";
 
 const INITIAL_STATE = {
   pageLoading: false,
@@ -7,7 +7,8 @@ const INITIAL_STATE = {
   localities: [],
   errors: { msg: {}, status: null },
   messages: {},
-  reset: false
+  reset: false,
+  email: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -30,6 +31,8 @@ export default (state = INITIAL_STATE, action) => {
       }
     case RESET:
       return { ...state, reset: true }
+    case EDIT_EMAIL:
+      return { ...state, email: action.payload }
 
     default:
       return state

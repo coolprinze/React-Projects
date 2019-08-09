@@ -17,6 +17,8 @@ import Agents from './Agents';
 import AdviceCategories from './AdviceCategories';
 import AdviceCategory from './AdviceCategory';
 import Advice from './Advice';
+import Advertise from './Advertise';
+import Magazine from './Magazine';
 
 
 
@@ -36,6 +38,8 @@ class Public extends Component {
               <Route exact path="/propertyadvice/:category" component={AdviceCategory} />
               <Route exact path="/propertyadvice/:category/:advice" component={Advice} />
               <Route exact path="/about-us" component={About} />
+              <Route exact path="/download-magazine" component={Magazine} />
+              <Route exact path="/advertise-with-us" component={Advertise} />
               <Route exact path="/postrequest" component={PostRequest}/>
               <Route exact path="/propertylisting" component={PropertyListing} />
               <Route exact path="/propertylisting/:slug" component={PropertyDetails} />

@@ -13,11 +13,9 @@ import Admin from './views/Admin'
 import Agent from './views/Agent'
 import User from './views/User'
 import Public from './views/Public'
-import Agents from './views/Agent/AgentListing'
 import NotFound from './views/NotFound'
 import reducers from './reducers';
 import Alerts from './common/Alerts';
-import About from './views/Public/About';
 
 // Alert Options
 const alertOptions = {
@@ -45,6 +43,8 @@ class App extends Component {
                             <Route exact path="/user" component={User}/> 
                             <Route exact path="/register" component={Public}/>   
                             <Route exact path="/login" component={Public}/> 
+                            <Route exact path="/advertise-with-us" component={Public} />
+                            <Route exact path="/download-magazine" component={Public} />
                             {/* "/user/savedproperties" also serves as the dashboard after user login login */}
                             <Route exact path="/user/search-history" component={User}/>
                             <Route exact path="/user/alerts" component={User}/>

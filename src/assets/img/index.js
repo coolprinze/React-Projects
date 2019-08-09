@@ -7,3 +7,7 @@ export const rightArrow = require('./icon/right-arrow.png');
 export const agency = require('./agency.png');
 export const bg = require('./bg.png');
 export const paBg = require('./pa-bg.png');
+export const ad1 = require('./CASTLES-MAGAZINE-RATE-CARD-NEW-2018.png');
+export const ad2 = require('./HIGHBROW-ADVERT-RATE(1).png');
+export const magazine = require('./magazinepics.png');
+export const advert = require('./advert.png');

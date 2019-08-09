@@ -91,13 +91,14 @@ export const sendMessage = (data) => async dispatch => {
 }
 
 // Subscribe to newsletter
-export const subscribe = (data) => async dispatch => {
-  await axios.post(`${config.BASE_URL}/subscribe`, data)
+export const subscribe = (email) => async dispatch => {
+  console.log(email)
+  await axios.post(`${config.BASE_URL}/subscribe`, email)
     .then(res => {
-      dispatch(createMsg({ request_failed: res.data.message }))
+      dispatch(createMsg(res.data.message))
       dispatch({
         type: RESET,
       })
     })
-    .catch(err => dispatch(createMsg({ request_failed: err }, false)));
+    .catch(err => dispatch(createMsg( err.response.data.errors.email[0], false)));
 }

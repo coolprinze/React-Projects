@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import $ from 'jquery';
 import {Redirect, Link} from 'react-router-dom'
 import config from '../../config'
 import Select from 'react-select'
 import AsyncSelect from 'react-select/async'
 import { searchProperties } from '../../actions';
+import Newsletter from '../../component/Newsletter';
+import { property, leftArrow, rightArrow } from '../../assets/img';
+
 
 class Home extends Component {
     constructor(props){
@@ -34,11 +38,26 @@ class Home extends Component {
         this.getCategories = this.getCategories.bind(this)
         this.processSearch = this.processSearch.bind(this)
         this.getFeatures = this.getFeatures.bind(this)
-    }
-    componentWillMount(){
         this.getFeatures()
         this.searchByArea("")
     }
+    componentDidMount(){
+        
+    }
+    slideRight = e => {
+        e.preventDefault();
+        $('#carousel').animate({
+            scrollLeft: "+=310px"
+        }, "slow");
+    };
+
+    slideLeft = e => {
+        e.preventDefault();
+        $('#carousel').animate({
+            scrollLeft: "-=100px"
+        }, "slow");
+    };
+
     handlePropertyType = (propertyType) => {
         this.setState({
             propertyType
@@ -487,7 +506,7 @@ class Home extends Component {
                                 <h1 className="text-center text-white mb-5" style={{fontSize: '2rem'}}><strong>Professional Insight into Property Market in Nigeria</strong></h1>
 
                                 <h3 className="text-center">
-                                    Download<Link to="#" style={{fontWeight: '800'}}> Castles Magazine</Link> | <Link to="#" style={{fontWeight: '800'}}>Highbrow</Link>
+                                    Download<Link to="/download-magazine" style={{fontWeight: '800'}}> Castles Magazine</Link> | <Link to="#" style={{fontWeight: '800'}}>Highbrow</Link>
                                 </h3>
 
                             </div>
@@ -560,6 +579,108 @@ class Home extends Component {
                         </div>
                     </div>
                 </section>
+
+                <section className="py-4 bg-grey">
+                    <div className="container ">
+                        <div className="row">
+                            <div className="col-sm-6">
+                                <h3 className="mb-4">Property News</h3>
+                                <h5 className="text-muted pb-5">Latest update of Nigerian real estate market </h5>
+                            </div>
+
+                            <div className="col-sm-2 offset-sm-4">
+                                <div className="row">
+                                    <div className="col-sm-3 offset-sm-6 px-0">
+                                        <img src="img/icon/left-arrow-sm.png" alt="" />
+                                    </div>
+                                    <div className="col-sm-3 px-0">
+                                        <img src="img/icon/right-arrow.png" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row ">
+                            <div className="container">
+                                <div className="row">
+
+                                    <div className="col-sm-2 offset-sm-4">
+                                        <div className="row">
+                                            <div className="col-sm-3 offset-sm-6 px-0">
+                                                <img src={leftArrow} id="left-btn" className="px-1 pointer" alt=" " onClick={this.slideLeft} />
+                                            </div>
+                                            <div className="col-sm-3 px-0">
+                                                <img src={rightArrow} id="right-btn" className="px-1 pointer" alt=" " onClick={this.slideRight} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="carousel">
+                                <div className="slide">
+                                    <div className="card bg-white" height="18rem">
+                                        <img src={property} height="227px" className="card-img-top" alt="..." style={{ height: '224px' }} />
+                                        <div className="card-footer bg-white">
+                                            <h5 className="card-subtitle mb-2 text-wrap">Occeanna, an Iconnic project in Lagos</h5>
+                                            <p className="pt-2 pull-right">By Reachmond Estate</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="slide">
+                                    <div className="card bg-white" height="18rem">
+                                        <img src={property} height="227px" className="card-img-top" alt="..." style={{ height: '224px' }} />
+                                        <div className="card-footer bg-white">
+                                            <h5 className="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
+                                            <p className="pt-2 pull-right">By Reachmond Estate</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="slide">
+                                    <div className="card bg-white" height="18rem">
+                                        <img src={property} height="227px" className="card-img-top" alt="..." style={{ height: '224px' }} />
+                                        <div className="card-footer bg-white">
+                                            <h5 className="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
+                                            <p className="pt-2 pull-right">By Reachmond Estate</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="slide">
+                                    <div className="card bg-white" height="18rem">
+                                        <img src={property} height="227px" className="card-img-top" alt="..." style={{ height: '224px' }} />
+                                        <div className="card-footer bg-white">
+                                            <h5 className="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
+                                            <p className="pt-2 pull-right">By Reachmond Estate</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="slide">
+                                    <div className="card bg-white" height="18rem">
+                                        <img src={property} height="227px" className="card-img-top" alt="..." style={{ height: '224px' }} />
+                                        <div className="card-footer bg-white">
+                                            <h5 className="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
+                                            <p className="pt-2 pull-right">By Reachmond Estate</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="slide">
+                            <div className="card bg-white" height="18rem">
+                                <img src={property} height="227px" className="card-img-top" alt="..." style={{ height: '224px' }} />
+                                <div className="card-footer bg-white">
+                                    <h5 className="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
+                                    <p className="pt-2 pull-right">By Reachmond Estate</p>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </section>
+                
+                <Newsletter />
             </div>
         )
 

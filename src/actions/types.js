@@ -10,6 +10,7 @@ export const GET_PROPERTY_TYPES = "GET_PROPERTY_TYPES";
 // Agent Action Types
 export const GET_STATS = "GET_STATS";
 export const GET_AGENT_LISTINGS = "GET_AGENT_LISTINGS";
+export const GET_AGENTS = "GET_AGENTS";
 
 // Utility Action Types
 export const GET_COUNTRY = "GET_COUNTRY";
@@ -19,6 +20,8 @@ export const CREATE_MESSAGE = "CREATE_MESSAGE";
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_ERRORS = "GET_ERRORS";
 export const RESET = "RESET";
+export const NEWSLETTER_SUBSCRIBE = "NEWSLETTER_SUBSCRIBE";
+export const EDIT_EMAIL = "EDIT_EMAIL";
 
 // Auth Actions
 export const AUTH_SUCCESS = "AUTH_SUCCESS";

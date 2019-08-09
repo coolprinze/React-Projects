@@ -413,3 +413,72 @@ h2 {
   .select-items div:hover, .same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
   }
+  
+  #carousel {
+    left: 10%;
+    width: 93%;
+    margin-left: 7%;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+#carousel .slide {
+    display: inline-block;
+    width: 320px;
+    padding: 0 10px;
+}
+header {
+    background: url(../img/headerBg.png);
+    background-repeat: no-repeat;
+    background-size: cover
+    /* min-height: 40vh; */
+}
+.headerContent {
+    min-height: 30vh;
+    background: radial-gradient(443.77px at 77.15% 78.76%, rgba(0, 0, 0, 0.448) 0%, rgba(0, 0, 0, 0.7) 100%);
+    color: #FFFFFF !important;
+    top: auto;
+    bottom: auto;
+    display: grid;
+    align-items: center;
+    /* font-family: Poppins; */
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 46px;
+}
+.DMimages button {
+    border: none;
+    background: white;
+}
+.DMimages button :hover {
+    filter: blur(6px);
+}
+.magazine{
+    background: #E5E5E5;
+    color: #505050;
+}
+.bg-orange {
+    background: #FE8C00;
+}
+
+.TOUbtn {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    background: #FE8C00;
+    border: 1px solid #FE8C00;
+    border-radius: 6px;
+    width: 100%;
+}
+.TOUadvert {
+    border-radius: 6px;
+    background: #FFFFFF;
+}
+.TOUsearch p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px;
+    color: #555555;
+}

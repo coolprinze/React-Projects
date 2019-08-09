@@ -1,11 +1,23 @@
+import { GET_AGENTS } from "../actions/types";
+
 const INITIAL_STATE = {
-  agent: ''
+  agents: {
+    data: [],
+    requestType: null,
+    first_page_url: '', 
+    last_page_url: '', 
+    to: '', 
+    from: '', 
+    total: ''
+  }
 }
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type){
-    case "ADD_AGENT":
-      return 'Agen Added'
+    case GET_AGENTS:
+      return {
+        agents: action.payload
+      }
     default:
       return state
   }

@@ -96,9 +96,7 @@ export const getPropertyTypes = () => async dispatch => await axios
       return
     }
     dispatch(createMsg(err.response.statusText, false))    
-  })
-
-  
+  })  
 
 // Get Saved Properties
 export const getSavedProperties = (type = null) => async dispatch => {
@@ -120,5 +118,23 @@ export const getSavedProperties = (type = null) => async dispatch => {
         return
       }
       dispatch(createMsg({ request_failed: err }, false))
+    })
+}
+
+// Get Agent Properties
+export const getAgentListing = (agent) => async dispatch => {
+  await axios.get(`${config.BASE_URL}/properties/${agent}`, config.header)
+    .then(res => {
+      dispatch({
+        type: GET_PROPERTIES,
+        payload: { data:res.data.data, type: 'agent' }
+      })
+    })
+    .catch(err => {
+      if(err.response === undefined){
+        dispatch(createMsg("You are not connected to the internet, check your network", false))
+        return
+      }
+      dispatch(createMsg(err.response.message, false))
     })
 }
