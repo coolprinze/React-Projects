@@ -11,6 +11,7 @@ import PropertyAdvice from './PropertyAdvice'
 import Profile from './Profile'
 import AddProperty from './AddProperty';
 import AgentListingStats from './AgentListingStats';
+import { createMsg } from '../../actions';
 
 
 
@@ -22,8 +23,12 @@ class Agent extends Component {
     render() {
 
       if(this.props.isAuthenticated){
-        if (this.props.user.role.id === 1)
-          return <Redirect to="/user" />
+        if (this.props.user.role.id === 1){
+          return (() => {
+            this.props.createMsg("Restricted: Sorry you are not an agent", false);
+            return <Redirect to="/user" />
+          })()
+        }
         return ( 
           <div>
             <main>
@@ -55,4 +60,4 @@ const mapStateToProps = state => ({
   user: state.auth.user
 })
 
-export default connect(mapStateToProps)(Agent);
+export default connect(mapStateToProps, { createMsg })(Agent);
