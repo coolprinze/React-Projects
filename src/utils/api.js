@@ -29,13 +29,18 @@ class API {
     });
   }
 
-  suspendUser = (id) => {
-    fetch(`${this.baseURL}/admin/users/${id}/suspend`, {
+  manageUser = async (id, endpoint) => {
+    console.log(endpoint)
+    await fetch(`${this.baseURL}/admin/users/${id}/${endpoint}`, {
       headers: {...this.header, Authorization: `Bearer ${this.token}`},
       method: 'POST',
     })
     .then(res => res.json())
-    .then(res => res )
+    .then(async res => {
+      await this.getAgents();
+      await this.getUsers();
+      return res 
+    })
     .catch(error => {
       console.log(error);
       throw error;
@@ -97,8 +102,8 @@ class API {
       body
     })
     .then(res => res.json())
-    .then(async res => {
-      await window.location.reload();
+    .then( res => {
+      console.log('res', res)
       return res;
     })
     .catch(error => {
@@ -155,101 +160,102 @@ class API {
     )
   }
 
-  // getProperties = async () => {
-  //   await setGlobal(
-  //  fetch(`${this.baseURL}/admin/properties?paginate=1000`, {
-  //     headers: {...this.header, Authorization: `Bearer ${this.token}`},
-  //     method: 'GET',
-  //   })
-  //   .then(res => res.json())
-  //   .then(res => {
-  //     console.log(res)
-  //     if (!!res.data) {
-  //       return {properties: res.data.data}
-  //     }
-  //     else {
-  //       return {properties: []}
-  //     }
+  getProperties = async () => {
+    await setGlobal(
+   fetch(`${this.baseURL}/admin/properties?paginate=1000`, {
+      headers: {...this.header, Authorization: `Bearer ${this.token}`},
+      method: 'GET',
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res)
+      if (!!res.data) {
+        return {properties: res.data.data}
+      }
+      else {
+        return {properties: []}
+      }
 
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //     throw error;
-  //   })
-  //   )
-  // }
+    })
+    .catch(error => {
+      console.log(error);
+      throw error;
+    })
+    )
+  }
 
-  // getUsers = async () => {
-  //   await setGlobal(
-  //  fetch(`${this.baseURL}/admin/users?paginate=1000&role=1`, {
-  //     headers: {...this.header, Authorization: `Bearer ${this.token}`},
-  //     method: 'GET',
-  //   })
-  //   .then(res => res.json())
-  //   .then(res => {
-  //     console.log(res)
-  //     if (!!res.data) {
-  //       return {users: res.data.data}
-  //     }
-  //     else {
-  //       return {users: []}
-  //     }
+  getUsers = async () => {
+    await setGlobal(
+   fetch(`${this.baseURL}/admin/users?paginate=1000&role=1`, {
+      headers: {...this.header, Authorization: `Bearer ${this.token}`},
+      method: 'GET',
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res)
+      console.log('user')
+      if (!!res.data) {
+        return {users: res.data.data}
+      }
+      else {
+        return {users: []}
+      }
 
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //     throw error;
-  //   })
-  //   )
-  // }
+    })
+    .catch(error => {
+      console.log(error);
+      throw error;
+    })
+    )
+  }
 
-  // getRequests = async () => {
-  //   await setGlobal(
-  //  fetch(`${this.baseURL}/admin/properties/requests?paginate=1000`, {
-  //     headers: {...this.header, Authorization: `Bearer ${this.token}`},
-  //     method: 'GET',
-  //   })
-  //   .then(res => res.json())
-  //   .then(res => {
-  //     console.log(res)
-  //     if (!!res.data) {
-  //       return {requests: res.data.data}
-  //     }
-  //     else {
-  //       return {requests: []}
-  //     }
+  getRequests = async () => {
+    await setGlobal(
+   fetch(`${this.baseURL}/admin/properties/requests?paginate=1000`, {
+      headers: {...this.header, Authorization: `Bearer ${this.token}`},
+      method: 'GET',
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res)
+      if (!!res.data) {
+        return {requests: res.data.data}
+      }
+      else {
+        return {requests: []}
+      }
 
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //     throw error;
-  //   })
-  //   )
-  // }
+    })
+    .catch(error => {
+      console.log(error);
+      throw error;
+    })
+    )
+  }
 
-  // getReports = async () => {
-  //   await setGlobal(
-  //  fetch(`${this.baseURL}/admin/properties/reports?paginate=1000`, {
-  //     headers: {...this.header, Authorization: `Bearer ${this.token}`},
-  //     method: 'GET',
-  //   })
-  //   .then(res => res.json())
-  //   .then(res => {
-  //     console.log(res)
-  //     if (!!res.data) {
-  //       return {reports: res.data.data}
-  //     }
-  //     else {
-  //       return {reports: []}
-  //     }
+  getReports = async () => {
+    await setGlobal(
+   fetch(`${this.baseURL}/admin/properties/reports?paginate=1000`, {
+      headers: {...this.header, Authorization: `Bearer ${this.token}`},
+      method: 'GET',
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res)
+      if (!!res.data) {
+        return {reports: res.data.data}
+      }
+      else {
+        return {reports: []}
+      }
 
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //     throw error;
-  //   })
-  //   )
-  // }
+    })
+    .catch(error => {
+      console.log(error);
+      throw error;
+    })
+    )
+  }
 }
 
 export default API;

@@ -14,8 +14,8 @@ class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      modal14: false
-
+      modal14: false,
+      loading: false
     }
     this.toggle = nr => () => {
       let modalNumber = 'modal' + nr
@@ -61,7 +61,7 @@ class Dashboard extends Component {
     const rows = getGlobal().properties.map((property) => {
       return {
         'type': property.type,
-        'location': `${property.locality}, ${property.country}`,
+        'location': `${property.locality}, ${property.state}`,
         'agent_name': property.agent.name,
         'price': property.price,
         'status': property.published ? <span style={{color: "green"}}>Available</span> : <span style={{color: "red"}}>Unavailable</span>,
@@ -76,7 +76,7 @@ class Dashboard extends Component {
           <MDBDropdownItem divider />
           <MDBDropdownItem>Delete</MDBDropdownItem>
           <MDBDropdownItem divider />
-          <MDBDropdownItem onClick={async() => {await this.setState({loading: true}); await api.approveDisapproveProperty(property.id, property.published); await this.setState({loading: false})}}>{!property.published ? "Approve" : "Disapprove"}</MDBDropdownItem>
+          <MDBDropdownItem onClick={async() => {await api.approveDisapproveProperty({"id": [property.id]}, property.published); await this.setState({loading: false})}}>{!property.published ? "Approve" : "Disapprove"}</MDBDropdownItem>
         </MDBDropdownMenu>
       </MDBDropdown>
       }

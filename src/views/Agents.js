@@ -14,7 +14,8 @@ class Agents extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      modal14: false
+      modal14: false,
+      loading: false
     }
     this.toggle = this.toggle.bind(this)
   }
@@ -75,7 +76,7 @@ class Agents extends Component {
             <MDBDropdownItem divider />
             <MDBDropdownItem>Delete</MDBDropdownItem>
             <MDBDropdownItem divider />
-            <MDBDropdownItem onClick={async() => {await this.setState({loading: true}); await api.suspendUser(agent.id); await this.setState({loading: false})}}>{!agent.suspended_at ? "Suspend" : "Restore"}</MDBDropdownItem>
+            <MDBDropdownItem onClick={async() => { await api.manageUser(agent.id, agent.suspended_at ? 'restore' : 'suspend'); await this.setState({loading: false})}}>{!agent.suspended_at ? "Suspend" : "Restore"}</MDBDropdownItem>
           </MDBDropdownMenu>
         </MDBDropdown>
         // <div className="drop">

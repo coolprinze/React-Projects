@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 // import './App.css';
 import { Route, Link, Redirect, BrowserRouter as Router } from 'react-router-dom';
-import {getGlobal} from 'reactn';
+import { getGlobal } from 'reactn';
 import NotFound from './views/NotFound'
 import Login from './views/Login'
 import Dashboard from './views/Dashboard'
@@ -20,21 +20,22 @@ import API from './utils/api';
 let auth = new Auth();
 let api = new API();
 class App extends Component {
-  state= {
+  state = {
     data: []
   }
-   async componentDidMount() {
-     let data =  await api.getAgents();
-     await api.getSubscribers()
-    await this.setState({data});
+  async componentDidMount() {
+    let data = await api.getAgents();
+    await api.getProperties();
+    await api.getSubscribers();
+    await api.getUsers();
+    await api.getReports();
+    await api.getRequests();
+    await this.setState({ data });
   }
-
   render() {
-
     return (
       <Router>
         <Fragment>
-        
           <Route exact path="/" render={() => (auth.isAuthenticated() ? <Dashboard /> : <Redirect to={{ pathname: "/login" }} />)} />
           <Route exact path="/login" render={() => (!auth.isAuthenticated() ? <Login /> : <Redirect to={{ pathname: "/" }} />)} />
           <Route exact path="/agents" component={Agents} />
