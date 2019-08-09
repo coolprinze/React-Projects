@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/AuthActions';
 
@@ -142,12 +142,17 @@ class Register extends Component {
                                     </div>
                                 </div>
                                 <div className="row my-3 ">
-                                    <div className="col-sm-6 ">
+                                    <div className="col-sm-6 py-1">
                                         <button className="btn btn-block btn-google text-white ">Google</button>
                                     </div>
-                                    <div className="col-sm-6 ">
+                                    <div className="col-sm-6 py-1">
                                         <button className="btn btn-block btn-facebook text-white ">Facebook</button>
                                     </div>
+                                </div>
+
+                                <div className="row my-4">
+                                    <h5 className="col-sm-12 text-center">Already have an account?</h5>
+                                    <h6 className="col-sm-12 text-center"><Link to="/login" style={{color:"#4D93FC"}}>Login</Link></h6>
                                 </div>
                             </form>
                         </div>

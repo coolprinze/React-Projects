@@ -24,6 +24,7 @@ export const RESET = "RESET";
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const REG_SUCCESS = "REG_SUCCESS";
 export const GET_USER = "GET_USER";
+export const LOGOUT_USER = "LOGOUT_USER";
 
 
 // Property Advice 

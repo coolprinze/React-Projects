@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logOut } from '../../actions';
 
-class Header extends Component {
+class Header extends Component{
+    constructor(props) {
+        super(props)
+    }
 
+    onLogout = () => {
+        this.props.logOut();
+    }
 
-    render() {
+    render(){
+
+        const action = this.props.user? 
+        <span className="nav-link">Hi {this.props.user.username} ! | <Link to="#" onClick={this.onLogout}> Logout</Link></span>
+        :
+        <Link className="nav-link" to="/login">Login/Register</Link>
 
         return ( 
             <header>
@@ -34,7 +47,7 @@ class Header extends Component {
                                 <Link className="nav-link" to="">About</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/user/login">Login/Register</Link>
+                                {action}
                             </li>
                             <li className="nav-item d-flex align-items-center justify-content-center pb-2" id="sp-btn">
                                 <Link className="nav-link btn btn-lg px-5 py-3 btn-outline-dark" to="#">Submit Property</Link>
@@ -45,9 +58,7 @@ class Header extends Component {
                 </nav>
             </header> 
         )
-
     }
-
 }
 
-export default Header;
+export default connect(null, { logOut })(Header);

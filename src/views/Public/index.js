@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // import all pages components
 import Home from './Home'
@@ -20,19 +21,14 @@ import Advice from './Advice';
 
 
 
-class Admin extends Component {
+class Public extends Component {
 
-    componentDidMount() {
-
-    }
 
     render() {
 
-      console.log(this);
-
       return ( 
         <div>
-          <Header/>
+          <Header user={this.props.user}/>
           <main>
             <Switch>
               <Route exact path="/" component={Home} />
@@ -44,6 +40,7 @@ class Admin extends Component {
               <Route exact path="/propertylisting" component={PropertyListing} />
               <Route exact path="/propertylisting/:slug" component={PropertyDetails} />
               <Route exact path="/search" component={SearchResult} />
+
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/agents" component={Agents} />
@@ -57,4 +54,8 @@ class Admin extends Component {
 
 }
 
-export default Admin;
+const mapStateToProps = state => ({
+  user: state.auth.user
+})
+
+export default connect(mapStateToProps)(Public);

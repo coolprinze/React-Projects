@@ -8,6 +8,8 @@ import Profile from './Profile';
 import PostRequest from './PostRequest'
 import Alerts from './Alerts';
 import SearchHistory from './SearchHistory';
+import Header from '../../component/Header/Header';
+import Footer from '../../component/Footer';
 
 
 
@@ -24,6 +26,7 @@ class User extends Component {
       if(this.props.isAuthenticated){
         return ( 
           <div>
+            <Header user={this.props.user} />
             <main>
               <Switch>
                 <Route exact path="/user" component={Dashboard}/>
@@ -33,6 +36,7 @@ class User extends Component {
                 <Route exact path="/user/post-request" component={PostRequest} /> 
               </Switch>
             </main>          
+              <Footer />
           </div>
         )
       }
@@ -44,7 +48,8 @@ class User extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user
 })
 
 export default connect(mapStateToProps)(User);

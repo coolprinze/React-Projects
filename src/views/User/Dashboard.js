@@ -71,21 +71,19 @@ class Dashboard extends Component {
         )
         return ( 
             <React.Fragment>
-                <Header />
-                    <SubHeader username={this.props.user.name}/>
-                    <section className="container-fluid bg-grey">
-                        <div className="container py-5">
-                            <div className="col-sm-12">
-                                <div className="row profile">
-                                    <UserDashboardSideBar savedProperties />
-                                    <div className="col-md-9">
-                                        {this.props.savedProperties.data.length < 1 ? noSavedProperties: savedProperties}
-                                    </div>
+                <SubHeader username={this.props.user.name}/>
+                <section className="container-fluid bg-grey">
+                    <div className="container py-5">
+                        <div className="col-sm-12">
+                            <div className="row profile">
+                                <UserDashboardSideBar savedProperties />
+                                <div className="col-md-9">
+                                    {this.props.savedProperties.data.length < 1 ? noSavedProperties: savedProperties}
                                 </div>
                             </div>
                         </div>
-                    </section>
-                <Footer />
+                    </div>
+                </section>
             </React.Fragment>
         )
     }

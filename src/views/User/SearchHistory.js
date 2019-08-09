@@ -2,8 +2,6 @@ import React, { Fragment, Component } from 'react'
 import { Link } from 'react-router-dom';
 import UserDashboardSideBar from './UserDashboardSideBar';
 import SubHeader from '../../component/Header/SubHeader';
-import Header from '../../component/Header/UserHeader';
-import Footer from '../../component/Footer';
 import config from '../../config';
 
 class SearchHistory extends Component {
@@ -48,7 +46,6 @@ class SearchHistory extends Component {
   render() {
     return (
       <Fragment>
-        <Header />
         <SubHeader username={this.state.user.name}/>
         <section className="container-fluid py-5 properties bg-grey">
             <div className="container">
@@ -178,7 +175,6 @@ class SearchHistory extends Component {
             </div>
         </div>
         
-        <Footer />
       </Fragment>
     )
   }

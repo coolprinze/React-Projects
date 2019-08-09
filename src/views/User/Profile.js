@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import config from '../../config'
-import Header from "../../component/Header/UserHeader"
 import SubHeader from "../../component/Header/SubHeader"
-import Footer from '../../component/Footer';
 import UserDashboardSideBar from './UserDashboardSideBar';
 
 
@@ -64,7 +62,6 @@ class Profile extends Component {
     render() {
         return ( 
             <React.Fragment>
-                <Header />
                 <SubHeader username={this.state.user.name}/>
                 <section className="container-fluid bg-grey">
                     <div className="container py-5">
@@ -120,7 +117,6 @@ class Profile extends Component {
                         </div>
                     </div>
                 </section>
-                <Footer />
             </React.Fragment>
         )
     }

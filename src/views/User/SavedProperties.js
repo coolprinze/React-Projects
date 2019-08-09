@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom'
 import config from '../../config'
-import  Header from "../../component/Header/UserHeader";
-import Footer from '../../component/Footer';
 import UserDashboardSideBar from './UserDashboardSideBar'
 
 class SavedProperties extends Component {
@@ -87,7 +84,6 @@ class SavedProperties extends Component {
         })
         return ( 
             <React.Fragment>
-                <Header />
                 <section className="container-fluid properties bg-grey">
                     <div className="container py-5">
                         <div className="col-sm-12">
@@ -100,7 +96,6 @@ class SavedProperties extends Component {
                         </div>
                     </div>
                 </section>
-                <Footer />
             </React.Fragment>
         )
     }

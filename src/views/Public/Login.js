@@ -52,7 +52,7 @@ class Login extends Component {
                                     <label htmlFor="password">Password</label>
                                     <input type="password" onChange={this.handleChange} className="form-control" id="password" placeholder="Password"/>
                                     <small id="emailHelp" className="form-text text-muted text-right">
-                                        <Link href="forgetpassword.html">
+                                        <Link to="/forgot-password">
                                             Forget Password?
                                         </Link>
                                     </small>
@@ -76,11 +76,11 @@ class Login extends Component {
                                     </div>
                                 </div>
                                 <div className="row my-3">
-                                    <div className="col-sm-6">
+                                    <div className="col-sm-6 py-1">
                                         <button className="btn btn-block btn-google text-white">Google</button>
                                     </div>
 
-                                    <div className="col-sm-6">
+                                    <div className="col-sm-6 py-1">
                                         <button className="btn btn-block btn-facebook text-white">Facebook</button>
                                     </div>
                                 </div>

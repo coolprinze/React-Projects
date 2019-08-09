@@ -22,6 +22,8 @@ class Agent extends Component {
     render() {
 
       if(this.props.isAuthenticated){
+        if (this.props.user.role.id === 1)
+          return <Redirect to="/user" />
         return ( 
           <div>
             <main>
@@ -49,7 +51,8 @@ class Agent extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user
 })
 
 export default connect(mapStateToProps)(Agent);

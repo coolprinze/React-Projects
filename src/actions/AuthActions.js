@@ -1,10 +1,10 @@
 import Axios from "axios";
 import config from "../config";
-import { AUTH_SUCCESS, REG_SUCCESS, GET_USER } from "./types";
+import { AUTH_SUCCESS, REG_SUCCESS, GET_USER, LOGOUT_USER } from "./types";
 import { createMsg, errorHandler } from "./UtitlityActions";
 
 export const registerUser = (user) => async dispatch => {
-  await Axios.post(`${config.BASE_URL}/register`, user, config.header)
+  await Axios.post(`${config.BASE_URL}/register`, user)
     .then(res => {
       dispatch(createMsg(`Registration successfull!! ${res.data.message}`));
       dispatch({
@@ -13,14 +13,15 @@ export const registerUser = (user) => async dispatch => {
       });
     })
     .catch(err => {
-      if (err.response.status === 500){
-        dispatch(createMsg(`Registration successfull!! Proceed to login`));
-        dispatch({
-          type: REG_SUCCESS
-        });
-      } else {
-        errorHandler(err.response.data.errors, dispatch)
-      }
+      // if (err.response.status === 500){
+      //   dispatch(createMsg(`Registration successfull!! Proceed to login`));
+      //   dispatch({
+      //     type: REG_SUCCESS
+      //   });
+      // } else {
+      //   errorHandler(err.response.data.errors, dispatch)
+      // }
+      console.log(JSON.stringify(err));
     });
 }
 
@@ -65,4 +66,15 @@ export const getUser = () => async dispatch => {
     .catch(err => {
       dispatch(createMsg(`Get User Failed: ${err.response}`, false))
     });    
+}
+
+export const logOut = () => async dispatch => {
+  await localStorage.removeItem('user');
+  await localStorage.removeItem('token');
+  await localStorage.removeItem('tokenExpires');
+
+  await dispatch(createMsg(`Thank you for your time with us`))
+  await dispatch({
+    type: LOGOUT_USER
+  })
 }
