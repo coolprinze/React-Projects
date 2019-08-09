@@ -83,6 +83,23 @@ class API {
     });
   }
 
+  approveDisapproveProperty = (body, endpoint) => {
+    fetch(`${this.baseURL}/admin/properties/${endpoint}`, {
+      headers: {...this.header, Authorization: `Bearer ${this.token}`},
+      method: 'POST',
+      body
+    })
+    .then(res => res.json())
+    .then(async res => {
+      await window.location.reload();
+      return res;
+    })
+    .catch(error => {
+      console.log(error);
+      throw error;
+    });
+  }
+
   getAgents = async () => {
     await setGlobal(
    fetch(`${this.baseURL}/admin/users?paginate=1000&role=2`, {

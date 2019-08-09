@@ -4,8 +4,11 @@ import List from './List'
 import Footer from '../component/Footer'
 import Metrics from '../component/Metrics'
 import { getGlobal, useGlobal } from 'reactn'
-import { MDBBtn, MDBDataTable, MDBTableBody, MDBTableHead } from 'mdbreact'
-
+import { 
+  MDBDataTable, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBSpinner } from 'mdbreact'
+import {Link} from 'react-router-dom'
+import API from '../utils/api'
+let api = new API();
 
 class Dashboard extends Component {
   constructor(props) {
@@ -24,34 +27,34 @@ class Dashboard extends Component {
   render() {
     const columns = [
       {
-        label: 'Type',
-        field: 'type',
-        // sort: 'asc'
+        label: 'Property Type',
+        field: 'type'
       },
       {
         label: 'Location',
-        field: 'location',
-        // sort: 'asc'
+        field: 'location'
       },
       {
         label: 'Agent Name',
-        field: 'agent_name',
-        // sort: 'asc'
+        field: 'agent_name'
       },
       {
         label: 'Price',
-        field: 'price',
-        // sort: 'asc'
+        field: 'price'
       },
       {
         label: 'Status',
-        field: 'status',
-        // sort: 'asc'
+        field: 'status'
       },
       {
         label: 'Date Added',
-        field: 'date',
-        // sort: 'asc'
+        field: 'date'
+      },
+      {
+        field: 'btn'
+      },
+      {
+        field: 'more'
       }
     ];
 
@@ -61,8 +64,21 @@ class Dashboard extends Component {
         'location': `${property.locality}, ${property.country}`,
         'agent_name': property.agent.name,
         'price': property.price,
-        'status': property.status,
+        'status': property.published ? <span style={{color: "green"}}>Available</span> : <span style={{color: "red"}}>Unavailable</span>,
         'date': property.created_at,
+        'btn': <button type="button" style={{ backgroundColor: '#000' }} name="button"> <Link to={"/notfound"} > View </Link></button>,
+        'more': <MDBDropdown>
+        <MDBDropdownToggle style={{ backgroundColor: '#000' }}>
+          <img src="images/Group9.png" alt="" />
+        </MDBDropdownToggle>
+        <MDBDropdownMenu basic>
+          <MDBDropdownItem>Edit</MDBDropdownItem>
+          <MDBDropdownItem divider />
+          <MDBDropdownItem>Delete</MDBDropdownItem>
+          <MDBDropdownItem divider />
+          <MDBDropdownItem onClick={async() => {await this.setState({loading: true}); await api.approveDisapproveProperty(property.id); await this.setState({loading: false})}}>{!property.published ? "Approve" : "Disapprove"}</MDBDropdownItem>
+        </MDBDropdownMenu>
+      </MDBDropdown>
       }
     })
     return (
@@ -74,20 +90,6 @@ class Dashboard extends Component {
             <div className="col-12">
               <nav className="navbar bg-dark" style={{ borderRadius: "4px 4px 0px 0px" }}>
                 <p className="navbar-brand myp"> All Listings</p>
-                {/* <div>
-                  <span className="form-inline">
-                    <input type="search" name="" defaultValue="" placeholder="Find..." className="Search" />
-                    <button className="btn btn-light" type="button" name="button">Date</button>
-                    <div className="drop">
-                      <button className="dropbutton btn btn-light"> Sort</button>
-                      <div className="drop-content dropdown-menu-right" id="dropDownCont">
-                        <a href="#">Alphabetically</a>
-                        <a href="#">Agents</a>
-                        <a href="#">Individual</a>
-                      </div>
-                    </div>
-                  </span>
-                </div> */}
               </nav>
               <MDBDataTable
                 striped
@@ -99,133 +101,6 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
-        {/*  <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <nav className="navbar bg-dark" style={{ borderRadius: "4px 4px 0px 0px" }}>
-                <p className="navbar-brand myp"> All Listings</p>
-                <div className="" >
-                  <form className="form-inline">
-                    <input type="search" name="" defaultValue="" placeholder="Find..." className="Search" />
-                    <button className="btn btn-light" type="button" name="button">Date</button>
-                    <div className="drop">
-                      <button className="dropbutton btn btn-light"> Sort</button>
-                      <div className="drop-content dropdown-menu-right" id="dropDownCont">
-                        <a href="#">Alphabetically</a>
-                        <a href="#">Agents</a>
-                        <a href="#">Individual</a>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </nav>
-            </div>
-          </div>
-          <div className="row" style={{ marginBlockEnd: "1em" }}>
-            <div className="col-12" style={{}}>
-              <table className="mx-auto" id="t01">
-              <tbody>
-                <tr>
-                  <th>Property type</th>
-                  <th>Location</th>
-                  <th>Agent name</th>
-                  <th>Price</th>
-                  <th>Status</th>
-                  <th>Date Added</th>
-                  <th></th>
-                </tr>
-                <tr>
-                  <td>4 Bedroom flat</td>
-                  <td>Ikoyi</td>
-                  <td>majjor houses</td>
-                  <td>3 Bedroom flat</td>
-                  <td className="Available">Available</td>
-                  <td>3 Bedroom flat</td>
-                  <td>
-                    <div>
-                    <List isOpen={this.state.modal14} toggle={this.toggle} />
-                    </div>
-                   <button type="button" name="button" className="btn-dark" onClick={() => this.toggle(14)}>view</button> 
-                  </td>
-                </tr>
-                <tr>
-                  <td>4 Bedroom flat</td>
-                  <td>Ikoyi</td>
-                  <td>majjor houses</td>
-                  <td>3 Bedroom flat</td>
-                  <td className="Available">Available</td>
-                  <td>3 Bedroom flat</td>
-                  <td>
-                    <button type="button" name="button" className="btn-dark">view</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>4 Bedroom flat</td>
-                  <td>Ikoyi</td>
-                  <td>majjor houses</td>
-                  <td>3 Bedroom flat</td>
-                  <td className="Available">Available</td>
-                  <td>3 Bedroom flat</td>
-                  <td>
-                    <button type="button" name="button" className="btn-dark">view</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>4 Bedroom flat</td>
-                  <td>Ikoyi</td>
-                  <td>majjor houses</td>
-                  <td>3 Bedroom flat</td>
-                  <td className="unavailable">Unavailable</td>
-                  <td>3 Bedroom flat</td>
-                  <td>
-                    <button type="button" name="button" className="btn-dark">view</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>4 Bedroom flat</td>
-                  <td>Ikoyi</td>
-                  <td>majjor houses</td>
-                  <td>3 Bedroom flat</td>
-                  <td className="unavailable">Unavailable</td>
-                  <td>3 Bedroom flat</td>
-                  <td>
-                    <button type="button" name="button" className="btn-dark">view</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>4 Bedroom flat</td>
-                  <td>Ikoyi</td>
-                  <td>majjor houses</td>
-                  <td>3 Bedroom flat</td>
-                  <td className="unavailable">Unavailable</td>
-                  <td>3 Bedroom flat</td>
-                  <td>
-                    <button type="button" name="button" className="btn-dark">view</button>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <nav aria-label="Page navigation example">
-                <ul className="pagination justify-content-end">
-                  <li className="page-item disabled">
-                    <a className="page-link" href="#" tabIndex="-1" aria-disabled="true">Previous</a>
-                  </li>
-                  <li className="page-item"><a className="page-link" href="#">1-10 of 60</a></li>
-
-                  <li className="page-item">
-                    <a className="page-link" href="#">Next</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div>*/}
         <Footer />
       </React.Fragment>
     )

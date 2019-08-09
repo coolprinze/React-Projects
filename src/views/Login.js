@@ -4,6 +4,7 @@ import config from '../config'
 import API from '../utils/api'
 import Auth from '../utils/auth'
 import Footer from '../component/Footer'
+import SpinnerPage from '../component/Spinner'
 let api = new API();
 let auth = new Auth()
 
@@ -14,6 +15,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      loading: false
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -23,13 +25,14 @@ class Login extends Component {
     });
   }
   handleSubmit = async() => {
+    await this.setState({loading: true})
     await console.log(auth.isAuthenticated())
     await api.login({email: this.state.email, password: this.state.password});
-    await this.setState({
-      email: "",
-      password: ""
-    });
-    console.log(auth.isAuthenticated())
+    // await this.setState({
+    //   email: "",
+    //   password: ""
+    // });
+    await console.log(auth.isAuthenticated())
   }
   // authRequest = async () => {
   //   var data = {
@@ -90,9 +93,8 @@ class Login extends Component {
               <div className="bg-white jumbotron body">
                 <h4>Admin</h4>
                 <p>Login to continue</p>
-                <span className="">
+                {/* <span className=""> */}
                   <label htmlFor="name">Email</label>
-                  <br />
                   <input
                     type="text"
                     name="email"
@@ -101,7 +103,6 @@ class Login extends Component {
                   />
                   <br />
                   <label htmlFor="password">Password</label>
-                  <br />
                   <input
                     type="password"
                     name="password"
@@ -109,16 +110,19 @@ class Login extends Component {
                     onChange={e => this.handleChange(e)}
                   />
                   <br />
-                  <input
+                  <button
                     className="btn  SNbtn"
                     type="submit"
                     onClick={() => this.handleSubmit()}
-                    style={{ width: "100%", marginTop: "1em" }}
-                    value="Login"
-                  />
+                    style={{ width: "100%", marginTop: "1em", marginLeft: "0.5em" }}
+                    disabled={this.state.loading}
+                    // value="Login"
+                  > {this.state.loading ? 
+                    <SpinnerPage />
+                    : "Login"} </button>
                   {/* <button className="btn  SNbtn" type="button" name="button" style={{width:"100%", marginTop:"1em"}}> <a href="dashboard.html" className="textblack"> Login </a></button> */}
 
-                </span>
+                {/* </span> */}
               </div>
             </div>
           </div>

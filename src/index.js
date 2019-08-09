@@ -38,6 +38,7 @@ setGlobal({
       "locality": "Agege",
       "address": "inside inside",
       "views": 0,
+      "published": false,
       "created_at": "18 hours ago"
     },
     {
@@ -68,6 +69,7 @@ setGlobal({
       "locality": "Warri",
       "address": "inside inside",
       "views": 0,
+      "published": true,
       "created_at": "18 hours ago"
     }
   ],

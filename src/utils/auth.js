@@ -16,8 +16,14 @@ class Auth {
   }
 
   isAuthenticated = () => {
-    const expiresAt = JSON.parse(localStorage.getItem("_expires_at"));
-    return new Date().getTime() < expiresAt;
+    try {
+      let expiresAt = JSON.parse(localStorage.getItem("_expires_at"));
+      return new Date().getTime() < expiresAt;
+
+    }
+    catch(error) {
+      return false
+    }
   }
 
   _storeAuthCred = async (authResult) => {
