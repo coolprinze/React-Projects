@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { getAgents } from '../../actions';
 import Paginate from '../../component/Paginate';
+import SearchBar from '../../component/SearchBar';
 
 class Agents extends Component {
     constructor(props) {
@@ -57,19 +58,7 @@ class Agents extends Component {
                         {this.renderAgents()}
                     </div>
                     <div className="col-sm-4 col-lg-4 pl-4">
-                        <div className="row">
-                            <div className="col-sm-12 pb-3">
-                                <div className="card" height="18rem">
-                                    <h5 className=" px-3 py-3">
-                                        Search Castles
-                                    </h5>
-                                    <div className="card-footer" style={{ background: "#FF8C00" }}>
-                                        <input type="text" placeholder="e.g Lekki, Lagos" className="form-control" style={{ minHeight: '50px'}} />
-                                    </div>
-                                </div>
-                            </div>
-    
-                        </div>
+                        <SearchBar />
     
                         <div className="row">
                             <div className="col-sm-12 py-3">

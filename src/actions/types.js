@@ -22,6 +22,8 @@ export const GET_ERRORS = "GET_ERRORS";
 export const RESET = "RESET";
 export const NEWSLETTER_SUBSCRIBE = "NEWSLETTER_SUBSCRIBE";
 export const EDIT_EMAIL = "EDIT_EMAIL";
+export const SEARCH_DB = "SEARCH_DB";
+export const UPDATE_SEARCH_PARAM = "UPDATE_SEARCH_PARAM";
 
 // Auth Actions
 export const AUTH_SUCCESS = "AUTH_SUCCESS";

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_COUNTRIES, GET_STATES, GET_LOCALITIES, CREATE_MESSAGE, GET_ERRORS, RESET } from './types';
+import { GET_COUNTRIES, GET_STATES, GET_LOCALITIES, CREATE_MESSAGE, GET_ERRORS, RESET, SEARCH_DB } from './types';
 import config from '../config';
 
 // Get Countries
@@ -101,4 +101,28 @@ export const subscribe = (email) => async dispatch => {
       })
     })
     .catch(err => dispatch(createMsg( err.response.data.errors.email[0], false)));
+}
+
+
+// Search Db
+export const searchDb = params => async dispatch => {
+  
+  const url = new URL(`${config.BASE_URL}/properties/filter?search=${params}`);
+
+  axios.get(url.href, config.header)
+    .then(res => {
+      dispatch({
+        type: SEARCH_DB,
+        payload: res.data.data
+      })
+    })
+    .catch(err => {
+      if(err.response === undefined){
+
+        dispatch(createMsg("You are not connected to the internet, check your network", false))
+        return
+      }
+      dispatch(createMsg(err.response.statusText, false))
+    })
+
 }
