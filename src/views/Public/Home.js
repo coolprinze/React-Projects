@@ -4,9 +4,8 @@ import {Redirect, Link} from 'react-router-dom'
 import config from '../../config'
 import Select from 'react-select'
 import AsyncSelect from 'react-select/async'
-import { searchProperties, getAdverts } from '../../actions';
+import { searchProperties, getAdverts, getAllArticles } from '../../actions';
 import Newsletter from '../../component/Newsletter';
-import { property, leftArrow, rightArrow } from '../../assets/img';
 import { GET_SCHOOLS, GET_LANDS, GET_HOUSES, GET_APARTMENTS } from '../../actions/types';
 import FeaturedPosts from '../../component/FeaturedPosts';
 
@@ -46,6 +45,7 @@ class Home extends Component {
         props.searchProperties({ type_id: 15 }, GET_LANDS);
         props.searchProperties({ type_id: 14 }, GET_HOUSES);
         props.searchProperties({ type_id: 2 }, GET_APARTMENTS);
+        props.getAllArticles();
     }
     componentDidMount() {
         this.getPropertyTypes()
@@ -388,6 +388,9 @@ class Home extends Component {
             )
         }
         const { lands, schools, houses, apartments } = this.props.explore
+        const { articles } = this.props
+        
+        const relatedPosts = articles.data.length? <FeaturedPosts articles={articles.data} nullId={null} />: <p>There are no related post</p>
         return ( 
             <div>
                 <section className="slider">
@@ -582,6 +585,7 @@ class Home extends Component {
                                 <h5 className="text-muted pb-5">Latest update of Nigerian real estate market </h5>
                             </div>
                         </div>
+                        {relatedPosts}
 
                         
                     </div>
@@ -597,6 +601,7 @@ class Home extends Component {
 const mapStateToProps = state => ({
     adverts: state.utility.adverts,
     explore: state.utility.explore,
+    articles: state.advice.category,
 })
 
-export default connect(mapStateToProps, { searchProperties, getAdverts })(Home);
+export default connect(mapStateToProps, { searchProperties, getAdverts, getAllArticles })(Home);

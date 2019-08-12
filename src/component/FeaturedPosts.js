@@ -2,14 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { leftArrow, rightArrow, property } from '../assets/img';
 import $ from 'jquery';
-import PropTypes from 'prop-types'
 
 
-const FeaturedPosts = ({ articles, nullId, catSlug }) => {
+const FeaturedPosts = ({ articles, nullId }) => {
 
   const posts = articles.map(post => post.id !== nullId? <div className="slide" key={post.id}>
         <div className="card bg-white" height="18rem">
-          <Link to={`/propertyadvice/${catSlug}/${post.slug}`}>
+          <Link to={`/propertyadvice/${post.category_slug}/${post.slug}`}>
             <img src={post.image} height="227px" className="card-img-top" alt={post.title} style={{ height: '224px' }} />
             <div className="card-footer bg-white">
                 <h5 className="card-subtitle mb-2 text-wrap">{post.title}</h5>

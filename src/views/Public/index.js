@@ -19,6 +19,7 @@ import AdviceCategory from './AdviceCategory';
 import Advice from './Advice';
 import Advertise from './Advertise';
 import Magazine from './Magazine';
+import CityListing from './CityListing';
 
 
 
@@ -42,8 +43,9 @@ class Public extends Component {
               <Route exact path="/advertise-with-us" component={Advertise} />
               <Route exact path="/postrequest" component={PostRequest}/>
               <Route exact path="/propertylisting" component={PropertyListing} />
-              <Route exact path="/propertylisting/:slug" component={PropertyDetails} />
+              <Route exact path="/city/:id" component={CityListing} />
               <Route exact path="/search" component={SearchResult} />
+              <Route exact path="/properties/:area" component={SearchResult} />
 
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />

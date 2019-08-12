@@ -50,7 +50,8 @@ class App extends Component {
                             <Route exact path="agent/profile" component={Agent} />
                             <Route exact path="/agent/agent-listing" component={Agent} />
                             <Route exact path="/agent/listing-statistics" component={Agent} />
-                            <Route exact path="/agent/add-property" component={Agent} /> 
+                            <Route exact path="/agent/add-property" component={Agent} />
+                            <Route exact path="/city/:id" component={Public} /> 
                             <Route exact path="/agent/edit-property/:slug" component={Agent} /> 
                             <Route exact path="/propertyadvice-categories" component={Public} />
                             <Route exact path="/propertyadvice/:category" component={Public} />

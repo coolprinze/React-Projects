@@ -2,25 +2,28 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import HeaderSearch from './../../component/HeaderSearch'
 import AdvanceSearch from './../../component/AdvanceSearch'
-import { getProperties } from '../../actions';
+import { searchProperties } from '../../actions';
 import Paginate from '../../component/Paginate';
 import PropertyView from '../../component/PropertyView';
 
-class PropertyListing extends Component {
+class CityListing extends Component {
     constructor(props){
         super(props)
-        this.props.getProperties()
+        this.id = this.props.match.params.id
+
+        this.props.searchProperties({ locality_id: this.id })
     }
     
     getPropertyDetails = (id) => {
         console.log(id)
+        this.id = this.props.match.params.id
     }
     render() {
         const { data, requestType } = this.props.properties
         const properties = data.length?
         data.map((item) =>{
             return (
-                <PropertyView  key={item.id}  data={item} />
+                <PropertyView  key={item.id}  data={item} onDelete={this.deleteListing.bind(this, item.id)} />
             )
         }): <div>{requestType === 'search'? "There are no listing for your search" :  'There are no listing yet'}</div>
       return ( 
@@ -60,4 +63,4 @@ const mapStateToProps = state => ({
     requestType: state.properties.requestType
 })
 
-export default connect(mapStateToProps, { getProperties })(PropertyListing);
+export default connect(mapStateToProps, { searchProperties })(CityListing);

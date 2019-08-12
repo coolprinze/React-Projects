@@ -1,8 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { property, agent, img3 } from '../assets/img';
+import { connect } from 'react-redux'
 
-export default function PropertyView({ data, onDelete }) {
+import { property, agent, img3 } from '../assets/img';
+import PropertyListing from '../views/Public/PropertyListing';
+
+const PropertyView = ({ data, onDelete, user }) => {
+
+    const actionButtons = user.role.id === 2? <div className="d-flex justify-content-between mt-2">
+        <span>
+            <Link to={`/agent/edit-property/${data.slug}`} className="btn btn-orange btn-sm">Edit</Link>
+        </span>
+        <span>
+            <button onClick={onDelete} className="btn btn-danger btn-sm">Delete</button>
+        </span>
+    </div>: ''
+
   return (
     <div className="row py-3" >
         <div className="col-sm-8">
@@ -48,14 +61,8 @@ export default function PropertyView({ data, onDelete }) {
                             <span>{data.agent.phone === null ? "No Number":data.agent.phone}</span>
                             <span>View listing</span>
                         </div>
-                        <div className="d-flex justify-content-between mt-2">
-                            <span>
-                                <Link to={`/agent/edit-property/${data.slug}`} className="btn btn-orange btn-sm">Edit</Link>
-                            </span>
-                            <span>
-                                <button onClick={onDelete} className="btn btn-danger btn-sm">Delete</button>
-                            </span>
-                        </div>
+
+                        {actionButtons}
                     </div>
                 </div>
             </div>
@@ -63,3 +70,9 @@ export default function PropertyView({ data, onDelete }) {
     </div>
   )
 }
+
+const mapState = state => ({
+    user: state.auth.user
+})
+
+export default connect(mapState)(PropertyListing) 

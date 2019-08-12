@@ -40,6 +40,24 @@ export const getArticlesCategory = (slug) => async dispatch => {
     })
 }
 
+// Get Advice Categories
+export const getAllArticles = () => async dispatch => {
+  await axios.get(`${config.BASE_URL}/articles`, config.header)
+    .then(res => {
+      dispatch({
+        type: GET_ADVICE_CATEGORY,
+        payload: res.data.data
+      })
+    })
+    .catch(err => {
+      if(err.response === undefined){
+        dispatch(createMsg("You are not connected to the internet, check your network", false))
+        return
+      }
+      dispatch(createMsg({ request_failed: err }, false))
+    })
+}
+
 // Get Advice
 export const getAdvice = (advice) => async dispatch => {
   await axios.get(`${config.BASE_URL}/article/${advice}`, config.header)

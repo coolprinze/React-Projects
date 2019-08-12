@@ -24,7 +24,7 @@ class Advice extends Component {
   render() {
     const { article, category } = this.props
 
-    const relatedPosts = category.data.length? <FeaturedPosts catSlug={this.catSlug} articles={category.data} nullId={article.id} />: <p>There are no related post</p>
+    const relatedPosts = category.data.length? <FeaturedPosts articles={category.data} nullId={article.id} />: <p>There are no related post</p>
     return (
       <div>
       <section className="container slider mt-4">
@@ -58,7 +58,7 @@ class Advice extends Component {
               <p dangerouslySetInnerHTML={this.createMarkup(article.text)} />
               
               <p style={{ fontSize: '20px', lineHeight: '36px' }} className="py-3">
-                  Read Also: {article.previous? <Link to={`/propertyadvice/${this.catSlug}/${article.previous.slug}`}>{article.previous.title}</Link> : ''}
+                  Read Also: {article.previous? <Link to={`/propertyadvice/${article.category_slug}/${article.previous.slug}`}>{article.previous.title}</Link> : ''}
               </p>
   
               <hr />
@@ -72,12 +72,12 @@ class Advice extends Component {
                   <div className="row">
                       <div className="col-sm-6 text-left">
                           <p style={{ fontSize: '20px', lineHeight: '30px' }}>
-                            {article.previous? <span>Previous Post: <Link to={`/propertyadvice/${this.catSlug}/${article.previous.slug}`}>{article.previous.title}</Link></span> : ''}
+                            {article.previous? <span>Previous Post: <Link to={`/propertyadvice/${article.category_slug}/${article.previous.slug}`}>{article.previous.title}</Link></span> : ''}
                           </p>
                       </div>
                       <div className="col-sm-6 text-right">
                           <p style={{ fontSize: '20px', lineHeight: '30px' }}>
-                            {article.next? <span>Next Post: <Link to={`/propertyadvice/${this.catSlug}/${article.next.slug}`}>{article.next.title}</Link></span> : ''}
+                            {article.next? <span>Next Post: <Link to={`/propertyadvice/${article.category_slug}/${article.next.slug}`}>{article.next.title}</Link></span> : ''}
                           </p>
                       </div>
                   </div>
