@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { property, agent, img3 } from '../assets/img';
-import PropertyListing from '../views/Public/PropertyListing';
 
 const PropertyView = ({ data, onDelete, user }) => {
 
@@ -75,4 +74,4 @@ const mapState = state => ({
     user: state.auth.user
 })
 
-export default connect(mapState)(PropertyListing) 
+export default connect(mapState)(PropertyView) 
