@@ -18,7 +18,7 @@ class Register extends Component {
             accountType:0,
             password:"",
             cpassword:"",
-            role:0,
+            role:1,
             subscribe:true,
             status:false,
             errors: {}

@@ -1,4 +1,4 @@
-import { REG_SUCCESS, AUTH_SUCCESS, GET_USER, LOGOUT_USER, AUTH_LOADING, GET_ERRORS } from "../actions/types";
+import { REG_SUCCESS, AUTH_SUCCESS, GET_USER, LOGOUT_USER, AUTH_LOADING, GET_ERRORS, CREATE_MESSAGE } from "../actions/types";
 
 const INITIAL_STATE = {
   isAuthenticated: localStorage.getItem("token") !== null,
@@ -49,6 +49,12 @@ export default (state = INITIAL_STATE, action) => {
       }
 
     case GET_ERRORS:
+      return {  
+        ...state,
+        loading: false,     
+      }
+
+    case CREATE_MESSAGE:
       return {  
         ...state,
         loading: false,     

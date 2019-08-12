@@ -28,6 +28,7 @@ export const registerUser = (user) => async dispatch => {
 export const authenticateUser = (user) => async dispatch=> {
   await Axios.post(`${config.BASE_URL}/login`, user, config.header)
     .then(async res => {
+      console.log(res);
       await Axios.get(`${config.BASE_URL}/user`, {
         headers: {
           ...config.header.headers,   
@@ -41,10 +42,12 @@ export const authenticateUser = (user) => async dispatch=> {
           payload: { access: res.data, user: user.data.data }
         })
       }).catch(err => {
+        console.log(err.response);
         dispatch(createMsg(`Get User Failed: ${err.response}`, false))
       });  
     })
     .catch(err => {
+      console.log(err.response);
       dispatch(createMsg(`Login Failed: ${err.response.data.message}`, false))
     });    
 }

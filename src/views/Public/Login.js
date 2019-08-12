@@ -26,8 +26,8 @@ class Login extends Component {
     }
 
     auth = async e => {
-        await this.props.loadPage(AUTH_LOADING);
         await e.preventDefault()
+        await this.props.loadPage(AUTH_LOADING);
         const { email, password } = await this.state
         await this.props.authenticateUser({ email, password })
     }
