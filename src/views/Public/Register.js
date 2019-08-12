@@ -3,6 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser, loadPage } from '../../actions';
 import { AUTH_LOADING } from '../../actions/types';
+import Loading from '../../component/Loading';
 
 
 
@@ -56,6 +57,9 @@ class Register extends Component {
         await this.props.registerUser(data);
     }
     render() {
+        if(this.props.loading){
+            return (<Loading />)
+        }
         if (this.props.redirect || this.props.isAuthenticated){
             return (<Redirect to='/login' />)
         }

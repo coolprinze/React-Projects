@@ -1,4 +1,4 @@
-import { REG_SUCCESS, AUTH_SUCCESS, GET_USER, LOGOUT_USER, AUTH_LOADING } from "../actions/types";
+import { REG_SUCCESS, AUTH_SUCCESS, GET_USER, LOGOUT_USER, AUTH_LOADING, GET_ERRORS } from "../actions/types";
 
 const INITIAL_STATE = {
   isAuthenticated: localStorage.getItem("token") !== null,
@@ -46,6 +46,12 @@ export default (state = INITIAL_STATE, action) => {
         redirect: false,
         user: null,
         token: ''      
+      }
+
+    case GET_ERRORS:
+      return {  
+        ...state,
+        loading: false,     
       }
 
     case AUTH_LOADING:
