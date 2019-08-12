@@ -8,24 +8,26 @@ class AdviceCategory extends Component {
   constructor(props) {
     super(props);
     console.log(this.props)
-    const slug = this.props.match.params.category
-    this.props.getArticlesCategory(slug);
+    this.slug = this.props.match.params.category
+    this.props.getArticlesCategory(this.slug);
   }
 
 
   render() {
     const { category } = this.props;
 
-    const articles = category.length? category.map(article => 
+    const articles = category.data.length? category.data.map(article => 
       
-      <div className="col-lg-4 py-2 ">
+      <div className="col-lg-4 py-2 " key={article.id}>
         <div className="card mx-3" style={{ minHeight: '323px', background: 'none', border: 'none' }}>
-            <img src={agency} alt="" />
-            <div className="card-footer text-center" style={{ background: 'none'}}>
-                <h6 className="card-subtitle mb-2 text-muted" style={{ fontWeight: 500, fontSize: '16px', lineHeight: '24px' }}>Decoration/Luxury: A New Idea of Safe by Agresti</h6>
-                <p className="pt-2" style={{ fontSize: '14px', lineHeight: '24px' }}>Agresti is a 6o year old Italian company which has come to be known for stylish safes </p>
-                <p style={{ fontSize: '12px', lineHeight: '24px', textAlign: 'center', color: '#FE8C00' }}>June 13, 2019 | 5 comments | 10 min read</p>
-            </div>
+            <Link to={`/propertyadvice/${this.slug}/${article.slug}`}>
+                <img src={article.image} alt="" />
+                <div className="card-footer text-center" style={{ background: 'none'}}>
+                    <h6 className="card-subtitle mb-2 text-muted" style={{ fontWeight: 500, fontSize: '16px', lineHeight: '24px' }}>{article.title}</h6>
+                    <p className="pt-2" style={{ fontSize: '14px', lineHeight: '24px' }}>{article.text.substring(0, 70)} </p>
+                    <p style={{ fontSize: '12px', lineHeight: '24px', textAlign: 'center', color: '#FE8C00' }}>{article.created_at} | {article.comments_count} comments</p>
+                </div>
+            </Link>
         </div>
       </div>      
     ): <p>There are no article in this category</p>
@@ -42,8 +44,8 @@ class AdviceCategory extends Component {
           </div>
           <div className="slider-form">
               <div className="container">
-                  <h1 className="text-center text-white mb-5" style={{ fontSize: '40px' }}>DECORE & ARCHITECTURE</h1>
-                  <p className="text-center text-white" style={{ fontSize: '32px', lineHeight: '36px' }}>Read about Architecture & Interior Design with a Nigerian thrust.</p>
+                  <h1 className="text-center text-white mb-5" style={{ fontSize: '40px' }}>Viewing A Category of Articles</h1>
+                  {/* <p className="text-center text-white" style={{ fontSize: '32px', lineHeight: '36px' }}>Read about Architecture & Interior Design with a Nigerian thrust.</p> */}
   
               </div>
           </div>

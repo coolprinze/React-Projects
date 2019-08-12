@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import $ from 'jquery';
 import {Redirect, Link} from 'react-router-dom'
 import config from '../../config'
 import Select from 'react-select'
 import AsyncSelect from 'react-select/async'
-import { searchProperties } from '../../actions';
+import { searchProperties, getAdverts } from '../../actions';
 import Newsletter from '../../component/Newsletter';
 import { property, leftArrow, rightArrow } from '../../assets/img';
+import { GET_SCHOOLS, GET_LANDS, GET_HOUSES, GET_APARTMENTS } from '../../actions/types';
+import FeaturedPosts from '../../component/FeaturedPosts';
 
 
 class Home extends Component {
@@ -40,23 +41,17 @@ class Home extends Component {
         this.getFeatures = this.getFeatures.bind(this)
         this.getFeatures()
         this.searchByArea("")
+        props.getAdverts()
+        props.searchProperties({ type_id: 19 }, GET_SCHOOLS);
+        props.searchProperties({ type_id: 15 }, GET_LANDS);
+        props.searchProperties({ type_id: 14 }, GET_HOUSES);
+        props.searchProperties({ type_id: 2 }, GET_APARTMENTS);
     }
-    componentDidMount(){
-        
+    componentDidMount() {
+        this.getPropertyTypes()
+        this.getStates()
+        this.getCategories()
     }
-    slideRight = e => {
-        e.preventDefault();
-        $('#carousel').animate({
-            scrollLeft: "+=310px"
-        }, "slow");
-    };
-
-    slideLeft = e => {
-        e.preventDefault();
-        $('#carousel').animate({
-            scrollLeft: "-=100px"
-        }, "slow");
-    };
 
     handlePropertyType = (propertyType) => {
         this.setState({
@@ -102,11 +97,6 @@ class Home extends Component {
         this.setState({filterSearchTerm})
         this.searchByArea(filterSearchTerm)
         return filterSearchTerm
-    }
-    componentDidMount() {
-        this.getPropertyTypes()
-        this.getStates()
-        this.getCategories()
     }
     getPropertyTypes = async () => {
         const res = await fetch(`${config.BASE_URL}/property_types`,{
@@ -185,7 +175,7 @@ class Home extends Component {
 
     }
     getFeatures = async () => {
-        const res = await fetch(`${config.BASE_URL}/features`,{
+        const res = await fetch(`${config.BASE_URL}/adverts`,{
             method:'GET',
             headers:{
                 'Accept':'application/json',
@@ -194,8 +184,9 @@ class Home extends Component {
         })
         const payload = await res.json();
         if (payload.status === 1){
+            console.log(payload)
             this.setState({
-                featured:payload.data,
+                featured:payload.data.data,
             })
         }else{
             alert('Something went wrong')
@@ -240,16 +231,18 @@ class Home extends Component {
                 label:item.label
             }
         })
-        const {propertyType, bedroom, state,locality, bathroom, toilet, category, minPrice, maxPrice} = this.state
-        var f = this.state.featured.slice(0,8)
+        const {propertyType, bedroom, state, locality, bathroom, toilet, category, minPrice, maxPrice} = this.state
+        var f = this.state.featured.slice(0,4)
         let features = f.map((item)=>{
             return (
                 <div className="col-lg-3 py-3" key={item.id}>
-                    <div className="card" style={{minHeight: '509px', background: "url('assets/img/featured-properties/1.png')", backgroundSize: 'cover'}}>
+                    <div className="card" style={{minHeight: '509px', background: `${item.image}`, backgroundSize: 'cover'}}>
                         <div className="overlay"></div>
-                        <h5 className="text-center" style={{position: 'absolute', right: '0', left: '0', bottom: '72px', color: '#ffffff'}}>
-                            {item.name}
-                        </h5>
+                        <Link to={`/adverts/${item.id}`}>
+                            <h5 className="text-center" style={{position: 'absolute', right: '0', left: '0', bottom: '72px', color: '#ffffff'}}>
+                                {item.title}
+                            </h5>
+                        </Link>
                     </div>
                 </div>
             )
@@ -394,6 +387,7 @@ class Home extends Component {
             </div>
             )
         }
+        const { lands, schools, houses, apartments } = this.props.explore
         return ( 
             <div>
                 <section className="slider">
@@ -527,7 +521,7 @@ class Home extends Component {
                                                 <div className="overlay"></div>
                                                 <div className="text-center" style={{position: 'absolute', right: '0', left: '0', bottom:'130px', color: '#ffffff'}}>
                                                     <h5 className="text-white">Schools</h5>
-                                                    <h6 className="text-white"><span style={{color: '#FE8C00'}}>24</span> Properties</h6>
+                                                    <h6 className="text-white"><span style={{color: '#FE8C00'}}>{schools}</span> Properties</h6>
                                                 </div>
                                             </div>
                                         </Link>
@@ -540,7 +534,7 @@ class Home extends Component {
                                                 <div className="overlay"></div>
                                                 <div className="text-center" style={{position: 'absolute', right: '0', left: '0', bottom:'130px', color:' #ffffff'}}>
                                                     <h5 className="text-white">Lands</h5>
-                                                    <h6 className="text-white"><span style={{color: '#FE8C00'}}>24</span> Properties</h6>
+                                                    <h6 className="text-white"><span style={{color: '#FE8C00'}}>{lands}</span> Properties</h6>
                                                 </div>
                                             </div>
                                         </Link>
@@ -552,7 +546,7 @@ class Home extends Component {
                                                 <div className="overlay"></div>
                                                 <div className="text-center" style={{position: 'absolute', right: '0', left: '0', bottom:'130px', color: '#ffffff'}}>
                                                     <h5 className="text-white">Apartment</h5>
-                                                    <h6 className="text-white"><span style={{color: '#FE8C00'}}>24</span> Properties</h6>
+                                                    <h6 className="text-white"><span style={{color: '#FE8C00'}}>{apartments}</span> Properties</h6>
                                                 </div>
                                             </div>
                                         </Link>
@@ -564,7 +558,7 @@ class Home extends Component {
                                                 <div className="overlay"></div>
                                                 <div className="text-center" style={{position: 'absolute', right: '0', left: '0', bottom:'130px', color: '#ffffff'}}>
                                                     <h5 className="text-white">Houses</h5>
-                                                    <h6 className="text-white"><span style={{color: '#FE8C00'}}>24</span> Properties</h6>
+                                                    <h6 className="text-white"><span style={{color: '#FE8C00'}}>{houses}</span> Properties</h6>
                                                 </div>
                                             </div>
                                         </Link>
@@ -587,96 +581,9 @@ class Home extends Component {
                                 <h3 className="mb-4">Property News</h3>
                                 <h5 className="text-muted pb-5">Latest update of Nigerian real estate market </h5>
                             </div>
-
-                            <div className="col-sm-2 offset-sm-4">
-                                <div className="row">
-                                    <div className="col-sm-3 offset-sm-6 px-0">
-                                        <img src="img/icon/left-arrow-sm.png" alt="" />
-                                    </div>
-                                    <div className="col-sm-3 px-0">
-                                        <img src="img/icon/right-arrow.png" alt="" />
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
-                        <div className="row ">
-                            <div className="container">
-                                <div className="row">
-
-                                    <div className="col-sm-2 offset-sm-4">
-                                        <div className="row">
-                                            <div className="col-sm-3 offset-sm-6 px-0">
-                                                <img src={leftArrow} id="left-btn" className="px-1 pointer" alt=" " onClick={this.slideLeft} />
-                                            </div>
-                                            <div className="col-sm-3 px-0">
-                                                <img src={rightArrow} id="right-btn" className="px-1 pointer" alt=" " onClick={this.slideRight} />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="carousel">
-                                <div className="slide">
-                                    <div className="card bg-white" height="18rem">
-                                        <img src={property} height="227px" className="card-img-top" alt="..." style={{ height: '224px' }} />
-                                        <div className="card-footer bg-white">
-                                            <h5 className="card-subtitle mb-2 text-wrap">Occeanna, an Iconnic project in Lagos</h5>
-                                            <p className="pt-2 pull-right">By Reachmond Estate</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="slide">
-                                    <div className="card bg-white" height="18rem">
-                                        <img src={property} height="227px" className="card-img-top" alt="..." style={{ height: '224px' }} />
-                                        <div className="card-footer bg-white">
-                                            <h5 className="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
-                                            <p className="pt-2 pull-right">By Reachmond Estate</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="slide">
-                                    <div className="card bg-white" height="18rem">
-                                        <img src={property} height="227px" className="card-img-top" alt="..." style={{ height: '224px' }} />
-                                        <div className="card-footer bg-white">
-                                            <h5 className="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
-                                            <p className="pt-2 pull-right">By Reachmond Estate</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="slide">
-                                    <div className="card bg-white" height="18rem">
-                                        <img src={property} height="227px" className="card-img-top" alt="..." style={{ height: '224px' }} />
-                                        <div className="card-footer bg-white">
-                                            <h5 className="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
-                                            <p className="pt-2 pull-right">By Reachmond Estate</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="slide">
-                                    <div className="card bg-white" height="18rem">
-                                        <img src={property} height="227px" className="card-img-top" alt="..." style={{ height: '224px' }} />
-                                        <div className="card-footer bg-white">
-                                            <h5 className="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
-                                            <p className="pt-2 pull-right">By Reachmond Estate</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="slide">
-                            <div className="card bg-white" height="18rem">
-                                <img src={property} height="227px" className="card-img-top" alt="..." style={{ height: '224px' }} />
-                                <div className="card-footer bg-white">
-                                    <h5 className="card-subtitle mb-2 text-muted text-wrap">Occeanna, an Iconnic project in Lagos</h5>
-                                    <p className="pt-2 pull-right">By Reachmond Estate</p>
-                                </div>
-                            </div>
-                        </div>
-                            </div>
-
-
-
-                        </div>
+                        
                     </div>
                 </section>
                 
@@ -687,5 +594,9 @@ class Home extends Component {
     }
 
 }
+const mapStateToProps = state => ({
+    adverts: state.utility.adverts,
+    explore: state.utility.explore,
+})
 
-export default connect(null, { searchProperties })(Home);
+export default connect(mapStateToProps, { searchProperties, getAdverts })(Home);

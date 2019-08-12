@@ -3,8 +3,18 @@ import { GET_ADVICE_CATEGORIES, GET_ADVICE_CATEGORY, GET_ADVICE } from "../actio
 
 const INITIAL_STATE = {
   categories: [],
-  category: [],
-  advice: {},
+  category: {
+    data: [],
+    requestType: null,
+    first_page_url: '', 
+    last_page_url: '', 
+    to: '', 
+    from: '', 
+    total: ''
+  },
+  article: {
+    comments: []
+  },
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -22,7 +32,7 @@ export default (state = INITIAL_STATE, action) => {
     case GET_ADVICE:
       return {
         ...state,
-        advice: action.payload
+        article: action.payload
       }
     
     default:

@@ -42,7 +42,7 @@ export const getProperties = (type = null) => async dispatch => {
 }
 
 // Search Property
-export const searchProperties = params => async dispatch => {
+export const searchProperties = (params, type = GET_PROPERTIES) => async dispatch => {
   
   const url = new URL(`${config.BASE_URL}/search`);
   Object.keys(params).forEach(key=> url.searchParams.append(key,params[key]));
@@ -50,7 +50,7 @@ export const searchProperties = params => async dispatch => {
   axios.get(url.href, config.header)
     .then(res => {
       dispatch({
-        type: GET_PROPERTIES,
+        type,
         payload: { data:res.data.data, type: 'search' }
       })
     })

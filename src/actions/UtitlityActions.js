@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { GET_COUNTRIES, GET_STATES, GET_LOCALITIES, CREATE_MESSAGE, GET_ERRORS, RESET, SEARCH_DB, LOAD_PAGE } from './types';
+import { GET_COUNTRIES, GET_STATES, GET_LOCALITIES, CREATE_MESSAGE, GET_ERRORS, RESET, SEARCH_DB, LOAD_PAGE, GET_ADVERTS, GET_ADVERT_PROPERTIES } from './types';
 import config from '../config';
+import Axios from 'axios';
 
 // Get Countries
 export const getCountries = () => async dispatch => {  
@@ -130,3 +131,31 @@ export const searchDb = params => async dispatch => {
 export const loadPage = (type = LOAD_PAGE) => ({
   type
 })
+
+// List Adverts properties
+export const getAdverts = ()=> async dispatch => {
+  Axios.get(`${config.BASE_URL}/adverts`)
+    .then(res => {
+      dispatch({
+        type: GET_ADVERTS,
+        payload: res.data.data
+      })
+    })
+    .catch(err => {
+      dispatch(createMsg(err.response.message));
+    })
+}
+
+// List Adverts properties
+export const getAdvertProperties = (id)=> async dispatch => {
+  Axios.get(`${config.BASE_URL}/adverts/${id}`)
+    .then(res => {
+      dispatch({
+        type: GET_ADVERT_PROPERTIES,
+        payload: res.data.data
+      })
+    })
+    .catch(err => {
+      dispatch(createMsg(err.response.message));
+    })
+}
