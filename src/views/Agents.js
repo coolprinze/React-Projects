@@ -5,8 +5,11 @@ import Footer from '../component/Footer'
 import AddAgent from './AddAgent'
 import { Link } from 'react-router-dom';
 import { getGlobal } from 'reactn'
-import { 
-  MDBDataTable, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from 'mdbreact'
+import {
+  MDBDataTable, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem
+} from 'mdbreact'
+import { NotificationContainer, NotificationManager } from 'react-notifications'
+import '../notifications.css'
 import API from '../utils/api'
 let api = new API();
 
@@ -25,7 +28,38 @@ class Agents extends Component {
       [modalNumber]: !this.state[modalNumber]
     });
   }
+  async manageUser(id, url_text) {
 
+    let result = await api.manageUser(id, url_text)
+    await this.setState({ loading: false });
+    if (url_text === 'suspend') {
+      url_text = 'suspende';
+    }
+    if (result) {
+      await NotificationManager.success('Success', `Agemt ${url_text}d`)
+    }
+    else {
+      await NotificationManager.error('Error', `Agent not ${url_text}d`)
+    }
+  }
+  createNotification = (type, message) => {
+    return () => {
+      switch (type) {
+        case 'info':
+          NotificationManager.info('Info message');
+          break;
+        case 'success':
+          NotificationManager.success('Success message', 'Title here');
+          break;
+        case 'warning':
+          NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+          break;
+        case 'error':
+          NotificationManager.error('Error', message, 5000);
+          break;
+      }
+    };
+  };
   render() {
     const columns = [
       {
@@ -62,7 +96,11 @@ class Agents extends Component {
         'name': agent.name,
         'phone': agent.id,
         'email': agent.email,
-        'btn': <button type="button" style={{ backgroundColor: '#000' }} name="button"> <Link to={"/agents/dasdad"} >View Listings </Link></button>,
+        'btn': <button type="button" style={{ backgroundColor: '#000' }} name="button">
+          <Link to={"/agents/dasdad"} >
+            View Listings
+        </Link>
+        </button>,
 
         'sendemail': <button type="button" name="button" style={{ backgroundColor: '#000' }} className="rounded-circle">
           <img src="images/Group(1).png" alt="" />
@@ -72,11 +110,11 @@ class Agents extends Component {
             <img src="images/Group9.png" alt="" />
           </MDBDropdownToggle>
           <MDBDropdownMenu basic>
-            <MDBDropdownItem>Edit</MDBDropdownItem>
+            <MDBDropdownItem onClick={this.createNotification('error', 'Not implemented yet')}>Edit</MDBDropdownItem>
             <MDBDropdownItem divider />
-            <MDBDropdownItem>Delete</MDBDropdownItem>
+            <MDBDropdownItem onClick={this.createNotification('error', 'Not implemented yet')}>Delete</MDBDropdownItem>
             <MDBDropdownItem divider />
-            <MDBDropdownItem onClick={async() => { await api.manageUser(agent.id, agent.suspended_at ? 'restore' : 'suspend'); await this.setState({loading: false})}}>{!agent.suspended_at ? "Suspend" : "Restore"}</MDBDropdownItem>
+            <MDBDropdownItem onClick={async () => { await this.manageUser(agent.id, agent.suspended_at ? 'restore' : 'suspend') }}>{!agent.suspended_at ? "Suspend" : "Restore"}</MDBDropdownItem>
           </MDBDropdownMenu>
         </MDBDropdown>
         // <div className="drop">
@@ -99,16 +137,19 @@ class Agents extends Component {
             <div className="col-12">
               <nav className="navbar bg-dark" style={{ borderRadius: "4px 4px 0px 0px" }}>
                 <p className="navbar-brand myp"> All Agents</p>
-                {/* <button type="button" name="button" className="mr-auto">Add Agent</button> */}
                 <div className="" >
                   <span className="form-inline">
                     <div className="drop">
-                      <AddAgent isOpen={this.state.modal14} toggle={this.toggle}/>
+                      <AddAgent
+                        // isOpen={this.state.modal14} 
+                        toggle={this.toggle} onClick={this.createNotification('error', 'Not implemented yet')} />
 
                     </div>
                   </span>
                 </div>
               </nav>
+              <NotificationContainer />
+
               <MDBDataTable
                 striped
                 bordered
@@ -116,127 +157,6 @@ class Agents extends Component {
                 data={{ rows, columns }}
                 style={{ backgroundColor: "#f8f9fa" }}
               />
-              {/* <table className="mx-auto" id="t01">
-
-                <tr>
-                  <th>Name</th>
-                  <th>Telephone</th>
-                  <th>E-mail</th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-                <tr>
-                  <td>Adebi Adebayo</td>
-                  <td>0703555251</td>
-                  <td>AdebiAdebayo@gmail.com</td>
-                  <td>
-                    <button type="button" name="button"> <a href="admin_agents_listing.html">View Listings</a></button>
-                  </td>
-                  <td>
-                    <button type="button" name="button" className="rounded-circle">
-                      <img src="images/Group(1).png" alt="" />
-                    </button>
-                  </td>
-                  <td>
-                    <div className="drop">
-                      <button className="dropbutton rounded-circle"> <img src="images/Group9.png" alt="" /></button>
-                      <div className="drop-content dropdown-menu-right" id="dropDownCont">
-                        <a href="#">edit</a>
-                        <a href="#">delete</a>
-                        <a href="#">suspend</a>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>D Properties Development...</td>
-                  <td>0703555251</td>
-                  <td>Deba@dpropertiesdevelopment.com</td>
-                  <td>
-                    <button type="button" name="button"> <a href="admin_agents_listing.html">View Listings</a></button>
-                  </td>
-                  <td>
-                    <button type="button" name="button" className="rounded-circle">
-                      <img src="images/Group(1).png" alt="" />
-                    </button>
-                  </td>
-                  <td>
-                    <div className="drop">
-                      <button className="dropbutton rounded-circle"> <img src="images/Group9.png" alt="" /></button>
-                      <div className="drop-content dropdown-menu-right" id="dropDownCont">
-                        <a href="#">edit</a>
-                        <a href="#">delete</a>
-                        <a href="#">suspend</a>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>D Properties Development...</td>
-                  <td>0703555251</td>
-                  <td>Deba@dpropertiesdevelopment.com</td>
-                  <td>
-                    <button type="button" name="button"> <a href="admin_agents_listing.html">View Listings</a></button>
-                  </td>
-                  <td>
-                    <button type="button" name="button" className="rounded-circle">
-                      <img src="images/Group(1).png" alt="" />
-                    </button>
-                  </td>
-                  <td>
-                    <div className="drop">
-                      <button className="dropbutton rounded-circle"> <img src="images/Group9.png" alt="" /></button>
-                      <div className="drop-content dropdown-menu-right" id="dropDownCont">
-                        <a href="#">edit</a>
-                        <a href="#">delete</a>
-                        <a href="#">suspend</a>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>D Properties Development...</td>
-                  <td>0703555251</td>
-                  <td>Deba@dpropertiesdevelopment.com</td>
-                  <td>
-                    <button type="button" name="button"> <a href="admin_agents_listing.html">View Listings</a></button>
-                  </td>
-                  <td>
-                    <button type="button" name="button" className="rounded-circle">
-                      <img src="images/Group(1).png" alt="" />
-                    </button>
-                  </td>
-                  <td>
-                    <div className="drop">
-                      <button className="dropbutton rounded-circle"> <img src="images/Group9.png" alt="" /></button>
-                      <div className="drop-content dropdown-menu-right" id="dropDownCont">
-                        <a href="#">edit</a>
-                        <a href="#">delete</a>
-                        <a href="#">suspend</a>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </table> */}
-            </div>
-          </div>
-        </div>
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <nav aria-label="Page navigation example">
-                <ul className="pagination justify-content-end">
-                  <li className="page-item disabled">
-                    <a className="page-link" href="#" tabIndex="-1" aria-disabled="true">Previous</a>
-                  </li>
-                  <li className="page-item"><a className="page-link" href="#">1-10 of 60</a></li>
-
-                  <li className="page-item">
-                    <a className="page-link" href="#">Next</a>
-                  </li>
-                </ul>
-              </nav>
             </div>
           </div>
         </div>

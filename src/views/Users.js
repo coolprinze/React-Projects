@@ -6,8 +6,9 @@ import { getGlobal, useGlobal } from 'reactn'
 import {
   MDBDataTable, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBSpinner
 } from 'mdbreact'
-import {Link} from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
+import { NotificationContainer, NotificationManager } from 'react-notifications'
+import '../notifications.css'
 import API from '../utils/api'
 let api = new API();
 
@@ -16,8 +17,40 @@ class Users extends Component {
     super(props)
     this.state = {
     }
-
+    this.manageUser = this.manageUser.bind(this);
   }
+  async manageUser(id, url_text) {
+    
+    let result = await api.manageUser(id, url_text)
+    await this.setState({ loading: false });
+    if (url_text === 'suspend') {
+      url_text = 'suspende';
+    }
+    if (result) {
+      await NotificationManager.success('Success', `User ${url_text}d`)
+    }
+    else {
+      await NotificationManager.error('Error', `User not ${url_text}d`)
+    }
+  }
+  createNotification = (type, message) => {
+    return () => {
+      switch (type) {
+        case 'info':
+          NotificationManager.info('Info message');
+          break;
+        case 'success':
+          NotificationManager.success('Success message', 'Title here');
+          break;
+        case 'warning':
+          NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+          break;
+        case 'error':
+          NotificationManager.error('Error', message, 5000);
+          break;
+      }
+    };
+  };
   render() {
     const columns = [
       {
@@ -50,18 +83,21 @@ class Users extends Component {
         'lname': user.name.split(" ")[1],
         'email': user.email,
         'type': user.role.name,
-        // 'status': property.published ? <span style={{ color: "green" }}>Available</span> : <span style={{ color: "red" }}>Unavailable</span>,
-        'btn': <button type="button" style={{ backgroundColor: '#000' }} name="button"> <Link to={"/notfound"} > View </Link></button>,
+        'btn': <button type="button" style={{ backgroundColor: '#000', color: "#fff" }} name="button" onClick={this.createNotification('error', 'Not implemented yet')}>
+         {/* <Link to={"/notfound"} > */}
+          View
+           {/* </Link> */}
+           </button>,
         'more': <MDBDropdown>
           <MDBDropdownToggle style={{ backgroundColor: '#000' }}>
             <img src="images/Group9.png" alt="" />
           </MDBDropdownToggle>
           <MDBDropdownMenu basic>
-            <MDBDropdownItem>Edit</MDBDropdownItem>
+            <MDBDropdownItem onClick={this.createNotification('error', 'Not implemented yet')}>Edit</MDBDropdownItem>
             <MDBDropdownItem divider />
-            <MDBDropdownItem>Delete</MDBDropdownItem>
+            <MDBDropdownItem onClick={this.createNotification('error', 'Not implemented yet')}>Delete</MDBDropdownItem>
             <MDBDropdownItem divider />
-            <MDBDropdownItem onClick={async() => { await api.manageUser(user.id, user.suspended_at ? 'restore' : 'suspend'); await this.setState({loading: false})}}>{!user.suspended_at ? "Suspend" : "Restore"}</MDBDropdownItem>
+            <MDBDropdownItem onClick={async () => { await this.manageUser(user.id, user.suspended_at ? 'restore' : 'suspend') }}>{!user.suspended_at ? "Suspend" : "Restore"}</MDBDropdownItem>
           </MDBDropdownMenu>
         </MDBDropdown>
       }
@@ -75,21 +111,8 @@ class Users extends Component {
             <div className="col-12">
               <nav className="navbar bg-dark" style={{ borderRadius: "4px 4px 0px 0px" }}>
                 <p className="navbar-brand myp"> All Users</p>
-                {/*<div>
-                   <form className="form-inline">
-                    <input type="search" name="" value="" placeholder="Find..." className="Search" />
-                    <button className="btn btn-light" type="button" name="button">Date</button>
-                    <div className="drop">
-                      <button className="dropbutton btn btn-light"> Sort</button>
-                      <div className="drop-content dropdown-menu-right" id="dropDownCont">
-                        <a href="#">Alphabetically</a>
-                        <a href="#">Agents</a>
-                        <a href="#">Individual</a>
-                      </div>
-                    </div>
-                  </form> 
-                </div>*/}
               </nav>
+              <NotificationContainer />
               <MDBDataTable
                 striped
                 bordered
@@ -99,84 +122,7 @@ class Users extends Component {
               />
             </div>
           </div>
-          {/* <div className="row" style={{ marginBlockEnd: "1em" }}>
-            <div className="col-12">
-              <table className="mx-auto" id="t01">
-                <tr>
-                  <th>first name</th>
-                  <th>Last name</th>
-                  <th>Email</th>
-                  <th>Account type</th>
-                  <th></th>
-                </tr>
-                <tr>
-                  <td>Toyin</td>
-                  <td>Ikoyi</td>
-                  <td>hawau.olamide.th@gmail.com</td>
-                  <td>Individual</td>
-                  <td>
-                    <button type="button" name="button" className="btn-dark"> <a href="admin_users_listing.html">view</a></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Toyin</td>
-                  <td>Ikoyi</td>
-                  <td>hawau.olamide.th@gmail.com</td>
-                  <td>Individual</td>
-                  <td>
-                    <button type="button" name="button" className="btn-dark"> <a href="admin_users_listing.html">view</a></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Toyin</td>
-                  <td>Ikoyi</td>
-                  <td>hawau.olamide.th@gmail.com</td>
-                  <td>Individual</td>
-                  <td>
-                    <button type="button" name="button" className="btn-dark"> <a href="admin_users_listing.html">view</a></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Toyin</td>
-                  <td>Ikoyi</td>
-                  <td>hawau.olamide.th@gmail.com</td>
-                  <td>Individual</td>
-                  <td>
-                    <button type="button" name="button" className="btn-dark"> <a href="admin_users_listing.html">view</a></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Toyin</td>
-                  <td>Ikoyi</td>
-                  <td>hawau.olamide.th@gmail.com</td>
-                  <td>Individual</td>
-                  <td>
-                    <button type="button" name="button" className="btn-dark"> <a href="admin_users_listing.html">view</a></button>
-                  </td>
-                </tr>
-
-
-              </table>
-            </div>
-          </div> */}
         </div>
-        {/* <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <nav aria-label="Page navigation example">
-                <ul className="pagination justify-content-end">
-                  <li className="page-item disabled">
-                    <a className="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                  </li>
-                  <li className="page-item"><a className="page-link" href="#">1 to 10 of 60</a></li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">Next</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div> */}
         <Footer />
       </React.Fragment>
     )

@@ -22,10 +22,10 @@ class Subscribers extends Component {
         label: 'Email',
         field: 'email'
       },
-      {
-        label: '',
-        field: 'action'
-      }
+      // {
+      //   label: '',
+      //   field: 'action'
+      // }
       
     ];
 
