@@ -165,7 +165,7 @@ class API {
 
   getUsers = async () => {
     await setGlobal(
-      fetch(`${this.baseURL}/admin/users?paginate=1000`, {
+      fetch(`${this.baseURL}/admin/users?paginate=1000&role=1`, {
         headers: { ...this.header, Authorization: `Bearer ${this.token}` },
         method: 'GET',
       })
