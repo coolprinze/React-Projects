@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import HeaderSearch from './../../component/HeaderSearch'
 import { property as img1, leftArrow, rightArrow } from '../../assets/img';
 import { getProperty } from '../../actions';
+import { Link } from 'react-router-dom';
 
 
 
@@ -12,10 +13,12 @@ class PropertyDetails extends Component {
       property: []
     }
 
-    async componentDidMount() {
-      const slug = await this.props.match.params.slug
-      await this.props.getProperty(slug);
+    constructor(props){
+        super(props)
+        this.slug = this.props.match.params.slug
+        props.getProperty(this.slug);
     }
+
 
     render() {
       console.log(this.props.match.params.id);
@@ -184,7 +187,7 @@ class PropertyDetails extends Component {
                                       <div className="row ">
                                           <div className="col-sm-6 offset-sm-6 px-4 ">
                                               <p className="mb-0 text-right " style={{fontSize: '1rem', textDecoration: 'underline'}}>
-                                                  <a href="agent.html">View Listing</a>
+                                                  <Link to="agent.html">View Listing</Link>
                                               </p>
                                           </div>
                                       </div>

@@ -65,6 +65,7 @@ class App extends Component {
                             <Route exact path="/propertylisting/:slug" component={Public} />
                             <Route exact path="/notfound" component={NotFound} />
                             {/* <Route  component={NotFound} /> */}
+                            <Route exact path="/property/:slug" component={Public} />
                         </Fragment>
                     </Router>
                 </AlertProvider>

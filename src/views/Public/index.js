@@ -50,6 +50,7 @@ class Public extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/agents" component={Agents} />
+              <Route exact path="/property/:slug" component={PropertyDetails} />
             </Switch>
           </main> 
           <Footer/>         

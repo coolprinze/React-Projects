@@ -30,7 +30,9 @@ const PropertyView = ({ data, onDelete, user }) => {
         </div>
         <div className="col-sm-4 px-0 py-0 bg-white">
             <div className="col-sm-12 py-2 px-2">
-                <h5>{data.title}</h5>
+                <Link to={`/property/${data.slug}`}>
+                    <h5>{data.title}</h5>
+                </Link>
                 <span className="text-small">
                     {data.bedrooms === null ? 0: data.bedrooms} Bedrooms | 
                     {data.bathrooms === null ? 0: data.bathrooms} Bathrooms | 
