@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { Link, Redirect } from 'react-router-dom';
 import Header from "../../component/Header/UserHeader"
 import { Input, TextArea, Select } from '../../common/Form';
-import { getCountries, getStates, getLocalities, saveProperty, getProperty } from '../../actions';
+import { getCountries, getStates, getLocalities, saveProperty, getProperty, loadPage } from '../../actions';
 
 
 class AddProperty extends Component {
@@ -33,9 +33,14 @@ class AddProperty extends Component {
         slug: false,
     }
 
+    constructor(props) {
+        super(props);
+
+        props.getCountries()
+        props.getStates()        
+    }
+    
     async componentDidMount() {
-        await this.props.getCountries()
-        await this.props.getStates()        
         const slug = await this.props.match.params.slug
         if (slug !== undefined){
             await this.props.getProperty(slug);
@@ -356,4 +361,4 @@ const mapStateToProps = state => ({
     status: state.properties.status,
 })
 
-export default connect(mapStateToProps, { getCountries, getStates, getLocalities, saveProperty, getProperty })(AddProperty);
+export default connect(mapStateToProps, { getCountries, getStates, getLocalities, saveProperty, getProperty, loadPage })(AddProperty);

@@ -12,6 +12,7 @@ import Profile from './Profile'
 import AddProperty from './AddProperty';
 import AgentListingStats from './AgentListingStats';
 import { createMsg } from '../../actions';
+import Loading from '../../component/Loading';
 
 
 
@@ -31,7 +32,10 @@ class Agent extends Component {
         }
         return ( 
           <div>
-            <main>
+            <div className={`${this.props.pageLoading? '' : 'd-none'}`}>
+              <Loading />
+            </div>
+            <main className={`${this.props.pageLoading? 'd-none' : ''}`}>
               <Switch>
                 <Route exact path="/agent" component={Dashboard} />
                 <Route exact path="/agent/listing-statistics" component={AgentListingStats} />
@@ -57,7 +61,8 @@ class Agent extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user
+  user: state.auth.user,
+  pageLoading: state.utility.pageLoading
 })
 
 export default connect(mapStateToProps, { createMsg })(Agent);

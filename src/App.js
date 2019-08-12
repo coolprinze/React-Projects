@@ -25,9 +25,6 @@ const alertOptions = {
 
 class App extends Component {
 
-    componentDidMount() {
-
-    }
 
     render() {
         const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))

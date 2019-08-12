@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { registerUser } from '../../actions/AuthActions';
+import { registerUser, loadPage } from '../../actions';
+import { AUTH_LOADING } from '../../actions/types';
 
 
 
@@ -40,6 +41,7 @@ class Register extends Component {
     }
 
     register = async e => {
+        await this.props.loadPage(AUTH_LOADING);
         await e.preventDefault()
 
         const data = await {
@@ -166,6 +168,7 @@ class Register extends Component {
 const mapStateToProps = state => ({
     redirect: state.auth.redirect,
     isAuthenticated: state.auth.isAuthenticated,
+    loading: state.auth.loading,
 })
 
-export default connect(mapStateToProps, { registerUser })(Register);
+export default connect(mapStateToProps, { registerUser, loadPage })(Register);

@@ -1,7 +1,7 @@
-import { GET_COUNTRIES, GET_STATES, CREATE_MESSAGE, GET_ERRORS, RESET, GET_LOCALITIES, EDIT_EMAIL, SEARCH_DB, UPDATE_SEARCH_PARAM } from "../actions/types";
+import { GET_COUNTRIES, GET_STATES, CREATE_MESSAGE, GET_ERRORS, RESET, GET_LOCALITIES, EDIT_EMAIL, SEARCH_DB, UPDATE_SEARCH_PARAM, LOAD_PAGE } from "../actions/types";
 
 const INITIAL_STATE = {
-  pageLoading: false,
+  pageLoading: true,
   countries: [],
   states: [],
   localities: [],
@@ -10,43 +10,47 @@ const INITIAL_STATE = {
   reset: false,
   email: '',
   searchResult: [],
-  searchedParam: ''
+  searchedParam: '',
+  loading: true
 }
 
 export default (state = INITIAL_STATE, action) => {
   console.log(action)
   switch(action.type){
     case GET_COUNTRIES:
-      return { ...state, countries: action.payload }
+      return { ...state, loading: false, countries: action.payload }
 
     case GET_STATES:
-      return { ...state, states: action.payload }
+      return { ...state, loading: false, states: action.payload }
 
     case GET_LOCALITIES:
-      return { ...state, localities: action.payload }
+      return { ...state, loading: false, localities: action.payload }
 
     case CREATE_MESSAGE:
-      return {...state, messages: action.payload}
+      return {...state, loading: false, messages: action.payload}
 
     case GET_ERRORS:
       return { 
 
-        ...state,
+        ...state, loading: false,
         errors: {
           msg: action.payload.msg
         }
       }
     case RESET:
-      return { ...state, reset: true }
+      return { ...state, loading: false, reset: true }
       
     case EDIT_EMAIL:
-      return { ...state, email: action.payload }
+      return { ...state, loading: false, email: action.payload }
 
     case UPDATE_SEARCH_PARAM:
-      return { ...state, searchedParam: action.payload }
+      return { ...state, loading: false, searchedParam: action.payload }
 
     case SEARCH_DB:
-      return { ...state, searchResult: action.payload }
+      return { ...state, loading: false, searchResult: action.payload }
+
+    case LOAD_PAGE:
+      return { ...state, loading: false, pageLoading: false }
 
 
     default:

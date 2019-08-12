@@ -15,7 +15,8 @@ const INITIAL_STATE = {
   },
   status: false,
   categories: [],
-  types: []
+  types: [],
+  loading: true
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -23,6 +24,7 @@ export default (state = INITIAL_STATE, action) => {
     case GET_PROPERTIES:
       return {
         ...state,
+        loading: false,
         listings: {
           ...state.listings,
           ...action.payload.data,
@@ -32,21 +34,25 @@ export default (state = INITIAL_STATE, action) => {
     case GET_PROPERTY:
       return {
         ...state,
+        loading: false,
         property: action.payload
       }
     case GET_PROPERTY_CATEGORIES:
       return {
         ...state,
+        loading: false,
         categories: action.payload
       }
     case GET_PROPERTY_TYPES:
       return {
         ...state,
+        loading: false,
         types: action.payload
       }
     case DELETE_PROPERTY:
       return {
         ...state,
+        loading: false,
         listings: {
           ...state.listings,
           data: state.listings.data.filter(property => property.id !== action.payload)
@@ -55,6 +61,7 @@ export default (state = INITIAL_STATE, action) => {
     case RESET:
       return {
         ...state,
+        loading: false,
         status: true
       }
     default:

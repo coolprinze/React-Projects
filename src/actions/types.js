@@ -6,11 +6,13 @@ export const DELETE_PROPERTY = "DELETE_PROPERTY";
 export const GET_PROPERTIES = "GET_PROPERTIES";
 export const GET_PROPERTY_CATEGORIES = "GET_PROPERTY_CATEGORIES";
 export const GET_PROPERTY_TYPES = "GET_PROPERTY_TYPES";
+export const PROPERTY_LOADING = "PROPERTY_LOADING";
 
 // Agent Action Types
 export const GET_STATS = "GET_STATS";
 export const GET_AGENT_LISTINGS = "GET_AGENT_LISTINGS";
 export const GET_AGENTS = "GET_AGENTS";
+export const AGENT_LOADING = "AGENT_LOADING";
 
 // Utility Action Types
 export const GET_COUNTRY = "GET_COUNTRY";
@@ -24,15 +26,19 @@ export const NEWSLETTER_SUBSCRIBE = "NEWSLETTER_SUBSCRIBE";
 export const EDIT_EMAIL = "EDIT_EMAIL";
 export const SEARCH_DB = "SEARCH_DB";
 export const UPDATE_SEARCH_PARAM = "UPDATE_SEARCH_PARAM";
+export const LOAD_PAGE = "LOAD_PAGE";
+export const UTILITY_LOADING = "UTILITY_LOADING";
 
 // Auth Actions
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const REG_SUCCESS = "REG_SUCCESS";
 export const GET_USER = "GET_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
+export const AUTH_LOADING = "AUTH_LOADING";
 
 
 // Property Advice 
 export const GET_ADVICE_CATEGORIES = "GET_ADVICE_CATEGORIES";
 export const GET_ADVICE_CATEGORY = "GET_ADVICE_CATEGORY";
 export const GET_ADVICE = "GET_ADVICE";
+export const ADVICE_LOADING = "ADVICE_LOADING";

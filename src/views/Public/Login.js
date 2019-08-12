@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { authenticateUser } from '../../actions/AuthActions';
+import { authenticateUser, loadPage } from '../../actions';
+import Loading from '../../component/Loading';
+import { AUTH_LOADING } from '../../actions/types';
 
 
 
@@ -22,17 +24,17 @@ class Login extends Component {
             [e.target.id]:e.target.value
         })
     }
-    authRequest = async () => {
-    }
-    getUser = async () => {
 
-    }
     auth = async e => {
+        await this.props.loadPage(AUTH_LOADING);
         await e.preventDefault()
         const { email, password } = await this.state
         await this.props.authenticateUser({ email, password })
     }
     render() {
+        if(this.props.loading){
+            return (<Loading />)
+        }
         if (this.props.isAuthenticated){
             return (<Redirect to='/user' />)
         }
@@ -99,7 +101,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    loading: state.auth.loading
 })
 
-export default connect(mapStateToProps, { authenticateUser })(Login);
+export default connect(mapStateToProps, { authenticateUser, loadPage })(Login);

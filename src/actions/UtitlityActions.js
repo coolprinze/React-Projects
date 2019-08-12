@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_COUNTRIES, GET_STATES, GET_LOCALITIES, CREATE_MESSAGE, GET_ERRORS, RESET, SEARCH_DB } from './types';
+import { GET_COUNTRIES, GET_STATES, GET_LOCALITIES, CREATE_MESSAGE, GET_ERRORS, RESET, SEARCH_DB, LOAD_PAGE } from './types';
 import config from '../config';
 
 // Get Countries
@@ -126,3 +126,7 @@ export const searchDb = params => async dispatch => {
     })
 
 }
+
+export const loadPage = (type = LOAD_PAGE) => ({
+  type
+})

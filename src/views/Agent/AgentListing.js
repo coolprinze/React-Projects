@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Header from "../../component/Header/UserHeader";
-import { getAgentProperties, deleteProperty } from '../../actions';
+import { getAgentProperties, deleteProperty, loadPage } from '../../actions';
 import Paginate from '../../component/Paginate';
 import PropertyView from '../../component/PropertyView';
 
@@ -14,6 +14,10 @@ class AgentListing extends Component {
         super(props)
         this.props.getAgentProperties()
         this.onDelete = this.deleteListing.bind(this)
+    }
+
+    async componentDidMount(){
+        await this.props.loadPage();
     }
 
     deleteListing = async (id) => {
@@ -141,6 +145,6 @@ const mapStateToProps = state => ({
     properties: state.properties.listings
 })
 
-export default connect(mapStateToProps, { getAgentProperties, deleteProperty })(AgentListing);
+export default connect(mapStateToProps, { getAgentProperties, deleteProperty, loadPage })(AgentListing);
 
 
