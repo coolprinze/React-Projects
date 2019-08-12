@@ -15,7 +15,10 @@ setGlobal({
   reports: [],
   requests: [],
   agents: [],
-  subscribers: []
+  subscribers: [],
+  countries: [],
+  states: [],
+  localities: []
 })
 
 

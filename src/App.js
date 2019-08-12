@@ -16,6 +16,7 @@ import Newsletter from './views/Newsletter'
 import Subscribers from './views/Subscribers'
 import Auth from './utils/auth';
 import API from './utils/api';
+import AddProperty from './views/AddProperty';
 
 let auth = new Auth();
 let api = new API();
@@ -25,6 +26,9 @@ class App extends Component {
   }
   async componentDidMount() {
     let data = await api.getAgents();
+
+    await api.getCountries()
+    await api.getStates()
     await api.getProperties();
     await api.getSubscribers();
     await api.getUsers();
@@ -38,12 +42,13 @@ class App extends Component {
         <Fragment>
           <Route exact path="/" render={() => (auth.isAuthenticated() ? <Dashboard /> : <Redirect to={{ pathname: "/login" }} />)} />
           <Route exact path="/login" render={() => (!auth.isAuthenticated() ? <Login /> : <Redirect to={{ pathname: "/" }} />)} />
-          <Route exact path="/agents" component={Agents} />
-          <Route exact path="/reports" component={Reports} />
-          <Route exact path="/reports/:id" component={Report} />
-          <Route exact path="/agents/:id" component={Agent} />
-          <Route exact path="/users" component={Users} />
-          <Route exact path="/requests" component={Requests} />
+          <Route exact path="/agents" render={() => (auth.isAuthenticated() ? <Agents /> : <Redirect to={{ pathname: "/login" }} />)}/>
+          <Route exact path="/reports" render={() => (auth.isAuthenticated() ? <Reports /> : <Redirect to={{ pathname: "/login" }} />)} />
+          <Route exact path="/reports/:id" render={() => (auth.isAuthenticated() ? <Report /> : <Redirect to={{ pathname: "/login" }} />)} />
+          <Route exact path="/agents/:id" render={() => (auth.isAuthenticated() ? <Agent /> : <Redirect to={{ pathname: "/login" }} />)} />
+          <Route exact path="/property/add" render={() => (auth.isAuthenticated() ? <AddProperty /> : <Redirect to={{ pathname: "/login" }} />)} />
+          <Route exact path="/users" render={() => (auth.isAuthenticated() ? <Users /> : <Redirect to={{ pathname: "/login" }} />)} />
+          <Route exact path="/requests" render={() => (auth.isAuthenticated() ? <Requests /> : <Redirect to={{ pathname: "/login" }} />)} />
           <Route exact path="/listings" component={Listings} />
           <Route exact path="/newsletter" component={Newsletter} />
           <Route exact path="/subscribers" component={Subscribers} />

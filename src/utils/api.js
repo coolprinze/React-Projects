@@ -55,7 +55,10 @@ class API {
       body: JSON.stringify(body)
     })
       .then(res => res.json())
-      .then(res => res)
+      .then(res => {
+        console.log(res)
+        return res
+      })
       .catch(error => {
         console.log(error);
         throw error;
@@ -73,6 +76,21 @@ class API {
       .catch(error => {
         console.log(error);
         throw error;
+      });
+  }
+
+  saveProperty = async (body) => {
+    return await fetch(`${this.baseURL}/admin/properties/save`, {
+      headers: { ...this.header, Authorization: `Bearer ${this.token}` },
+      method: 'POST',
+      body: JSON.stringify(body)
+    })
+      .then(res => res.json())
+      .then(res => true)
+      .catch(error => {
+        console.log(error);
+        // throw error;
+        return false
       });
   }
 
@@ -123,20 +141,19 @@ class API {
         headers: { ...this.header, Authorization: `Bearer ${this.token}` },
         method: 'GET',
       })
-        .then(res => res.json())
-        .then(res => {
-          if (!!res.data) {
-            return { subscribers: res.data.data }
-          }
-          else {
-            return { subscribers: [] }
-          }
-
-        })
-        .catch(error => {
-          console.log(error);
-          throw error;
-        })
+      .then(res => res.json())
+      .then(res => {
+        if (!!res.data) {
+          return { subscribers: res.data.data }
+        }
+        else {
+          return { subscribers: [] }
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        throw error;
+      })
     )
   }
 
@@ -146,21 +163,41 @@ class API {
         headers: { ...this.header, Authorization: `Bearer ${this.token}` },
         method: 'GET',
       })
-        .then(res => res.json())
-        .then(res => {
-          if (!!res.data) {
-            return { properties: res.data.data }
-          }
-          else {
-            return { properties: [] }
-          }
+      .then(res => res.json())
+      .then(res => {
+        if (!!res.data) {
+          return { properties: res.data.data }
+        }
+        else {
+          return { properties: [] }
+        }
 
-        })
-        .catch(error => {
-          console.log(error);
-          throw error;
-        })
+      })
+      .catch(error => {
+        console.log(error);
+        throw error;
+      })
     )
+  }
+
+  getProperty = async (slug) => {
+    return await fetch(`${this.baseURL}/admin/properties/${slug}`, {
+        headers: { ...this.header, Authorization: `Bearer ${this.token}` },
+        method: 'GET',
+      })
+      .then(res => res.json())
+      .then(res => {
+        if (!!res.data) {
+          return res.data
+        }
+        else {
+          return null;
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        throw error;
+      })
   }
 
   getUsers = async () => {
@@ -206,6 +243,75 @@ class API {
           console.log(error);
           throw error;
         })
+    )
+  }
+
+  getCountries = async () => {
+    return await setGlobal(
+      fetch(`${this.baseURL}/countries`, {
+        headers: { ...this.header, Authorization: `Bearer ${this.token}` },
+        method: 'GET',
+      })
+      .then(res => res.json())
+      .then(res => {
+        if (!!res.data) {
+          return { countries: res.data }
+        }
+        else {
+          return { countries: [] }
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        throw error;
+      })
+    )
+  }
+
+  getStates = async () => {
+    return await setGlobal(
+      fetch(`${this.baseURL}/states`, {
+        headers: { ...this.header, Authorization: `Bearer ${this.token}` },
+        method: 'GET',
+      })
+      .then(res => res.json())
+      .then(res => {
+        if (!!res.data) {
+          return { states: res.data }
+        }
+        else {
+          return { states: [] }
+        }
+
+      })
+      .catch(error => {
+        console.log(error);
+        throw error;
+      })
+    )
+  }
+
+  getLocalities = async (id) => {
+    return await setGlobal(
+       fetch(`${this.baseURL}/localities/${id}`, {
+        headers: { ...this.header, Authorization: `Bearer ${this.token}` },
+        method: 'GET',
+      })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+        if (!!res.data) {
+          return {localities: res.data} 
+        }
+        else {
+          return  {localities: []} 
+        }
+
+      })
+      .catch(error => {
+        console.log(error);
+        throw error;
+      })
     )
   }
 

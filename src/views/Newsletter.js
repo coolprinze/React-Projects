@@ -33,7 +33,7 @@ class Newsletter extends Component {
 
   sendEmail = async () => {
     console.log(this.state.toSend, this.state.email)
-    await api.sendEmail({email: this.state.email, subject: "subject", message: "hello"});
+    await api.sendEmail({email: this.state.email, subject: "subject", message: this.state.toSend});
     await this.setState({email: ""})
   }
   render() {
