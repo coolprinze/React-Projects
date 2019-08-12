@@ -97,7 +97,7 @@ class Register extends Component {
                                     </div>
                                 </div> */}
                                 <select value={this.state.role} onChange={this.handleRole}>
-                                    <option value={1}>Account Type</option>
+                                    <option disabled hidden>Select type</option>
                                     <option value={1}>Subscriber</option>
                                     <option value={2}>Agent</option>
                                 </select>
