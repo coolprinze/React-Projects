@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Header from '../component/Header'
+import Footer from '../component/Footer'
 import { Input, TextArea, Select } from '../component/Form';
 import { getGlobal, useGlobal } from 'reactn'
 import { NotificationContainer, NotificationManager } from 'react-notifications'
@@ -39,14 +40,16 @@ const AddProperty = (props) => {
   let states = getGlobal().states;
   const [localities] = useGlobal('localities');
   if (!!props.props.location.state && Object.keys(props.props.location.state.property).length > 0) {
-    if(property.slug !== props.props.location.state.property.slug) {
-      return setProperty({...props.props.location.state.property, 
-        agent_id:props.props.location.state.property.agent.id, 
+    if (property.slug !== props.props.location.state.property.slug) {
+      return setProperty({
+        ...props.props.location.state.property,
+        agent_id: props.props.location.state.property.agent.id,
         tab: "1",
-        errors: {}});
+        errors: {}
+      });
     }
   }
-  
+
   const onChange = e => {
     let { errors } = property
     if (e.target.value === '') {
@@ -68,10 +71,10 @@ const AddProperty = (props) => {
       <Header />
       <section className="container-fluid bg-grey">
         <div className="container py-5">
-       
+
           <div className="row bg-dark px-3 py-3 text-white ">
-          <div className="container-fluid">
-        <nav className="navbar bg-dark container" style={{ borderRadius: "4px 4px 0px 0px", marginLeft: "-25px" }}>
+            <div className="container-fluid">
+              <nav className="navbar bg-dark container" style={{ borderRadius: "4px 4px 0px 0px", marginLeft: "-25px" }}>
                 <p className="navbar-brand myp"> Add/Edit Property</p>
                 <div className="" >
                   {/* <span className="form-inline">
@@ -81,7 +84,7 @@ const AddProperty = (props) => {
                   </span> */}
                 </div>
               </nav>
-              </div>
+            </div>
             <span className={["nav-link", property.tab === "1" ? "active bg-orange" : ""].join(" ")} name="tab" value="1"
               style={{ cursor: "pointer" }}
               onClick={() => setProperty({ ...property, tab: "1" })}
@@ -104,6 +107,7 @@ const AddProperty = (props) => {
           </div>
         </div>
       </section>
+      <Footer />
     </React.Fragment>
   )
 }
