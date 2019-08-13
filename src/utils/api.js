@@ -20,8 +20,13 @@ class API {
     })
       .then(res => res.json())
       .then(async res => {
-        await auth._storeAuthCred(res);
-        return true
+        if (res.status == 1) {
+          await auth._storeAuthCred(res);
+          return true;
+        }
+        else {
+          return false
+        }
       })
       .catch(error => {
         console.log(error);
@@ -36,9 +41,14 @@ class API {
     })
       .then(res => res.json())
       .then(async res => {
-        await this.getAgents();
-        await this.getUsers();
-        return true;
+        if (res.status == 1) {
+          await this.getAgents();
+          await this.getUsers();
+          return true;
+        }
+        else {
+          return false
+        }
       })
       .catch(error => {
         console.log(error);
@@ -80,13 +90,52 @@ class API {
   }
 
   saveProperty = async (body) => {
-    return await fetch(`${this.baseURL}/admin/properties/save`, {
+    let url;
+    if(body.id) {
+      url = `${this.baseURL}/agent/properties/edit/${body.id}`
+    }
+    else {
+      url = `${this.baseURL}/admin/properties/save`
+    }
+    return await fetch(url, {
       headers: { ...this.header, Authorization: `Bearer ${this.token}` },
       method: 'POST',
       body: JSON.stringify(body)
     })
       .then(res => res.json())
-      .then(res => true)
+      .then(async res => {
+        if (res.status == 1) {
+          await this.getProperties();
+          return true
+        }
+        else {
+          return false
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        // throw error;
+        return false
+      });
+  }
+
+  deleteProperty = async (id) => {
+    return await fetch(`${this.baseURL}/agent/properties/delete/${id}`, {
+      headers: { ...this.header, Authorization: `Bearer ${this.token}` },
+      method: 'DELETE',
+    })
+      .then(res => res.json())
+      .then(async res => {
+        console.log('res', res)
+        if (res.status == 1) {
+          await this.getProperties();
+          return true
+        }
+        else {
+          return false
+        }
+
+      })
       .catch(error => {
         console.log(error);
         // throw error;
@@ -102,8 +151,13 @@ class API {
     })
       .then(res => res.json())
       .then(async res => {
-        await this.getProperties();
-        return true;
+        if (res.status == 1) {
+          await this.getProperties();
+          return true
+        }
+        else {
+          return false
+        }
       })
       .catch(error => {
         console.log(error);
@@ -141,19 +195,19 @@ class API {
         headers: { ...this.header, Authorization: `Bearer ${this.token}` },
         method: 'GET',
       })
-      .then(res => res.json())
-      .then(res => {
-        if (!!res.data) {
-          return { subscribers: res.data.data }
-        }
-        else {
-          return { subscribers: [] }
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        throw error;
-      })
+        .then(res => res.json())
+        .then(res => {
+          if (!!res.data) {
+            return { subscribers: res.data.data }
+          }
+          else {
+            return { subscribers: [] }
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          throw error;
+        })
     )
   }
 
@@ -163,28 +217,28 @@ class API {
         headers: { ...this.header, Authorization: `Bearer ${this.token}` },
         method: 'GET',
       })
-      .then(res => res.json())
-      .then(res => {
-        if (!!res.data) {
-          return { properties: res.data.data }
-        }
-        else {
-          return { properties: [] }
-        }
+        .then(res => res.json())
+        .then(res => {
+          if (!!res.data) {
+            return { properties: res.data.data }
+          }
+          else {
+            return { properties: [] }
+          }
 
-      })
-      .catch(error => {
-        console.log(error);
-        throw error;
-      })
+        })
+        .catch(error => {
+          console.log(error);
+          throw error;
+        })
     )
   }
 
   getProperty = async (slug) => {
     return await fetch(`${this.baseURL}/admin/properties/${slug}`, {
-        headers: { ...this.header, Authorization: `Bearer ${this.token}` },
-        method: 'GET',
-      })
+      headers: { ...this.header, Authorization: `Bearer ${this.token}` },
+      method: 'GET',
+    })
       .then(res => res.json())
       .then(res => {
         if (!!res.data) {
@@ -252,19 +306,19 @@ class API {
         headers: { ...this.header, Authorization: `Bearer ${this.token}` },
         method: 'GET',
       })
-      .then(res => res.json())
-      .then(res => {
-        if (!!res.data) {
-          return { countries: res.data }
-        }
-        else {
-          return { countries: [] }
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        throw error;
-      })
+        .then(res => res.json())
+        .then(res => {
+          if (!!res.data) {
+            return { countries: res.data }
+          }
+          else {
+            return { countries: [] }
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          throw error;
+        })
     )
   }
 
@@ -274,44 +328,44 @@ class API {
         headers: { ...this.header, Authorization: `Bearer ${this.token}` },
         method: 'GET',
       })
-      .then(res => res.json())
-      .then(res => {
-        if (!!res.data) {
-          return { states: res.data }
-        }
-        else {
-          return { states: [] }
-        }
+        .then(res => res.json())
+        .then(res => {
+          if (!!res.data) {
+            return { states: res.data }
+          }
+          else {
+            return { states: [] }
+          }
 
-      })
-      .catch(error => {
-        console.log(error);
-        throw error;
-      })
+        })
+        .catch(error => {
+          console.log(error);
+          throw error;
+        })
     )
   }
 
   getLocalities = async (id) => {
     return await setGlobal(
-       fetch(`${this.baseURL}/localities/${id}`, {
+      fetch(`${this.baseURL}/localities/${id}`, {
         headers: { ...this.header, Authorization: `Bearer ${this.token}` },
         method: 'GET',
       })
-      .then(res => res.json())
-      .then(res => {
-        console.log(res)
-        if (!!res.data) {
-          return {localities: res.data} 
-        }
-        else {
-          return  {localities: []} 
-        }
+        .then(res => res.json())
+        .then(res => {
+          console.log(res)
+          if (!!res.data) {
+            return { localities: res.data }
+          }
+          else {
+            return { localities: [] }
+          }
 
-      })
-      .catch(error => {
-        console.log(error);
-        throw error;
-      })
+        })
+        .catch(error => {
+          console.log(error);
+          throw error;
+        })
     )
   }
 

@@ -18,7 +18,10 @@ setGlobal({
   subscribers: [],
   countries: [],
   states: [],
-  localities: []
+  localities: [],
+  // addProperty: {
+    
+  // }
 })
 
 

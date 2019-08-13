@@ -3,7 +3,7 @@ import Header from '../component/Header'
 import List from './List'
 import Footer from '../component/Footer'
 import Metrics from '../component/Metrics'
-import { getGlobal, useGlobal } from 'reactn'
+import { getGlobal } from 'reactn'
 import {
   MDBDataTable, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBNotification
 } from 'mdbreact'
@@ -59,6 +59,16 @@ class Dashboard extends Component {
       }
     };
   };
+  deleteProperty = async (id) => {
+    let result = await api.deleteProperty(id);
+    console.log(result)
+    if (!!result) {
+      NotificationManager.success('Success', 'Property deleted')
+    }
+    else {
+      NotificationManager.error('Error', 'Property not deleted')
+    }
+  }
   render() {
     const columns = [
       {
@@ -107,9 +117,9 @@ class Dashboard extends Component {
             <img src="images/Group9.png" alt="" />
           </MDBDropdownToggle>
           <MDBDropdownMenu basic>
-            <MDBDropdownItem onClick={this.createNotification('error', 'Not implemented yet')}>Edit</MDBDropdownItem>
+            <MDBDropdownItem><Link to={{pathname: "/property/add", state: {property}}}>Edit</Link></MDBDropdownItem>
             <MDBDropdownItem divider />
-            <MDBDropdownItem onClick={this.createNotification('error', 'Not implemented yet')}>Delete</MDBDropdownItem>
+            <MDBDropdownItem onClick={() => this.deleteProperty(property.id)}>Delete</MDBDropdownItem>
             <MDBDropdownItem divider />
             <MDBDropdownItem onClick={async () => { await this.handleApproval({ "id": [property.id] }, property.published === false ? 'approve' : 'disapprove'); }}>{property.published === false ? "Approve" : "Disapprove"}</MDBDropdownItem>
           </MDBDropdownMenu>
@@ -125,6 +135,13 @@ class Dashboard extends Component {
             <div className="col-12">
               <nav className="navbar bg-dark" style={{ borderRadius: "4px 4px 0px 0px" }}>
                 <p className="navbar-brand myp"> All Listings</p>
+                <div className="" >
+                  <span className="form-inline">
+                    <div className="drop">
+                      <Link to={"/property/add"}> Add Property</Link>
+                    </div>
+                  </span>
+                </div>
               </nav>
               <NotificationContainer />
               <MDBDataTable

@@ -1,16 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Header from '../component/Header'
 import { Input, TextArea, Select } from '../component/Form';
-import { getGlobal } from 'reactn'
+import { getGlobal, useGlobal } from 'reactn'
+import { NotificationContainer, NotificationManager } from 'react-notifications'
+import '../notifications.css'
+
+// import '../addProperty.css'
 import API from '../utils/api';
 const api = new API();
 
-class AddProperty extends Component {
-  state = {
-    states: [],
-    countries: [],
-    localities: [],
+const AddProperty = (props) => {
+  const [property, setProperty] = useState({
+    locality_id: "",
     title: "",
     price: '',
     description: "",
@@ -31,332 +33,352 @@ class AddProperty extends Component {
     status_id: 1,
     type_id: 2,
     slug: false,
+    tab: "1"
+  });
+  let countries = getGlobal().countries;
+  let states = getGlobal().states;
+  const [localities] = useGlobal('localities');
+  if (!!props.props.location.state && Object.keys(props.props.location.state.property).length > 0) {
+    if(property.slug !== props.props.location.state.property.slug) {
+      return setProperty({...props.props.location.state.property, 
+        agent_id:props.props.location.state.property.agent.id, 
+        tab: "1",
+        errors: {}});
+    }
   }
-
-  async componentDidMount() {
-    await api.getCountries()
-    await api.getStates()
-    // const slug = await this.props.match.params.slug
-    // if (slug !== undefined) {
-    //   let property = await api.getProperty(slug);
-    //   await this.setState({ ...property, slug: true })
-    // }
-  }
-
-  onChange = async e => {
-    let { errors } = this.state
+  
+  const onChange = e => {
+    let { errors } = property
     if (e.target.value === '') {
       errors = { ...errors, [e.target.name]: `This field is required` }
     } else {
       delete errors[e.target.name]
-      if (e.target.id === "state_id") {
-        // console.log(parseInt(e.target.value))
-       api.getLocalities(parseInt(e.target.value));
-        // this.setState({ [e.target.name]: e.target.value })
-
-        // await this.setState({localities});
+      if (e.target.name === "state_id") {
+        api.getLocalities(parseInt(e.target.value));
       }
     }
-    this.setState({ [e.target.name]: e.target.value, errors })
+    setProperty({ ...property, [e.target.name]: e.target.value, errors });
   }
+  console.log(property)
+  // if (property.edited) {
+  //   return <Redirect to="/agent/agent-listing" />
+  // }
+  return (
+    <React.Fragment>
+      <Header />
+      <section className="container-fluid bg-grey">
+        <div className="container py-5">
+          <div className="row bg-dark px-3 py-3 text-white ">
+            <span className={["nav-link", property.tab === "1" ? "active bg-orange" : ""].join(" ")} name="tab" value="1"
+              style={{ cursor: "pointer" }}
+              onClick={() => setProperty({ ...property, tab: "1" })}
+            >Property Details</span>
+            <span className={["nav-link", property.tab === "2" ? "active bg-orange" : ""].join(" ")}
+              style={{ cursor: "pointer" }}
+              onClick={() => setProperty({ ...property, tab: "2" })}
+            >Pictures</span>
+          </div>
 
-  onSave = async () => {
-    if (this.state.slug) {
-      const { title, price, description, status_id, type_id, bedrooms, bathrooms, toilets, address, state_id, locality_id, furnished, serviced, parking, total_area, covered_area, id } = await this.state;
+          <div className="row bg-white px-3 py-3 tab-content" id="v-pills-tabContent">
+            {property.tab === "1" ? <AddPropertyDetails onChange={onChange}
+              countries={countries}
+              states={states}
+              localities={localities}
+              property={property}
+              setProperty={setProperty}
+            /> :
+              <AddPicture property={property} />}
+          </div>
+        </div>
+      </section>
+    </React.Fragment>
+  )
+}
+// }
 
-      await api.saveProperty({ title, price, description, status_id, type_id, bedrooms, bathrooms, toilets, address, state_id, locality_id, furnished, serviced, parking, total_area, covered_area, id });
+const AddPropertyDetails = ({ property, onChange, countries, states, localities, setProperty }) => {
 
-      this.setState({ edited: this.props.status })
+  const countryOptions = countries.map((item) => {
+    return <option key={item.id} value={item.phonecode}>{item.name}</option>
+  })
+  const stateOptions = states.map((item) => {
+    return <option key={item.id} value={item.id}>{item.name}</option>
+  })
+  const localityOptions = localities.map((item) => {
+    return <option key={item.id} value={item.id}>{item.name}</option>
+  })
+  return (
+    <div className="col-sm-12 tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+      <div className="form-group">
+        <div className="row">
+          <div className="col">
+            <Input
+              label="Title"
+              name="title" inputClass="form-control-lg bg-white"
+              value={property.title}
+              onChange={onChange}
+              error={property.errors.hasOwnProperty('title') ? property.errors.title : null}
+            />
+          </div>
+          <div className="col">
+            <Input
+              label="Address"
+              name="address" inputClass="form-control-lg bg-white"
+              value={property.address}
+              onChange={onChange}
+              error={property.errors.hasOwnProperty('address') ? property.errors.address : null}
+            />
+          </div>
+          <div className="col">
+            <Input
+              label="Price"
+              name="price"
+              type="number"
+              inputClass="form-control-lg bg-white"
+              value={property.price}
+              onChange={onChange}
+              error={property.errors.hasOwnProperty('price') ? property.errors.price : null}
+            />
+          </div>
+        </div>
+      </div>
+      {/* <div className="form-group pt-4"> */}
+      {/* <div className="row"> */}
+      <div className="col col-sm-12">
+        <TextArea
+          label="Description"
+          name="description" inputClass="form-control-lg bg-white"
+          value={property.description}
+          onChange={onChange}
+          error={property.errors.hasOwnProperty('description') ? property.errors.description : null}
+        />
+      </div>
+      {/* </div> */}
+      {/* </div> */}
+      {/* <div className="form-group pt-4"> */}
+      <div className="row">
+        <div className="col">
+          <Select
+            label="Country"
+            name="country"
+            selectClass="bg-white"
+            selectedValue={property.country}
+            onChange={onChange}
+            error={property.errors.hasOwnProperty('country') ? property.errors.country : null}
+            options={null}
+            defaultValue="Select country"
+          >
+            {countryOptions}
+          </Select>
+        </div>
+        <div className="col">
+          <Select
+            label="State"
+            name="state_id"
+            selectClass="browser-default custom-select bg-white"
+            selectedValue={property.state_id}
+            onChange={onChange}
+            error={property.errors.hasOwnProperty('state_id') ? property.errors.state_id : null}
+            options={null}
+            defaultValue="Select state"
+          >
+            {stateOptions}
+          </Select>
+        </div>
+        <div className="col">
+          <Select
+            label="Locality"
+            name="locality_id"
+            selectClass="bg-white"
+            selectedValue={property.locality_id}
+            onChange={onChange}
+            error={property.errors.hasOwnProperty('locality_id') ? property.errors.locality_id : null}
+            options={null}
+            defaultValue="Select city"
+          >
+            {localityOptions}
+          </Select>
+        </div>
+      </div>
+      {/* </div> */}
+      {/* <div className="form-group pt-4"> */}
+      <div className="row">
+        <div className="col">
+          <Input
+            label="Bedrooms"
+            type="number"
+            name="bedrooms" inputClass="form-control-lg bg-white"
+            value={property.bedrooms}
+            onChange={onChange}
+            error={property.errors.hasOwnProperty('bedrooms') ? property.errors.bedrooms : null}
+          />
+        </div>
+        <div className="col">
+          <Input
+            label="Bathrooms"
+            type="number"
+            name="bathrooms" inputClass="form-control-lg bg-white"
+            value={property.bathrooms}
+            onChange={onChange}
+            error={property.errors.hasOwnProperty('bathrooms') ? property.errors.bathrooms : null}
+          />
+        </div>
+        <div className="col">
+          <Input
+            label="Toilets"
+            type="number"
+            name="toilets" inputClass="form-control-lg bg-white"
+            value={property.toilets}
+            onChange={onChange}
+            error={property.errors.hasOwnProperty('toilets') ? property.errors.toilets : null}
+          />
+        </div>
+      </div>
+      {/* </div> */}
+      {/* <div className="form-group pt-4"> */}
+      <div className="row">
+        <div className="col">
+          <div className="pt-2">
 
-    } else {
-      const { title, price, description, status_id, type_id, bedrooms, bathrooms, toilets, address, state_id, locality_id, furnished, serviced, parking, total_area, covered_area } = await this.state;
+            <Select
+              label="Furnished"
+              name="furnished"
+              selectClass="bg-white"
+              selectedValue={property.furnished}
+              onChange={onChange}
+              error={property.errors.hasOwnProperty('furnished') ? property.errors.furnished : null}
+              options={null}
+              defaultValue="Is the property furnished?"
+            >
+              <option value={true}>Yes</option>
+              <option value={false}>No</option>
+            </Select>
+          </div>
+        </div>
+        <div className="col">
+          <div className="pt-2">
+            <Select
+              label="Serviced"
+              name="serviced"
+              selectClass="bg-white"
+              selectedValue={property.serviced}
+              onChange={onChange}
+              error={property.errors.hasOwnProperty('serviced') ? property.errors.serviced : null}
+              options={null}
+              defaultValue="Is the property serviced?"
 
-      await api.saveProperty({ title, price, description, status_id, type_id, bedrooms, bathrooms, toilets, address, state_id, locality_id, furnished, serviced, parking, total_area, covered_area });
+            >
+              <option value={true}>Yes</option>
+              <option value={false}>No</option>
+            </Select>
+          </div>
+        </div>
+        <div className="col">
+          <Input
+            label="Covered Area"
+            type="number"
+            name="covered_area" inputClass="bg-white"
+            value={property.covered_area}
+            onChange={onChange}
+            error={property.errors.hasOwnProperty('covered_area') ? property.errors.covered_area : null}
+          />
+        </div>
+      </div>
+      {/* </div> */}
+      {/* <div className="form-group pt-4"> */}
+      <div className="row">
+        <div className="col">
+          <Input
+            label="Total Area"
+            type="number"
+            name="total_area" inputClass="form-control-lg bg-white"
+            value={property.total_area}
+            onChange={onChange}
+            error={property.errors.hasOwnProperty('total_area') ? property.errors.total_area : null}
+          />
+        </div>
+        <div className="col">
+          <Input
+            label="Parking Area"
+            type="number"
+            name="parking" inputClass="form-control-lg bg-white"
+            value={property.parking}
+            onChange={onChange}
+            error={property.errors.hasOwnProperty('parking') ? property.errors.parking : null}
+          />
+        </div>
+        <div className="col">
+        </div>
+      </div>
+      {/* </div> */}
+      <div className="row justify-content-sm-right">
+        <div className="col">
 
-      this.resetForm.bind(this);
+          <button
+            name="tab"
+            value="2"
+            className="btn bg-orange px-5  text-white"
+            onClick={() => setProperty({ ...property, tab: "2" })}
+          >Next </button> </div>
+      </div>
+    </div>
+  )
+}
+const AddPicture = ({ property }) => {
+  const saveProperty = async () => {
+    let result = await api.saveProperty(property);
+    if (result) {
+      NotificationManager.success('Success', 'Property saved')
     }
+    else {
+      NotificationManager.error('Error', 'Property not saved')
 
-
-
+    }
   }
-
-  resetForm = () => {
-    if (this.props.reset) {
-      this.setState({
-        states: [],
-        countries: [],
-        localities: [],
-        title: "",
-        price: '',
-        description: "",
-        address: "",
-        state_id: "",
-        locality_id: "",
-        furnished: "",
-        serviced: "",
-        parking: 0,
-        total_area: 0,
-        covered_area: 0,
-        country: '',
-        bedrooms: 0,
-        bathrooms: 0,
-        toilets: 0,
-        errors: {},
-        reset: false,
-        status_id: 1,
-        type_id: 2
-      })
-    }
-  }
-
-  checkError = () => this.state.errors.hasOwnProperty('gender') ? this.state.errors.gender : null
-
-
-  render() {
-    let countries = getGlobal().countries;
-    let states = getGlobal().states;
-    let localities = getGlobal().localities;
-    // const { countries, states, localities } = this.props;
-    const countryOptions = countries.map((item) => {
-      return <option key={item.id} value={item.phonecode}>{item.name}</option>
-    })
-    const stateOptions = states.map((item) => {
-      return <option key={item.id} value={item.id}>{item.name}</option>
-    })
-    const localityOptions = localities.map((item) => {
-      return <option key={item.id} value={item.id}>{item.name}</option>
-    })
-    if (this.state.edited) {
-      return <Redirect to="/agent/agent-listing" />
-    }
-    return (
-      <React.Fragment>
-        <Header />
-        <section className="container-fluid bg-grey">
-          <div className="container py-5">
-            <div className="row bg-dark px-3 py-3 text-white nav-pills">
-              <div className="col-sm-3">
-                <Link to="" className="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#editDetails" role="tab" aria-controls="v-pills-home" aria-selected="true">Property Details</Link>
-              </div>
-              <div className="col-sm-3 text-muted">
-                <Link to="" className="nav-link" id="v-pills-edit-tab" data-toggle="pill" href="#pictures" role="tab" aria-controls="v-pills-home" aria-selected="true">Pictures</Link>
-              </div>
+  return (
+    <>
+      <NotificationContainer />
+      <div className="col-sm-12" >
+        <div className="form-group files">
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <span className="input-group-text" id="inputGroupFileAddon01">
+                Upload
+    </span>
             </div>
-            <div className="row bg-white px-3 py-3 tab-content" id="v-pills-tabContent">
-              <div className="col-sm-12 tab-pane fade show active" id="editDetails" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                <div className="form-group pt-4">
-                  <div className="row">
-                    <div className="col col-sm-4">
-                      <Input
-                        label="Title"
-                        name="title" inputClass="form-control-lg bg-white"
-                        value={this.state.title}
-                        onChange={this.onChange}
-                        error={this.state.errors.hasOwnProperty('title') ? this.state.errors.title : null}
-                      />
-                    </div>
-                    <div className="col col-sm-4">
-                      <Input
-                        label="Address"
-                        name="address" inputClass="form-control-lg bg-white"
-                        value={this.state.address}
-                        onChange={this.onChange}
-                        error={this.state.errors.hasOwnProperty('address') ? this.state.errors.address : null}
-                      />
-                    </div>
-                    <div className="col col-sm-4">
-                      <Input
-                        label="Price"
-                        name="price"
-                        type="number"
-                        inputClass="form-control-lg bg-white"
-                        value={this.state.price}
-                        onChange={this.onChange}
-                        error={this.state.errors.hasOwnProperty('price') ? this.state.errors.price : null}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="form-group pt-4">
-                  <div className="row">
-                    <div className="col col-sm-12">
-                      <TextArea
-                        label="Description"
-                        name="description" inputClass="form-control-lg bg-white"
-                        value={this.state.description}
-                        onChange={this.onChange}
-                        error={this.state.errors.hasOwnProperty('description') ? this.state.errors.description : null}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="form-group pt-4">
-                  <div className="row">
-                    <div className="col">
-                      <Select
-                        label="Country"
-                        name="country"
-                        selectClass="form-control-lg bg-white"
-                        selectedValue={this.state.country}
-                        onChange={this.onChange.bind(this)}
-                        error={this.state.errors.hasOwnProperty('country') ? this.state.errors.country : null}
-                        options={null}
-                        defaultValue="Select country"
-                      >
-                        {countryOptions}
-                      </Select>
-                    </div>
-                    <div className="col">
-                      <Select
-                        label="State"
-                        name="state_id"
-                        selectClass="form-control-lg bg-white"
-                        selectedValue={this.state.state_id}
-                        onChange={this.onChange.bind(this)}
-                        error={this.state.errors.hasOwnProperty('state_id') ? this.state.errors.state_id : null}
-                        options={null}
-                        defaultValue="Select state"
-                      >
-                        {stateOptions}
-                      </Select>
-                    </div>
-                    <div className="col">
-                      <Select
-                        label="Locality"
-                        name="locality_id"
-                        selectClass="form-control-lg bg-white"
-                        selectedValue={this.state.locality_id}
-                        onClick={() => getGlobal().localities.map((item) => {
-                          return <option key={item.id} value={item.id}>{item.name}</option>
-                        })}
-                        onChange={this.onChange.bind(this)}
-                        error={this.state.errors.hasOwnProperty('locality_id') ? this.state.errors.locality_id : null}
-                        options={null}
-                        defaultValue="Select city"
-                      >
-                        {localityOptions}
-                      </Select>
-                    </div>
-                  </div>
-                </div>
-                <div className="form-group pt-4">
-                  <div className="row">
-                    <div className="col">
-                      <Input
-                        label="Bedrooms"
-                        type="number"
-                        name="bedrooms" inputClass="form-control-lg bg-white"
-                        value={this.state.bedrooms}
-                        onChange={this.onChange}
-                        error={this.state.errors.hasOwnProperty('bedrooms') ? this.state.errors.bedrooms : null}
-                      />
-                    </div>
-                    <div className="col">
-                      <Input
-                        label="Bathrooms"
-                        type="number"
-                        name="bathrooms" inputClass="form-control-lg bg-white"
-                        value={this.state.bathrooms}
-                        onChange={this.onChange}
-                        error={this.state.errors.hasOwnProperty('bathrooms') ? this.state.errors.bathrooms : null}
-                      />
-                    </div>
-                    <div className="col">
-                      <Input
-                        label="Toilets"
-                        type="number"
-                        name="toilets" inputClass="form-control-lg bg-white"
-                        value={this.state.toilets}
-                        onChange={this.onChange}
-                        error={this.state.errors.hasOwnProperty('toilets') ? this.state.errors.toilets : null}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="form-group pt-4">
-                  <div className="row">
-                    <div className="col">
-                      <Select
-                        label="Furnished"
-                        name="furnished"
-                        selectClass="form-control-lg bg-white"
-                        selectedValue={this.state.furnished}
-                        onChange={this.onChange.bind(this)}
-                        error={this.state.errors.hasOwnProperty('furnished') ? this.state.errors.furnished : null}
-                        options={null}
-                      >
-                        <option value={true}>Yes</option>
-                        <option value={false}>No</option>
-                      </Select>
-                    </div>
-                    <div className="col">
-                      <Select
-                        label="Serviced"
-                        name="serviced"
-                        selectClass="form-control-lg bg-white"
-                        selectedValue={this.state.serviced}
-                        onChange={this.onChange.bind(this)}
-                        error={this.state.errors.hasOwnProperty('serviced') ? this.state.errors.serviced : null}
-                        options={null}
-                      >
-                        <option value={true}>Yes</option>
-                        <option value={false}>No</option>
-                      </Select>
-                    </div>
-                    <div className="col">
-                      <Input
-                        label="Covered Area"
-                        type="number"
-                        name="covered_area" inputClass="form-control-lg bg-white"
-                        value={this.state.covered_area}
-                        onChange={this.onChange}
-                        error={this.state.errors.hasOwnProperty('covered_area') ? this.state.errors.covered_area : null}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="form-group pt-4">
-                  <div className="row">
-                    <div className="col">
-                      <Input
-                        label="Total Area"
-                        type="number"
-                        name="total_area" inputClass="form-control-lg bg-white"
-                        value={this.state.total_area}
-                        onChange={this.onChange}
-                        error={this.state.errors.hasOwnProperty('total_area') ? this.state.errors.total_area : null}
-                      />
-                    </div>
-                    <div className="col">
-                      <Input
-                        label="Parking Area"
-                        type="number"
-                        name="parking" inputClass="form-control-lg bg-white"
-                        value={this.state.parking}
-                        onChange={this.onChange}
-                        error={this.state.errors.hasOwnProperty('parking') ? this.state.errors.parking : null}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="form-group py-2">
-                  <button className="btn bg-orange px-5 pull-right text-white" onClick={this.onSave.bind(this)}>Save changes</button>
-                </div>
-              </div>
-              <div className="col-sm-12 tab-pane fade show" id="pictures" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                <div className="form-group files">
-                  <label>Upload Your File </label>
-                  <input type="file" className="form-control" multiple="" />
-                </div>
-              </div>
+            <div className="custom-file">
+              <input
+                type="file"
+                className="custom-file-input"
+                id="inputGroupFile01"
+                aria-describedby="inputGroupFileAddon01"
+              />
+              <label className="custom-file-label" htmlFor="inputGroupFile01">
+                Choose file
+    </label>
             </div>
           </div>
-        </section>
-      </React.Fragment>
-    )
-  }
+        </div>
+      </div>
+      <div className="row justify-content-sm-right">
+        <div className="col">
+
+          <button
+            name="tab"
+            value="2"
+            className="btn bg-orange px-5  text-white"
+
+            onClick={() => {
+              if (Object.keys(property.errors).length === 0) {
+                return saveProperty()
+              }
+              else {
+                return NotificationManager.error("Error", "Some key fields are empty")
+              }
+            }}
+          >Save Property </button> </div>
+      </div>
+    </>
+  )
 }
-
-
-
 export default AddProperty;
