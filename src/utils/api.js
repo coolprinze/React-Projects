@@ -92,7 +92,7 @@ class API {
   saveProperty = async (body) => {
     let url;
     if(body.id) {
-      url = `${this.baseURL}/agent/properties/edit/${body.id}`
+      url = `${this.baseURL}/admin/properties/save`
     }
     else {
       url = `${this.baseURL}/admin/properties/save`

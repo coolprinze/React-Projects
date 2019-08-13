@@ -68,7 +68,20 @@ const AddProperty = (props) => {
       <Header />
       <section className="container-fluid bg-grey">
         <div className="container py-5">
+       
           <div className="row bg-dark px-3 py-3 text-white ">
+          <div className="container-fluid">
+        <nav className="navbar bg-dark container" style={{ borderRadius: "4px 4px 0px 0px", marginLeft: "-25px" }}>
+                <p className="navbar-brand myp"> Add/Edit Property</p>
+                <div className="" >
+                  {/* <span className="form-inline">
+                    <div className="drop">
+                      <Link to={"/property/add"}> Add Property</Link>
+                    </div>
+                  </span> */}
+                </div>
+              </nav>
+              </div>
             <span className={["nav-link", property.tab === "1" ? "active bg-orange" : ""].join(" ")} name="tab" value="1"
               style={{ cursor: "pointer" }}
               onClick={() => setProperty({ ...property, tab: "1" })}
