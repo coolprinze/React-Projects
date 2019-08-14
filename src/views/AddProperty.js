@@ -45,6 +45,8 @@ const AddProperty = (props) => {
         ...props.props.location.state.property,
         agent_id: props.props.location.state.property.agent.id,
         tab: "1",
+        status_id: 1,
+        type_id: 2,
         errors: {}
       });
     }
@@ -62,7 +64,6 @@ const AddProperty = (props) => {
     }
     setProperty({ ...property, [e.target.name]: e.target.value, errors });
   }
-  console.log(property)
   // if (property.edited) {
   //   return <Redirect to="/agent/agent-listing" />
   // }
@@ -341,11 +342,11 @@ const AddPropertyDetails = ({ property, onChange, countries, states, localities,
     </div>
   )
 }
-const AddPicture = ({ property }) => {
+const AddPicture =  ({ property }) => {
   const saveProperty = async () => {
     let result = await api.saveProperty(property);
     if (result) {
-      NotificationManager.success('Success', 'Property saved')
+      await NotificationManager.success('Success', 'Property saved')
     }
     else {
       NotificationManager.error('Error', 'Property not saved')

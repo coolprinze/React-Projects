@@ -63,7 +63,8 @@ class Dashboard extends Component {
     let result = await api.deleteProperty(id);
     console.log(result)
     if (!!result) {
-      NotificationManager.success('Success', 'Property deleted')
+      NotificationManager.success('Success', 'Property deleted');
+      this.setState({});
     }
     else {
       NotificationManager.error('Error', 'Property not deleted')
@@ -117,7 +118,7 @@ class Dashboard extends Component {
             <img src="images/Group9.png" alt="" />
           </MDBDropdownToggle>
           <MDBDropdownMenu basic>
-            <MDBDropdownItem><Link to={{pathname: "/property/add", state: {property}}}>Edit</Link></MDBDropdownItem>
+            <MDBDropdownItem><Link to={{pathname: "/property/add", state: {property}}} style={{color: "#000"}}>Edit</Link></MDBDropdownItem>
             <MDBDropdownItem divider />
             <MDBDropdownItem onClick={() => this.deleteProperty(property.id)}>Delete</MDBDropdownItem>
             <MDBDropdownItem divider />
@@ -135,10 +136,10 @@ class Dashboard extends Component {
             <div className="col-12">
               <nav className="navbar bg-dark" style={{ borderRadius: "4px 4px 0px 0px" }}>
                 <p className="navbar-brand myp"> All Listings</p>
-                <div className="" >
+                <div className="">
                   <span className="form-inline">
                     <div className="drop">
-                      <Link to={"/property/add"}> Add Property</Link>
+                      <Link to={"/property/add"} className="dropbutton btn btn-light"> Add Property</Link>
                     </div>
                   </span>
                 </div>

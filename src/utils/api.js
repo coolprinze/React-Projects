@@ -91,12 +91,18 @@ class API {
 
   saveProperty = async (body) => {
     let url;
-    if(body.id) {
+    await delete body.errors;
+    await delete body.agent;
+    await delete body.state;
+    await delete body.locality;
+    await delete body.tab
+    console.log('body to be send', body);
+    // if(body.id) {
       url = `${this.baseURL}/admin/properties/save`
-    }
-    else {
-      url = `${this.baseURL}/admin/properties/save`
-    }
+    // }
+    // else {
+    //   url = `${this.baseURL}/admin/properties/save`
+    // }
     return await fetch(url, {
       headers: { ...this.header, Authorization: `Bearer ${this.token}` },
       method: 'POST',
@@ -120,9 +126,10 @@ class API {
   }
 
   deleteProperty = async (id) => {
-    return await fetch(`${this.baseURL}/agent/properties/delete/${id}`, {
+    return await fetch(`${this.baseURL}/admin/properties/destroy`, {
       headers: { ...this.header, Authorization: `Bearer ${this.token}` },
-      method: 'DELETE',
+      method: 'POST',
+      body: JSON.stringify({"id": [id]})
     })
       .then(res => res.json())
       .then(async res => {

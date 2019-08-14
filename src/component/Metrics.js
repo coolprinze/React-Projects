@@ -1,18 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { getGlobal, useGlobal, global } from 'reactn'
 import { Link } from 'react-router-dom';
 
-class Metrics extends Component {
-  componentDidMount() {
-
-  }
-  render() {
-    let active = this.props.active;
-    const propertiesCount = getGlobal().properties ? getGlobal().properties.length : 0;
-    const usersCount = getGlobal().users ? getGlobal().users.length : 0;
-    const requestsCount = getGlobal().requests ? getGlobal().requests.length : 0;
-    const reportsCount = getGlobal().reports ? getGlobal().reports.length : 0;
-    const agentsCount = getGlobal().agents ? getGlobal().agents.length : 0;
+const Metrics = (props) =>  {
+    let active = props.active;
+    const [global] = useGlobal();
+    const propertiesCount = global.properties ? global.properties.length : 0;
+    const usersCount = global.users ? global.users.length : 0;
+    const requestsCount = global.requests ? global.requests.length : 0;
+    const reportsCount = global.reports ? global.reports.length : 0;
+    const agentsCount = global.agents ? global.agents.length : 0;
     return (
       <div className="container">
         <div className="row">
@@ -50,6 +47,5 @@ class Metrics extends Component {
       </div>
     )
   }
-}
 
 export default Metrics;
