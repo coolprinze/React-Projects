@@ -74,7 +74,40 @@ class App extends Component {
                   </div>
               </div>
           </section>
-      </footer>
+      
+    {/* //   <-- Create Alert Modal --> */}
+      <div className="modal fade" id="createAlert" tabindex="-1" role="dialog" aria-labelledby="createAlert" aria-hidden="true">
+              <div className="modal-dialog" role="document">
+                  <div className="modal-content">
+                      <div className="modal-body">
+                          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                          </button>
+                          <div className="py-5 px-5">
+                              <h5 className="text-center">Create Alert</h5>
+                              <h6 className="text-center">For Properties matching your current search</h6>
+                              <form>
+                                  <div className="form-group">
+                                      <label for="name">Name</label>
+                                      <input type="text" className="form-control" id="name" aria-describedby="nameHelp" />
+                                  </div>
+                                  <div className="form-group">
+                                      <label for="exampleInputEmail1">Email</label>
+                                      <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                  </div>
+                                  <div className="form-group">
+                                      <label for="duration">Duration</label>
+                                      <select className="form-control"></select>
+                                  </div>
+                                  <button type="Create" className="btn bg-orange" style={{width:'100%'}}>Submit</button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        
+        </footer>
         )
 
     }

@@ -32,7 +32,7 @@ class Header extends Component{
                     <div className="navbar-collapse justify-content-end collapse show" id="navbarResponsive">
                         <ul className="navbar-nav justify-content-between">
                             <li className="nav-item d-flex align-items-center justify-content-center">
-                                <Link className="py-1 home-phone" to="#">09883833232</Link>
+                                {/* <Link className="py-1 home-phone" to="#">09883833232</Link> */}
                             </li>
                             <li className="nav-item active">
                                 <Link to="/propertylisting" className="nav-link">Property Search</Link>

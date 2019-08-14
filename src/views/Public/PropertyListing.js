@@ -37,15 +37,17 @@ class PropertyListing extends Component {
                             <div className="col-sm-4">
                                 Property for sale in Lekki, Nigeria
                             </div>
-                            <div className="col-sm-2">
-                                <i className="fa fa-bell pr-2"></i>Create Alert
+                            <div className="col-sm-2" data-toggle="modal" data-target="#createAlert">
+                            <Link to="#" data-toggle="modal" data-target="#createAlert">
+                            <i class="fa fa-bell pr-2"></i>Create Alert
+                        </Link>
                             </div>
         
                             <div className="col-sm-3">
                                 Can't find what you are looking for?
                             </div>
                             <div className="col-sm-3 pr-0">
-                                <button className="btn btn-lg btn-outline-dark pull-right">Post a Request</button>
+                                <button className="btn btn-lg btn-outline-dark  pull-right">Post a Request</button>
                             </div>
                         </div>
                     </div>
@@ -53,15 +55,15 @@ class PropertyListing extends Component {
         
                 <div className="container-fluid d-flex align-items-center" style={{ backgroundColor: '#FFFFFF', height: '80px' }}>
                     <div className="container  d-flex align-items-center justify-content-between">
-                        <h6>Result 1 - 20 of 22,692</h6>
+                        <h6>&nbsp;</h6>
                         <div className="dropdown">
                             <button className="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       Most Recent
                                     </button>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <Link className="dropdown-item" to="#">Action</Link>
-                                <Link className="dropdown-item" to="#">Another action</Link>
-                                <Link className="dropdown-item" to="#">Something else here</Link>
+                                <Link className="dropdown-item" to="#">Highest to Lowest</Link>
+                                <Link className="dropdown-item" to="#">Lowest to Highest</Link>
+                                {/* <Link className="dropdown-item" to="#">Something else here</Link> */}
                             </div>
                         </div>
                     </div>
@@ -78,7 +80,7 @@ class PropertyListing extends Component {
                         <div className="row">
                             <div className="col-sm-12 bg-white py-2 my-3">
                                 <h3>Location filter</h3>
-                                <p className="pb-5" style={{fontSize: '1rem'}}>Ikate | Elegushi | Maruwa | Richmond | Efe | Jankande | Richmond | Efe | Jankande </p>
+                                {/* <p className="pb-5" style={{fontSize: '1rem'}}>Ikate | Elegushi | Maruwa | Richmond | Efe | Jankande | Richmond | Efe | Jankande </p> */}
                             </div>
                         </div>
                         {properties}

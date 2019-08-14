@@ -15,6 +15,10 @@
 .bg-white{
 	background: white;
 }
+
+.bg-dark {
+    background-color: #1C2432 !important;
+}
 .navbar-light .navbar-nav .active > .nav-link{color: orange}
 .pt{
 	padding-top: 1em;
