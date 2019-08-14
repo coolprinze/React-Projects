@@ -4,7 +4,7 @@ let auth = new Auth();
 
 class API {
   constructor() {
-    this.baseURL = 'http://api2.castles.com.ng/api';
+    this.baseURL = 'https://api2.castles.com.ng/api';
     this.header = {
       Accept: 'application/json',
       'Content-Type': 'application/json'
@@ -173,9 +173,12 @@ class API {
       });
   }
 
-  getAgents = async () => {
+  getAgents = async (quantity) => {
+    if (!quantity) {
+      quantity = 100
+    }
     await setGlobal(
-      fetch(`${this.baseURL}/admin/users?paginate=1000&role=2`, {
+      fetch(`${this.baseURL}/admin/users?paginate=${quantity}&role=2`, {
         headers: { ...this.header, Authorization: `Bearer ${this.token}` },
         method: 'GET',
       })
@@ -196,9 +199,12 @@ class API {
     )
   }
 
-  getSubscribers = async () => {
+  getSubscribers = async (quantity) => {
+    if (!quantity) {
+      quantity = 100
+    }
     await setGlobal(
-      fetch(`${this.baseURL}/admin/subscribers?paginate=1000`, {
+      fetch(`${this.baseURL}/admin/subscribers?paginate=${quantity}`, {
         headers: { ...this.header, Authorization: `Bearer ${this.token}` },
         method: 'GET',
       })
@@ -218,9 +224,12 @@ class API {
     )
   }
 
-  getProperties = async () => {
+  getProperties = async (quantity) => {
+    if (!quantity) {
+      quantity = 100
+    }
     await setGlobal(
-      fetch(`${this.baseURL}/admin/properties?paginate=1000`, {
+      fetch(`${this.baseURL}/admin/properties?paginate=${quantity}`, {
         headers: { ...this.header, Authorization: `Bearer ${this.token}` },
         method: 'GET',
       })
@@ -261,9 +270,12 @@ class API {
       })
   }
 
-  getUsers = async () => {
+  getUsers = async (quantity) => {
+    if (!quantity) {
+      quantity = 100
+    }
     await setGlobal(
-      fetch(`${this.baseURL}/admin/users?paginate=1000&role=1`, {
+      fetch(`${this.baseURL}/admin/users?paginate=${quantity}&role=1`, {
         headers: { ...this.header, Authorization: `Bearer ${this.token}` },
         method: 'GET',
       })
@@ -284,9 +296,12 @@ class API {
     )
   }
 
-  getRequests = async () => {
+  getRequests = async (quantity) => {
+    if (!quantity) {
+      quantity = 100
+    }
     await setGlobal(
-      fetch(`${this.baseURL}/admin/properties/requests?paginate=1000`, {
+      fetch(`${this.baseURL}/admin/properties/requests?paginate=${quantity}`, {
         headers: { ...this.header, Authorization: `Bearer ${this.token}` },
         method: 'GET',
       })
@@ -376,9 +391,12 @@ class API {
     )
   }
 
-  getReports = async () => {
+  getReports = async (quantity) => {
+    if (!quantity) {
+      quantity = 100
+    }
     await setGlobal(
-      fetch(`${this.baseURL}/admin/properties/reports?paginate=1000`, {
+      fetch(`${this.baseURL}/admin/properties/reports?paginate=${quantity}`, {
         headers: { ...this.header, Authorization: `Bearer ${this.token}` },
         method: 'GET',
       })

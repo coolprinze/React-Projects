@@ -9,6 +9,7 @@ import {
 } from 'mdbreact'
 import { Link } from 'react-router-dom'
 import { NotificationContainer, NotificationManager } from 'react-notifications'
+import numeral from 'numeral';
 import '../notifications.css'
 import API from '../utils/api'
 let api = new API();
@@ -109,7 +110,7 @@ class Dashboard extends Component {
         'type': property.type,
         'location': `${property.locality}, ${property.state}`,
         'agent_name': property.agent.name,
-        'price': property.price,
+        'price': numeral(property.price).format('0,0'),
         'status': property.published === true ? <span style={{ color: "green" }}>Available</span> : <span style={{ color: "red" }}>Unavailable</span>,
         'date': property.created_at,
         'btn': <button type="button" style={{ backgroundColor: '#000' }} name="button"> <Link to={"/notfound"} > View </Link></button>,

@@ -5,6 +5,10 @@ import Metrics from '../component/Metrics'
 import Footer from '../component/Footer'
 import { useGlobal } from 'reactn'
 import default_view from '../assets/img/propertyview/default_view.png'
+import numeral from 'numeral';
+
+
+
 const Agent = (props) => {
   const [properties] = useGlobal('properties');
   let id = props.props.match.params.id;
@@ -112,7 +116,7 @@ const Agent = (props) => {
                           <h5>{property.locality}</h5>
                           <p style={{ fontSize: "small" }}> {property.description}</p>
                           <div className="mycard2">
-                            <h3>N {property.price}</h3>
+                            <h3>N {numeral(property.price).format('0,0')}</h3>
                             <p style={{ fontSize: "x-small" }}>Added {property.created_at}</p>
                             <hr />
                           </div>

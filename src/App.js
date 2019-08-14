@@ -29,11 +29,11 @@ class App extends Component {
 
     await api.getCountries()
     await api.getStates()
-    await api.getProperties();
+    await api.getProperties(100);
     await api.getSubscribers();
-    await api.getUsers();
-    await api.getReports();
-    await api.getRequests();
+    await api.getUsers(100);
+    await api.getReports(100);
+    await api.getRequests(100);
     await this.setState({ data });
   }
   render() {
