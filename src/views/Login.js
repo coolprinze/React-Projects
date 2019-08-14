@@ -27,8 +27,10 @@ class Login extends Component {
     });
   }
   handleSubmit = async () => {
+    console.log(this.state)
     await this.setState({ loading: true })
     let response = await api.login({ email: this.state.email, password: this.state.password });
+    console.log(response)
     if (!!response) {
       window.location.replace('/');
     }

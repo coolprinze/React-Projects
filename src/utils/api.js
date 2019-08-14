@@ -20,7 +20,7 @@ class API {
     })
       .then(res => res.json())
       .then(async res => {
-        if (res.status == 1) {
+        if (!!res.access_token) {
           await auth._storeAuthCred(res);
           return true;
         }
