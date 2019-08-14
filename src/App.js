@@ -45,7 +45,7 @@ class App extends Component {
           <Route exact path="/agents" render={() => (auth.isAuthenticated() ? <Agents /> : <Redirect to={{ pathname: "/login" }} />)}/>
           <Route exact path="/reports" render={() => (auth.isAuthenticated() ? <Reports /> : <Redirect to={{ pathname: "/login" }} />)} />
           <Route exact path="/reports/:id" render={() => (auth.isAuthenticated() ? <Report /> : <Redirect to={{ pathname: "/login" }} />)} />
-          <Route exact path="/agents/:id" render={() => (auth.isAuthenticated() ? <Agent /> : <Redirect to={{ pathname: "/login" }} />)} />
+          <Route exact path="/agents/:id" render={(props) => (auth.isAuthenticated() ? <Agent props={props} /> : <Redirect to={{ pathname: "/login" }} />)} />
           <Route exact path="/property/add" render={(props) => (auth.isAuthenticated() ? <AddProperty props={props} /> : <Redirect to={{ pathname: "/login" }} />)} />
           <Route exact path="/users" render={() => (auth.isAuthenticated() ? <Users /> : <Redirect to={{ pathname: "/login" }} />)} />
           <Route exact path="/requests" render={() => (auth.isAuthenticated() ? <Requests /> : <Redirect to={{ pathname: "/login" }} />)} />

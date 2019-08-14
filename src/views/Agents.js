@@ -97,7 +97,7 @@ class Agents extends Component {
         'phone': agent.id,
         'email': agent.email,
         'btn': <button type="button" style={{ backgroundColor: '#000' }} name="button">
-          <Link to={"/agents/dasdad"} >
+          <Link to={{pathname: `/agents/${agent.id}` }} >
             View Listings
         </Link>
         </button>,

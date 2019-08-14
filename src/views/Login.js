@@ -29,8 +29,12 @@ class Login extends Component {
   handleSubmit = async () => {
     await this.setState({ loading: true })
     let response = await api.login({ email: this.state.email, password: this.state.password });
-    if (response) {
+    if (!!response) {
       window.location.replace('/');
+    }
+    else {
+      NotificationManager.error('Error', "Login details incorrect", 5000);
+      this.setState({email:"", password: "", loading: false})
     }
   }
   createNotification = (type, message) => {
