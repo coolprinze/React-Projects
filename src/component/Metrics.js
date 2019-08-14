@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 const Metrics = (props) =>  {
     let active = props.active;
     const [global] = useGlobal();
-    const propertiesCount = global.properties ? global.properties.length : 0;
-    const usersCount = global.users ? global.users.length : 0;
-    const requestsCount = global.requests ? global.requests.length : 0;
-    const reportsCount = global.reports ? global.reports.length : 0;
-    const agentsCount = global.agents ? global.agents.length : 0;
+    const propertiesCount = global.totalProperties || 0;
+    const usersCount = global.totalUsers || 0;
+    const requestsCount = global.totalRequests || 0;
+    const reportsCount = global.totalReports || 0;
+    const agentsCount = global.totalAgents || 0;
     return (
       <div className="container">
         <div className="row">

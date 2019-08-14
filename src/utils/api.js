@@ -182,7 +182,7 @@ class API {
         .then(res => res.json())
         .then(res => {
           if (!!res.data) {
-            return { agents: res.data.data }
+            return { agents: res.data.data, totalAgents: res.data.total }
           }
           else {
             return { agents: [] }
@@ -227,7 +227,7 @@ class API {
         .then(res => res.json())
         .then(res => {
           if (!!res.data) {
-            return { properties: res.data.data }
+            return { properties: res.data.data, totalProperties: res.data.total}
           }
           else {
             return { properties: [] }
@@ -270,7 +270,7 @@ class API {
         .then(res => res.json())
         .then(res => {
           if (!!res.data) {
-            return { users: res.data.data }
+            return { users: res.data.data, totalUsers: res.data.total}
           }
           else {
             return { users: [] }
@@ -293,7 +293,7 @@ class API {
         .then(res => res.json())
         .then(res => {
           if (!!res.data) {
-            return { requests: res.data.data }
+            return { requests: res.data.data, totalRequests: res.data.total }
           }
           else {
             return { requests: [] }
@@ -385,7 +385,7 @@ class API {
         .then(res => res.json())
         .then(res => {
           if (!!res.data) {
-            return { reports: res.data.data }
+            return { reports: res.data.data, totalReports: res.data.total }
           }
           else {
             return { reports: [] }
