@@ -35,7 +35,7 @@ class PropertyListing extends Component {
                     <div className="container py-3" style={{ borderBottom: '1px', solid: '#000000' }}>
                         <div className="row">
                             <div className="col-sm-4">
-                                Property for sale in Lekki, Nigeria
+                                <h5>Premium Property Listing in Nigeria</h5>
                             </div>
                             <div className="col-sm-2" data-toggle="modal" data-target="#createAlert">
                             <Link to="#" data-toggle="modal" data-target="#createAlert">

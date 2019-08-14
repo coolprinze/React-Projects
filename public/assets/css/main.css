@@ -857,7 +857,9 @@ nav.navbar .navbar-nav #sp-btn a:hover {
     color: #f5f5f5;
 }
 
-
+.bg-dark {
+    background-color: #1C2432 !important;
+}
 /* Mobile Media */
 
 @media (min-width: 0px) and (max-width: 767px) {
