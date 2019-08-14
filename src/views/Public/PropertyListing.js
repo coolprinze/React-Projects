@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
+import { Link } from 'react-router-dom';
 import HeaderSearch from './../../component/HeaderSearch'
 import AdvanceSearch from './../../component/AdvanceSearch'
 import { getProperties } from '../../actions';
@@ -9,7 +10,9 @@ import PropertyView from '../../component/PropertyView';
 class PropertyListing extends Component {
     constructor(props){
         super(props)
-        this.props.getProperties()
+        if(this.props.properties.requestType === null){
+            this.props.getProperties()
+        }
     }
     
     getPropertyDetails = (id) => {
@@ -25,7 +28,47 @@ class PropertyListing extends Component {
         }): <div>{requestType === 'search'? "There are no listing for your search" :  'There are no listing yet'}</div>
       return ( 
             <div>
-              <HeaderSearch/>
+              <HeaderSearch prop={this.props} />
+              <div>
+                <div className="container-fluid d-flex align-items-center" style={{ backgroundColor: '#FFFFFF', minHeight: '80px', borderBottom: '1px', solid: '#FFFFFF' }}>
+        
+                    <div className="container py-3" style={{ borderBottom: '1px', solid: '#000000' }}>
+                        <div className="row">
+                            <div className="col-sm-4">
+                                Property for sale in Lekki, Nigeria
+                            </div>
+                            <div className="col-sm-2">
+                                <i className="fa fa-bell pr-2"></i>Create Alert
+                            </div>
+        
+                            <div className="col-sm-3">
+                                Can't find what you are looking for?
+                            </div>
+                            <div className="col-sm-3 pr-0">
+                                <button className="btn btn-lg btn-outline-dark pull-right">Post a Request</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div className="container-fluid d-flex align-items-center" style={{ backgroundColor: '#FFFFFF', height: '80px' }}>
+                    <div className="container  d-flex align-items-center justify-content-between">
+                        <h6>Result 1 - 20 of 22,692</h6>
+                        <div className="dropdown">
+                            <button className="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Most Recent
+                                    </button>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <Link className="dropdown-item" to="#">Action</Link>
+                                <Link className="dropdown-item" to="#">Another action</Link>
+                                <Link className="dropdown-item" to="#">Something else here</Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+
+              </div>
               <div className="arrow mb-0"></div>
 
               <section className="container-fluid properties py-5" style={{background: '#FAFAFA'}}>

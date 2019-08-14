@@ -32,7 +32,7 @@ class Agent extends Component {
         }
         return ( 
           <div>
-            <main className={`${this.props.pageLoading? 'd-none' : ''}`}>
+            <main className={`${this.props.pageLoading? '' : ''}`}>
               <Switch>
                 <Route exact path="/agent" component={Dashboard} />
                 <Route exact path="/agent/listing-statistics" component={AgentListingStats} />

@@ -6,7 +6,7 @@ import { property, agent, img3 } from '../assets/img';
 
 const PropertyView = ({ data, onDelete, user }) => {
 
-    const actionButtons = user.role.id === 2? <div className="d-flex justify-content-between mt-2">
+    const actionButtons = user && user.role.id === 2? <div className="d-flex justify-content-between mt-2">
         <span>
             <Link to={`/agent/edit-property/${data.slug}`} className="btn btn-orange btn-sm">Edit</Link>
         </span>

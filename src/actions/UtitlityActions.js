@@ -107,10 +107,11 @@ export const subscribe = (email) => async dispatch => {
 
 // Search Db
 export const searchDb = params => async dispatch => {
+  console.log(`${config.BASE_URL}/properties/filter?search=${params}`)
   
-  const url = new URL(`${config.BASE_URL}/properties/filter?search=${params}`);
+  // const url = new URL(`${config.BASE_URL}/properties/filter?search=${params}`);
 
-  axios.get(url.href, config.header)
+  axios.get(`${config.BASE_URL}/properties/filter?search=${params}`, config.header)
     .then(res => {
       dispatch({
         type: SEARCH_DB,

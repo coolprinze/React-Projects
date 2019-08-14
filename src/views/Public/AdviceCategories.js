@@ -4,6 +4,8 @@ import { agency, agent, bg } from '../../assets/img';
 import { connect } from 'react-redux';
 import { getAdviceCategories } from '../../actions/AdviceActions';
 import Newsletter from '../../component/Newsletter';
+import SearchBar from '../../component/SearchBar';
+import SideBar from '../../component/SideBar';
 
 
 class AdviceCategories extends Component {
@@ -49,7 +51,7 @@ class AdviceCategories extends Component {
                   <div className="col-sm-8 ">
                       <div className="row py-4 ">
                         { categories.map(category =>
-                        <div className="col-lg-6 py-2 ">
+                        <div key={category.id} className="col-lg-6 py-2 ">
                             <Link key={category.id} to={`/propertyadvice/${category.slug}`}>
                                 <div className="card bg-white mx-3 ">
                                     <img alt="" src={agency} />
@@ -64,46 +66,11 @@ class AdviceCategories extends Component {
                       </div>
   
                   </div>
+
+                  <SideBar />
   
-                  <div className="col-sm-4 ">
-                      <div className="row ">
-                          <div className="col-sm-12 pb-3 ">
-                              <div className="card ml-5 " height="18rem ">
-                                  <h5 className=" px-3 py-3 ">
-                                      Search Castles
-                                  </h5>
-                                  <div className="card-footer " style={{ background: '#FF8C00' }}>
-                                      <input type="text " placeholder="e.g Lekki, Lagos " className="form-control " style={{  minHeight: '50px' }}/>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
   
-                      <div className="row ">
-                          <div className="col-sm-12 py-3 ">
-                              <div className="card ml-5 " height="18rem ">
-                                  <img src={agent} height="227px " className="card-img-top " alt="... " style={{ height: '227px' }} />
-                                  <div className="card-footer btn btn-outline-dark " style={{ background: '#FF8C00'}}>
-                                      View properties for sale at Ikoyi
-                                  </div>
-                              </div>
-                          </div>
-  
-                      </div>
-  
-                      <div className="row ">
-                          <div className="col-sm-12 py-3 ">
-                              <div className="card ml-5 " height="18rem ">
-                                  <img src={agent} height="227px " className="card-img-top " alt="... " style={{  height: '227px'}} />
-                                  <div className="card-footer btn btn-outline-dark " style={{ background: '#FF8C00'}}>
-                                      View properties for sale at Ikoyi
-                                  </div>
-                              </div>
-                          </div>
-  
-                      </div>
-  
-                  </div>
+                
               </div>
           </div>
   

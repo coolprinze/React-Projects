@@ -223,11 +223,16 @@ label {
     margin-bottom: 2px;
 }
 
-.form-control {
+input.form-control {
     background-color: #f8f8f8;
     border-color: #eeeeee;
     font-size: 13px;
     padding: 11px 16px;
+}
+.form-control {
+    background-color: #f8f8f8;
+    border-color: #eeeeee;
+    font-size: 13px;
 }
 
 .select2-container--open .select2-dropdown--below {

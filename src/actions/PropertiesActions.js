@@ -138,3 +138,18 @@ export const getAgentListing = (agent) => async dispatch => {
       dispatch(createMsg(err.response.message, false))
     })
 }
+
+// Save Property
+export const saveAProperty = property => async dispatch => {
+  await axios.post(`${config.BASE_URL}/save_property`, property, config.header)
+    .then(res => {      
+      dispatch(createMsg(`Property ${res.data.message}`))
+    })
+    .catch(err => {
+      if(err.response === undefined){
+        dispatch(createMsg("You are not connected to the internet, check your network", false))
+        return
+      }
+      dispatch(createMsg(err.response.message, false))
+    })
+}

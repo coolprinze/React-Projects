@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_STATES, CREATE_MESSAGE, GET_ERRORS, RESET, GET_LOCALITIES, EDIT_EMAIL, SEARCH_DB, UPDATE_SEARCH_PARAM, LOAD_PAGE, GET_ADVERTS, GET_ADVERT_PROPERTIES, GET_SCHOOLS, GET_APARTMENTS, GET_LANDS, GET_HOUSES } from "../actions/types";
+import { GET_COUNTRIES, GET_STATES, CREATE_MESSAGE, GET_ERRORS, RESET, GET_LOCALITIES, EDIT_EMAIL, SEARCH_DB, UPDATE_SEARCH_PARAM, LOAD_PAGE, GET_ADVERTS, GET_ADVERT_PROPERTIES, GET_SCHOOLS, GET_APARTMENTS, GET_LANDS, GET_HOUSES, UPDATE_SEARCH_TERM } from "../actions/types";
 
 const INITIAL_STATE = {
   pageLoading: true,
@@ -10,7 +10,15 @@ const INITIAL_STATE = {
   reset: false,
   email: '',
   searchResult: [],
-  searchedParam: '',
+  searchedParam: {
+    bedrooms: '',
+    state_id: '',
+    locality_id: '',
+    status_id: '',
+    type_id: '',
+    min_price: '',
+    max_price: '',
+  },
   loading: true,
   adverts: {
     data: [],    
@@ -23,7 +31,8 @@ const INITIAL_STATE = {
     lands: 0,
     apartments: 0,
     houses: 0,
-  }
+  },
+  searchTerm: '' 
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -56,7 +65,17 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, loading: false, email: action.payload }
 
     case UPDATE_SEARCH_PARAM:
-      return { ...state, loading: false, searchedParam: action.payload }
+      return { ...state, loading: false, searchedParam: {
+        ...state.searchedParam,
+        ...action.payload
+      } }
+
+    case UPDATE_SEARCH_TERM:
+      return {
+        ...state,
+        loading: false,
+        searchTerm: action.payload
+      }
 
     case SEARCH_DB:
       return { ...state, loading: false, searchResult: action.payload }
