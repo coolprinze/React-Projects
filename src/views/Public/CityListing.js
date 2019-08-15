@@ -2,28 +2,41 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import HeaderSearch from './../../component/HeaderSearch'
 import AdvanceSearch from './../../component/AdvanceSearch'
-import { searchProperties } from '../../actions';
+import { searchProperties, loadPage } from '../../actions';
 import Paginate from '../../component/Paginate';
 import PropertyView from '../../component/PropertyView';
+import { UNLOAD_PAGE } from '../../actions/types';
 
 class CityListing extends Component {
-    constructor(props){
-        super(props)
-        this.id = this.props.match.params.id
-
-        this.props.searchProperties({ locality_id: this.id })
+    state={
+        id: ''
     }
     
-    getPropertyDetails = (id) => {
-        console.log(id)
-        this.id = this.props.match.params.id
+    async componentDidMount(){
+        await this.setState({ id: this.props.match.params.id })
+        await this.search();
+        await this.props.loadPage();
+    }
+    
+    // async componentDidUpdate(){
+    //     this.id = this.props.match.params.id
+    //     await this.search();
+    //     await this.props.loadPage();
+    // }
+
+    componentWillUnmount(){
+        this.props.loadPage(UNLOAD_PAGE);
+    }
+    
+    search = async () => {
+        await this.props.searchProperties({ locality_id: this.state.id });
     }
     render() {
         const { data, requestType } = this.props.properties
         const properties = data.length?
         data.map((item) =>{
             return (
-                <PropertyView  key={item.id}  data={item} onDelete={this.deleteListing.bind(this, item.id)} />
+                <PropertyView  key={item.id}  data={item} />
             )
         }): <div>{requestType === 'search'? "There are no listing for your search" :  'There are no listing yet'}</div>
       return ( 
@@ -60,7 +73,8 @@ class CityListing extends Component {
 
 const mapStateToProps = state => ({
     properties: state.properties.listings,
+    cityId: state.properties.cityId,
     requestType: state.properties.requestType
 })
 
-export default connect(mapStateToProps, { searchProperties })(CityListing);
+export default connect(mapStateToProps, { searchProperties, loadPage })(CityListing);

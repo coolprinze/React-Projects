@@ -1,16 +1,18 @@
 import React, { Fragment, Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
-import { getAgents } from '../../actions';
+import { getAgents, loadPage } from '../../actions';
 import Paginate from '../../component/Paginate';
 import SearchBar from '../../component/SearchBar';
+import SideBar from '../../component/SideBar';
 
 class Agents extends Component {
-    constructor(props) {
-        super(props);
-        props.getAgents();
-        console.log(props)
+
+    async componentDidMount() {
+        await this.props.getAgents();
+        await this.props.loadPage();
     }
+
 
     renderAgents = () => this.props.agents.total? this.props.agents.data.map(agent => 
         <div className="row pb-2 border-bb">
@@ -57,32 +59,7 @@ class Agents extends Component {
                     <div className="col-sm-8 col-lg-sm-8 bg-white py-4 px-5" style={{ borderRadius: "10px" }}>
                         {this.renderAgents()}
                     </div>
-                    <div className="col-sm-4 col-lg-4 pl-4">
-                        <SearchBar />
-    
-                        <div className="row">
-                            <div className="col-sm-12 py-3">
-                                <div className="card" height="18rem">
-                                    <h5 className=" px-3 py-3">
-                                        Advertisement placement
-                                    </h5>
-                                    <img src="img/advert.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div className="row">
-                            <div className="col-sm-12 py-3">
-                                <div className="card" height="18rem">
-                                    <h5 className=" px-3 py-3">
-                                        Advertisement placement
-                                    </h5>
-                                    <img src="img/advert.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-    
-                    </div>
+                    <SideBar />
                 </div>
             </div>
         </section>
@@ -98,4 +75,4 @@ const mapStateToProps = state => ({
     requestType: state.agent.agents.requestType,
 })
 
-export default connect(mapStateToProps, { getAgents })(Agents)
+export default connect(mapStateToProps, { getAgents, loadPage })(Agents)

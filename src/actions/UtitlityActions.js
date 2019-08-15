@@ -129,7 +129,7 @@ export const searchDb = params => async dispatch => {
 
 }
 
-export const loadPage = (type = LOAD_PAGE) => ({
+export const loadPage = (type = LOAD_PAGE) => dispatch => dispatch({
   type
 })
 

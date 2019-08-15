@@ -15,7 +15,6 @@ export default (state = INITIAL_STATE, action) => {
     case REG_SUCCESS:
       return {
         ...state,
-        loading: false,
         redirect: true        
       }
 
@@ -25,7 +24,6 @@ export default (state = INITIAL_STATE, action) => {
       localStorage.setItem("user", JSON.stringify(action.payload.user));
       return {
         ...state,
-        loading: false, 
         isAuthenticated: true, 
         token: action.payload.access.access_token,
         user: action.payload.user
@@ -35,13 +33,11 @@ export default (state = INITIAL_STATE, action) => {
       localStorage.setItem("user", JSON.stringify(action.payload));
       return {
         ...state,
-        loading: false,
         user: action.payload        
       }
 
     case LOGOUT_USER:
       return {  
-        loading: false,
         isAuthenticated: false,
         redirect: false,
         user: null,
@@ -50,14 +46,12 @@ export default (state = INITIAL_STATE, action) => {
 
     case GET_ERRORS:
       return {  
-        ...state,
-        loading: false,     
+        ...state,     
       }
 
     case CREATE_MESSAGE:
       return {  
-        ...state,
-        loading: false,     
+        ...state,     
       }
 
     case AUTH_LOADING:

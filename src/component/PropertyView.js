@@ -1,30 +1,40 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import NumberFormat from 'react-number-format'
+import { property } from '../assets/img';
+import { ImageLoader } from './Loading';
 
-import { property, agent, img3 } from '../assets/img';
+const PropertyView = ({ data, user }) => {
+    const deleteListing = async (id) => {
+        if (window.confirm("Are you sure you want to delete this listing?")){
+            await this.props.deleteProperty(id)
+        }
+    }
 
-const PropertyView = ({ data, onDelete, user }) => {
-
-    const actionButtons = user && user.role.id === 2? <div className="d-flex justify-content-between mt-2">
-        <span>
+    const actionButtons = user && user.role.id === 2 && user.id === data.agent.id? <div className="row  mt-2">
+        <div className="col-6">
             <Link to={`/agent/edit-property/${data.slug}`} className="btn btn-orange btn-sm">Edit</Link>
-        </span>
-        <span>
-            <button onClick={onDelete} className="btn btn-danger btn-sm">Delete</button>
-        </span>
+        </div>
+        <div className="col-6">
+            <Link to="" onClick={() => deleteListing(data.id)} className="btn text-danger">Delete</Link>
+        </div>
     </div>: ''
 
   return (
     <div className="row py-3" >
         <div className="col-sm-8">
             <div className="row">
-                <div className="col-sm-8 col-lg-8 px-0 py-0">
-                    <img src={property} alt=""/>
+                <div className="col-md-8 px-0 py-0">
+                    <ImageLoader image={data.image} style={{ minHeight: '240px' }} />
                 </div>
-                <div className="col-sm-4 col-lg-4 px-0 py-0">
-                    <img src={data.image === "" ? agent:data.image} alt=""/>
-                    <img src={data.image === "" ? img3:data.image} alt=""/>
+                <div className="col-md-4 row px-0 py-0">
+                    <div className="col col-md-12 p-md-0">
+                        <ImageLoader image={data.image} />
+                    </div>
+                    <div className="col col-md-12 p-md-0">
+                        <ImageLoader image={data.image} />
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,9 +49,11 @@ const PropertyView = ({ data, onDelete, user }) => {
                     {data.toilets === null ? 0: data.toilets} Toilets | 
                     {data.parking === null ? 0: data.parking} Parking
                 </span>
-                <h6 className="px-0 py-0">Ajah</h6>
+                <h6 className="px-0 py-0">{data.locality}</h6>
                 <span>{data.description}</span>
-                <button className="btn btn-dark btn-listing">N {data.price}</button>
+                <span className="btn btn-dark btn-listing">                    
+                    <NumberFormat value={data.price} displayType={'text'} thousandSeparator={true} prefix={'₦'} />
+                </span>
                 <div className="row py-1">
                     <div className="col-sm-8 col-lg-8">
                         <span>Added {data.created_at}</span>
@@ -55,16 +67,27 @@ const PropertyView = ({ data, onDelete, user }) => {
                 </div>
                 <hr className="mx-0 py-0 my-0"/>
                 <div className="row">
-                    <div className="col-sm-3 mt-2 pr-1"><img src={data.image === "" ? property:data.image} className="img rounded-circle" alt=""/></div>
+                    <div className="col-sm-3 hidden">
+                        <img src={data.image === "" ? property:data.image} className="img rounded-circle" alt=""/>
+                    </div>
                     <div className="col-sm-9">
-                        <div className="d-flex justify-content-between">
-                            <span>{data.agent.name}</span>
-                            <span>{data.agent.phone === null ? "No Number":data.agent.phone}</span>
-                            <span>View listing</span>
+                        <div className="">
+                            <span>
+                                <Link to="agentlisting.html">
+                                    {data.agent.name}
+                                </Link>
+                            </span>
+                            <div className="d-flex justify-content-between">
+                                <span>{data.agent.phone === null ? "No Number":data.agent.phone}</span>
+
+                                <span>
+                                    <Link to={`/property/${data.slug}`}>View listing</Link>
+                                </span>
+                            </div>
                         </div>
 
-                        {actionButtons}
                     </div>
+                        {actionButtons}
                 </div>
             </div>
         </div>

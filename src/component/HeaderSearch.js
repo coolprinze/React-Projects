@@ -1,42 +1,48 @@
 import React, { Component } from 'react';
 import NumberFormat from 'react-number-format'
 import SearchBar from './SearchBar';
+import { PRICES } from './Variable';
+import { connect } from 'react-redux'
+import { getPropertyTypes, searchProperties } from '../actions';
+import { UPDATE_SEARCH_PARAM, UPDATE_SEARCH_TERM } from '../actions/types';
+
 
 class HeaderSearch extends Component {
-
-    prices = () => {
-        
-        let prices = []
-        for(let i=100000; i < 10000000; i+=100000) {
-            prices = prices.concat(i)
-        }
-
-        return prices
+    constructor(props) {  
+        super(props);      
+        this.props.getPropertyTypes()
     }
+
+    
+    updateSearch = e => {
+        this.props.updateSearchParams({ [e.target.id]: e.target.value })
+        this.props.searchProperties({...this.props.searchedParam, [e.target.id]: e.target.value})
+    } 
 
     render() {
 
-        const prices = this.prices().map(price => <NumberFormat key={price} value={price} displayType={'text'} thousandSeparator={true} prefix={'₦'} renderText={value => <option value={price}>{value}</option>} />
+        const { types } = this.props
+
+        const prices = PRICES().map(price => <NumberFormat key={price} value={price} displayType={'text'} thousandSeparator={true} prefix={'₦'} renderText={value => <option value={price}>{value}</option>} />
         )
         return ( 
             <header>
                 <div className="container-fluid search-bar d-flex align-items-center flex-xl-row">
-                    <section className="container">
+                    <section className="container py-2">
                         <ul className="row d-flex flex-row justify-content-between align-items-center px-lg-4">
                             <li className="col-lg-3 d-flex flex-column justify-content-center align-items-center px-0  text-center">
-                                {/* <input type="search" name="" className="form-control px-2" id="" placeholder="Lekki, Lagos" /> */}
                                 <SearchBar />
 
                             </li>
                             {/* <li className="col-lg-2 d-flex flex-column justify-content-center align-items-center px-0 text-center">
-                                <select name="location_id" className="form-control px-2" id="location_id">
-                                    <option disabled hidden selected>LOCATION</option>
+                                <select onChange={this.updateSearch} name="location_id" className="form-control px-2" id="location_id">
+                                    <option  value="" defaultValue>LOCATION</option>
                                 </select>
                             </li> */}
                             <div className="border-right pl-0" style={{ height: '79px' }}></div>
                             <li className="col-lg-2 d-flex flex-column justify-content-center align-items-center px-0 text-center">
-                                <select name="min_price" className="form-control px-2" id="min_price">
-                                    <option disabled hidden selected>MIN PRICE</option>
+                                <select onChange={this.updateSearch} name="min_price" className="form-control px-2" id="min_price">
+                                    <option  value="" defaultValue>MIN PRICE</option>
                                     {prices}
                                 </select>
                             </li>
@@ -46,20 +52,28 @@ class HeaderSearch extends Component {
                             </li>
         
                             <li className="col-lg-2 d-flex flex-column justify-content-center align-items-center px-0 text-center">
-                                <select name="max_price" className="form-control px-2" id="max_price">
-                                    <option disabled hidden selected>MAX PRICE</option>
+                                <select onChange={this.updateSearch} name="max_price" className="form-control px-2" id="max_price">
+                                    <option  value="" defaultValue>MAX PRICE</option>
+                                    {prices}
                                 </select>
                             </li>
                             <div className="border-right pl-0" style={{ height: '79px' }}></div>
                             <li className="col-lg-2 d-flex flex-column justify-content-center align-items-center px-0 text-center">
-                                <select name="type_id" className="form-control px-2" id="type_id">
-                                    <option disabled hidden selected>PROPERTY TYPE</option>
+                                <select onChange={this.updateSearch} name="type_id" className="form-control px-2" id="type_id">
+                                    <option  value="" defaultValue>PROPERTY TYPE</option>
+                                    {types.map(type => <option key={type.id} value={type.id}>{type.name}</option>)}
                                 </select>
                             </li>
                             <div className="border-right pl-0" style={{ height: '79px' }}></div>
                             <li className="col-lg-1 d-flex flex-column justify-content-center align-items-center px-0 text-center">
-                                <select name="bathrooms" className="form-control px-2" id="bathrooms">
-                                    <option disabled hidden selected>BATHROOMS</option>
+                                <select onChange={this.updateSearch} name="bathrooms" className="form-control px-2" id="bathrooms">
+                                    <option  value="" defaultValue>BATHROOMS</option>
+                                    <option value="1" >1</option>
+                                    <option value="2" >2</option>
+                                    <option value="3" >3</option>
+                                    <option value="4" >4</option>
+                                    <option value="5" >5</option>
+                                    <option value="6" >6+</option>
                                 </select>
                             </li>
         
@@ -73,5 +87,20 @@ class HeaderSearch extends Component {
     }
 
 }
+const mapStateToProps = state => ({
+    types: state.properties.types,
+    searchedParam: state.utility.searchedParam,
+})
 
-export default HeaderSearch;
+const mapDispatch = dispatch => ({ 
+    searchProperties: searchParam => dispatch(searchProperties(searchParam)),
+    updateSearchParams: searchParam => dispatch({type: UPDATE_SEARCH_PARAM, payload: searchParam})
+  })
+
+export default connect(mapStateToProps, 
+    { 
+        ...mapDispatch,
+        getPropertyTypes,
+        searchProperties,
+        updateSearchParams: searchParam => ({type: UPDATE_SEARCH_PARAM, payload: searchParam})
+    })(HeaderSearch);

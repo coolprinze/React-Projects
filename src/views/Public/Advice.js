@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAdvice, getArticlesCategory } from '../../actions/AdviceActions';
-import { leftArrow, rightArrow } from '../../assets/img';
+import { getAdvice, getArticlesCategory, loadPage } from '../../actions';
 import FeaturedPosts from '../../component/FeaturedPosts';
 
 
@@ -13,8 +12,12 @@ class Advice extends Component {
     
     this.adviceSlug = this.props.match.params.advice
     this.catSlug = this.props.match.params.category
+  }
+
+  async componentDidMount(){      
     this.props.getAdvice(this.adviceSlug);
     this.props.getArticlesCategory(this.catSlug);
+    this.props.loadPage();
   }
 
   createMarkup = data => {
@@ -151,4 +154,4 @@ const mapStateToProps = state => ({
   category: state.advice.category
 })
 
-export default connect(mapStateToProps, { getAdvice, getArticlesCategory })(Advice);
+export default connect(mapStateToProps, { getAdvice, getArticlesCategory, loadPage })(Advice);

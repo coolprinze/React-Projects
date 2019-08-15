@@ -1,8 +1,9 @@
 import React, { Fragment, Component } from 'react'
 import Chart from 'chart.js'
 import {Link} from 'react-router-dom'
-import Header from '../../component/Header/Header';
-import Footer from '../../component/Footer';
+import { connect } from 'react-redux'
+import { loadPage } from '../../actions';
+
 
 class AgentListingStats extends Component {
   componentDidMount(){
@@ -38,12 +39,12 @@ class AgentListingStats extends Component {
             responsive: true
         }
     });
+    this.props.loadPage();
   }
   render() {
     return (
       <Fragment>
 
-        <Header />
         <div className="container-fluid search-bar d-flex align-items-center">
             <div className="container d-flex justify-content-between align-items-center">
                 <div className="col-sm-12">
@@ -68,10 +69,10 @@ class AgentListingStats extends Component {
                 <canvas id="lineChart"></canvas>
             </section>
         </section>
-        <Footer />
+        
       </Fragment>
     )
   }
 }
 
-export default  AgentListingStats;
+export default   connect(null, {loadPage})(AgentListingStats);

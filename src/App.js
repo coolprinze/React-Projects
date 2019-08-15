@@ -47,7 +47,7 @@ class App extends Component {
                             <Route exact path="/user/alerts" component={User}/>
                             <Route exact path="/user/profile" component={User} /> 
                             <Route exact path="/user/post-request" component={User} /> 
-                            <Route exact path="agent/profile" component={Agent} />
+                            <Route exact path="/agent/profile" component={Agent} />
                             <Route exact path="/agent/agent-listing" component={Agent} />
                             <Route exact path="/agent/listing-statistics" component={Agent} />
                             <Route exact path="/agent/add-property" component={Agent} />

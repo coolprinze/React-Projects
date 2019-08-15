@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logOut } from '../../actions';
+import { logo } from '../../assets/img';
+import { GET_PROPERTIES } from '../../actions/types';
 
 class Header extends Component{
-    constructor(props) {
-        super(props)
-    }
 
     onLogout = () => {
         this.props.logOut();
     }
 
+
     render(){
 
         const action = this.props.user? 
-        <span className="nav-link">Hi {this.props.user.username} ! | <Link to="#" onClick={this.onLogout}> Logout</Link></span>
+        <span className="nav-link"><Link className="nav-link" to="/user">Hi {this.props.user.username} !</Link> | <Link to="#" onClick={this.onLogout}> Logout</Link></span>
         :
         <Link className="nav-link" to="/login">Login/Register</Link>
 
@@ -24,7 +24,7 @@ class Header extends Component{
                 <nav className="navbar navbar-expand-lg navbar-light bg-white py-3">
                     <div className="container-fluid px-lg-5">
                     <Link to="/" className="navbar-brand logo">
-                        <img src="assets/img/logo.png" className="d-inline-block align-top" alt="" />
+                        <img src={logo} alt="" />
                     </Link>
                     <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -35,7 +35,7 @@ class Header extends Component{
                                 <Link className="py-1 home-phone" to="#">09883833232</Link>
                             </li>
                             <li className="nav-item active">
-                                <Link to="/propertylisting" className="nav-link">Property Search</Link>
+                                <Link onClick={() => this.props.listProperty()} to="/propertylisting" className="nav-link">Property Search</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/propertyadvice-categories">Property Advice</Link>
@@ -61,4 +61,4 @@ class Header extends Component{
     }
 }
 
-export default connect(null, { logOut })(Header);
+export default connect(null, { logOut, listProperty: () => ({ type: GET_PROPERTIES, payload: { data: [], type: null } }) })(Header);

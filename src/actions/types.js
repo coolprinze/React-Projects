@@ -28,6 +28,7 @@ export const SEARCH_DB = "SEARCH_DB";
 export const UPDATE_SEARCH_PARAM = "UPDATE_SEARCH_PARAM";
 export const UPDATE_SEARCH_TERM = "UPDATE_SEARCH_TERM";
 export const LOAD_PAGE = "LOAD_PAGE";
+export const UNLOAD_PAGE = "UNLOAD_PAGE";
 export const UTILITY_LOADING = "UTILITY_LOADING";
 export const GET_ADVERTS = "GET_ADVERTS";
 export const GET_ADVERT_PROPERTIES = "GET_ADVERT_PROPERTIES";
@@ -35,6 +36,7 @@ export const GET_SCHOOLS = "GET_SCHOOLS";
 export const GET_LANDS = "GET_LANDS";
 export const GET_APARTMENTS = "GET_APARTMENTS";
 export const GET_HOUSES = "GET_HOUSES";
+export const UPDATE_CITY_ID = "UPDATE_CITY_ID";
 
 // Auth Actions
 export const AUTH_SUCCESS = "AUTH_SUCCESS";

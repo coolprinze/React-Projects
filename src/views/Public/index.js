@@ -20,19 +20,29 @@ import Advice from './Advice';
 import Advertise from './Advertise';
 import Magazine from './Magazine';
 import CityListing from './CityListing';
+import { UNLOAD_PAGE } from '../../actions/types';
+import { loadPage } from '../../actions';
+import Loading from '../../component/Loading';
 
 
 
 
 class Public extends Component {
 
+  async componentWillUnmount(){
+      await this.props.loadPage(UNLOAD_PAGE);
+  }
+
 
     render() {
 
       return ( 
         <div>
-          <Header user={this.props.user}/>
-          <main>
+          <div className={`${this.props.loading? '' : 'd-none'}`}>
+            <Loading />
+          </div>
+          <main className={`${this.props.loading? 'd-none' : ''}`}>
+            <Header user={this.props.user}/>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/propertyadvice-categories" component={AdviceCategories} />
@@ -52,8 +62,8 @@ class Public extends Component {
               <Route exact path="/agents" component={Agents} />
               <Route exact path="/property/:slug" component={PropertyDetails} />
             </Switch>
+            <Footer/>         
           </main> 
-          <Footer/>         
         </div>
       )
 
@@ -62,7 +72,8 @@ class Public extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.auth.user
+  user: state.auth.user,
+  loading: state.utility.loading,
 })
 
-export default connect(mapStateToProps)(Public);
+export default connect(mapStateToProps, {loadPage})(Public);

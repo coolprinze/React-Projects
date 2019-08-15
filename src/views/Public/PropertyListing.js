@@ -3,16 +3,20 @@ import { connect } from "react-redux"
 import { Link } from 'react-router-dom';
 import HeaderSearch from './../../component/HeaderSearch'
 import AdvanceSearch from './../../component/AdvanceSearch'
-import { getProperties } from '../../actions';
+import { getProperties, loadPage } from '../../actions';
 import Paginate from '../../component/Paginate';
 import PropertyView from '../../component/PropertyView';
 
 class PropertyListing extends Component {
     constructor(props){
         super(props)
+    }
+    
+    async componentDidMount(){
         if(this.props.properties.requestType === null){
-            this.props.getProperties()
+            await this.props.getProperties()
         }
+        await this.props.loadPage();
     }
     
     getPropertyDetails = (id) => {
@@ -74,16 +78,16 @@ class PropertyListing extends Component {
               <section className="container-fluid properties py-5" style={{background: '#FAFAFA'}}>
                     <div className="container py-3">
                     <div className="row">
-                        <div className="col-md-8">
-                        <div className="row">
-                            <div className="col-sm-12 bg-white py-2 my-3">
-                                <h3>Location filter</h3>
-                                <p className="pb-5" style={{fontSize: '1rem'}}>Ikate | Elegushi | Maruwa | Richmond | Efe | Jankande | Richmond | Efe | Jankande </p>
+                        <div className="col-lg-8">
+                            <div className="row">
+                                <div className="col-sm-12 bg-white py-2 my-3">
+                                    <h3>Location filter</h3>
+                                    <p className="pb-5" style={{fontSize: '1rem'}}>Ikate | Elegushi | Maruwa | Richmond | Efe | Jankande | Richmond | Efe | Jankande </p>
+                                </div>
                             </div>
+                            {properties}
                         </div>
-                        {properties}
-                        </div>
-                        <div className="col-md-4 pl-4" style={{borderRadius:'5px'}}>
+                        <div className="col-lg-4" style={{borderRadius:'5px'}}>
                             <AdvanceSearch/>
                         </div>
                     </div>
@@ -103,4 +107,4 @@ const mapStateToProps = state => ({
     requestType: state.properties.requestType
 })
 
-export default connect(mapStateToProps, { getProperties })(PropertyListing);
+export default connect(mapStateToProps, { getProperties, loadPage })(PropertyListing);

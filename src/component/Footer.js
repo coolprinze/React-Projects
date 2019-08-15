@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { loadPage, searchProperties } from '../actions';
+import { UNLOAD_PAGE } from '../actions/types';
+
 
 class App extends Component {
 
-    componentDidMount() {
-
+    onClick = async (id) => {
+        await this.props.loadPage(UNLOAD_PAGE); 
+        await this.props.searchProperties({ locality_id: id })
+        await this.props.loadPage(); 
     }
 
     render() {
@@ -16,10 +23,10 @@ class App extends Component {
                       <div className="col-lg-3">
                           <h4 className="mb-5 "><img src="assets/img/logo.png" alt="" /></h4>
                           <div className="text-white">
-                              <a href="#" className="footer"><i className="fa fa-facebook px-2 "></i></a>
-                              <a href="#" className="footer"><i className="fa fa-twitter px-2"></i></a>
-                              <a href="#" className="footer"><i className="fa fa-instagram px-2 "></i></a>
-                              <a href="#" className="footer"><i className="fa fa-google px-2 "></i></a>
+                              <Link to="#" className="footer"><i className="fa fa-facebook px-2 "></i></Link>
+                              <Link to="#" className="footer"><i className="fa fa-twitter px-2"></i></Link>
+                              <Link to="#" className="footer"><i className="fa fa-instagram px-2 "></i></Link>
+                              <Link to="#" className="footer"><i className="fa fa-google px-2 "></i></Link>
                           </div>
       
                       </div>
@@ -43,26 +50,38 @@ class App extends Component {
                               <div className="col-sm-6 ">
                                   <ul>
                                       <li className="text-white py-2 " style={{fontSize:'1rem'}}>
-                                          Lekki
+                                        <Link onClick={this.onClick.bind(this, 59)} to={`/city/59`} className="footer">
+                                            Lekki
+                                        </Link>
                                       </li>
                                       <li className="text-white py-2 " style={{fontSize:'1rem'}}>
+                                        <Link onClick={this.onClick.bind(this, 19)} to={`/city/19`} className="footer">
                                           Bannana Island
+                                        </Link>
                                       </li>
                                       <li className="text-white py-2 " style={{fontSize:'1rem'}}>
-                                          Ikeja
+                                        <Link onClick={this.onClick.bind(this, 40)} to={`/city/40`} className="footer">
+                                            Ikeja
+                                        </Link>                           
                                       </li>
                                   </ul>
                               </div>
                               <div className="col-sm-6 ">
                                   <ul>
                                       <li className="text-white py-2 " style={{fontSize:'1rem'}}>
-                                          Ikoyi
+                                        <Link onClick={this.onClick.bind(this, 46)} to={`/city/46`} className="footer">
+                                            Ikoyi
+                                        </Link> 
                                       </li>
                                       <li className="text-white py-2 " style={{fontSize:'1rem'}}>
-                                          Lekki Phase 1
+                                        <Link onClick={this.onClick.bind(this, 60)} to={`/city/60`} className="footer">
+                                            Lekki Phase 1
+                                        </Link> 
                                       </li>
                                       <li className="text-white py-2 " style={{fontSize:'1rem'}}>
-                                          Victorial Island
+                                        <Link onClick={this.onClick.bind(this, 91)} to={`/city/91`} className="footer">
+                                            Victorial Island
+                                        </Link> 
                                       </li>
                                   </ul>
                               </div>
@@ -81,4 +100,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default connect(null, { loadPage, searchProperties, })(App);

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from '../../component/Header/Header'
 import config from '../../config'
 import bg from "./agent-listing-images/img/bg.png"
 import agency from "./agent-listing-images/img/agency.png"
@@ -54,7 +53,6 @@ class PropertyAdvice extends Component {
       })
       return ( 
             <React.Fragment>
-              <Header />
               <section class="slider ">
                 <div id="osahanslider " class="carousel slide " data-ride="carousel ">
                     <div class="carousel-inner " role="listbox " style={{height:"300px"}}>

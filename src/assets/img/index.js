@@ -11,3 +11,4 @@ export const ad1 = require('./CASTLES-MAGAZINE-RATE-CARD-NEW-2018.png');
 export const ad2 = require('./HIGHBROW-ADVERT-RATE(1).png');
 export const magazine = require('./magazinepics.png');
 export const advert = require('./advert.png');
+export const logo = require('./logo.png');

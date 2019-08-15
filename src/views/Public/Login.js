@@ -3,7 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { authenticateUser, loadPage } from '../../actions';
 import Loading from '../../component/Loading';
-import { AUTH_LOADING } from '../../actions/types';
+import { UNLOAD_PAGE } from '../../actions/types';
 
 
 
@@ -19,6 +19,9 @@ class Login extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.auth = this.auth.bind(this)
     }
+    async componentDidMount(){
+        await this.props.loadPage();
+    }
     handleChange = (e) => {
         this.setState({
             [e.target.id]:e.target.value
@@ -27,7 +30,7 @@ class Login extends Component {
 
     auth = async e => {
         await e.preventDefault()
-        await this.props.loadPage(AUTH_LOADING);
+        await this.props.loadPage(UNLOAD_PAGE);
         const { email, password } = await this.state
         await this.props.authenticateUser({ email, password })
     }
@@ -36,6 +39,9 @@ class Login extends Component {
             return (<Loading />)
         }
         if (this.props.isAuthenticated){
+            if(this.props.user.role.id === 2){
+                return (<Redirect to='/agent' />)
+            }
             return (<Redirect to='/user' />)
         }
         return ( 
@@ -102,6 +108,7 @@ class Login extends Component {
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user,
     loading: state.auth.loading
 })
 

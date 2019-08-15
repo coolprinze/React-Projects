@@ -4,7 +4,7 @@ import {Redirect, Link} from 'react-router-dom'
 import config from '../../config'
 import Select from 'react-select'
 import AsyncSelect from 'react-select/async'
-import { searchProperties, getAdverts, getAllArticles } from '../../actions';
+import { searchProperties, getAdverts, getAllArticles, loadPage } from '../../actions';
 import Newsletter from '../../component/Newsletter';
 import { GET_SCHOOLS, GET_LANDS, GET_HOUSES, GET_APARTMENTS } from '../../actions/types';
 import FeaturedPosts from '../../component/FeaturedPosts';
@@ -38,19 +38,20 @@ class Home extends Component {
         this.getCategories = this.getCategories.bind(this)
         this.processSearch = this.processSearch.bind(this)
         this.getFeatures = this.getFeatures.bind(this)
-        this.getFeatures()
-        this.searchByArea("")
-        props.getAdverts()
-        props.searchProperties({ type_id: 19 }, GET_SCHOOLS);
-        props.searchProperties({ type_id: 15 }, GET_LANDS);
-        props.searchProperties({ type_id: 14 }, GET_HOUSES);
-        props.searchProperties({ type_id: 2 }, GET_APARTMENTS);
-        props.getAllArticles();
     }
-    componentDidMount() {
-        this.getPropertyTypes()
-        this.getStates()
-        this.getCategories()
+    async componentDidMount() {
+        await this.getFeatures()
+        await this.searchByArea("")
+        await this.props.getAdverts()
+        await this.props.searchProperties({ type_id: 19 }, GET_SCHOOLS);
+        await this.props.searchProperties({ type_id: 15 }, GET_LANDS);
+        await this.props.searchProperties({ type_id: 14 }, GET_HOUSES);
+        await this.props.searchProperties({ type_id: 2 }, GET_APARTMENTS);
+        await this.props.getAllArticles();
+        await this.getPropertyTypes()
+        await this.getStates()
+        await this.getCategories()
+        await this.props.loadPage();
     }
 
     handlePropertyType = (propertyType) => {
@@ -604,4 +605,4 @@ const mapStateToProps = state => ({
     articles: state.advice.category,
 })
 
-export default connect(mapStateToProps, { searchProperties, getAdverts, getAllArticles })(Home);
+export default connect(mapStateToProps, { searchProperties, getAdverts, getAllArticles, loadPage })(Home);

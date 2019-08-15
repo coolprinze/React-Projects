@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
-import Header from "../../component/Header/UserHeader"
+import { loadPage, getUser } from '../../actions';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { Input } from '../../common/Form';
+
 
 
 class Profile extends Component {
 
-    componentDidMount() {
-
+    async componentDidMount() {
+        await this.props.getUser()
+        await this.props.loadPage()
     }
 
     render() {
         return ( 
             <React.Fragment>
-                <Header />
                 <section className="container-fluid bg-grey">
                     <div className="container py-5">
                         <div className="row bg-dark px-3 py-3 text-white nav-pills">
                             <div className="col-sm-3">
-                                <a className="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#editDetails" role="tab" aria-controls="v-pills-home" aria-selected="true">Edit Details</a>
+                                <Link className="nav-link active" id="v-pills-home-tab" data-toggle="pill" to="#editDetails" role="tab" aria-controls="v-pills-home" aria-selected="true">Edit Details</Link>
                             </div>
                             <div className="col-sm-3 text-muted">
-                                <a className="nav-link" id="v-pills-edit-tab" data-toggle="pill" href="#companyLogo" role="tab" aria-controls="v-pills-home" aria-selected="true">Company Logo</a>
+                                <Link className="nav-link" id="v-pills-edit-tab" data-toggle="pill" to="#companyLogo" role="tab" aria-controls="v-pills-home" aria-selected="true">Company Logo</Link>
                             </div>
                             <div className="col-sm-3">
-                                <a className="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#password" role="tab" aria-controls="v-pills-home" aria-selected="true">Password</a>
+                                <Link className="nav-link" id="v-pills-home-tab" data-toggle="pill" to="#password" role="tab" aria-controls="v-pills-home" aria-selected="true">Password</Link>
                             </div>
                         </div>
                         <div className="row bg-white px-3 py-3 tab-content" id="v-pills-tabContent">
@@ -31,27 +35,27 @@ class Profile extends Component {
                                     <div className="row">
                                         <div className="col">
                                             <label for="firstName">Name</label>
-                                            <input type="text" className="form-control form-control-lg bg-white" value="James"/>
+                                            <Input  name="" label="" type="text" inputClass="form-control form-control-lg bg-white" value="James"/>
                                         </div>
                                         <div className="col">
                                             <label for="lastName">Company Name</label>
-                                            <input type="text" className="form-control form-control-lg bg-white" value="Agbalumo"/>
+                                            <Input  name="" label="" type="text" inputClass="form-control form-control-lg bg-white" value="Agbalumo"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="form-group py-2">
                                     <label for="address">House Address</label>
-                                    <input type="text" className="form-control form-control-lg bg-white" id="address" value="28, King Okorodudu Street Surulere Lagos"/>
+                                    <Input  name="" label="" type="text" inputClass="form-control form-control-lg bg-white" id="address" value="28, King Okorodudu Street Surulere Lagos"/>
                                 </div>
                                 <div className="form-group pt-4">
                                     <div className="row">
                                         <div className="col">
                                             <label for="mobileno">Country</label>
-                                            <input type="text" className="form-control form-control-lg bg-white" value="08023345678"/>
+                                            <Input  name="" label="" type="text" inputClass="form-control form-control-lg bg-white" value="08023345678"/>
                                         </div>
                                         <div className="col">
                                             <label for="email">Email Address</label>
-                                            <input type="text" className="form-control form-control-lg bg-white" value="jamesagbalumo@gmail.com"/>
+                                            <Input  name="" label="" type="text" inputClass="form-control form-control-lg bg-white" value="jamesagbalumo@gmail.com"/>
                                         </div>
                                     </div>
                                 </div>
@@ -59,17 +63,17 @@ class Profile extends Component {
                                     <div className="row">
                                         <div className="col">
                                             <label for="mobileno">Mobile No</label>
-                                            <input type="text" className="form-control form-control-lg bg-white" value="08023345678"/>
+                                            <Input  name="" label="" type="text" inputClass="form-control form-control-lg bg-white" value="08023345678"/>
                                         </div>
                                         <div className="col">
                                             <label for="email">Whatsapp No</label>
-                                            <input type="text" className="form-control form-control-lg bg-white" value="08023345678"/>
+                                            <Input  name="" label="" type="text" inputClass="form-control form-control-lg bg-white" value="08023345678"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="form-group py-2">
                                     <label for="address">About Us</label>
-                                    <textarea name="about" className="form-control form-control-lg bg-white" id="" cols="30" rows="10"></textarea>
+                                    <textarea name="about" inputClass="form-control form-control-lg bg-white" id="" cols="30" rows="10"></textarea>
                                 </div>
                                 <div className="form-group py-2">
                                     <button className="btn bg-orange px-5 pull-right text-white">Save changes</button>
@@ -85,7 +89,7 @@ class Profile extends Component {
                                         </div>
                                         <div className="col-sm-4">
                                             <label for="email">Change company logo</label>
-                                            <input type="file" className="form-control form-control-lg bg-white"/>
+                                            <Input  name="" label="" type="file" inputClass="form-control form-control-lg bg-white"/>
                                         </div>
                                     </div>
                                 </div>
@@ -96,17 +100,17 @@ class Profile extends Component {
                             <div className="col-sm-12 tab-pane fade show" id="password" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                 <div className="form-group py-2">
                                     <label for="address">Old Password</label>
-                                    <input type="password" className="form-control form-control-lg bg-white" id="address" value=""/>
+                                    <Input  name="" label="" type="password" inputClass="form-control form-control-lg bg-white" id="address" value=""/>
                                 </div>
                                 <div className="form-group pt-4">
                                     <div className="row">
                                         <div className="col">
                                             <label for="mobileno">New Password</label>
-                                            <input type="password" className="form-control form-control-lg bg-white" value=""/>
+                                            <Input  name="" label="" type="password" inputClass="form-control form-control-lg bg-white" value=""/>
                                         </div>
                                         <div className="col">
                                             <label for="email">Confirm New Password</label>
-                                            <input type="password" className="form-control form-control-lg bg-white" value=""/>
+                                            <Input  name="" label="" type="password" inputClass="form-control form-control-lg bg-white" value=""/>
                                         </div>
                                     </div>
                                 </div>
@@ -122,4 +126,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+export default connect(null, { loadPage, getUser })(Profile);

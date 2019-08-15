@@ -44,20 +44,16 @@ const SearchBar = ({ searchDb, searchResult, updateSearchTerm, updateSearchParam
 
   console.log(searchedParam)
   return (
-                <Fragment>
-                    <input onChange={onSearch} type="search" placeholder="e.g Lekki, Lagos" value={searchTerm} className="form-control px-2" />
-                    <div className="w-100 relative mt-1 search d-none">
-                      <div className="card p-2 text-left" style={{ zIndex: 3, position: 'absolute', width: '100%', maxHeight: '350px', overflow: 'auto' }}>
-       
-                        {searchResult.length? renderSearchResult(searchResult) : <p>No result for your search</p>}
-                        </div>
-                        
-                    </div>
-                </Fragment>
-    //         </div>
-    //     </div>
+    <Fragment>
+        <input onChange={onSearch} type="search" placeholder="e.g Lekki, Lagos" value={searchTerm} className="form-control px-2" />
+        <div className="w-100 relative mt-1 search d-none">
+          <div className="card p-2 text-left" style={{ zIndex: 3, position: 'absolute', width: '100%', maxHeight: '350px', overflow: 'auto' }}>
 
-    // </div>
+            {searchResult.length? renderSearchResult(searchResult) : <p>No result for your search</p>}
+            </div>
+            
+        </div>
+    </Fragment>
   )
 }
 

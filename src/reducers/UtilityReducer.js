@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_STATES, CREATE_MESSAGE, GET_ERRORS, RESET, GET_LOCALITIES, EDIT_EMAIL, SEARCH_DB, UPDATE_SEARCH_PARAM, LOAD_PAGE, GET_ADVERTS, GET_ADVERT_PROPERTIES, GET_SCHOOLS, GET_APARTMENTS, GET_LANDS, GET_HOUSES, UPDATE_SEARCH_TERM } from "../actions/types";
+import { GET_COUNTRIES, GET_STATES, CREATE_MESSAGE, GET_ERRORS, RESET, GET_LOCALITIES, EDIT_EMAIL, SEARCH_DB, UPDATE_SEARCH_PARAM, LOAD_PAGE, GET_ADVERTS, GET_ADVERT_PROPERTIES, GET_SCHOOLS, GET_APARTMENTS, GET_LANDS, GET_HOUSES, UPDATE_SEARCH_TERM, UNLOAD_PAGE } from "../actions/types";
 
 const INITIAL_STATE = {
   pageLoading: true,
@@ -39,33 +39,33 @@ export default (state = INITIAL_STATE, action) => {
   console.log(action)
   switch(action.type){
     case GET_COUNTRIES:
-      return { ...state, loading: false, countries: action.payload }
+      return { ...state, countries: action.payload }
 
     case GET_STATES:
-      return { ...state, loading: false, states: action.payload }
+      return { ...state, states: action.payload }
 
     case GET_LOCALITIES:
-      return { ...state, loading: false, localities: action.payload }
+      return { ...state, localities: action.payload }
 
     case CREATE_MESSAGE:
-      return {...state, loading: false, messages: action.payload}
+      return {...state, messages: action.payload}
 
     case GET_ERRORS:
       return { 
 
-        ...state, loading: false,
+        ...state,
         errors: {
           msg: action.payload.msg
         }
       }
     case RESET:
-      return { ...state, loading: false, reset: true }
+      return { ...state, reset: true }
       
     case EDIT_EMAIL:
-      return { ...state, loading: false, email: action.payload }
+      return { ...state, email: action.payload }
 
     case UPDATE_SEARCH_PARAM:
-      return { ...state, loading: false, searchedParam: {
+      return { ...state, searchedParam: {
         ...state.searchedParam,
         ...action.payload
       } }
@@ -73,27 +73,27 @@ export default (state = INITIAL_STATE, action) => {
     case UPDATE_SEARCH_TERM:
       return {
         ...state,
-        loading: false,
         searchTerm: action.payload
       }
 
     case SEARCH_DB:
-      return { ...state, loading: false, searchResult: action.payload }
+      return { ...state, searchResult: action.payload }
 
     case LOAD_PAGE:
       return { ...state, loading: false, pageLoading: false }
 
+    case UNLOAD_PAGE:
+      return { ...state, loading: true, pageLoading: true }
+
     case GET_ADVERTS:
       return {
         ...state,
-        loading: false,
         adverts: action.payload        
       }
 
     case GET_ADVERT_PROPERTIES:
       return {
         ...state,
-        loading: false,
         advertProperties: action.payload        
       }
 

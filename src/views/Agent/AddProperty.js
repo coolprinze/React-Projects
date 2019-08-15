@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { Link, Redirect } from 'react-router-dom';
-import Header from "../../component/Header/UserHeader"
 import { Input, TextArea, Select } from '../../common/Form';
 import { getCountries, getStates, getLocalities, saveProperty, getProperty, loadPage } from '../../actions';
 
@@ -33,12 +32,6 @@ class AddProperty extends Component {
         slug: false,
     }
 
-    constructor(props) {
-        super(props);
-
-        props.getCountries()
-        props.getStates()        
-    }
     
     async componentDidMount() {
         const slug = await this.props.match.params.slug
@@ -46,6 +39,9 @@ class AddProperty extends Component {
             await this.props.getProperty(slug);
             await this.setState({ ...this.props.property, slug: true })
         }
+        await this.props.getCountries()
+        await this.props.getStates()  
+        await this.props.loadPage();
     }
     
     onChange = e =>{
@@ -67,7 +63,9 @@ class AddProperty extends Component {
     
             await this.props.saveProperty({ title, price, description, status_id, type_id, bedrooms, bathrooms, toilets, address, state_id, locality_id, furnished, serviced, parking, total_area, covered_area, id });
 
-            this.setState({ edited: this.props.status })
+            await this.setState({ edited: this.props.status })
+
+            await this.props.history.goBack()
 
         } else {
             const { title, price, description, status_id, type_id, bedrooms, bathrooms, toilets, address, state_id, locality_id, furnished, serviced, parking, total_area, covered_area } = await this.state;
@@ -129,7 +127,6 @@ class AddProperty extends Component {
         }
         return ( 
             <React.Fragment>
-                <Header />
                 <section className="container-fluid bg-grey">
                     <div className="container py-5">
                         <div className="row bg-dark px-3 py-3 text-white nav-pills">

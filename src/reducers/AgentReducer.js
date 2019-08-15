@@ -1,4 +1,4 @@
-import { GET_AGENTS } from "../actions/types";
+import { GET_AGENTS, AGENT_LOADING, LOAD_PAGE, UNLOAD_PAGE } from "../actions/types";
 
 const INITIAL_STATE = {
   agents: {
@@ -9,7 +9,8 @@ const INITIAL_STATE = {
     to: '', 
     from: '', 
     total: ''
-  }
+  },
+  loading: true
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -18,6 +19,16 @@ export default (state = INITIAL_STATE, action) => {
       return {
         agents: action.payload
       }
+
+    case LOAD_PAGE:
+      return {
+        ...state,
+        loading: false
+      }
+      
+    case UNLOAD_PAGE:
+        return { ...state, loading: true, pageLoading: true }
+  
     default:
       return state
   }

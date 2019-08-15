@@ -44,10 +44,10 @@ export const getProperties = (type = null) => async dispatch => {
 // Search Property
 export const searchProperties = (params, type = GET_PROPERTIES) => async dispatch => {
   
-  const url = new URL(`${config.BASE_URL}/search`);
-  Object.keys(params).forEach(key=> url.searchParams.append(key,params[key]));
+  const url = await new URL(`${config.BASE_URL}/search`);
+  await Object.keys(params).forEach(key=> url.searchParams.append(key,params[key]));
 
-  axios.get(url.href, config.header)
+  await axios.get(url.href, config.header)
     .then(res => {
       dispatch({
         type,

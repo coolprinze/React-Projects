@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../../component/Header/Header';
-import Footer from '../../component/Footer';
 import building from './icons/building.png'
 import stat from './icons/stat.png'
 import user from './icons/user.png'
 import add from './icons/add.png'
 import network from './icons/network.png'
-import edit from './icons/edit.png'
-
-
-
+import edit from './icons/edit.png';
+import { connect } from 'react-redux'
+import { loadPage } from '../../actions';
+import { UNLOAD_PAGE } from '../../actions/types';
 
 class Dashboard extends Component {
+    async componentDidMount(){
+        await this.props.loadPage();
+    }
+
+    async componentWillUnmount(){
+        await this.props.loadPage(UNLOAD_PAGE);
+    }
 
     render() {
 
         return ( 
           <React.Fragment>
-            <Header />
             <div className="container-fluid search-bar d-flex align-items-center">
               <div className="container d-flex justify-content-between align-items-center">
                   <div className="col-sm-12">
@@ -35,10 +39,15 @@ class Dashboard extends Component {
                   <div className="row">
                       <div className="col-sm-4 px-4">
                           <div className="card text-center py-4 px-4  bg-white grey-border d-flex align-items-center" style={{minHeight:"241px"}} >
-                              <Link to="/agent/agent-listing">
                                 <img src={building} className="img-fluid " alt=""/>
+                              <Link to="/agent/agent-listing">
                                 <p className="pt-4 ">My Listings</p>
-                              <span className="py-2 ">View, add, edit and delete from listings</span>
+                              </Link>
+                              <Link to="/agent/agent-listing">
+                                <span className="pt-4 ">View, edit and delete from listings</span>
+                              </Link>
+                              <Link to="/agent/add-property">
+                                <span className="pt-4 ">Add Listing, </span>
                               </Link>
                           </div>
                       </div>
@@ -117,11 +126,11 @@ class Dashboard extends Component {
                 </div>
               </div>
             </section>
-            <Footer />
+
           </React.Fragment>
         )
     }
 
 }
 
-export default Dashboard;
+export default connect(null, {loadPage})(Dashboard);

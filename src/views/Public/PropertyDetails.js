@@ -3,21 +3,26 @@ import { connect } from 'react-redux';
 import NumberFormat from 'react-number-format'
 import HeaderSearch from './../../component/HeaderSearch'
 import { property as img1, leftArrow, rightArrow } from '../../assets/img';
-import { getProperty, saveAProperty, createMsg } from '../../actions';
-import { Link, Redirect } from 'react-router-dom';
-
-
-
+import { getProperty, saveAProperty, createMsg, loadPage } from '../../actions';
+import { Link } from 'react-router-dom';
+import { UNLOAD_PAGE } from '../../actions/types';
+import { ImageLoader } from '../../component/Loading';
 
 class PropertyDetails extends Component {
     state = {
       property: []
     }
 
-    constructor(props){
-        super(props)
-        this.slug = this.props.match.params.slug
-        props.getProperty(this.slug);
+    
+    async componentDidMount(){
+        this.slug = await this.props.match.params.slug
+        await this.props.getProperty(this.slug);
+        await this.props.loadPage();
+
+    }
+
+    componentWillUnmount(){
+        this.props.loadPage(UNLOAD_PAGE);
     }
 
     onSaveClick = () => {
@@ -109,33 +114,19 @@ class PropertyDetails extends Component {
                     </div>
                 </div>
                 
-                <section className="py-5">
+                <section className="py-4 container">
                     <div id="carousel">
                         <div className="slide">
-                            <img alt="" src={img1} />
-                        </div>
-                        <div className="slide">
-                            <img alt="" src={img1} />
-                        </div>
-                        <div className="slide">
-                            <img alt="" src={img1} />
-                        </div>
-                        <div className="slide">
-                            <img alt="" src={img1} />
-                        </div>
-                        <div className="slide">
-                            <img alt="" src={img1} />
-                        </div>
-                        <div className="slide">
-                            <img alt="" src={img1} />
+                            {property.pictures.map(picture => <ImageLoader style={{ minHeight: '240px' }} image={picture.image} />)}
                         </div>
                     </div>
                     <div>
+                        {property.pictures.length? 
                         <div className="d-flex justify-content-end py-4 px-5">
                             <img alt="" src={leftArrow} id="left-btn" className="px-1 pointer" alt=" "/>
 
                             <img alt="" src={rightArrow} id="right-btn" className="px-1 pointer" alt=" "/>
-                        </div>
+                        </div>: <p>There are no images for this listing</p>}
                     </div>
                 </section>
 
@@ -368,4 +359,4 @@ const mapStateToProp = state => ({
     property: state.properties.property
 })
 
-export default connect(mapStateToProp, { getProperty, saveAProperty, createMsg })(PropertyDetails);
+export default connect(mapStateToProp, { getProperty, saveAProperty, createMsg, loadPage })(PropertyDetails);

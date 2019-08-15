@@ -11,13 +11,24 @@ import PropertyAdvice from './PropertyAdvice'
 import Profile from './Profile'
 import AddProperty from './AddProperty';
 import AgentListingStats from './AgentListingStats';
-import { createMsg } from '../../actions';
+import { createMsg, loadPage } from '../../actions';
 import Loading from '../../component/Loading';
+import Header from '../../component/Header/Header';
+import Footer from '../../component/Footer';
+import { AGENT_LOADING, UNLOAD_PAGE } from '../../actions/types';
+
 
 
 
 
 class Agent extends Component {
+
+  constructor(props){
+    super(props);
+  }
+  async componentWillUnmount(){
+    await this.props.loadPage(UNLOAD_PAGE);
+  }
 
   
 
@@ -31,8 +42,13 @@ class Agent extends Component {
           })()
         }
         return ( 
+          
           <div>
-            <main className={`${this.props.pageLoading? '' : ''}`}>
+            <div className={`${this.props.loading? '' : 'd-none'}`}>
+              <Loading />
+            </div>
+            <main className={`${this.props.loading? 'd-none' : ''}`}>
+              <Header user={this.props.user}/>
               <Switch>
                 <Route exact path="/agent" component={Dashboard} />
                 <Route exact path="/agent/listing-statistics" component={AgentListingStats} />
@@ -43,7 +59,8 @@ class Agent extends Component {
                 <Route exact path="/propertyadvice" component={PropertyAdvice}/>
                 <Route exact path="/agents" component={Agents} />
               </Switch>
-            </main>          
+              <Footer />         
+            </main> 
           </div>
         )
       }
@@ -59,7 +76,8 @@ class Agent extends Component {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
-  pageLoading: state.utility.pageLoading
+  loading: state.agent.loading
+  // pageLoading: state.utility.pageLoading
 })
 
-export default connect(mapStateToProps, { createMsg })(Agent);
+export default connect(mapStateToProps, { createMsg, loadPage })(Agent);

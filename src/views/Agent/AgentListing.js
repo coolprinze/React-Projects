@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import Header from "../../component/Header/UserHeader";
 import { getAgentProperties, deleteProperty, loadPage } from '../../actions';
 import Paginate from '../../component/Paginate';
 import PropertyView from '../../component/PropertyView';
@@ -12,12 +11,14 @@ import PropertyView from '../../component/PropertyView';
 class AgentListing extends Component {
     constructor(props){
         super(props)
-        this.props.getAgentProperties()
+        this.getAgentProperties()
         this.onDelete = this.deleteListing.bind(this)
     }
 
-    async componentDidMount(){
+    getAgentProperties = async () => {
+        await this.props.getAgentProperties();
         await this.props.loadPage();
+
     }
 
     deleteListing = async (id) => {
@@ -39,19 +40,18 @@ class AgentListing extends Component {
         const properties = data.length?
         data.map((item) =>{
             return (
-                <PropertyView  key={item.id}  data={item} onDelete={this.deleteListing.bind(this, item.id)} />
+                <PropertyView  key={item.id}  data={item} />
             )
         }): <p>You Have no listging at the moment</p>
         return ( 
             <React.Fragment>
-                <Header />
                     <section className="container-fluid properties bg-grey py-5">
                     <div className="container">
                         <div className="row">
-                            <div className="col-sm-8 col-lg-sm-8">
+                            <div className="col-lg-8">
                                 {properties}
                             </div>
-                            <div className="col-sm-4 col-lg-4 pl-4">
+                            <div className="col-lg-4">
                                 <div className="row">
                                     <div className="col-sm-12 py-3">
                                         <div className="card px-3 py-3" height="18rem">

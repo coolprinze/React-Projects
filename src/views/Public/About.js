@@ -3,17 +3,13 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { abtUsContent } from '../../assets/img';
 import Contact from '../../component/Contact';
-import { subscribe } from '../../actions';
+import { loadPage } from '../../actions';
 import Newsletter from '../../component/Newsletter';
 
 class About extends Component {
-    state = {email:''};
 
-    onChange = e => this.setState({ email: e.target.value });
-
-    onSubscribeClick = async () => {
-        await this.props.subscribe(this.state.email);
-        this.state({ email: '' });
+    async componentDidMount(){
+      await this.props.loadPage();
     }
 
   render() {
@@ -96,4 +92,4 @@ class About extends Component {
   }
 }
 
-export default connect(null, { subscribe })(About);
+export default connect(null, { loadPage })(About);
