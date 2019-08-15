@@ -15,7 +15,7 @@ class Header extends Component{
     render(){
 
         const action = this.props.user? 
-        <span className="nav-link"><Link className="nav-link" to="/user">Hi {this.props.user.username} !</Link> | <Link to="#" onClick={this.onLogout}> Logout</Link></span>
+        <span className="nav-link"><Link className="" to="/user">Hi {this.props.user.username} !</Link> | <Link to="#" onClick={this.onLogout}> Logout</Link></span>
         :
         <Link className="nav-link" to="/login">Login/Register</Link>
 

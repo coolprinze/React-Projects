@@ -41,17 +41,17 @@ class Home extends Component {
     }
     async componentDidMount() {
         await this.getFeatures()
-        await this.searchByArea("")
-        await this.props.getAdverts()
-        await this.props.searchProperties({ type_id: 19 }, GET_SCHOOLS);
         await this.props.searchProperties({ type_id: 15 }, GET_LANDS);
         await this.props.searchProperties({ type_id: 14 }, GET_HOUSES);
         await this.props.searchProperties({ type_id: 2 }, GET_APARTMENTS);
-        await this.props.getAllArticles();
+        await this.props.searchProperties({ type_id: 19 }, GET_SCHOOLS);
+        await this.props.loadPage();
         await this.getPropertyTypes()
+        await this.searchByArea("")
+        await this.props.getAdverts()
+        await this.props.getAllArticles();
         await this.getStates()
         await this.getCategories()
-        await this.props.loadPage();
     }
 
     handlePropertyType = (propertyType) => {

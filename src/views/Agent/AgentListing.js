@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getAgentProperties, deleteProperty, loadPage } from '../../actions';
+import { getAgentProperties, deleteProperty, loadPage, getPaginatePage } from '../../actions';
 import Paginate from '../../component/Paginate';
 import PropertyView from '../../component/PropertyView';
+import { GET_PROPERTIES } from '../../actions/types';
 
 
 
@@ -135,7 +136,7 @@ class AgentListing extends Component {
                         </div>
                     </div>
                 </section>
-                    <Paginate data={this.props.properties} />
+                    <Paginate type={GET_PROPERTIES} onClick={this.props.getPaginatePage} data={this.props.properties} />
             </React.Fragment>
         )
     }
@@ -145,6 +146,6 @@ const mapStateToProps = state => ({
     properties: state.properties.listings
 })
 
-export default connect(mapStateToProps, { getAgentProperties, deleteProperty, loadPage })(AgentListing);
+export default connect(mapStateToProps, { getAgentProperties, deleteProperty, loadPage, getPaginatePage })(AgentListing);
 
 

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import HeaderSearch from './../../component/HeaderSearch'
 import AdvanceSearch from './../../component/AdvanceSearch'
-import { searchProperties, loadPage } from '../../actions';
+import { searchProperties, loadPage, getPaginatePage } from '../../actions';
 import Paginate from '../../component/Paginate';
 import PropertyView from '../../component/PropertyView';
-import { UNLOAD_PAGE } from '../../actions/types';
+import { UNLOAD_PAGE, GET_PROPERTIES } from '../../actions/types';
 
 class CityListing extends Component {
     state={
@@ -62,7 +62,7 @@ class CityListing extends Component {
                     </div>
                     </div>
                 </section>
-                <Paginate data={this.props.properties} />             
+                <Paginate type={GET_PROPERTIES} onClick={this.props.getPaginatePage} data={this.props.properties} />             
           
             </div>
         )
@@ -77,4 +77,4 @@ const mapStateToProps = state => ({
     requestType: state.properties.requestType
 })
 
-export default connect(mapStateToProps, { searchProperties, loadPage })(CityListing);
+export default connect(mapStateToProps, { searchProperties, loadPage, getPaginatePage })(CityListing);

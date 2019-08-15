@@ -3,14 +3,12 @@ import { connect } from "react-redux"
 import { Link } from 'react-router-dom';
 import HeaderSearch from './../../component/HeaderSearch'
 import AdvanceSearch from './../../component/AdvanceSearch'
-import { getProperties, loadPage } from '../../actions';
+import { getProperties, loadPage, getPaginatePage } from '../../actions';
 import Paginate from '../../component/Paginate';
 import PropertyView from '../../component/PropertyView';
+import { GET_PROPERTIES } from '../../actions/types';
 
 class PropertyListing extends Component {
-    constructor(props){
-        super(props)
-    }
     
     async componentDidMount(){
         if(this.props.properties.requestType === null){
@@ -43,7 +41,7 @@ class PropertyListing extends Component {
                             </div>
                             <div className="col-sm-2" data-toggle="modal" data-target="#createAlert">
                             <Link to="#" data-toggle="modal" data-target="#createAlert">
-                            <i class="fa fa-bell pr-2"></i>Create Alert
+                            <i className="fa fa-bell pr-2"></i>Create Alert
                         </Link>
                             </div>
         
@@ -80,7 +78,7 @@ class PropertyListing extends Component {
               <section className="container-fluid properties py-5" style={{background: '#FAFAFA'}}>
                     <div className="container py-3">
                         <div className="row">
-                            <div className="col-md-8">
+                            <div className="col-lg-8">
                                 <div className="row">
                                     <div className="col-sm-12 bg-white py-2 my-3">
                                         <h3>Location filter</h3>
@@ -88,14 +86,14 @@ class PropertyListing extends Component {
                                     </div>
                                     {properties}
                                 </div>
-                                <div className="col-lg-4" style={{borderRadius:'5px'}}>
-                                    <AdvanceSearch/>
-                                </div>
+                            </div>
+                            <div className="col-lg-4 pl-lg-4" style={{borderRadius:'5px'}}>
+                                <AdvanceSearch/>
                             </div>
                         </div>
                     </div>
                 </section>
-                <Paginate data={this.props.properties} />             
+                <Paginate type={GET_PROPERTIES} onClick={this.props.getPaginatePage} data={this.props.properties} />             
           
             </div>
         )
@@ -109,4 +107,4 @@ const mapStateToProps = state => ({
     requestType: state.properties.requestType
 })
 
-export default connect(mapStateToProps, { getProperties, loadPage })(PropertyListing);
+export default connect(mapStateToProps, { getProperties, loadPage, getPaginatePage })(PropertyListing);

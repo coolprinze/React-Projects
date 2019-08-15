@@ -23,22 +23,22 @@ const PropertyView = ({ data, user }) => {
 
   return (
     <div className="row py-3" >
-        <div className="col-sm-8">
+        <div className="col-sm-8 pr-sm-0">
             <div className="row">
                 <div className="col-md-8 px-0 py-0">
                     <ImageLoader image={data.image} style={{ minHeight: '240px' }} />
                 </div>
                 <div className="col-md-4 row px-0 py-0">
-                    <div className="col col-md-12 p-md-0">
+                    <div className="col col-md-12 p-0">
                         <ImageLoader image={data.image} />
                     </div>
-                    <div className="col col-md-12 p-md-0">
+                    <div className="col col-md-12 p-0">
                         <ImageLoader image={data.image} />
                     </div>
                 </div>
             </div>
         </div>
-        <div className="col-sm-4 px-0 py-0 bg-white">
+        <div className="col-sm-4 pl-sm-0-0 py-0 bg-white">
             <div className="col-sm-12 py-2 px-2">
                 <Link to={`/property/${data.slug}`}>
                     <h5>{data.title}</h5>

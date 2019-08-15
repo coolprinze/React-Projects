@@ -153,3 +153,22 @@ export const saveAProperty = property => async dispatch => {
       dispatch(createMsg(err.response.message, false))
     })
 }
+
+
+// Agent Get A Property
+export const getPaginatePage = (url, type = null) => async dispatch => {
+  await axios.get(url, config.header)
+    .then(res => {
+      dispatch({
+        type,
+        payload: type === GET_PROPERTIES? { data:res.data.data, type }: res.data.data
+      })
+    })
+    .catch(err => {
+      if(err.response === undefined){
+        dispatch(createMsg("You are not connected to the internet, check your network", false))
+        return
+      }
+      dispatch(createMsg({ request_failed: err }, false))
+    })
+}

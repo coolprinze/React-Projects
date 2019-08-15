@@ -10,6 +10,8 @@ const INITIAL_STATE = {
     requestType: null,
     first_page_url: '', 
     last_page_url: '', 
+    last_page: 1, 
+    current_page: 1, 
     to: '', 
     from: '', 
     total: ''

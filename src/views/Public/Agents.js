@@ -1,10 +1,11 @@
 import React, { Fragment, Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
-import { getAgents, loadPage } from '../../actions';
+import { getAgents, loadPage, getPaginatePage } from '../../actions';
 import Paginate from '../../component/Paginate';
 import SearchBar from '../../component/SearchBar';
 import SideBar from '../../component/SideBar';
+import { GET_AGENTS } from '../../actions/types';
 
 class Agents extends Component {
 
@@ -64,7 +65,7 @@ class Agents extends Component {
             </div>
         </section>
     
-        <Paginate data={this.props.agents} />
+        <Paginate type={GET_AGENTS} onClick={this.props.getPaginatePage} data={this.props.agents} />
       </Fragment>
     )
   }
@@ -75,4 +76,4 @@ const mapStateToProps = state => ({
     requestType: state.agent.agents.requestType,
 })
 
-export default connect(mapStateToProps, { getAgents, loadPage })(Agents)
+export default connect(mapStateToProps, { getAgents, loadPage, getPaginatePage })(Agents)

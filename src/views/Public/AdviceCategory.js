@@ -2,8 +2,9 @@ import React, { Fragment, Component } from 'react'
 import { connect } from 'react-redux';
 import { paBg, agency } from '../../assets/img';
 import { Link } from 'react-router-dom';
-import { getArticlesCategory, loadPage } from '../../actions';
+import { getArticlesCategory, loadPage, getPaginatePage } from '../../actions';
 import Paginate from '../../component/Paginate';
+import { GET_ADVICE_CATEGORY } from '../../actions/types';
 
 class AdviceCategory extends Component {
     constructor(props) {
@@ -80,7 +81,7 @@ class AdviceCategory extends Component {
 
         </section>
 
-        <Paginate data={this.props.category} />  
+        <Paginate type={GET_ADVICE_CATEGORY} onClick={this.props.getPaginatePage} data={this.props.category} />  
         </Fragment>
     )
     }
@@ -90,4 +91,4 @@ const mapStateToProps = state => ({
   category: state.advice.category
 })
 
-export default connect(mapStateToProps, { getArticlesCategory, loadPage })(AdviceCategory)
+export default connect(mapStateToProps, { getArticlesCategory, loadPage, getPaginatePage })(AdviceCategory)
