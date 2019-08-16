@@ -5,9 +5,6 @@ import './index.css';
 import './notifications.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import API from './utils/api';
-let api = new API();
-
 
 setGlobal({
   properties: [],
