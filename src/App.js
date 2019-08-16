@@ -25,8 +25,7 @@ class App extends Component {
     data: []
   }
   async componentDidMount() {
-    let data = await api.getAgents();
-
+    await api.getAgents();
     await api.getCountries()
     await api.getStates()
     await api.getProperties(100);
@@ -34,7 +33,7 @@ class App extends Component {
     await api.getUsers(100);
     await api.getReports(100);
     await api.getRequests(100);
-    await this.setState({ data });
+    await this.setState({  });
   }
   render() {
     return (
