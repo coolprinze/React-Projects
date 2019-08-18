@@ -9,9 +9,11 @@ import edit from './icons/edit.png';
 import { connect } from 'react-redux'
 import { loadPage } from '../../actions';
 import { UNLOAD_PAGE } from '../../actions/types';
+import config from '../../config';
 
 class Dashboard extends Component {
     async componentDidMount(){
+        document.title = await `${config.pageTitle} Agent - My Dashboard`;
         await this.props.loadPage();
     }
 

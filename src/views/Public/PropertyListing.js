@@ -7,19 +7,18 @@ import { getProperties, loadPage, getPaginatePage } from '../../actions';
 import Paginate from '../../component/Paginate';
 import PropertyView from '../../component/PropertyView';
 import { GET_PROPERTIES } from '../../actions/types';
+import config from '../../config';
 
 class PropertyListing extends Component {
     
     async componentDidMount(){
+        document.title = await `${config.pageTitle} Property Listing`;
         if(this.props.properties.requestType === null){
             await this.props.getProperties()
         }
         await this.props.loadPage();
     }
     
-    getPropertyDetails = (id) => {
-        console.log(id)
-    }
     render() {
         const { data, requestType } = this.props.properties
         const properties = data.length?

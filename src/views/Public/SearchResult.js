@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HeaderSearch from './../../component/HeaderSearch'
 import AdvanceSearch from './../../component/AdvanceSearch'
+import config from '../../config';
 
 class SearchResult extends Component {
     constructor(props){
@@ -10,6 +11,7 @@ class SearchResult extends Component {
       }
     }
     componentDidMount() {
+        document.title = `${config.pageTitle} Search`;
     }
     
     render() {

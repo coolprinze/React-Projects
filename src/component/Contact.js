@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Input, TextArea } from '../common/Form';
 import { sendMessage } from '../actions';
+import Loading, { ItemLoading } from './Loading';
 
 class Contact extends Component{
   state = {
@@ -10,6 +11,7 @@ class Contact extends Component{
     subject: '',
     message: '',
     errors: {},
+    sendingMsg: false
   }
 
   onChange = e =>{
@@ -23,15 +25,21 @@ class Contact extends Component{
   }
 
   onSendMessage = async () => {
-    await this.props.sendMessage(this.stste);
+    await this.setState({sendingMsg: true})
+    const { name, email, subject, message } = await this.state;
+    await this.props.sendMessage({ name, email, subject, message });
     if (this.props.reset)
-      this.setState({ name: '', email: '', subject: '', message: ''}) ;
+      await this.setState({ name: '', email: '', subject: '', message: '', }) ;
+    await this.setState({sendingMsg: false})
   }
 
   render() {
 
+    if (this.state.sendingMsg)
+      return <ItemLoading text="Sending message..." wrapperClasses="col-md-5 offset-md-1 px-5 py-3" />
+
     return (
-      <div className="col-5 offset-1 px-5 py-3 bg-white" style={{ boxhadow: '0px 2px 4px rgba(180, 180, 180, 0.5)', borderRadius: '12px' }}>
+      <div className="col-md-5 offset-md-1 px-5 py-3 bg-white" style={{ boxhadow: '0px 2px 4px rgba(180, 180, 180, 0.5)', borderRadius: '12px' }}>
           <h3 className="py-3">Send us a message</h3>
   
         <form className="" action="index.html" method="post">
@@ -75,4 +83,4 @@ const mapStateToProps = state => ({
   reset: state.utility.reset
 })
 
-export default connect(null, { sendMessage })(Contact);
+export default connect(mapStateToProps, { sendMessage })(Contact);

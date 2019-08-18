@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { leftArrow, rightArrow, property } from '../assets/img';
+import { leftArrow, rightArrow } from '../assets/img';
 import $ from 'jquery';
 
 

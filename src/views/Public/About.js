@@ -5,10 +5,12 @@ import { abtUsContent } from '../../assets/img';
 import Contact from '../../component/Contact';
 import { loadPage } from '../../actions';
 import Newsletter from '../../component/Newsletter';
+import config from '../../config';
 
 class About extends Component {
 
     async componentDidMount(){
+        document.title = await `${config.pageTitle} About Us`;
       await this.props.loadPage();
     }
 
@@ -54,8 +56,8 @@ class About extends Component {
       </div>
       <section className="container-fluid mt-5 propertiesview bg-grey py-5">
           <div className="container mt-4 mb-4">
-              <div className="row">
-                  <div className="col-6 pt-4 pb-4 abtContact">
+              <div className="row row-eq-height">
+                  <div className="col-md-6 pt-4 pb-4 abtContact">
                       <h1 className="py-3">Contact our Team</h1>
                       <h6 className="py-3" style={{ fontSize: '18px', lineHeight: '36px' }}>Need Help?, Reach out to us. We’ve got answers to your questions.</h6>
                       <ul>

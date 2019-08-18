@@ -55,13 +55,13 @@ const PropertyView = ({ data, user }) => {
                     <NumberFormat value={data.price} displayType={'text'} thousandSeparator={true} prefix={'₦'} />
                 </span>
                 <div className="row py-1">
-                    <div className="col-sm-8 col-lg-8">
+                    <div className="col-md-9">
                         <span>Added {data.created_at}</span>
                     </div>
-                    <div className="col-sm-2 col-lg-2">
+                    <div className="col-6 col-md-1">
                         <i className="fa fa-share"></i>
                     </div>
-                    <div className="col-sm-2 col-lg-2">
+                    <div className="col-6 col-md-1">
                         <i className="fa fa-heart-o"></i>
                     </div>
                 </div>
@@ -73,7 +73,7 @@ const PropertyView = ({ data, user }) => {
                     <div className="col-sm-9">
                         <div className="">
                             <span>
-                                <Link to="agentlisting.html">
+                                <Link to={`/agent/listing/${data.agent.id}`}>
                                     {data.agent.name}
                                 </Link>
                             </span>
@@ -81,7 +81,7 @@ const PropertyView = ({ data, user }) => {
                                 <span>{data.agent.phone === null ? "No Number":data.agent.phone}</span>
 
                                 <span>
-                                    <Link to={`/property/${data.slug}`}>View listing</Link>
+                                    <Link to={`/agent/listing/${data.agent.id}`}>View listing</Link>
                                 </span>
                             </div>
                         </div>

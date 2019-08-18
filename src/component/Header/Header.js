@@ -14,8 +14,8 @@ class Header extends Component{
 
     render(){
 
-        const action = this.props.user? 
-        <span className="nav-link"><Link className="" to="/user">Hi {this.props.user.username} !</Link> | <Link to="#" onClick={this.onLogout}> Logout</Link></span>
+        const action = this.props.user !== null? 
+        <span className="nav-link"><Link className="" to={this.props.user.role.id === 2? "/agent": "/user"}>Hi {this.props.user.username} !</Link> | <Link to="#" onClick={this.onLogout}> Logout</Link></span>
         :
         <Link className="nav-link" to="/login">Login/Register</Link>
 
@@ -49,9 +49,10 @@ class Header extends Component{
                             <li className="nav-item">
                                 {action}
                             </li>
+                            {this.props.user !== null? this.props.user.role.id === 2? 
                             <li className="nav-item d-flex align-items-center justify-content-center pb-2" id="sp-btn">
-                                <Link className="nav-link btn btn-lg px-5 py-3 btn-outline-dark" to="#">Submit Property</Link>
-                            </li>
+                                <Link className="nav-link btn btn-lg px-5 py-3 btn-outline-dark" to="/agent/add-property">Submit Property</Link>
+                            </li>: null:null }
                         </ul>
                     </div>
                     </div>

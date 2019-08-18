@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAdvice, getArticlesCategory, loadPage } from '../../actions';
+import { getAdvice, getArticlesCategory, loadPage, postComment } from '../../actions';
 import FeaturedPosts from '../../component/FeaturedPosts';
+import { UNLOAD_PAGE } from '../../actions/types';
+import config from '../../config';
 
 
 class Advice extends Component {
@@ -14,10 +16,47 @@ class Advice extends Component {
     this.catSlug = this.props.match.params.category
   }
 
-  async componentDidMount(){      
-    this.props.getAdvice(this.adviceSlug);
-    this.props.getArticlesCategory(this.catSlug);
-    this.props.loadPage();
+  state = {
+    name: '',
+    email: '',
+    comment: '',
+    article_id: ''
+  }
+
+  handleInput = e => this.setState({ [e.target.name]: e.target.value });
+
+  async componentDidMount(){    
+      await this.props.getAdvice(this.adviceSlug);
+      document.title = await `${config.pageTitle} ${this.props.article.title}`;  
+    await this.props.getArticlesCategory(this.catSlug);
+    await this.props.loadPage();
+    if(this.props.user !== null) {
+        await this.setState({
+            name: this.props.user.name,
+            email: this.props.user.email,
+        })
+    }else{
+        await this.setState({
+            name: '',
+            email: '',
+        })
+    }
+    await this.setState({
+        article_id: this.props.article.id,
+    })
+  }
+
+  saveComment = async e => {
+    e.preventDefault();
+    await this.props.loadPage(UNLOAD_PAGE);
+    await this.props.postComment(this.state);
+    await this.props.getAdvice(this.adviceSlug);
+    await this.setState({
+        name: '',
+        email: '',
+        comment: ''
+      })
+    await this.props.loadPage();     
   }
 
   createMarkup = data => {
@@ -26,6 +65,28 @@ class Advice extends Component {
 
   render() {
     const { article, category } = this.props
+
+    const comments = article.comments.length? article.comments.map(comment => 
+        <div key={comment.id} className="row">
+            <div className="col-sm-2 text-left">
+                <p className="d-flex align-content-center justify-content-center" style={{ width: '120px', height: '120px', background: '#ffffff', borderRadius: '50%' }}>
+                    <img src="../img/icon/user-tsp.png" alt="" className="my-4" />
+                </p>
+            </div>
+            <div className="col-sm-6 text-left py-3">
+                <p style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600}}>
+                    {comment.user.name}
+                </p>
+
+                <p style={{ fontSize: '20px', lineHeight: '30px' }}>
+                    {comment.comment}
+                </p>
+            </div>
+            <div className="col-12">
+                <hr />
+            </div>
+        </div>
+        ): <p>There are no comment for this article</p>
 
     const relatedPosts = category.data.length? <FeaturedPosts articles={category.data} nullId={article.id} />: <p>There are no related post</p>
     return (
@@ -88,25 +149,9 @@ class Advice extends Component {
               <hr />
   
               <div className="container py-3">
-                  <div className="row">
-                      <div className="col-sm-2 text-left">
-                          <p className="d-flex align-content-center justify-content-center" style={{ width: '120px', height: '120px', background: '#ffffff', borderRadius: '50%' }}>
-                              <img src="../img/icon/user-tsp.png" alt="" className="my-4" />
-                          </p>
-                      </div>
-                      <div className="col-sm-6 text-left py-3">
-                          <p style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600}}>
-                              Castle Property
-                          </p>
-  
-                          <p style={{ fontSize: '20px', lineHeight: '30px' }}>
-                              First and Best Source of Information on Real Estate
-                          </p>
-                      </div>
-                  </div>
+                {comments}
               </div>
   
-              <hr />
   
               <div className="container py-3">
                   <div className="row">
@@ -119,13 +164,19 @@ class Advice extends Component {
                       </div>
                   </div>
                   <div className="row">
-                      <div className="col-sm-12">
+                      <form onSubmit={this.saveComment} className="col-sm-12">
                           <div className="form-group">
                               <label htmlFor="comment">Comment</label>
-                              <textarea name="comment" className="form-control" id="comment" rows="10" style={{ background: '#ffffff' }}></textarea>
+                              <textarea onChange={this.handleInput} value={this.state.comment} name="comment" className="form-control" required id="comment" rows="10" style={{ background: '#ffffff' }}></textarea>
                           </div>
-                          <button className="btn bg-orange pull-right text-white">Post a Comment</button>
-                      </div>
+                          {this.props.user === null? <div className="form-group">
+                              <input required onChange={this.handleInput} placeholder="Enter name" type="text" name="name" value={this.state.name} className="my-2 bg-white form-control"/>
+
+                              <input required onChange={this.handleInput} placeholder="Enter email address" type="email" name="email" value={this.state.email} className="my-2 bg-white form-control"/>
+                          </div>: null}
+
+                          <button className="btn bg-orange pull-right text-white">Post Comment</button>
+                      </form>
                   </div>
               </div>
           </div>
@@ -150,8 +201,9 @@ class Advice extends Component {
 }
 
 const mapStateToProps = state => ({
+  user: state.auth.user,
   article: state.advice.article,
   category: state.advice.category
 })
 
-export default connect(mapStateToProps, { getAdvice, getArticlesCategory, loadPage })(Advice);
+export default connect(mapStateToProps, { getAdvice, getArticlesCategory, loadPage, postComment })(Advice);

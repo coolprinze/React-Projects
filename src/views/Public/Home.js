@@ -40,6 +40,7 @@ class Home extends Component {
         this.getFeatures = this.getFeatures.bind(this)
     }
     async componentDidMount() {
+        document.title = await `${config.pageTitle} Home - Creating A Unique Lifestyle`;
         await this.getFeatures()
         await this.props.searchProperties({ type_id: 15 }, GET_LANDS);
         await this.props.searchProperties({ type_id: 14 }, GET_HOUSES);
@@ -171,7 +172,6 @@ class Home extends Component {
             bathrooms:this.state.bathroom.value,
             toilets:this.state.toilet.value
         }
-        console.log(params)
         this.props.searchProperties(params);
 
     }
@@ -185,7 +185,6 @@ class Home extends Component {
         })
         const payload = await res.json();
         if (payload.status === 1){
-            console.log(payload)
             this.setState({
                 featured:payload.data.data,
             })
@@ -520,7 +519,7 @@ class Home extends Component {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-lg-3 py-2">
-                                        <Link to="propertylisting.html">
+                                        <Link to="/properties/type/19">
                                             <div className="card" style={{minHeight: '320px', background: "url('assets/img/explore/1.png')", backgroundSize:'cover'}}>
                                                 <div className="overlay"></div>
                                                 <div className="text-center" style={{position: 'absolute', right: '0', left: '0', bottom:'130px', color: '#ffffff'}}>
@@ -533,7 +532,7 @@ class Home extends Component {
 
 
                                     <div className="col-lg-3 py-2">
-                                        <Link to="propertylisting.html">
+                                        <Link to="/properties/type/15">
                                             <div className="card" style={{minHeight: '320px', background: "url('assets/img/explore/2.png')", backgroundSize:'cover'}}>
                                                 <div className="overlay"></div>
                                                 <div className="text-center" style={{position: 'absolute', right: '0', left: '0', bottom:'130px', color:' #ffffff'}}>
@@ -545,7 +544,7 @@ class Home extends Component {
                                     </div>
 
                                     <div className="col-lg-3 py-2">
-                                        <Link to="propertylisting.html">
+                                        <Link to="/properties/type/2">
                                             <div className="card" style={{minHeight: '320px', background: "url('assets/img/apartment.jpg')", backgroundSize:'cover'}}>
                                                 <div className="overlay"></div>
                                                 <div className="text-center" style={{position: 'absolute', right: '0', left: '0', bottom:'130px', color: '#ffffff'}}>
@@ -557,7 +556,7 @@ class Home extends Component {
                                     </div>
 
                                     <div className="col-lg-3 py-2">
-                                        <Link to="propertylisting.html">
+                                        <Link to="/properties/type/14">
                                             <div className="card" style={{minHeight: '320px', background: "url('assets/img/house.jpg')", backgroundSize:'cover'}}>
                                                 <div className="overlay"></div>
                                                 <div className="text-center" style={{position: 'absolute', right: '0', left: '0', bottom:'130px', color: '#ffffff'}}>

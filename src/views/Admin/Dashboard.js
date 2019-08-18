@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 
 
@@ -12,16 +13,16 @@ class Dashboard extends Component {
         return ( 
           <React.Fragment>
             <nav className="navbar bg-white">
-              <a className="navbar-brand"> <img src="images/logo.jpg" alt=""/> </a>
+              <Link className="navbar-brand"> <img src="images/logo.jpg" alt=""/> </Link>
               <div className="" >
                 <form className="form-inline">
-                  <button className="btn btn-outline-dark" type="button"> <a href="send_newsletter.html">Send Newsletter</a></button>
+                  <button className="btn btn-outline-dark" type="button"> <Link to="send_newsletter.html">Send Newsletter</Link></button>
                   <div className="dropdown">
-                    <a href="#" className=" nav-item nav-link dropdown-toggle mr-md-2"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="images/Path.png" alt=""/></a>
+                    <Link to="#" className=" nav-item nav-link dropdown-toggle mr-md-2"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="images/Path.png" alt=""/></Link>
                     <div classNameName="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                      <a className="dropdown-item" href="#">Action</a>
-                      <a className="dropdown-item" href="#">Another</a>
-                      <a className="dropdown-item" href="#">Something</a>
+                      <Link className="dropdown-item" to="#">Action</Link>
+                      <Link className="dropdown-item" to="#">Another</Link>
+                      <Link className="dropdown-item" to="#">Something</Link>
                     </div>
                   </div>
                 </form>

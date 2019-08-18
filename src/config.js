@@ -6,7 +6,10 @@ const config = {
             'Accept':'application/json' ,            
             'Authorization': localStorage.getItem('token') !== null? `Bearer ${localStorage.getItem('token')}`: ''
         }
-    }
+    },
+    pageTitle: "Catles |"
 };
+
+
 
 export default config;

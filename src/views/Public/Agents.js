@@ -3,13 +3,14 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { getAgents, loadPage, getPaginatePage } from '../../actions';
 import Paginate from '../../component/Paginate';
-import SearchBar from '../../component/SearchBar';
 import SideBar from '../../component/SideBar';
 import { GET_AGENTS } from '../../actions/types';
+import config from '../../config';
 
 class Agents extends Component {
 
     async componentDidMount() {
+        document.title = await `${config.pageTitle} Agents`;
         await this.props.getAgents();
         await this.props.loadPage();
     }
@@ -57,7 +58,7 @@ class Agents extends Component {
         <section className="container-fluid mt-5 properties">
             <div className="container">
                 <div className="row">
-                    <div className="col-sm-8 col-lg-sm-8 bg-white py-4 px-5" style={{ borderRadius: "10px" }}>
+                    <div className="col-md-8 bg-white py-4" style={{ borderRadius: "10px" }}>
                         {this.renderAgents()}
                     </div>
                     <SideBar />

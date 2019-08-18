@@ -1,6 +1,6 @@
 import Axios from "axios";
 import config from "../config";
-import { AUTH_SUCCESS, REG_SUCCESS, GET_USER, LOGOUT_USER } from "./types";
+import { AUTH_SUCCESS, REG_SUCCESS, LOGOUT_USER } from "./types";
 import { createMsg, errorHandler } from "./UtitlityActions";
 
 export const registerUser = (user) => async dispatch => {
@@ -14,7 +14,6 @@ export const registerUser = (user) => async dispatch => {
     })
     .catch(err => {
       if (err.response.status === 500){
-        console.log(err.response)
         dispatch(createMsg(`Registration successfull!! Proceed to login`));
         dispatch({
           type: REG_SUCCESS
@@ -28,7 +27,6 @@ export const registerUser = (user) => async dispatch => {
 export const authenticateUser = (user) => async dispatch=> {
   await Axios.post(`${config.BASE_URL}/login`, user, config.header)
     .then(async res => {
-      console.log(res);
       await Axios.get(`${config.BASE_URL}/user`, {
         headers: {
           ...config.header.headers,   
@@ -42,32 +40,11 @@ export const authenticateUser = (user) => async dispatch=> {
           payload: { access: res.data, user: user.data.data }
         })
       }).catch(err => {
-        console.log(err.response);
         dispatch(createMsg(`Get User Failed: ${err.response}`, false))
       });  
     })
     .catch(err => {
-      console.log(err.response);
       dispatch(createMsg(`Login Failed: ${err.response.data.message}`, false))
-    });    
-}
-
-export const getUser = () => async dispatch => {
-  await Axios.get(`${config.BASE_URL}/user`, {
-    headers: {
-      ...config.header.headers,   
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    }
-  })
-    .then(res => {
-      // dispatch(createMsg(`Welcome back ${res.data.data.name}`))
-      dispatch({
-        type: GET_USER,
-        payload: res.data.data
-      })
-    })
-    .catch(err => {
-      dispatch(createMsg(`Get User Failed: ${err.response}`, false))
     });    
 }
 

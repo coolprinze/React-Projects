@@ -43,6 +43,7 @@ class App extends Component {
                             <Route exact path="/advertise-with-us" component={Public} />
                             <Route exact path="/download-magazine" component={Public} />
                             {/* "/user/savedproperties" also serves as the dashboard after user login login */}
+                            <Route exact path="/properties/:param/:id" component={Public} />
                             <Route exact path="/user/search-history" component={User}/>
                             <Route exact path="/user/alerts" component={User}/>
                             <Route exact path="/user/profile" component={User} /> 
@@ -66,6 +67,7 @@ class App extends Component {
                             <Route exact path="/notfound" component={NotFound} />
                             {/* <Route  component={NotFound} /> */}
                             <Route exact path="/property/:slug" component={Public} />
+                            <Route exact path="/agent/listing/:id" component={Public} />
                         </Fragment>
                     </Router>
                 </AlertProvider>

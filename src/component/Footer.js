@@ -50,17 +50,17 @@ class App extends Component {
                               <div className="col-sm-6 ">
                                   <ul>
                                       <li className="text-white py-2 " style={{fontSize:'1rem'}}>
-                                        <Link onClick={this.onClick.bind(this, 59)} to={`/city/59`} className="footer">
+                                        <Link onClick={this.onClick.bind(this, 59)} to={`/properties/city/59`} className="footer">
                                             Lekki
                                         </Link>
                                       </li>
                                       <li className="text-white py-2 " style={{fontSize:'1rem'}}>
-                                        <Link onClick={this.onClick.bind(this, 19)} to={`/city/19`} className="footer">
+                                        <Link onClick={this.onClick.bind(this, 19)} to={`/properties/city/19`} className="footer">
                                           Bannana Island
                                         </Link>
                                       </li>
                                       <li className="text-white py-2 " style={{fontSize:'1rem'}}>
-                                        <Link onClick={this.onClick.bind(this, 40)} to={`/city/40`} className="footer">
+                                        <Link onClick={this.onClick.bind(this, 40)} to={`/properties/city/40`} className="footer">
                                             Ikeja
                                         </Link>                           
                                       </li>
@@ -69,17 +69,17 @@ class App extends Component {
                               <div className="col-sm-6 ">
                                   <ul>
                                       <li className="text-white py-2 " style={{fontSize:'1rem'}}>
-                                        <Link onClick={this.onClick.bind(this, 46)} to={`/city/46`} className="footer">
+                                        <Link onClick={this.onClick.bind(this, 46)} to={`/properties/city/46`} className="footer">
                                             Ikoyi
                                         </Link> 
                                       </li>
                                       <li className="text-white py-2 " style={{fontSize:'1rem'}}>
-                                        <Link onClick={this.onClick.bind(this, 60)} to={`/city/60`} className="footer">
+                                        <Link onClick={this.onClick.bind(this, 60)} to={`/properties/city/60`} className="footer">
                                             Lekki Phase 1
                                         </Link> 
                                       </li>
                                       <li className="text-white py-2 " style={{fontSize:'1rem'}}>
-                                        <Link onClick={this.onClick.bind(this, 91)} to={`/city/91`} className="footer">
+                                        <Link onClick={this.onClick.bind(this, 91)} to={`/properties/city/91`} className="footer">
                                             Victorial Island
                                         </Link> 
                                       </li>

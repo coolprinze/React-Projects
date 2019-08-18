@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NumberFormat from 'react-number-format'
 import HeaderSearch from './../../component/HeaderSearch'
-import { property as img1, leftArrow, rightArrow } from '../../assets/img';
+import { leftArrow, rightArrow } from '../../assets/img';
 import { getProperty, saveAProperty, createMsg, loadPage } from '../../actions';
 import { Link } from 'react-router-dom';
 import { UNLOAD_PAGE } from '../../actions/types';
 import { ImageLoader } from '../../component/Loading';
+import config from '../../config';
 
 class PropertyDetails extends Component {
     state = {
@@ -17,6 +18,7 @@ class PropertyDetails extends Component {
     async componentDidMount(){
         this.slug = await this.props.match.params.slug
         await this.props.getProperty(this.slug);
+        document.title = await `${config.pageTitle} ${this.props.property.title}`;
         await this.props.loadPage();
 
     }
@@ -38,7 +40,6 @@ class PropertyDetails extends Component {
 
 
     render() {
-        console.log(this.props.match.params.slug);
         const { property } = this.props;
      
         return ( 
@@ -123,9 +124,9 @@ class PropertyDetails extends Component {
                     <div>
                         {property.pictures.length? 
                         <div className="d-flex justify-content-end py-4 px-5">
-                            <img alt="" src={leftArrow} id="left-btn" className="px-1 pointer" alt=" "/>
+                            <img src={leftArrow} id="left-btn" className="px-1 pointer" alt="Left" />
 
-                            <img alt="" src={rightArrow} id="right-btn" className="px-1 pointer" alt=" "/>
+                            <img src={rightArrow} id="right-btn" className="px-1 pointer" alt="Right" />
                         </div>: <p>There are no images for this listing</p>}
                     </div>
                 </section>
@@ -305,9 +306,9 @@ class PropertyDetails extends Component {
                                             </div>
                                             <div className="card-body ">
                                                 <div>
-                                                    <img alt="" src="../assets/img/icon/whatsapp.png " alt="" />
-                                                    <img alt="" src="../assets/img/icon/twitter.png " alt="" />
-                                                    <img alt="" src="../assets/img/icon/facebook.png " alt="" />
+                                                    <img src="../assets/img/icon/whatsapp.png " alt="" />
+                                                    <img src="../assets/img/icon/twitter.png " alt="" />
+                                                    <img src="../assets/img/icon/facebook.png " alt="" />
                                                 </div>
                                             </div>
                                         </div>
@@ -356,7 +357,8 @@ class PropertyDetails extends Component {
 }
 
 const mapStateToProp = state => ({
-    property: state.properties.property
+    property: state.properties.property,
+    isAuthenticated: state.auth.isAuthenticated,
 })
 
 export default connect(mapStateToProp, { getProperty, saveAProperty, createMsg, loadPage })(PropertyDetails);

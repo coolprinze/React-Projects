@@ -3,11 +3,13 @@ import Newsletter from '../../component/Newsletter';
 import { ad1, ad2 } from '../../assets/img';
 import { connect } from 'react-redux'
 import { loadPage } from '../../actions';
+import config from '../../config';
 
 
 class Advertise extends Component{
 
   async componentDidMount(){
+    document.title = await `${config.pageTitle} Advertise With Us`;
     await this.props.loadPage();
   }
 

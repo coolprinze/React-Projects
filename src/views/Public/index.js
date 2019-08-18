@@ -19,10 +19,11 @@ import AdviceCategory from './AdviceCategory';
 import Advice from './Advice';
 import Advertise from './Advertise';
 import Magazine from './Magazine';
-import CityListing from './CityListing';
 import { UNLOAD_PAGE } from '../../actions/types';
 import { loadPage } from '../../actions';
 import Loading from '../../component/Loading';
+import SearchListing from './SearchListing';
+import AgentListing from './AgentListing';
 
 
 
@@ -53,7 +54,7 @@ class Public extends Component {
               <Route exact path="/advertise-with-us" component={Advertise} />
               <Route exact path="/postrequest" component={PostRequest}/>
               <Route exact path="/propertylisting" component={PropertyListing} />
-              <Route exact path="/city/:id" component={CityListing} />
+              <Route exact path="/properties/:param/:id" component={SearchListing} />
               <Route exact path="/search" component={SearchResult} />
               <Route exact path="/properties/:area" component={SearchResult} />
 
@@ -61,6 +62,7 @@ class Public extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/agents" component={Agents} />
               <Route exact path="/property/:slug" component={PropertyDetails} />
+              <Route exact path="/agent/listing/:id" component={AgentListing} />
             </Switch>
             <Footer/>         
           </main> 

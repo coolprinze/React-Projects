@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser, loadPage } from '../../actions';
-import { AUTH_LOADING } from '../../actions/types';
-import Loading from '../../component/Loading';
+import { UNLOAD_PAGE } from '../../actions/types';
+import config from '../../config';
 
 
 
@@ -27,8 +27,9 @@ class Register extends Component {
         this.handleRole = this.handleRole.bind(this)
         this.register = this.register.bind(this)
     }
-    componentDidMount() {
-
+    async componentDidMount(){
+        document.title = await `${config.pageTitle} Sign Up`;
+        await this.props.loadPage();
     }
     handleChange = (e) => {
         this.setState({
@@ -42,8 +43,8 @@ class Register extends Component {
     }
 
     register = async e => {
-        await this.props.loadPage(AUTH_LOADING);
-        await e.preventDefault()
+        e.preventDefault()
+        await this.props.loadPage(UNLOAD_PAGE);
 
         const data = await {
             name:this.state.firstName + " " + this.state.lastName,
@@ -55,11 +56,10 @@ class Register extends Component {
             subscribe: true
         }
         await this.props.registerUser(data);
+        await this.props.loadPage();
+        // await this.props.history.push('/login');
     }
     render() {
-        if(this.props.loading){
-            return (<Loading />)
-        }
         if (this.props.redirect || this.props.isAuthenticated){
             return (<Redirect to='/login' />)
         }
@@ -172,7 +172,6 @@ class Register extends Component {
 const mapStateToProps = state => ({
     redirect: state.auth.redirect,
     isAuthenticated: state.auth.isAuthenticated,
-    loading: state.auth.loading,
 })
 
 export default connect(mapStateToProps, { registerUser, loadPage })(Register);

@@ -1,14 +1,12 @@
 import axios from 'axios';
 import config from '../config';
 import { createMsg, errorHandler } from './UtitlityActions';
-import { RESET, GET_PROPERTIES, DELETE_PROPERTY, GET_AGENTS } from './types';
+import { RESET, DELETE_PROPERTY, GET_AGENTS, GET_AGENT_LISTINGS } from './types';
 
 // Get an Agent's Properties
 export const saveProperty = property => async dispatch => {
-  console.log(property);
   await axios.post(`${config.BASE_URL}/agent/properties/save`, property, config.header)
     .then(res => {
-      console.log(res);
       dispatch(createMsg(res.data.message))
       dispatch({
         type: RESET,
@@ -48,7 +46,7 @@ export const getAgentProperties = () => async dispatch => {
   await axios.get(`${config.BASE_URL}/agent/properties`, config.header)
     .then(res => {
       dispatch({
-        type: GET_PROPERTIES,
+        type: GET_AGENT_LISTINGS,
         payload: res.data
       })
     })

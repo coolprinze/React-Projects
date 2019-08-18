@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_COUNTRIES, GET_STATES, GET_LOCALITIES, CREATE_MESSAGE, GET_ERRORS, RESET, SEARCH_DB, LOAD_PAGE, GET_ADVERTS, GET_ADVERT_PROPERTIES } from './types';
+import { GET_COUNTRIES, GET_STATES, GET_LOCALITIES, CREATE_MESSAGE, GET_ERRORS, RESET, SEARCH_DB, LOAD_PAGE, GET_ADVERTS, GET_ADVERT_PROPERTIES, POST_COMMENT } from './types';
 import config from '../config';
 import Axios from 'axios';
 
@@ -81,19 +81,18 @@ export const errorHandler = (err, dispatch) => {
 
 // Send Message
 export const sendMessage = (data) => async dispatch => {
-  await axios.post(`${config.BASE_URL}/send_email`, data)
+  await axios.post(`${config.BASE_URL}/send_email`, data, config.header)
     .then(res => {
-      dispatch(createMsg({ request_failed: res.data.message }))
+      dispatch(createMsg(res.data.message))
       dispatch({
         type: RESET,
       })
     })
-    .catch(err => dispatch(createMsg({ request_failed: err }, false)));
+    .catch(err => dispatch(createMsg( `Request failed due to ${err.response.statusText}, Please Try Again Later`, false)));
 }
 
 // Subscribe to newsletter
 export const subscribe = (email) => async dispatch => {
-  console.log(email)
   await axios.post(`${config.BASE_URL}/subscribe`, email)
     .then(res => {
       dispatch(createMsg(res.data.message))
@@ -107,10 +106,7 @@ export const subscribe = (email) => async dispatch => {
 
 // Search Db
 export const searchDb = params => async dispatch => {
-  console.log(`${config.BASE_URL}/properties/filter?search=${params}`)
   
-  // const url = new URL(`${config.BASE_URL}/properties/filter?search=${params}`);
-
   axios.get(`${config.BASE_URL}/properties/filter?search=${params}`, config.header)
     .then(res => {
       dispatch({
@@ -129,7 +125,7 @@ export const searchDb = params => async dispatch => {
 
 }
 
-export const loadPage = (type = LOAD_PAGE) => dispatch => dispatch({
+export const loadPage = (type = LOAD_PAGE) => async  dispatch => await dispatch({
   type
 })
 
@@ -143,7 +139,7 @@ export const getAdverts = ()=> async dispatch => {
       })
     })
     .catch(err => {
-      dispatch(createMsg(err.response.message));
+      dispatch(createMsg(err.response.message, false));
     })
 }
 
@@ -157,6 +153,20 @@ export const getAdvertProperties = (id)=> async dispatch => {
       })
     })
     .catch(err => {
-      dispatch(createMsg(err.response.message));
+      dispatch(createMsg(err.response.message, false));
+    })
+}
+
+// List Adverts properties
+export const postComment = comment => async dispatch => {
+  await Axios.post(`${config.BASE_URL}/article/comment`, comment, config.header)
+    .then(res => {
+      dispatch({
+        type: POST_COMMENT
+      })
+      dispatch(createMsg("Comment Posted"));
+    })
+    .catch(err => {
+      dispatch(createMsg(err.response.message, false));
     })
 }

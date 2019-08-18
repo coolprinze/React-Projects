@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import { RingLoader, FadeLoader } from 'react-spinners';
+import { RingLoader, FadeLoader, BarLoader } from 'react-spinners';
 import { css } from '@emotion/core';
 import { agent } from '../assets/img';
+import PropTypes from 'prop-types'
+
 
 const override = css`
   
@@ -54,6 +56,28 @@ export class ImageLoader extends Component{
         </div>
         <img className={`w-100 ${this.state.loaded? '': 'd-none'}`} src={this.props.image === ""? agent: this.props.image} onLoad={() => this.setState({ loaded: true })}  alt=""/>
       </Fragment>
+
+  }
+}
+  
+
+export class ItemLoading extends Component{ 
+static propTypes = {
+  wrapperStyle: PropTypes.object,
+  wrapperClasses: PropTypes.string,
+  text: PropTypes.string,
+  size: PropTypes.number,
+}
+  
+  render(){
+
+    return (
+      <div className={`d-flex flex-column justify-content-center align-items-center ${this.props.wrapperClasses}`} style={this.props.wrapperStyle}>
+          <BarLoader
+            color={'#FF8C00'}                                
+          /> 
+          <span className="mt-3">{this.props.text}</span>
+      </div>)
 
   }
 }

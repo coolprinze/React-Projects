@@ -37,6 +37,7 @@ export const GET_LANDS = "GET_LANDS";
 export const GET_APARTMENTS = "GET_APARTMENTS";
 export const GET_HOUSES = "GET_HOUSES";
 export const UPDATE_CITY_ID = "UPDATE_CITY_ID";
+export const POST_COMMENT = "POST_COMMENT";
 
 // Auth Actions
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
@@ -44,6 +45,9 @@ export const REG_SUCCESS = "REG_SUCCESS";
 export const GET_USER = "GET_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const AUTH_LOADING = "AUTH_LOADING";
+
+// User Actions
+export const GET_ALERTS = "GET_ALERTS";
 
 
 // Property Advice 

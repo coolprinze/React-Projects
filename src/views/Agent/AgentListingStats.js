@@ -3,10 +3,12 @@ import Chart from 'chart.js'
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loadPage } from '../../actions';
+import config from '../../config';
 
 
 class AgentListingStats extends Component {
-  componentDidMount(){
+  async componentDidMount(){
+    document.title = await `${config.pageTitle} Agent - My Statistics`;
     
     const ctxL = document.getElementById("lineChart").getContext('2d');
     const myLineChart = new Chart(ctxL, {

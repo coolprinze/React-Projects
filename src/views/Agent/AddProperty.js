@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { Link, Redirect } from 'react-router-dom';
 import { Input, TextArea, Select } from '../../common/Form';
 import { getCountries, getStates, getLocalities, saveProperty, getProperty, loadPage } from '../../actions';
+import config from '../../config';
 
 
 class AddProperty extends Component {
@@ -35,9 +36,11 @@ class AddProperty extends Component {
     
     async componentDidMount() {
         const slug = await this.props.match.params.slug
+        document.title = await `${config.pageTitle} Agent Add Property`;
         if (slug !== undefined){
             await this.props.getProperty(slug);
             await this.setState({ ...this.props.property, slug: true })
+            document.title = await `${config.pageTitle} Agent Edit Property`;
         }
         await this.props.getCountries()
         await this.props.getStates()  

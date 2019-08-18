@@ -1,10 +1,11 @@
 import React, { Fragment, Component } from 'react'
 import { connect } from 'react-redux';
-import { paBg, agency } from '../../assets/img';
+import { paBg } from '../../assets/img';
 import { Link } from 'react-router-dom';
 import { getArticlesCategory, loadPage, getPaginatePage } from '../../actions';
 import Paginate from '../../component/Paginate';
 import { GET_ADVICE_CATEGORY } from '../../actions/types';
+import config from '../../config';
 
 class AdviceCategory extends Component {
     constructor(props) {
@@ -14,8 +15,8 @@ class AdviceCategory extends Component {
 
     async componentDidMount() {
         await this.props.getArticlesCategory(this.slug);
+        document.title = await `${config.pageTitle} Articles`;
         await this.props.loadPage();
-
     }
 
 

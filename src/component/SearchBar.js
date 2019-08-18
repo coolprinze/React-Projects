@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import $ from 'jquery';
 import { searchDb, searchProperties } from '../actions';
 import { UPDATE_SEARCH_PARAM, UPDATE_SEARCH_TERM } from '../actions/types';
@@ -42,7 +42,6 @@ const SearchBar = ({ searchDb, searchResult, updateSearchTerm, updateSearchParam
      
   }
 
-  console.log(searchedParam)
   return (
     <Fragment>
         <input onChange={onSearch} type="search" placeholder="e.g Lekki, Lagos" value={searchTerm} className="form-control px-2" />

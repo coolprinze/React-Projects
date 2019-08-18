@@ -5,11 +5,13 @@ import { connect } from 'react-redux';
 import { getAdviceCategories, loadPage } from '../../actions';
 import Newsletter from '../../component/Newsletter';
 import SideBar from '../../component/SideBar';
+import config from '../../config';
 
 
 class AdviceCategories extends Component {
 
     async componentDidMount() {
+        document.title = await `${config.pageTitle} Articles Categories`;
         await this.props.getAdviceCategories();
         await this.props.loadPage();
 
@@ -49,10 +51,10 @@ class AdviceCategories extends Component {
                 </div>
 
                 <div className="row ">
-                    <div className="col-sm-8 ">
+                    <div className="col-md-8 ">
                         <div className="row py-4 ">
                         { categories.map(category =>
-                        <div key={category.id} className="col-lg-6 py-2 ">
+                        <div key={category.id} className="col-lg-4 col-sm-6 py-2 ">
                             <Link key={category.id} to={`/propertyadvice/${category.slug}`}>
                                 <div className="card bg-white mx-3 ">
                                     <img alt="" src={agency} />

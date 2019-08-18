@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { authenticateUser, loadPage } from '../../actions';
 import Loading from '../../component/Loading';
 import { UNLOAD_PAGE } from '../../actions/types';
+import config from '../../config';
 
 
 
@@ -20,6 +21,7 @@ class Login extends Component {
         this.auth = this.auth.bind(this)
     }
     async componentDidMount(){
+        document.title = await `${config.pageTitle} Login`;
         await this.props.loadPage();
     }
     handleChange = (e) => {
@@ -32,7 +34,8 @@ class Login extends Component {
         await e.preventDefault()
         await this.props.loadPage(UNLOAD_PAGE);
         const { email, password } = await this.state
-        await this.props.authenticateUser({ email, password })
+        await this.props.authenticateUser({ email, password });
+        await this.props.loadPage();
     }
     render() {
         if(this.props.loading){

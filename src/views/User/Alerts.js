@@ -1,53 +1,22 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
-import config from '../../config'
-import  Header from "../../component/Header/UserHeader"
-import Footer from '../../component/Footer';
+import { connect } from 'react-redux';
 import SubHeader from "../../component/Header/SubHeader"
 import deleteIcon from '../Agent/agent-listing-images/img/icon/delete.png'
 import bellIcon from '../Agent/agent-listing-images/img/icon/bell-sm.png'
 import UserDashboardSideBar from './UserDashboardSideBar';
+import { loadPage, getAlerts, getUser } from '../../actions';
+import config from '../../config';
 
 class Alerts extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            alerts: [
-
-            ],
-            user:{}
-        }
-        this.getAlerts = this.getAlerts.bind(this)
-        this.setUserState = this.setUserState.bind(this)
-    }
-    componentDidMount(){
-        var token = localStorage.getItem('token')
-        this.getAlerts(`Bearer `+token)
-        this.setUserState()
-    }
-    setUserState(){
-        let user = JSON.parse(localStorage.getItem('user')) 
-        this.setState({user:user})
-    }
-    async getAlerts(token){
-        const res = await fetch(`${config.BASE_URL}/alerts`,{
-            headers:{
-                'Authorization':token
-            },
-            method:'GET'
-        })
-        const payload = await res.json();
-        if (res.status === 200 && payload.status === 1){
-            this.setState({
-                alerts: payload.data.data
-            })
-        }else{
-            alert('Something went wrong')
-        }
+    async componentDidMount(){
+        document.title = await `${config.pageTitle} User Alerts`;
+        await this.props.getAlerts();
+        await this.props.loadPage();
     }
     render() {
         var noAlerts = "No Alerts"
-        var alerts = this.state.alerts.map((item)=> {
+        var alerts = this.props.alerts.data.map((item)=> {
             return (
                 <tr key={item.id}>
                     <td><Link>Properties in Lagos</Link></td>
@@ -58,8 +27,7 @@ class Alerts extends Component {
         })
         return ( 
             <React.Fragment>
-                <Header />
-                <SubHeader username={this.state.user.name}/>
+                <SubHeader username={this.props.user.name}/>
                 <section className="container-fluid bg-grey">
                     <div className="container py-5">
                         <div className="col-sm-12">
@@ -67,7 +35,6 @@ class Alerts extends Component {
                             
                                 <UserDashboardSideBar alert />
                                 <div className="col-md-9">
-                                    {/* {this.state.savedProperties.length < 1 ? noSavedProperties: savedProperties} */}
                                         <div className="row mx-0 my-0 bg-white" style={{boxShadow:"0px 4px 10px rgba(0, 0, 0, 0.07)",borderRadius:"10px"}}>
                                             <div className="col-sm-12 px-0 d-flex flex-column" style={{minHeight:"569px"}}>
                                                 <table className="table p-2" style={{width:"100%"}}>
@@ -94,41 +61,14 @@ class Alerts extends Component {
                         </div>
                     </div>
                 </section>
-                <Footer />
             </React.Fragment>
         )
     }
 }
 
-export default Alerts;
+const mapStateToProps = state => ({
+    alerts: state.user.alerts,
+    user: state.auth.user
+})
 
-// sample data
-// {
-//     "id": 54500,
-//     "agent": {
-//     "id": 3500,
-//     "name": "Adam Matthew",
-//     "phone": null,
-//     "username": "example"
-//     },
-//     "title": "Lekki house centre update",
-//     "slug": "lekki-house-centre-update",
-//     "price": 4000000,
-//     "description": "Get All Files Within A Directory\nThe files method returns an array of all of the files in a given directory. If you would like to retrieve a list of a...",
-//     "status": "For Sale",
-//     "type": "Apartment",
-//     "featured": false,
-//     "label": "",
-//     "image": "http://127.0.0.1:8000/storage/properties/iSA5dVqJprmPh31U3R3OGM5GbDtNe5R2WGk15tt7.jpeg",
-//     "bedrooms": 2,
-//     "bathrooms": 2,
-//     "toilets": null,
-//     "furnished": false,
-//     "serviced": false,
-// "parking": 2,
-// "total_area": 16,
-// "country": "Nigeria",
-// "locality": "Agege",
-// "address": "inside inside",
-// "created_at": "1 hour ago"
-// }
+export default connect(mapStateToProps, { getUser, loadPage, getAlerts })(Alerts);

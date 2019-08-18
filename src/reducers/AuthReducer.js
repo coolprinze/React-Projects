@@ -8,7 +8,6 @@ const INITIAL_STATE = {
   loading: false
 }
 
-console.log(INITIAL_STATE);
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type){

@@ -4,7 +4,7 @@ import SearchBar from './SearchBar';
 import { PRICES } from './Variable';
 import { connect } from 'react-redux'
 import { getPropertyTypes, searchProperties } from '../actions';
-import { UPDATE_SEARCH_PARAM, UPDATE_SEARCH_TERM } from '../actions/types';
+import { UPDATE_SEARCH_PARAM } from '../actions/types';
 
 
 class HeaderSearch extends Component {

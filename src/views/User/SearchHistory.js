@@ -2,51 +2,27 @@ import React, { Fragment, Component } from 'react'
 import { Link } from 'react-router-dom';
 import UserDashboardSideBar from './UserDashboardSideBar';
 import SubHeader from '../../component/Header/SubHeader';
+import { getUser, loadPage } from '../../actions';
+import { connect } from 'react-redux'
 import config from '../../config';
 
+
 class SearchHistory extends Component {
-    constructor(props){
-      super(props)
-      this.state = {
-          searchHistory: [
-
-          ],
-          user:{}
-      }
-      this.getUser = this.getUser.bind(this)
-      this.setUserState = this.setUserState.bind(this)
-    }
-    async componentWillMount(){
-        var token = localStorage.getItem('token')
-        this.getUser(`Bearer `+token)
-        this.setUserState()
-    }
-    setUserState(){
-      let user = JSON.parse(localStorage.getItem('user')) 
-      this.setState({user:user})
-    }
-
-    getUser = async (token) => {
-      const res = await fetch(`${config.BASE_URL}/user`,{
-        headers:{
-            'Authorization':token,
-            'Accept':'application/json',
-            'Content-Type':'application/json'
-        },
-        method:'GET'
-    })
-      const payload = await res.json();
-      if (res.status === 200 && payload.status === 1){
-          console.log('user retreived')
-          localStorage.setItem('user',JSON.stringify(payload.data))
-      }else{
-          alert('Something went wrong')
-      }
+    async componentDidMount(){
+        document.title = await `${config.pageTitle} User Search History`;
+        this.props.user === null?
+        (async () => {
+          await this.props.getUser();
+          await this.props.loadPage()
+        })():
+        (async () =>{
+          await this.props.loadPage()
+        })()
     }
   render() {
     return (
       <Fragment>
-        <SubHeader username={this.state.user.name}/>
+        <SubHeader username={this.props.user.name}/>
         <section className="container-fluid py-5 properties bg-grey">
             <div className="container">
                 <div className="col-sm-12">
@@ -180,4 +156,10 @@ class SearchHistory extends Component {
   }
 }
 
-export default SearchHistory;
+
+const mapStateToProps = state => ({
+    savedProperties: state.properties.listings,
+    user: state.auth.user
+})
+
+export default connect(mapStateToProps, { getUser, loadPage })(SearchHistory);

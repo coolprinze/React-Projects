@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 class App extends Component {
@@ -12,16 +12,14 @@ class App extends Component {
         .then(res => res.json())
         .then((properties) => {
         this.setState({ properties: properties.data.data })
-        console.log(this.state.properties)
         })
-        .catch(console.log)
+        .catch()
         
       
     }
 
     render() {
 
-        console.log(this.routes);
 
         return ( 
             <React.Fragment>

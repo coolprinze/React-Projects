@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import { magazine, advert } from '../../assets/img';
+import { magazine } from '../../assets/img';
 import { connect } from 'react-redux'
 import { loadPage } from '../../actions';
 import SideBar from '../../component/SideBar';
 import Newsletter from '../../component/Newsletter';
+import config from '../../config';
 
 
 class Magazine extends Component{
 
   async componentDidMount(){
+    document.title = await `${config.pageTitle} Magazine Download`;
     await this.props.loadPage();
   }
 
@@ -24,7 +26,7 @@ class Magazine extends Component{
       </header>
       <div className="container magazine pt-5 pb-5">
         <div className="row">
-          <div className="col-sm-8 TOUinfo">
+          <div className="col-md-8 TOUinfo">
             <h1>Magazines</h1>
             <div className="DMimages">
               <div className="row mt-4 mb-4">

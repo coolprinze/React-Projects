@@ -3,12 +3,14 @@ import { loadPage, getUser } from '../../actions';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { Input } from '../../common/Form';
+import config from '../../config';
 
 
 
 class Profile extends Component {
 
     async componentDidMount() {
+        document.title = await `${config.pageTitle} Agent - My Profile`;
         await this.props.getUser()
         await this.props.loadPage()
     }

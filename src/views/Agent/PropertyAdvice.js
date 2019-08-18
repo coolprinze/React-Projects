@@ -42,7 +42,7 @@ class PropertyAdvice extends Component {
             return (
                 <div class="col-lg-6 py-2 ">
                     <div class="card bg-white mx-3 " key={item.id}>
-                        <img src={agency}/>
+                        <img src={agency} alt=""/>
                         <div class="card-footer bg-white ">
                             <h6 class="card-subtitle mb-2 text-muted ">{item.name}</h6>
                             {/* <p class="pt-2 ">By Reachmond Estate</p> */}
@@ -55,7 +55,7 @@ class PropertyAdvice extends Component {
             <React.Fragment>
               <section class="slider ">
                 <div id="osahanslider " class="carousel slide " data-ride="carousel ">
-                    <div class="carousel-inner " role="listbox " style={{height:"300px"}}>
+                    <div class="carousel-inner " role="listbox" style={{height:"300px"}}>
                         <div class="carousel-item active " style={headerStyle}>
                             <div class="overlay "></div>
                         </div>

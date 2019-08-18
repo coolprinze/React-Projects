@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import HeaderSearch from './../../component/HeaderSearch'
-import AdvanceSearch from './../../component/AdvanceSearch'
+import HeaderSearch from '../../component/HeaderSearch'
+import AdvanceSearch from '../../component/AdvanceSearch'
 import { searchProperties, loadPage, getPaginatePage } from '../../actions';
 import Paginate from '../../component/Paginate';
 import PropertyView from '../../component/PropertyView';
 import { UNLOAD_PAGE, GET_PROPERTIES } from '../../actions/types';
+import config from '../../config';
 
-class CityListing extends Component {
+class SearchListing extends Component {
     state={
         id: ''
     }
     
     async componentDidMount(){
-        await this.setState({ id: this.props.match.params.id })
+        document.title = await `${config.pageTitle} Search`;
+        await this.setState({ id: this.props.match.params.id, searchType: this.props.match.params.param })
         await this.search();
         await this.props.loadPage();
     }
@@ -29,7 +31,11 @@ class CityListing extends Component {
     }
     
     search = async () => {
-        await this.props.searchProperties({ locality_id: this.state.id });
+        if (this.props.match.params.param === 'city'){
+            await this.props.searchProperties({ locality_id: this.state.id });
+        }else if (this.props.match.params.param === 'type'){
+            await this.props.searchProperties({ type_id: this.state.id });
+        }
     }
     render() {
         const { data, requestType } = this.props.properties
@@ -77,4 +83,4 @@ const mapStateToProps = state => ({
     requestType: state.properties.requestType
 })
 
-export default connect(mapStateToProps, { searchProperties, loadPage, getPaginatePage })(CityListing);
+export default connect(mapStateToProps, { searchProperties, loadPage, getPaginatePage })(SearchListing);

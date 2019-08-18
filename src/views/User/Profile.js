@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import config from '../../config'
 import SubHeader from "../../component/Header/SubHeader"
 import UserDashboardSideBar from './UserDashboardSideBar';
+import { getUser, loadPage } from '../../actions';
 
 
 class Profile extends Component {
@@ -12,7 +13,7 @@ class Profile extends Component {
             name: this.props.user.name,
             username: this.props.user.username,
             email:this.props.user.email,
-            address:this.props.user.address,
+            address: this.props.user.address === null? '': this.props.user.address,
             oldpassword:"",
             newpassword:"",
             user:{}
@@ -21,12 +22,22 @@ class Profile extends Component {
         this.updateProfile = this.updateProfile.bind(this)
         this.update = this.update.bind(this)
     }
+    async componentDidMount(){
+        document.title = await `${config.pageTitle} User Profile`;
+        this.props.user === null?
+        (async () => {
+          await this.props.getUser();
+          await this.props.loadPage()
+        })():
+        (async () =>{
+          await this.props.loadPage()
+        })()
+    }
     
     handleChange = (e) => {
         this.setState({
             [e.target.id]:e.target.value
         })
-        console.log(e.target.value)
     }
 
     update(){
@@ -42,7 +53,6 @@ class Profile extends Component {
             state_id:25,
             phone: "12345678901"
         }
-        console.log(JSON.stringify(data))
         const res = await fetch(`${config.BASE_URL}/user`,{
             headers:{
                 'Content-Type':'application/json',
@@ -62,7 +72,7 @@ class Profile extends Component {
     render() {
         return ( 
             <React.Fragment>
-                <SubHeader username={this.state.user.name}/>
+                <SubHeader username={this.state.name}/>
                 <section className="container-fluid bg-grey">
                     <div className="container py-5">
                         <div className="col-sm-12">
@@ -91,7 +101,7 @@ class Profile extends Component {
                                                 <div className="row">
                                                     <div className="col">
                                                         <label htmlFor="email">Email Address</label>
-                                                        <input type="text" className="form-control form-control-lg bg-white" id="email" onChange={this.handleChange} value={this.state.email}/>
+                                                        <input type="email" disabled className="form-control form-control-lg disabled" id="email"  value={this.state.email}/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -126,4 +136,4 @@ const mapStateToProps = state => ({
     user: state.auth.user
 })
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, { getUser, loadPage })(Profile);

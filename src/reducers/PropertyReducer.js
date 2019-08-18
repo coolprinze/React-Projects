@@ -1,4 +1,4 @@
-import { GET_PROPERTIES, GET_PROPERTY, RESET, DELETE_PROPERTY, GET_PROPERTY_CATEGORIES, GET_PROPERTY_TYPES, UPDATE_CITY_ID } from "../actions/types";
+import { GET_PROPERTIES, GET_PROPERTY, RESET, DELETE_PROPERTY, GET_PROPERTY_CATEGORIES, GET_PROPERTY_TYPES, UPDATE_CITY_ID, UNLOAD_PAGE } from "../actions/types";
 
 const INITIAL_STATE = {
   property: {
@@ -68,6 +68,15 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         status: true
+      }
+
+    case UNLOAD_PAGE:
+      return {
+        ...state,
+        listings: {
+          ...state.listings,
+          requestType: null
+        }
       }
     default:
       return state

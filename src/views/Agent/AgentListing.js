@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
 import { getAgentProperties, deleteProperty, loadPage, getPaginatePage } from '../../actions';
 import Paginate from '../../component/Paginate';
 import PropertyView from '../../component/PropertyView';
 import { GET_PROPERTIES } from '../../actions/types';
+import SideBar from '../../component/SideBar';
+import config from '../../config';
 
 
 
@@ -14,6 +15,10 @@ class AgentListing extends Component {
         super(props)
         this.getAgentProperties()
         this.onDelete = this.deleteListing.bind(this)
+    }
+
+    async componentDidMount(){
+        document.title = await `${config.pageTitle} My Listing`;
     }
 
     getAgentProperties = async () => {
@@ -36,7 +41,6 @@ class AgentListing extends Component {
     
     
     render() {
-        console.log(this.props.properties)
         const { data } = this.props.properties
         const properties = data.length?
         data.map((item) =>{
@@ -49,90 +53,11 @@ class AgentListing extends Component {
                     <section className="container-fluid properties bg-grey py-5">
                     <div className="container">
                         <div className="row">
-                            <div className="col-lg-8">
+                            <div className="col-md-8">
                                 {properties}
                             </div>
-                            <div className="col-lg-4">
-                                <div className="row">
-                                    <div className="col-sm-12 py-3">
-                                        <div className="card px-3 py-3" height="18rem">
-                                            <h5>
-                                                Filter Agent Listing
-                                            </h5>
-                                            <div className="row px-3 py-3">
-                                                <li className="col-lg-4 d-flex flex-column justify-content-center align-items-center border-right">
-                                                    <div className="dropdown">
-                                                        <button className="dropdown-toggle custom-drp text-uppercase px-0 pb-3" type="button" id="price_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                    Prices
-                                                                </button>
-                                                        <div className="dropdown-menu" aria-labelledby="price_drp">
-                                                            <Link className="dropdown-item" to="#">Action</Link>
-                                                            <Link className="dropdown-item" to="#">Another action</Link>
-                                                            <Link className="dropdown-item" to="#">Something else here</Link>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li className="col-lg-4 d-flex flex-column justify-content-center align-items-center border-right">
-                                                    <div className="dropdown">
-                                                        <button className="dropdown-toggle custom-drp text-uppercase px-0 pb-3" type="button" id="bathroom_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            bathrooms
-                                                        </button>
-                                                        <div className="dropdown-menu" aria-labelledby="bathroom_drp">
-                                                            <Link className="dropdown-item" to="#">Action</Link>
-                                                            <Link className="dropdown-item" to="#">Another action</Link>
-                                                            <Link className="dropdown-item" to="#">Something else here</Link>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li className="col-lg-4 d-flex flex-column justify-content-center align-items-center">
-                                                    <div className="dropdown">
-                                                        <button className="dropdown-toggle custom-drp text-uppercase px-0 pb-3" type="button" id="bathroom_drp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        bathrooms
-                                                                    </button>
-                                                        <div className="dropdown-menu" aria-labelledby="bathroom_drp">
-                                                            <Link className="dropdown-item" to="#">Action</Link>
-                                                            <Link className="dropdown-item" to="#">Another action</Link>
-                                                            <Link className="dropdown-item" to="#">Something else here</Link>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-sm-12 py-3">
-                                        <div className="card" height="18rem">
-                                            <h5 className=" px-3 py-3">
-                                                Search Castles
-                                            </h5>
-                                            <div className="card-footer" style={{background:"#FF8C00"}}>
-                                                <input type="text" placeholder="e.g Lekki, Lagos" className="form-control" style={{minHeight:"50px"}}/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-sm-12 py-3">
-                                        <div className="card" height="18rem">
-                                            <h5 className=" px-3 py-3">
-                                                Advertisement placement
-                                            </h5>
-                                            <img src="img/advert.png" alt=""/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-sm-12 py-3">
-                                        <div className="card" height="18rem">
-                                            <h5 className=" px-3 py-3">
-                                                Advertisement placement
-                                            </h5>
-                                            <img src="img/advert.png" alt=""/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
+                            <SideBar />
                         </div>
                     </div>
                 </section>
@@ -143,7 +68,7 @@ class AgentListing extends Component {
 }
 
 const mapStateToProps = state => ({
-    properties: state.properties.listings
+    properties: state.agent.listings
 })
 
 export default connect(mapStateToProps, { getAgentProperties, deleteProperty, loadPage, getPaginatePage })(AgentListing);

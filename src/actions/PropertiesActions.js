@@ -1,7 +1,7 @@
 import axios from 'axios';
 import config from '../config';
 import { createMsg, errorHandler } from './UtitlityActions';
-import { GET_PROPERTY, GET_PROPERTIES, GET_PROPERTY_CATEGORIES, GET_PROPERTY_TYPES } from './types';
+import { GET_PROPERTY, GET_PROPERTIES, GET_PROPERTY_CATEGORIES, GET_PROPERTY_TYPES, GET_AGENT_LISTINGS } from './types';
 
 
 
@@ -49,6 +49,9 @@ export const searchProperties = (params, type = GET_PROPERTIES) => async dispatc
 
   await axios.get(url.href, config.header)
     .then(res => {
+      localStorage.getItem("token") !== null? 
+      axios.post(`${config.BASE_URL}/alert/save`, {search_id: res.data.search_id}, config.header)
+      .then().catch(): (null)();
       dispatch({
         type,
         payload: { data:res.data.data, type: 'search' }
@@ -126,7 +129,7 @@ export const getAgentListing = (agent) => async dispatch => {
   await axios.get(`${config.BASE_URL}/properties/${agent}`, config.header)
     .then(res => {
       dispatch({
-        type: GET_PROPERTIES,
+        type: GET_AGENT_LISTINGS,
         payload: { data:res.data.data, type: 'agent' }
       })
     })

@@ -15,7 +15,7 @@ import { createMsg, loadPage } from '../../actions';
 import Loading from '../../component/Loading';
 import Header from '../../component/Header/Header';
 import Footer from '../../component/Footer';
-import { AGENT_LOADING, UNLOAD_PAGE } from '../../actions/types';
+import { UNLOAD_PAGE } from '../../actions/types';
 
 
 
@@ -23,9 +23,6 @@ import { AGENT_LOADING, UNLOAD_PAGE } from '../../actions/types';
 
 class Agent extends Component {
 
-  constructor(props){
-    super(props);
-  }
   async componentWillUnmount(){
     await this.props.loadPage(UNLOAD_PAGE);
   }
